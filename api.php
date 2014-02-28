@@ -148,6 +148,46 @@ function getclinics()
 
 }
 
+class howlate_dbobject {
+  public $queryResult;
+  protected $dbHostname = "localhost";
+  protected $dbUsername = "howlate_super";
+  protected $dbPassw = "bdU,[}B}k@7n";
+  protected $dbName = "howlate_main";
+  private $mysqli;
+  function __construct() {
+    $mysqli = mysqli_init();
+    $mysqli->options(MYSQLI_INIT_CMD, "SET AUTOCOMMIT=1");
+	$mysqli->options(MYSQLI_OPT_CONNECT_TIMEOUT, 5);
+    $mysqli->real_connect($dbHostname, $dbUsername, $dbPassw, $dbName);
+    if (mysqli_connect_errno) {
+	  die('Failed to connect to database: ' . mysqli_connect_error());
+	}
+  }
+  function getClinics($orgID) {
+
+    $q = "SELECT ClinicID, OrgID, ClinicName FROM clinics WHERE OrdID = '" . $orgID . "'";
+
+    $myArray = array();
+    if ($result = $mysqli->query($q) {
+      $tempArray = array();
+      while($row = $result->fetch_object()) {
+        $tempArray = $row;
+        array_push($myArray, $tempArray);
+      }
+      echo json_encode($myArray);
+    }
+	$result->close();
+  }
+
+  function __destruct() {
+    $mysqli->close();
+  
+  }
+}
+
+
+
 ?>
 
 
