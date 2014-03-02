@@ -146,9 +146,14 @@ function getclinics()
 
   echo "<b>$met</b> uses the PIN ($pin) to decode the organisation and returns a json list of clinics for that org.<br>";
 
+  $db = new howlate_db();
+  $db->getClinics($pin);
+  
 }
 
-class howlate_dbobject {
+
+
+class howlate_db {
   public $queryResult;
   protected $dbHostname = "localhost";
   protected $dbUsername = "howlate_super";
