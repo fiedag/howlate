@@ -1,13 +1,20 @@
 <h1>How-late API returns mostly JSON </h1>
 <?php
+  function __autoload($classname) {
+	$filename = "./". $classname . $ver . ".php";
+	include_once($filename);
+  }
+	
+  $debug = $_GET["debug"];
+  
   /* at the very least a Phone UDID must be supplied, a method name and a client app version */
-  $id = $_GET["id"];
+  $udid = $_GET["udid"];
   $met = $_GET["met"];
   $ver = $_GET["ver"];  
   
-  if (! $id) 
+  if (! $udid) 
   {
-    die('API Error: You must supply the \$id parameter to uniquely identify your device.');
+    die('API Error: You must supply the \$udid parameter to uniquely identify your device.');
     }
   if (! $met)
   {
@@ -20,16 +27,20 @@
   
   $json = array();
   $json[]= array(
-   'id' => $id,
+   'udid' => $udid,
    'met' => $met,
    'ver' => $ver
   );
 
   $jsonstring = json_encode($json);
-  echo "mandatory parameters :" . "<br>";
+  echo "parameters :" . "<br>";
   echo $jsonstring;  
   echo "<br><br>";
   
+  //echo "User-Agent: " . $_SERVER['HTTP_USER_AGENT'] . "<br><br>";
+  //$browser = get_browser(null, true);
+  //print_r($browser);
+
   switch ($met)
   {
     case "get":
@@ -38,16 +49,16 @@
     case "help":        // what happens when help is requested.  Returns html not json.  A container then displays it.
       help();
   	break;
-    case "reg":         // a device is registering for updates from a practitioner.
+    case "reg":         // a device is registering for updates from a practitioner.  Needs no password.
       registerpin();
   	break;
     case "dereg":
-      deregisterpin();  // a device is deregistering for updates from a practitioner
+      deregisterpin();  // a device is deregistering for updates from a practitioner.
   	break;
     case "upd":
-      updatelateness();  // a device is updating the lateness for a single practitioner
+      updatelateness();  // a device is updating the lateness for a single practitioner.  Needs a password.
   	break;
-    case "assign":
+    case "assign":  // assign a practitioner to a clinic
 	  assign();
 	  break;
     case "getclinics":
@@ -59,42 +70,64 @@
 
 function getlatenesses()
 {
-  global $id, $met, $ver;
-  echo '<b>get</b> returns the json array of the current latenesses for all the practitioners the patient has registered for' . "<br>"; 
+  global $udid, $met, $ver;
+  echo '<b>get</b> returns the json array of the current latenesses for all the practitioners the patient has registered for with device $udid' . "<br>"; 
+  $db = new howlate_db();
+  
+  $db->getLatenesses($udid);
+  
+  }
+
+function help()
+{
+  global $udid, $met, $ver;
+  echo '<b>$met</b> returns the html for application help' . "<br>"; 
 }
 
 function registerpin()
 {
-  global $id, $met, $ver;
+  global $udid, $met, $ver;
   $pin = $_GET["pin"];
   if (! $pin)
   {
     die('API Error: <b>$met</b> - you must supply the $pin parameter <br>');
 	}
 
-  echo "<b>$met</b> registers this phone ($id) for updates for the practitioner identified by the supplied PIN ($pin)<br>";
-	
-// $db = new howlate_db_object;
-// $db->validatepin($pin);
-// $db->add($id,$pin);
-  
+  echo "<b>$met</b> registers this phone ($udid) for updates for the practitioner identified by the supplied PIN ($pin)<br>";
+
+  if (!(strlen($pin) == 6 || strlen($pin) == 7)) {
+    die('API Error: The PIN entered is not valid. Should be six or seven characters long.'); 
+  }
+  $org = substr($pin,0,5);
+  $id = substr($pin,5,2);
+  $db = new howlate_db();
+  $db->validatePin($org, $id);
+  $db->register($udid,$org, $id);
+  echo "Successfully registered pin<br>";
 }
 
 function deregisterpin()
 {
-  global $id, $met, $ver;
+  global $udid, $met, $ver;
   $pin = $_GET["pin"];
   if (! $pin)
   {
     die('API Error: <b>$met</b> - you must supply the $pin parameter <br>');
 	}
 
-  echo "<b>$met</b> deregisters this phone ($id) for updates for the practitioner identified by the supplied PIN ($pin)<br>";
+  echo "<b>$met</b> deregisters this phone ($udid) for updates for the practitioner identified by the supplied PIN ($pin)<br>";
 	
-// $db = new howlate_db_object;
-// $db->validatepin($pin);
-// $db->delete($id,$pin);
-  
+  if (!(strlen($pin) == 6 || strlen($pin) == 7)) {
+    die('API Error: The PIN entered is not valid. Should be six or seven characters long.'); 
+  }
+  $org = substr($pin,0,5);
+  $id = substr($pin,5,2);
+  $db = new howlate_db();
+  $db->validatePin($org, $id);
+  $db->deregister($udid,$org, $id);
+
+  echo "Successfully deregistered pin<br>";
+	
 }
 
 // Updates the lateness for a specific practitioner
@@ -102,7 +135,7 @@ function deregisterpin()
 // The website interface for doing this has no need of this API.
 function updatelateness()
 {
-  global $id, $met, $ver;
+  global $udid, $met, $ver;
   $pin = $_GET["pin"];
   if (! $pin)
   {
@@ -115,10 +148,9 @@ function updatelateness()
 
 // Assigns or reassigns a practitioner to a different clinic
 // This is intended to be done from a future smartphone app.
-// The website interface for doing this has no need of this API.
 function assign()
 {
-  global $id, $met, $ver;
+  global $udid, $met, $ver;
   $pin = $_GET["pin"];  // identifies the practitioner and Org
   if (! $pin)
   {
@@ -137,8 +169,8 @@ function assign()
 
 function getclinics()
 {
-  global $id, $met, $ver;
-  $pin = $_GET["pin"];  // identifies the practitioner and Org
+  global $udid, $met, $ver;
+  $pin = $_GET["pin"];  // identifies the Org and practitioner
   if (! $pin)
   {
     die('API Error: <b>$met</b> method - you must supply the $pin parameter <br>');
@@ -152,37 +184,6 @@ function getclinics()
 }
 
 
-
-class howlate_db {
-
-	protected $conn;
-  
-	function __construct() {
-		$this->conn = new mysqli('localhost','howlate_super','bdU,[}B}k@7n','howlate_main');
-	}
-	function getClinics($orgID) {
-		$q = "SELECT ClinicID, OrgID, ClinicName FROM clinics WHERE OrgID = '" . $orgID . "'";
-		echo $q . "<br>";
-	
-		//$mysqli = new mysqli('localhost','howlate_super','bdU,[}B}k@7n','howlate_main');
-		$myArray = array();
-		if ($result = $this->conn->query($q)) {
-			$tempArray = array();
-			while($row = $result->fetch_object()) {
-                $tempArray = $row;
-                array_push($myArray, $tempArray);
-            }
-			echo json_encode($myArray);
-		}
-		$result->close();
-		$this->conn->close();
-	}
-	function __destruct() {
-		if (is_resource($this->conn) && get_resource_type($this->conn) == 'mysql link' ) {
-			$this->conn->close();
-		}
-	}
-}
 
 ?>
 
