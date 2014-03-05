@@ -1,7 +1,7 @@
 <h1>How-late API returns mostly JSON </h1>
 <?php
   function __autoload($classname) {
-	$filename = "./". $classname . $ver . ".php";
+	$filename = "./lib/". $classname . $ver . ".php";
 	include_once($filename);
   }
 	
@@ -95,11 +95,10 @@ function registerpin()
 
   echo "<b>$met</b> registers this phone ($udid) for updates for the practitioner identified by the supplied PIN ($pin)<br>";
 
-  if (!(strlen($pin) == 6 || strlen($pin) == 7)) {
-    die('API Error: The PIN entered is not valid. Should be six or seven characters long.'); 
-  }
-  $org = substr($pin,0,5);
-  $id = substr($pin,5,2);
+  howlate_util::validatePin($pin);
+
+  $org = howlate_util::orgFromPin($pin);
+  $id = howlate_util::idFromPin($pin);
   $db = new howlate_db();
   $db->validatePin($org, $id);
   $db->register($udid,$org, $id);
