@@ -31,7 +31,7 @@ class howlate_db {
 		$this->conn->close();
 	}
 	function getlatenesses($udid) {
-		$q = "SELECT ClinicName, AbbrevName FROM vwMyLates WHERE UDID = '" . $udid . "'";
+		$q = "SELECT ClinicName, AbbrevName, MinutesLate FROM vwMyLates WHERE UDID = '" . $udid . "'";
 		$myArray = array();
 		if ($result = $this->conn->query($q)) {
 			$tempArray = array();
@@ -59,11 +59,22 @@ class howlate_db {
 		if ($result = $this->conn->query($q)) {
 			$row = $result->fetch_object();
 		    if ($row == "") {
-			  die('Data Error: Practitioner with ID <b>' . $id . '</b> does not exist for organisation<b>' . $org . '</b>.');
+			  die('Data Error: Practitioner with ID <b>' . $id . '</b> does not exist for organisation<b>' . $org . '</b><br>.');
 			}
         }
 		$result->close();
 		//$this->conn->close();
+	}
+	
+	function validateClinic($org, $clinic) {
+		$q = "SELECT ClinicName FROM clinics WHERE OrgID = '" . $org . "' AND ClinicID = " . $clinic ;
+		if ($result = $this->conn->query($q)) {
+			$row = $result->fetch_object();
+		    if ($row == "") {
+			  die('Data Error: Clinic $clinic is not valid for Org' . $org . '<br>');
+			}
+        }
+		$result->close();
 	}
 	
 	function register($udid, $orgID, $id) {
@@ -83,9 +94,29 @@ class howlate_db {
 		$stmt = $this->conn->prepare($q);
 		$stmt->bind_param('sss',$id, $orgID, $udid);
 		$stmt->execute() or user_error('# Query Error (' . $this->conn->errno . ') '.  $this->conn->error);
-	
+		if ($stmt->affected_rows == 0) {
+			die('The device was not registered for information from organisation = ' . $orgID . ' and ID = ' . $id);
+		}
 	}
-		
 	
+	function place($org, $id, $clinic) {
+		$q = "REPLACE INTO placements (OrgID, ID, ClinicID) VALUES (?,?,?)";
+		$stmt = $this->conn->query($q);
+		$stmt = $this->conn->prepare($q);
+		$stmt->bind_param('sss',$org, $id, $clinic);
+		$stmt->execute() or user_error('# Query Error (' . $this->conn->errno . ') '.  $this->conn->error);
+	}
+
+	function displace($org, $id, $clinic) {
+		$q = "DELETE FROM placements WHERE OrgID = ? AND ID = ? AND ClinicID = ?";
+		$stmt = $this->conn->query($q);
+		$stmt = $this->conn->prepare($q);
+		$stmt->bind_param('sss',$org, $id, $clinic);
+		$stmt->execute() or user_error('# Query Error (' . $this->conn->errno . ') '.  $this->conn->error);
+		if ($stmt->affected_rows == 0) {
+			die('The practitioner was not placed at clinic ' . $clinic . ' in organisation ' . $orgID);
+		}
+		
+	}
 }
 ?>
