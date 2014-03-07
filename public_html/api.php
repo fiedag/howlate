@@ -1,9 +1,20 @@
 <h1>How-late API returns mostly JSON </h1>
 <?php
-function __autoload($classname) {
-	$filename = "./lib/". $classname . $ver . ".php";
-	include_once($filename);
+if (!function_exists('__autoload')) {
+	function __autoload($classname) {
+		$filename = "./lib/". $classname . ".php";
+		include_once($filename);
+	}
 }
+
+function unh_exception_handler($exception) {
+  echo "Unhandled exception: " , $exception->getMessage(), "\n";
+  
+}
+set_exception_handler('unh_exception_handler');
+
+include_once("./lib/error_handler.php");
+
 
 $debug = $_GET["debug"];
  
@@ -13,13 +24,13 @@ $met = $_GET["met"];
 $ver = $_GET["ver"];  
  
 if (! $udid) {
-	die('API Error: You must supply the \$udid parameter to uniquely identify your device.');
+	trigger_error('API Error: You must supply the \$udid parameter to uniquely identify your device.', E_USER_ERROR);
 }
 if (! $met) {
-	die('API Error: You must supply the \$met parameter for the method you wish to call.');
+	trigger_error('API Error: You must supply the \$met parameter for the method you wish to call.', E_USER_ERROR);
 }
 if (! $ver) {
-	die('API Error: You must supply the \$ver parameter to identify the version of the App.');
+	trigger_error('API Error: You must supply the \$ver parameter to identify the version of the App.', E_USER_ERROR);
 }
   
 $json = array();
@@ -65,7 +76,7 @@ switch ($met)
 		displace();
 		break;
 	default:
-		die ('API Error: method "' . $met . '" is not known');  
+		trigger_error ('API Error: method "' . $met . '" is not known', E_USER_ERROR);  
 };
 return;
 
@@ -90,7 +101,7 @@ function registerpin()
 	global $udid, $met, $ver;
 	$pin = $_GET["pin"];
 	if (! $pin)	{
-		die('API Error: <b>$met</b> - you must supply the $pin parameter <br>');
+		trigger_error('API Error: <b>$met</b> - you must supply the $pin parameter <br>', E_USER_ERROR);
 	}
 	echo "<b>$met</b> registers this phone ($udid) for updates for the practitioner identified by the supplied PIN ($pin)<br>";
 	
@@ -109,7 +120,7 @@ function deregisterpin()
 	global $udid, $met, $ver;
 	$pin = $_GET["pin"];
 	if (! $pin)	{
-		die('API Error: <b>$met</b> - you must supply the $pin parameter <br>');
+		trigger_error('API Error: <b>$met</b> - you must supply the $pin parameter <br>', E_USER_ERROR);
 	}
 	
 	echo "<b>$met</b> deregisters this phone ($udid) for updates for the practitioner identified by the supplied PIN ($pin)<br>";
@@ -141,16 +152,13 @@ function updatelateness()
 function getclinics()
 {
 	global $udid, $met, $ver;
+	required(array("pin"));
 	$pin = $_GET["pin"];  // identifies the Org and practitioner
-	if (! $pin) {
-		die('API Error: <b>$met</b> method - you must supply the $pin parameter <br>');
-	}
 
-  echo "<b>$met</b> uses the PIN ($pin) to decode the organisation and returns a json list of clinics for that org.<br>";
+	echo "<b>$met</b> uses the PIN ($pin) to decode the organisation and returns a json list of clinics for that org.<br>";
 
-  $db = new howlate_db();
-  $db->getClinics($pin);
-  
+	$db = new howlate_db();
+	$db->getClinics($pin);
 }
 
 function place() {
@@ -196,7 +204,7 @@ function required($arr) {
 
 	foreach($arr as $value) {
 		if (!$_GET[$value]) {
-			die('API Error: Method ' . $met . ' requires the ' . $value . ' parameter.');
+			trigger_error('API Error: Method ' . $met . ' requires the ' . $value . ' parameter.', E_USER_ERROR);
 		}
 	}
 }
