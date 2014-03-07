@@ -15,9 +15,7 @@ class howlate_db {
 	function getClinics($orgID) {
 
 		$q = "SELECT ClinicID, OrgID, ClinicName FROM clinics WHERE OrgID = '" . $orgID . "'";
-		echo $q . "<br>";
 	
-		//$mysqli = new mysqli('localhost','howlate_super','bdU,[}B}k@7n','howlate_main');
 		$myArray = array();
 		if ($result = $this->conn->query($q)) {
 			$tempArray = array();
@@ -30,6 +28,7 @@ class howlate_db {
 		$result->close();
 		$this->conn->close();
 	}
+	
 	function getlatenesses($udid) {
 		$q = "SELECT ClinicName, AbbrevName, MinutesLate FROM vwMyLates WHERE UDID = '" . $udid . "'";
 		$myArray = array();
@@ -50,7 +49,7 @@ class howlate_db {
 		if ($result = $this->conn->query($q)) {
 			$row = $result->fetch_object();
 		    if ($row == "") {
-			  die('Data Error: Organisation with ID <b>' . $org . '</b> does not exist.');
+			  trigger_Error('Data Error: Organisation with ID' . $org . ' does not exist.', E_USER_ERROR);
 			}
         }
 		$result->close();
@@ -59,7 +58,7 @@ class howlate_db {
 		if ($result = $this->conn->query($q)) {
 			$row = $result->fetch_object();
 		    if ($row == "") {
-			  die('Data Error: Practitioner with ID <b>' . $id . '</b> does not exist for organisation<b>' . $org . '</b><br>.');
+			  trigger_error('Data Error: Practitioner with ID ' . $id . ' does not exist for organisation' . $org , E_USER_ERROR);
 			}
         }
 		$result->close();
@@ -71,7 +70,7 @@ class howlate_db {
 		if ($result = $this->conn->query($q)) {
 			$row = $result->fetch_object();
 		    if ($row == "") {
-			  die('Data Error: Clinic $clinic is not valid for Org' . $org . '<br>');
+			  trigger_error('Data Error: Clinic $clinic is not valid for Org' . $org, E_USER_ERROR);
 			}
         }
 		$result->close();
@@ -82,10 +81,7 @@ class howlate_db {
 		$stmt = $this->conn->query($q);
 		$stmt = $this->conn->prepare($q);
 		$stmt->bind_param('sss',$id, $orgID, $udid);
-		$stmt->execute() or user_error('# Query Error (' . $this->conn->errno . ') '.  $this->conn->error);
-		
-		//$this->conn->close();
-	
+		$stmt->execute() or trigger_error('# Query Error (' . $this->conn->errno . ') '.  $this->conn->error, E_USER_ERROR);
 	}
 
 	function deregister($udid, $orgID, $id) {
@@ -93,9 +89,9 @@ class howlate_db {
 		$stmt = $this->conn->query($q);
 		$stmt = $this->conn->prepare($q);
 		$stmt->bind_param('sss',$id, $orgID, $udid);
-		$stmt->execute() or user_error('# Query Error (' . $this->conn->errno . ') '.  $this->conn->error);
+		$stmt->execute() or trigger_error('# Query Error (' . $this->conn->errno . ') '. $this->conn->error, E_USER_ERROR);
 		if ($stmt->affected_rows == 0) {
-			die('The device was not registered for information from organisation = ' . $orgID . ' and ID = ' . $id);
+			trigger_error('The device was not registered for information from organisation = ' . $orgID . ' and ID = ' . $id, E_USER_WARNING);
 		}
 	}
 	
@@ -104,7 +100,7 @@ class howlate_db {
 		$stmt = $this->conn->query($q);
 		$stmt = $this->conn->prepare($q);
 		$stmt->bind_param('sss',$org, $id, $clinic);
-		$stmt->execute() or user_error('# Query Error (' . $this->conn->errno . ') '.  $this->conn->error);
+		$stmt->execute() or trigger_error('# Query Error (' . $this->conn->errno . ') '.  $this->conn->error, E_USER_ERROR);
 	}
 
 	function displace($org, $id, $clinic) {
@@ -114,9 +110,19 @@ class howlate_db {
 		$stmt->bind_param('sss',$org, $id, $clinic);
 		$stmt->execute() or user_error('# Query Error (' . $this->conn->errno . ') '.  $this->conn->error);
 		if ($stmt->affected_rows == 0) {
-			die('The practitioner was not placed at clinic ' . $clinic . ' in organisation ' . $orgID);
+			trigger_error('The practitioner was not placed at clinic ' . $clinic . ' in organisation ' . $orgID, E_USER_WARNING);
 		}
 		
 	}
+	
+	function write_error($errno, $errtype, $errstr, $errfile, $errline) {
+		$ipaddress = $_SERVER["REMOTE_ADDR"];
+		$q  = "INSERT INTO errorlog (ErrLevel, ErrType, File, Line, ErrMessage, IPv4) VALUES (?,?,?,?,?,?)";
+		$stmt = $this->conn->query($q);
+		$stmt = $this->conn->prepare($q);
+		$stmt->bind_param('ssssss',$errno, $errtype, $errfile, $errline, $errstr, $ipaddress);
+		$stmt->execute() or die('# Query Error (' . $this->conn->errno . ') '.  $this->conn->error);  // no point going in circles
+	}
+	
 }
 ?>
