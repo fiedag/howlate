@@ -1,9 +1,12 @@
 <?php
 
-function __autoload($classname) {
-	$filename = "./lib/". $classname . ".php";
-	include_once($filename);
+if (!function_exists('__autoload')) {
+	function __autoload($classname) {
+		$filename = "./lib/". $classname . ".php";
+		include_once($filename);
+	}
 }
+
 abstract class MyErrorTypes
 {
 	const E_APP_ERROR = 1;
