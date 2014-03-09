@@ -112,6 +112,7 @@ function registerpin()
 	$db = new howlate_db();
 	$db->validatePin($org, $id);
 	$db->register($udid,$org, $id);
+	$db->trlog(TranType::DEV_REG, 'Device ' . $udid . 'registered pin ' . $pin, $org, null, $id, $udid);
 	echo "Successfully registered pin $pin<br>";
 }
 
@@ -123,7 +124,7 @@ function unregisterpin()
 		trigger_error('API Error: <b>$met</b> - you must supply the $pin parameter <br>', E_USER_ERROR);
 	}
 	
-	echo "<b>$met</b> unregisters this phone ($udid) for updates for the practitioner identified by the supplied PIN ($pin)<br>";
+	echo "<b>$met</b> deregisters this phone ($udid) for updates for the practitioner identified by the supplied PIN ($pin)<br>";
 	
 	howlate_util::validatePin($pin);
 	
@@ -131,7 +132,8 @@ function unregisterpin()
 	$id = howlate_util::idFromPin($pin);
 	$db = new howlate_db();
 	$db->validatePin($org, $id);
-	$db->deregister($udid,$org, $id);
+	$db->unregister($udid,$org, $id);
+	$db->trlog(TranType::DEV_UNREG, 'Device ' . $udid . 'registered pin ' . $pin, $org, null, $id, $udid);
 	
 	echo "Successfully deregistered pin $pin<br>";
 	
@@ -207,6 +209,32 @@ function required($arr) {
 			trigger_error('API Error: Method ' . $met . ' requires the ' . $value . ' parameter.', E_USER_ERROR);
 		}
 	}
+}
+
+
+
+abstract class TranType {
+	const CLIN_ADD   =  "CLIN_ADD";
+	const CLIN_ARCH  =  "CLIN_ARCH";
+	const CLIN_CHG   =  "CLIN_CHG";
+	const CLIN_DEL   =  "CLIN_DEL";
+	const DEV_REG    =  "DEV_REG";
+	const DEV_UNREG  =  "DEV_UNREG";
+	const LATE_GET   =  "LATE_GET";
+	const LATE_RESET =  "LATE_RESET";
+	const LATE_UPD   =  "LATE_UPD";
+	const MISC_MISC  =  "MISC_MISC";
+	const ORG_ADD    =  "ORG_ADD";
+	const ORG_CHG    =  "ORG_CHG";
+	const ORG_DEL    =  "ORG_DEL";
+	const PRAC_ARCH  =  "PRAC_ARCH";
+	const PRAC_CRE   =  "PRAC_CRE";
+	const PRAC_DEL   =  "PRAC_DEL";
+	const PRAC_PLACE =  "PRAC_PLACE";
+	const USER_ADD   =  "USER_ADD";
+	const USER_ARCH  =  "USER_ARCH";
+	const USER_CHG   =  "USER_CHG";
+	const USER_SUSP  =  "USER_SUSP";
 }
 
 ?>

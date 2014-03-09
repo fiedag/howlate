@@ -1,28 +1,5 @@
 <?php
 
-abstract class TranType {
-	const CLIN-ADD   =  "CLIN-ADD";
-	const CLIN-ARCH  =  "CLIN-ARCH";
-	const CLIN-CHG   =  "CLIN-CHG";
-	const CLIN-DEL   =  "CLIN-DEL";
-	const DEV-REG    =  "DEV-REG";
-	const DEV-UNREG  =  "DEV-UNREG";
-	const LATE-RESET =  "LATE-RESET";
-	const LATE-UPD   =  "LATE-UPD";
-	const MISC-MISC  =  "MISC-MISC";
-	const ORG-ADD    =  "ORG-ADD";
-	const ORG-CHG    =  "ORG-CHG";
-	const ORG-DEL    =  "ORG-DEL";
-	const PRAC-ARCH  =  "PRAC-ARCH";
-	const PRAC-CRE   =  "PRAC-CRE";
-	const PRAC-DEL   =  "PRAC-DEL";
-	const PRAC-PLACE =  "PRAC-PLACE";
-	const USER-ADD   =  "USER-ADD";
-	const USER-ARCH  =  "USER-ARCH";
-	const USER-CHG   =  "USER-CHG";
-	const USER-SUSP  =  "USER-SUSP";
-}
-
 class howlate_db {
 
 	protected $conn;
@@ -36,7 +13,6 @@ class howlate_db {
 		}
 	}
 	function getClinics($orgID) {
-
 		$q = "SELECT ClinicID, OrgID, ClinicName FROM clinics WHERE OrgID = '" . $orgID . "'";
 	
 		$myArray = array();
@@ -49,7 +25,6 @@ class howlate_db {
 			echo json_encode($myArray);
 		}
 		$result->close();
-		$this->conn->close();
 	}
 	
 	function getlatenesses($udid) {
@@ -64,7 +39,6 @@ class howlate_db {
 			echo json_encode($myArray);
 		}
 		$result->close();
-		$this->conn->close();
 	}
 	
 	function validatePin($org, $id) {
@@ -85,7 +59,6 @@ class howlate_db {
 			}
         }
 		$result->close();
-		//$this->conn->close();
 	}
 	
 	function validateClinic($org, $clinic) {
@@ -107,7 +80,7 @@ class howlate_db {
 		$stmt->execute() or trigger_error('# Query Error (' . $this->conn->errno . ') '.  $this->conn->error, E_USER_ERROR);
 	}
 
-	function deregister($udid, $orgID, $id) {
+	function unregister($udid, $orgID, $id) {
 		$q = "DELETE FROM devicereg WHERE ID = ? AND OrgID = ? AND UDID = ?";
 		$stmt = $this->conn->query($q);
 		$stmt = $this->conn->prepare($q);
@@ -135,9 +108,8 @@ class howlate_db {
 		if ($stmt->affected_rows == 0) {
 			trigger_error('The practitioner was not placed at clinic ' . $clinic . ' in organisation ' . $orgID, E_USER_WARNING);
 		}
-		
 	}
-	
+
 	function write_error($errno, $errtype, $errstr, $errfile, $errline) {
 		$ipaddress = $_SERVER["REMOTE_ADDR"];
 		$q  = "INSERT INTO errorlog (ErrLevel, ErrType, File, Line, ErrMessage, IPv4) VALUES (?,?,?,?,?,?)";
@@ -147,10 +119,13 @@ class howlate_db {
 		$stmt->execute() or die('# Query Error (' . $this->conn->errno . ') '.  $this->conn->error);  // no point going in circles
 	}
 	
-	function trlog($trantype, $detail, $orgid = null, $clinic = null, $practitioner = null) {
-	
-	
+	function trlog($trantype, $details, $orgid = null, $clinic = null, $practitioner = null, $udid = null) {
+		$q = "INSERT INTO transactionlog (TZ, TransType, OrgID, ClinicID, PractitionerID, Details, UDID) VALUES (?, ?, ?, ?, ?, ?, ?)";
+		$stmt = $this->conn->query($q);
+		$stmt = $this->conn->prepare($q);
+		$tz = date_default_timezone_get();
+		$stmt->bind_param('sssisss', $tz, $trantype, $orgID, $clinic, $practitioner, $details, $udid);
+		$stmt->execute() or die('# Query Error (' . $this->conn->errno . ') '.  $this->conn->error);  // no point going in circles
 	}
-	
 }
 ?>
