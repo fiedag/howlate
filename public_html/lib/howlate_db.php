@@ -1,5 +1,28 @@
 <?php
 
+abstract class TranType {
+	const CLIN-ADD   =  "CLIN-ADD";
+	const CLIN-ARCH  =  "CLIN-ARCH";
+	const CLIN-CHG   =  "CLIN-CHG";
+	const CLIN-DEL   =  "CLIN-DEL";
+	const DEV-REG    =  "DEV-REG";
+	const DEV-UNREG  =  "DEV-UNREG";
+	const LATE-RESET =  "LATE-RESET";
+	const LATE-UPD   =  "LATE-UPD";
+	const MISC-MISC  =  "MISC-MISC";
+	const ORG-ADD    =  "ORG-ADD";
+	const ORG-CHG    =  "ORG-CHG";
+	const ORG-DEL    =  "ORG-DEL";
+	const PRAC-ARCH  =  "PRAC-ARCH";
+	const PRAC-CRE   =  "PRAC-CRE";
+	const PRAC-DEL   =  "PRAC-DEL";
+	const PRAC-PLACE =  "PRAC-PLACE";
+	const USER-ADD   =  "USER-ADD";
+	const USER-ARCH  =  "USER-ARCH";
+	const USER-CHG   =  "USER-CHG";
+	const USER-SUSP  =  "USER-SUSP";
+}
+
 class howlate_db {
 
 	protected $conn;
@@ -122,6 +145,11 @@ class howlate_db {
 		$stmt = $this->conn->prepare($q);
 		$stmt->bind_param('ssssss',$errno, $errtype, $errfile, $errline, $errstr, $ipaddress);
 		$stmt->execute() or die('# Query Error (' . $this->conn->errno . ') '.  $this->conn->error);  // no point going in circles
+	}
+	
+	function trlog($trantype, $detail, $orgid = null, $clinic = null, $practitioner = null) {
+	
+	
 	}
 	
 }
