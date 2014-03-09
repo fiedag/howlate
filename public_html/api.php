@@ -60,8 +60,8 @@ switch ($met)
 	case "reg":         // a device is registering for updates from a practitioner.  Needs no password.
 		registerpin();
 		break;
-	case "dereg":
-		deregisterpin();  // a device is deregistering for updates from a practitioner.
+	case "unreg":
+		unregisterpin();  // a device is deregistering for updates from a practitioner.
 		break;
 	case "upd":
 		updatelateness();  // a device is updating the lateness for a single practitioner.  Needs a password.
@@ -115,7 +115,7 @@ function registerpin()
 	echo "Successfully registered pin $pin<br>";
 }
 
-function deregisterpin()
+function unregisterpin()
 {
 	global $udid, $met, $ver;
 	$pin = $_GET["pin"];
@@ -123,7 +123,7 @@ function deregisterpin()
 		trigger_error('API Error: <b>$met</b> - you must supply the $pin parameter <br>', E_USER_ERROR);
 	}
 	
-	echo "<b>$met</b> deregisters this phone ($udid) for updates for the practitioner identified by the supplied PIN ($pin)<br>";
+	echo "<b>$met</b> unregisters this phone ($udid) for updates for the practitioner identified by the supplied PIN ($pin)<br>";
 	
 	howlate_util::validatePin($pin);
 	
