@@ -41,6 +41,14 @@ class howlate_db {
 		$result->close();
 	}
 	
+	function updatelateness($org, $id, $newlate) {
+		$q = "REPLACE INTO lates (OrgID, ID, Updated, Minutes) VALUES (?, ?, curdate(), ?)";
+		$stmt = $this->conn->query($q);
+		$stmt = $this->conn->prepare($q);
+		$stmt->bind_param('sss',$org, $id, $newlate);
+		$stmt->execute() or trigger_error('# Query Error (' . $this->conn->errno . ') '.  $this->conn->error, E_USER_ERROR);
+	
+	}
 	function validatePin($org, $id) {
 		$q = "SELECT OrgName FROM orgs WHERE OrgID = '" . $org . "'";
 		if ($result = $this->conn->query($q)) {
@@ -119,12 +127,12 @@ class howlate_db {
 		$stmt->execute() or die('# Query Error (' . $this->conn->errno . ') '.  $this->conn->error);  // no point going in circles
 	}
 	
-	function trlog($trantype, $details, $orgid = null, $clinic = null, $practitioner = null, $udid = null) {
+	function trlog($trantype, $details, $org = null, $clinic = null, $practitioner = null, $udid = null) {
 		$q = "INSERT INTO transactionlog (TZ, TransType, OrgID, ClinicID, PractitionerID, Details, UDID) VALUES (?, ?, ?, ?, ?, ?, ?)";
 		$stmt = $this->conn->query($q);
 		$stmt = $this->conn->prepare($q);
 		$tz = date_default_timezone_get();
-		$stmt->bind_param('sssisss', $tz, $trantype, $orgID, $clinic, $practitioner, $details, $udid);
+		$stmt->bind_param('sssisss', $tz, $trantype, $org, $clinic, $practitioner, $details, $udid);
 		$stmt->execute() or die('# Query Error (' . $this->conn->errno . ') '.  $this->conn->error);  // no point going in circles
 	}
 }

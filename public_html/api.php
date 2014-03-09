@@ -18,7 +18,7 @@ include_once("./lib/error_handler.php");
 
 $debug = $_GET["debug"];
  
-/* at the very least a Phone UDID must be supplied, a method name and a client app version */
+/* MANDATORY FOR ALL CALLS: at the very least a Phone UDID must be supplied, a method name and a client app version */
 $udid = $_GET["udid"];
 $met = $_GET["met"];
 $ver = $_GET["ver"];  
@@ -88,6 +88,7 @@ function getlatenesses()
 	echo '<b>get</b> returns the json array of the current latenesses for all the practitioners the patient has registered for with device $udid' . "<br>"; 
 	$db = new howlate_db();
 	$db->getLatenesses($udid);
+	$db->trlog(TranType::LATE_GET, 'Lateness got for device ' . $udid, $org, null, $id, $udid);
 }
 
 function help()
@@ -135,7 +136,7 @@ function unregisterpin()
 	$db->unregister($udid,$org, $id);
 	$db->trlog(TranType::DEV_UNREG, 'Device ' . $udid . 'registered pin ' . $pin, $org, null, $id, $udid);
 	
-	echo "Successfully deregistered pin $pin<br>";
+	echo "pin $pin is unregistered.<br>";
 	
 }
 
@@ -144,11 +145,18 @@ function unregisterpin()
 // The website interface for doing this has no need of this API.
 function updatelateness()
 {
-  global $udid, $met, $ver;
-  required(array("pin","newlate"));
-  $pin = $_GET["pin"];
-  $newlate = $_GET["newlate"];
-  
+	global $udid, $met, $ver;
+	required(array("pin","newlate"));
+ 	$pin = $_GET["pin"];
+	$newlate = $_GET["newlate"];
+	
+	howlate_util::validatePin($pin);
+		
+	$org = howlate_util::orgFromPin($pin);
+	$id = howlate_util::idFromPin($pin);
+	$db = new howlate_db();
+	$db->updatelateness($org,$id,$newlate);
+	$db->trlog(TranType::LATE_UPD, 'Practitioner ' . $pin . ' is now ' . $newlate . ' minutes late', $org, null, $id, $udid);
 }
 
 function getclinics()
@@ -178,6 +186,8 @@ function place() {
 	$db->validatePin($org, $id);
 	$db->validateClinic($org, $clinic);
 	$db->place($org, $id, $clinic);
+	$db->trlog(TranType::PRAC_PLACE, 'Practitioner ' . $id . ' now placed at clinic ' . $clinic, $org, null, $id, $udid);
+
 	echo "Successfully placed practitioner $id in clinic $clinic in org $org<br>";
 	
 }
@@ -198,6 +208,8 @@ function displace() {
 	$db->validateClinic($org, $clinic);
 	$db->displace($org, $id, $clinic);
 	echo "Successfully displaced practitioner $id from clinic $clinic in org $org<br>";
+	$db->trlog(TranType::PRAC_DISP, 'Practitioner ' . $id . ' now not placed at clinic ' . $clinic, $org, null, $id, $udid);
+
 }
 
 
@@ -211,30 +223,14 @@ function required($arr) {
 	}
 }
 
-
-
 abstract class TranType {
-	const CLIN_ADD   =  "CLIN_ADD";
-	const CLIN_ARCH  =  "CLIN_ARCH";
-	const CLIN_CHG   =  "CLIN_CHG";
-	const CLIN_DEL   =  "CLIN_DEL";
-	const DEV_REG    =  "DEV_REG";
-	const DEV_UNREG  =  "DEV_UNREG";
-	const LATE_GET   =  "LATE_GET";
-	const LATE_RESET =  "LATE_RESET";
-	const LATE_UPD   =  "LATE_UPD";
+	const CLIN_ADD   =  "CLIN_ADD";	const CLIN_ARCH  =  "CLIN_ARCH";	const CLIN_CHG   =  "CLIN_CHG";	const CLIN_DEL   =  "CLIN_DEL";
+	const DEV_REG    =  "DEV_REG";	const DEV_UNREG  =  "DEV_UNREG";
+	const LATE_GET   =  "LATE_GET";	const LATE_RESET =  "LATE_RESET";	const LATE_UPD   =  "LATE_UPD";
 	const MISC_MISC  =  "MISC_MISC";
-	const ORG_ADD    =  "ORG_ADD";
-	const ORG_CHG    =  "ORG_CHG";
-	const ORG_DEL    =  "ORG_DEL";
-	const PRAC_ARCH  =  "PRAC_ARCH";
-	const PRAC_CRE   =  "PRAC_CRE";
-	const PRAC_DEL   =  "PRAC_DEL";
-	const PRAC_PLACE =  "PRAC_PLACE";
-	const USER_ADD   =  "USER_ADD";
-	const USER_ARCH  =  "USER_ARCH";
-	const USER_CHG   =  "USER_CHG";
-	const USER_SUSP  =  "USER_SUSP";
+	const ORG_ADD    =  "ORG_ADD";	const ORG_CHG    =  "ORG_CHG";	const ORG_DEL    =  "ORG_DEL";
+	const PRAC_ARCH  =  "PRAC_ARCH";const PRAC_CRE   =  "PRAC_CRE";	const PRAC_DEL   =  "PRAC_DEL";	const PRAC_DISP  =  "PRAC_DISP"; const PRAC_PLACE =  "PRAC_PLACE";
+	const USER_ADD   =  "USER_ADD";	const USER_ARCH  =  "USER_ARCH";const USER_CHG   =  "USER_CHG";	const USER_SUSP  =  "USER_SUSP";
 }
 
 ?>
