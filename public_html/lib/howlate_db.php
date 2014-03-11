@@ -56,7 +56,7 @@ class howlate_db {
 		    if ($row == "") {
 			  trigger_Error('Data Error: Organisation with ID' . $org . ' does not exist.', E_USER_ERROR);
 			}
-        }
+    }
 		$result->close();
 
 		$q = "SELECT ID FROM practitioners WHERE OrgID = '" . $org . "' AND ID = '" . $id . "'";
@@ -112,6 +112,7 @@ class howlate_db {
 		$stmt = $this->conn->query($q);
 		$stmt = $this->conn->prepare($q);
 		$stmt->bind_param('sss',$org, $id, $clinic);
+		
 		$stmt->execute() or user_error('# Query Error (' . $this->conn->errno . ') '.  $this->conn->error);
 		if ($stmt->affected_rows == 0) {
 			trigger_error('The practitioner was not placed at clinic ' . $clinic . ' in organisation ' . $orgID, E_USER_WARNING);
@@ -135,5 +136,18 @@ class howlate_db {
 		$stmt->bind_param('sssisss', $tz, $trantype, $org, $clinic, $practitioner, $details, $udid);
 		$stmt->execute() or die('# Query Error (' . $this->conn->errno . ') '.  $this->conn->error);  // no point going in circles
 	}
-}
+	
+	function get_user_data($userid, $orgid) {
+		$q = "SELECT UserID, DateCreated, EmailAddress, FullName, XPassword, OrgID , SecretQuestion1, SecretAnswer1 FROM orgusers WHERE OrgID = '" . $orgID . "' AND UserID = '" . $userid . "'";
+		if ($result = $this->conn->query($q)) {
+			$user = $result->fetch_object('howlate_user');
+	    if (!isset($user)) {
+			  trigger_Error('Data Error: User ' . $userid . ' does not exist for org ' . $org  , E_USER_ERROR);
+			}
+    }
+		
+		$result->close();
+		
+	}
+		
 ?>
