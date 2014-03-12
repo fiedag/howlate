@@ -1,6 +1,6 @@
 <?php 
 
-class site() {
+class howlate_site() {
 
 	public string $template_path = '/home/howlate/public_html/secure';
 	public string $site_path;
