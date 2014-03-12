@@ -13,8 +13,7 @@ function unh_exception_handler($exception) {
 }
 set_exception_handler('unh_exception_handler');
 
-include_once("./lib/error_handler.php");
-
+include_once("./lib/stdinclude.php");
 
 $debug = $_GET["debug"];
  

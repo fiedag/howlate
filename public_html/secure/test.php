@@ -1,7 +1,6 @@
 <?php
 
-	include "session.inc";
-    echo '<br /><a href="page2.php?' . SID . '">page 2</a>';
+	session_start();
 	
 	function check_auth($passwd) {
 		echo "check_auth for password $passwd returning 4 <br>";

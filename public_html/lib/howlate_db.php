@@ -149,5 +149,5 @@ class howlate_db {
 		$result->close();
 		
 	}
-		
+}
 ?>

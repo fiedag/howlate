@@ -1,11 +1,5 @@
 <?php
 
-if (!function_exists('__autoload')) {
-	function __autoload($classname) {
-		$filename = "./lib/". $classname . ".php";
-		include_once($filename);
-	}
-}
 
 abstract class MyErrorTypes
 {
