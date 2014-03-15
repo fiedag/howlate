@@ -1,11 +1,5 @@
 <h1>How-late API returns mostly JSON </h1>
 <?php
-if (!function_exists('__autoload')) {
-	function __autoload($classname) {
-		$filename = "./lib/". $classname . ".php";
-		include_once($filename);
-	}
-}
 
 function unh_exception_handler($exception) {
   echo "Unhandled exception: " , $exception->getMessage(), "\n";
@@ -13,25 +7,22 @@ function unh_exception_handler($exception) {
 }
 set_exception_handler('unh_exception_handler');
 
-include_once("./lib/stdinclude.php");
+$site_path = realpath(dirname(__FILE__));
+define ('__SITE_PATH', $site_path);
+ 
+include_once('includes/init.php');
+
+include_once('lib/stdinclude.php');
 
 $debug = $_GET["debug"];
- 
-/* MANDATORY FOR ALL CALLS: at the very least a Phone UDID must be supplied, a method name and a client app version */
+define ('DEBUG', $debug);
+
+required(array("udid", "met", "ver"));
+
 $udid = $_GET["udid"];
 $met = $_GET["met"];
-$ver = $_GET["ver"];  
+$ver = $_GET["ver"];
  
-if (! $udid) {
-	trigger_error('API Error: You must supply the \$udid parameter to uniquely identify your device.', E_USER_ERROR);
-}
-if (! $met) {
-	trigger_error('API Error: You must supply the \$met parameter for the method you wish to call.', E_USER_ERROR);
-}
-if (! $ver) {
-	trigger_error('API Error: You must supply the \$ver parameter to identify the version of the App.', E_USER_ERROR);
-}
-  
 $json = array();
 $json[]= array(
 	'udid' => $udid,
@@ -39,10 +30,12 @@ $json[]= array(
 	'ver' => $ver
 );
 
+
+
 $jsonstring = json_encode($json);
-echo "parameters :" . "<br>";
-echo $jsonstring;  
-echo "<br><br>";
+//echo "parameters :" . "<br>";
+//echo $jsonstring;  
+//echo "<br><br>";
   
 //echo "User-Agent: " . $_SERVER['HTTP_USER_AGENT'] . "<br><br>";
 //$browser = get_browser(null, true);
@@ -51,7 +44,7 @@ echo "<br><br>";
 switch ($met)
 {
 	case "get":
-		getlatenesses();  // this is the most common api call from patients' mobiles.
+		getlatenesses();  // this is the most common api call from patients' mobiles apps (not html).  
 		break;
 	case "help":        // what happens when help is requested.  Returns html not json.  A container then displays it.
 		help();
@@ -74,6 +67,12 @@ switch ($met)
 	case "displace":	// displaces a practitioner from a clinic
 		displace();
 		break;
+	case "invite":	// sends an SMS invitation which registers a device for a PIN
+		sendInvitation();
+		break;
+	case "getpract":	// gets practitioner information and returns json
+		getPractitioner();
+		break;
 	default:
 		trigger_error ('API Error: method "' . $met . '" is not known', E_USER_ERROR);  
 };
@@ -86,8 +85,11 @@ function getlatenesses()
 	global $udid, $met, $ver;
 	echo '<b>get</b> returns the json array of the current latenesses for all the practitioners the patient has registered for with device $udid' . "<br>"; 
 	$db = new howlate_db();
-	$db->getLatenesses($udid);
+	$res = $db->getLatenesses($udid);
+	
 	$db->trlog(TranType::LATE_GET, 'Lateness got for device ' . $udid, $org, null, $id, $udid);
+	echo json_encode($res);
+
 }
 
 function help()
@@ -170,6 +172,25 @@ function getclinics()
 	$db->getClinics($pin);
 }
 
+function getPractitioner() {
+	global $udid, $met, $ver;
+	required(array("pin"));
+
+  $pin = $_GET["pin"];  // identifies the Org and practitioner
+
+	howlate_util::validatePin($pin);
+	
+	$org = howlate_util::orgFromPin($pin);
+	$id = howlate_util::idFromPin($pin);
+
+	$db = new howlate_db();
+	$db->validatePin($org, $id);
+
+	$result = $db->getPractitioner($org, $id);
+  echo json_encode(get_object_vars($result));
+	echo '<br>';
+}
+
 function place() {
 	global $udid, $met, $ver;
 	required(array("clinic", "pin"));
@@ -211,15 +232,42 @@ function displace() {
 
 }
 
+function sendInvitation() {
+	global $udid, $met, $ver;
+	required(array("pin"));
+	
+	$pin = $_GET["pin"];
+	
+	registerpin();  // uses the mobile number as the UDID.  registers it.
+
+	$org = howlate_util::orgFromPin($pin);
+	$id = howlate_util::idFromPin($pin);
+
+	$db = new howlate_db();
+	$prac = $db->getPractitioner($org, $id);
+	
+	$clickatell = new clickatell();
+
+	$message = 'Please click on the following link to receive lateness updates for ' . $prac->PractitionerName . ' at ' . $prac->ClinicName;
+  $message .= ': ';
+  $message .= "http://$prac->FQDN/index.php?rt=late/view&udid=$udid";
+
+	$clickatell->httpSend(null, $udid, $message);
+	
+}
 
 function required($arr) {
 	global $udid, $met, $ver;
-
 	foreach($arr as $value) {
 		if (!$_GET[$value]) {
-			trigger_error('API Error: Method ' . $met . ' requires the ' . $value . ' parameter.', E_USER_ERROR);
+			trigger_error('API Error: Method <b>' . $met . '</b> : The following mandatory parameter was not supplied: <b>' . $value . '</b>', E_USER_ERROR);
 		}
 	}
+
+	if (!empty($missing)) {
+		trigger_error('API Error: Method ' . $met . ' the following mandatory parameters were not supplied: ' . print_r($missing), E_USER_ERROR);
+	}
+	
 }
 
 abstract class TranType {

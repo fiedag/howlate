@@ -27,6 +27,18 @@ class howlate_db {
 		$result->close();
 	}
 	
+	function getPractitioner($org, $id) {
+		$q = "SELECT OrgID, PractitionerID, Pin, PractitionerName, ClinicName, OrgName, FQDN FROM vwPractitioners WHERE OrgID = ? AND PractitionerID = ?";
+		$stmt = $this->conn->query($q);
+		$stmt = $this->conn->prepare($q);
+		$stmt->bind_param('ss', $org, $id);
+		$stmt->execute() or trigger_error('# Query Error (' . $this->conn->errno . ') '.  $this->conn->error, E_USER_ERROR);
+		$p = new practitioner();
+		$stmt->bind_result($p->OrgID, $p->PractitionerID, $p->Pin, $p->PractitionerName, $p->ClinicName, $p->OrgName, $p->FQDN);
+		$stmt->fetch();
+		return $p;
+	}
+
 	function getlatenesses($udid) {
 		$q = "SELECT ClinicName, AbbrevName, MinutesLate FROM vwMyLates WHERE UDID = '" . $udid . "'";
 		$myArray = array();
@@ -35,8 +47,8 @@ class howlate_db {
 			while($row = $result->fetch_object()) {
                 $tempArray = $row;
                 array_push($myArray, $tempArray);
-            }
-			echo json_encode($myArray);
+      }
+			return $myArray;
 		}
 		$result->close();
 	}
@@ -76,7 +88,7 @@ class howlate_db {
 		    if ($row == "") {
 			  trigger_error('Data Error: Clinic $clinic is not valid for Org' . $org, E_USER_ERROR);
 			}
-        }
+    }
 		$result->close();
 	}
 	
