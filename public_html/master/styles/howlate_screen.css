@@ -1,0 +1,17 @@
+
+
+table.lateness { 
+	width:100%; 
+	color:blue; 
+	border:1px solid gray;
+	border-radius:25px;
+	font-family:Arial,Helvetica,sans-serif;
+}
+tr.lateness {
+	background-color:light gray;
+}
+td.lateness {
+	font-family:Arial,Helvetica,sans-serif;
+	font-size:36px;
+	height:80px;
+}

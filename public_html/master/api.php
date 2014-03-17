@@ -169,7 +169,8 @@ function getclinics()
 	echo "<b>$met</b> uses the PIN ($pin) to decode the organisation and returns a json list of clinics for that org.<br>";
 
 	$db = new howlate_db();
-	$db->getClinics($pin);
+	$result = $db->getallclinics($pin);
+	echo json_encode(get_object_vars($result));
 }
 
 function getPractitioner() {
@@ -187,7 +188,7 @@ function getPractitioner() {
 	$db->validatePin($org, $id);
 
 	$result = $db->getPractitioner($org, $id);
-  echo json_encode(get_object_vars($result));
+	echo json_encode(get_object_vars($result));
 	echo '<br>';
 }
 
@@ -248,9 +249,9 @@ function sendInvitation() {
 	
 	$clickatell = new clickatell();
 
-	$message = 'Please click on the following link to receive lateness updates for ' . $prac->PractitionerName . ' at ' . $prac->ClinicName;
-  $message .= ': ';
-  $message .= "http://$prac->FQDN/index.php?rt=late/view&udid=$udid";
+	$message = 'To receive lateness updates for ' . $prac->PractitionerName . ' at ' . $prac->ClinicName;
+  $message .= ', click : ';
+  $message .= "http://$prac->FQDN/late/view&udid=$udid";
 
 	$clickatell->httpSend(null, $udid, $message);
 	
@@ -269,7 +270,7 @@ function required($arr) {
 	}
 	
 }
-
+/*
 abstract class TranType {
 	const CLIN_ADD   =  "CLIN_ADD";	const CLIN_ARCH  =  "CLIN_ARCH";	const CLIN_CHG   =  "CLIN_CHG";	const CLIN_DEL   =  "CLIN_DEL";
 	const DEV_REG    =  "DEV_REG";	const DEV_UNREG  =  "DEV_UNREG";
@@ -279,7 +280,7 @@ abstract class TranType {
 	const PRAC_ARCH  =  "PRAC_ARCH";const PRAC_CRE   =  "PRAC_CRE";	const PRAC_DEL   =  "PRAC_DEL";	const PRAC_DISP  =  "PRAC_DISP"; const PRAC_PLACE =  "PRAC_PLACE";
 	const USER_ADD   =  "USER_ADD";	const USER_ARCH  =  "USER_ARCH";const USER_CHG   =  "USER_CHG";	const USER_SUSP  =  "USER_SUSP";
 }
-
+*/
 ?>
 
 
