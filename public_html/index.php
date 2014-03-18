@@ -1,17 +1,25 @@
 <?php
-/**
- * Front to the WordPress application. This file doesn't do anything, but loads
- * wp-blog-header.php which does and tells WordPress to load the theme.
- *
- * @package WordPress
- */
 
-/**
- * Tells WordPress to load the WordPress theme and output it.
- *
- * @var bool
- */
-define('WP_USE_THEMES', true);
+ /*** error reporting on ***/
+ error_reporting(E_ALL);
 
-/** Loads the WordPress Environment and Template */
-require( dirname( __FILE__ ) . '/wp-blog-header.php' );
+ /*** define the site path ***/
+ $site_path = realpath(dirname(__FILE__));
+ define ('__SITE_PATH', $site_path);
+
+ /*** include the init.php file ***/
+ include 'includes/init.php';
+
+ /*** load the router ***/
+ $registry->router = new router($registry);
+
+ /*** set the controller path ***/
+ $registry->router->setPath (__SITE_PATH . '/controller');
+
+ /*** load up the template ***/
+ $registry->template = new template($registry);
+
+ /*** load the controller ***/
+ $registry->router->loader();
+
+?>

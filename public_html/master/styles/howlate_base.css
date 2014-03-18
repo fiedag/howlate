@@ -9,16 +9,16 @@
 	margin:none;
 }
 
-html, body {
-	height=100%;
-	width:device-width;
-	#-webkit-text-size-adjust: none;
+/*html, body {
+	height:100%;
+	width:100%;
+	//-webkit-text-size-adjust: none;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
     background-size: cover;
     background: white;
-}
+}*/
 
 td  img {
     background: linear-gradient( to top, white, #ecc);

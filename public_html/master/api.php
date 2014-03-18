@@ -1,9 +1,16 @@
-<h1>How-late API returns mostly JSON </h1>
+/* http API - 
+* everything here is called using a http GET
+* mostly everything returns a JSON string 
+* try to make controllers do all the work.  
+* TODO : remove direct calls to db class
+*
+*
+*/
+<!DOCTYPE html>
 <?php
 
 function unh_exception_handler($exception) {
   echo "Unhandled exception: " , $exception->getMessage(), "\n";
-  
 }
 set_exception_handler('unh_exception_handler');
 
@@ -11,11 +18,10 @@ $site_path = realpath(dirname(__FILE__));
 define ('__SITE_PATH', $site_path);
  
 include_once('includes/init.php');
-
 include_once('lib/stdinclude.php');
 
 $debug = $_GET["debug"];
-define ('DEBUG', $debug);
+define ('__DEBUG', $debug);
 
 required(array("udid", "met", "ver"));
 
@@ -23,24 +29,6 @@ $udid = $_GET["udid"];
 $met = $_GET["met"];
 $ver = $_GET["ver"];
  
-$json = array();
-$json[]= array(
-	'udid' => $udid,
-	'met' => $met,
-	'ver' => $ver
-);
-
-
-
-$jsonstring = json_encode($json);
-//echo "parameters :" . "<br>";
-//echo $jsonstring;  
-//echo "<br><br>";
-  
-//echo "User-Agent: " . $_SERVER['HTTP_USER_AGENT'] . "<br><br>";
-//$browser = get_browser(null, true);
-//print_r($browser);
-
 switch ($met)
 {
 	case "get":
@@ -84,10 +72,12 @@ function getlatenesses()
 {
 	global $udid, $met, $ver;
 	echo '<b>get</b> returns the json array of the current latenesses for all the practitioners the patient has registered for with device $udid' . "<br>"; 
-	$db = new howlate_db();
-	$res = $db->getLatenesses($udid);
+        $late = new latenesses($udid);
+        
+        $db = new howlate_db();
+	$res = $db->getLatenesses($udid, 'UDID');
 	
-	$db->trlog(TranType::LATE_GET, 'Lateness got for device ' . $udid, $org, null, $id, $udid);
+	$db->trlog(TranType::LATE_GET, 'Lateness got for device ' . $udid);
 	echo json_encode($res);
 
 }
@@ -114,7 +104,7 @@ function registerpin()
 	$db = new howlate_db();
 	$db->validatePin($org, $id);
 	$db->register($udid,$org, $id);
-	$db->trlog(TranType::DEV_REG, 'Device ' . $udid . 'registered pin ' . $pin, $org, null, $id, $udid);
+	$db->trlog(TranType::DEV_REG, 'Device ' . $udid . 'registered pin ' . $pin);
 	echo "Successfully registered pin $pin<br>";
 }
 
@@ -125,9 +115,6 @@ function unregisterpin()
 	if (! $pin)	{
 		trigger_error('API Error: <b>$met</b> - you must supply the $pin parameter <br>', E_USER_ERROR);
 	}
-	
-	echo "<b>$met</b> deregisters this phone ($udid) for updates for the practitioner identified by the supplied PIN ($pin)<br>";
-	
 	howlate_util::validatePin($pin);
 	
 	$org = howlate_util::orgFromPin($pin);
@@ -135,7 +122,7 @@ function unregisterpin()
 	$db = new howlate_db();
 	$db->validatePin($org, $id);
 	$db->unregister($udid,$org, $id);
-	$db->trlog(TranType::DEV_UNREG, 'Device ' . $udid . 'registered pin ' . $pin, $org, null, $id, $udid);
+	$db->trlog(TranType::DEV_UNREG, 'Device ' . $udid . ' unregistered pin ' . $pin);
 	
 	echo "pin $pin is unregistered.<br>";
 	

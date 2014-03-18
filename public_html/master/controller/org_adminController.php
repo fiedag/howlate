@@ -11,8 +11,7 @@ Class org_adminController Extends baseController {
 		// and for each clinic, the practitioners assigned
 		
 		$org = new organisation();
-		$org->getby('Subdomain', __SUBDOMAIN);
-
+		$org->getby( __SUBDOMAIN, 'Subdomain');
 
 		$this->registry->template->org = $org;
 		$this->registry->template->show('org_admin_view');

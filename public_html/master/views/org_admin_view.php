@@ -7,7 +7,7 @@
 <link media="screen" href="/styles/howlate_base.css" type="text/css" rel="stylesheet">
 <link media="only screen and (max-device-width: 480px)" href="/styles/howlate_mobile.css" type="text/css" rel="stylesheet">
 <link rel="apple-touch-icon" href="/pri/<?php echo __SUBDOMAIN; ?>/logo.png" >
-
+<link rel="icon" type="image/png" href="/pri/<?php echo __SUBDOMAIN; ?>/logo.png" />
 
 <script>
 	function gotoInvite(pin) {
@@ -39,6 +39,10 @@ This is the body of org_admin for subdomain <?php echo __SUBDOMAIN	; ?>
 			}
 		}
 	}
+        
+        foreach ($org->Users as $ukey => $user) {
+            echo "<tr><td> $user->UserID </td> <td>$user->FullName</td><td>$user->EmailAddress </td> </tr>";
+        }
 
 ?>
 
