@@ -1,0 +1,160 @@
+[11-Mar-2014 20:16:12] PHP Warning:  include(session.inc) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/howlate/public_html/secure/test.php on line 3
+[11-Mar-2014 20:16:12] PHP Warning:  include(session.inc) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/howlate/public_html/secure/test.php on line 3
+[11-Mar-2014 20:16:12] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Failed opening 'session.inc' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/howlate/public_html/secure/test.php on line 3
+[11-Mar-2014 21:07:50] PHP Warning:  include(session.inc) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/howlate/public_html/secure/test.php on line 3
+[11-Mar-2014 21:07:50] PHP Warning:  include(session.inc) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/howlate/public_html/secure/test.php on line 3
+[11-Mar-2014 21:07:50] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Failed opening 'session.inc' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/howlate/public_html/secure/test.php on line 3
+[13-Mar-2014 13:22:59] PHP Parse error:  syntax error, unexpected ')' in /home/howlate/public_html/master/api.php on line 239
+[13-Mar-2014 13:23:49] PHP Parse error:  syntax error, unexpected T_VARIABLE, expecting '(' in /home/howlate/public_html/master/api.php on line 246
+[13-Mar-2014 13:25:01] PHP Warning:  include_once(./lib/stdinclude.php) [<a href='function.include-once'>function.include-once</a>]: failed to open stream: No such file or directory in /home/howlate/public_html/master/api.php on line 16
+[13-Mar-2014 13:25:01] PHP Warning:  include_once() [<a href='function.include'>function.include</a>]: Failed opening './lib/stdinclude.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/howlate/public_html/master/api.php on line 16
+[13-Mar-2014 13:25:01] PHP Fatal error:  API Error: method "" is not known in /home/howlate/public_html/master/api.php on line 72
+[13-Mar-2014 13:28:20] PHP Warning:  include_once(./lib/stdinclude.php) [<a href='function.include-once'>function.include-once</a>]: failed to open stream: No such file or directory in /home/howlate/public_html/master/api.php on line 20
+[13-Mar-2014 13:28:20] PHP Warning:  include_once() [<a href='function.include'>function.include</a>]: Failed opening './lib/stdinclude.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/howlate/public_html/master/api.php on line 20
+[13-Mar-2014 13:28:20] PHP Fatal error:  API Error: method "" is not known in /home/howlate/public_html/master/api.php on line 76
+[13-Mar-2014 13:28:22] PHP Warning:  include_once(./lib/stdinclude.php) [<a href='function.include-once'>function.include-once</a>]: failed to open stream: No such file or directory in /home/howlate/public_html/master/api.php on line 20
+[13-Mar-2014 13:28:22] PHP Warning:  include_once() [<a href='function.include'>function.include</a>]: Failed opening './lib/stdinclude.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/howlate/public_html/master/api.php on line 20
+[13-Mar-2014 13:28:22] PHP Fatal error:  API Error: method "" is not known in /home/howlate/public_html/master/api.php on line 76
+[13-Mar-2014 13:29:42] PHP Warning:  include_once(./lib/stdinclude.php) [<a href='function.include-once'>function.include-once</a>]: failed to open stream: No such file or directory in /home/howlate/public_html/master/api.php on line 20
+[13-Mar-2014 13:29:42] PHP Warning:  include_once() [<a href='function.include'>function.include</a>]: Failed opening './lib/stdinclude.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/howlate/public_html/master/api.php on line 20
+[13-Mar-2014 13:29:42] PHP Fatal error:  API Error: method "" is not known in /home/howlate/public_html/master/api.php on line 76
+[13-Mar-2014 13:29:45] PHP Warning:  include_once(./lib/stdinclude.php) [<a href='function.include-once'>function.include-once</a>]: failed to open stream: No such file or directory in /home/howlate/public_html/master/api.php on line 20
+[13-Mar-2014 13:29:45] PHP Warning:  include_once() [<a href='function.include'>function.include</a>]: Failed opening './lib/stdinclude.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/howlate/public_html/master/api.php on line 20
+[13-Mar-2014 13:29:45] PHP Fatal error:  API Error: method "" is not known in /home/howlate/public_html/master/api.php on line 76
+[13-Mar-2014 13:29:56] PHP Warning:  include_once(/stdinclude.php) [<a href='function.include-once'>function.include-once</a>]: failed to open stream: No such file or directory in /home/howlate/public_html/master/api.php on line 20
+[13-Mar-2014 13:29:56] PHP Warning:  include_once() [<a href='function.include'>function.include</a>]: Failed opening '/stdinclude.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/howlate/public_html/master/api.php on line 20
+[13-Mar-2014 13:29:56] PHP Fatal error:  API Error: method "" is not known in /home/howlate/public_html/master/api.php on line 76
+[13-Mar-2014 13:30:39] PHP Warning:  include_once(/stdinclude.php) [<a href='function.include-once'>function.include-once</a>]: failed to open stream: No such file or directory in /home/howlate/public_html/master/api.php on line 23
+[13-Mar-2014 13:30:39] PHP Warning:  include_once() [<a href='function.include'>function.include</a>]: Failed opening '/stdinclude.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/howlate/public_html/master/api.php on line 23
+[13-Mar-2014 13:30:39] PHP Fatal error:  API Error: method "" is not known in /home/howlate/public_html/master/api.php on line 79
+[13-Mar-2014 13:31:16] PHP Warning:  include_once(/stdinclude.php) [<a href='function.include-once'>function.include-once</a>]: failed to open stream: No such file or directory in /home/howlate/public_html/master/api.php on line 23
+[13-Mar-2014 13:31:16] PHP Warning:  include_once() [<a href='function.include'>function.include</a>]: Failed opening '/stdinclude.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/howlate/public_html/master/api.php on line 23
+[13-Mar-2014 13:31:16] PHP Fatal error:  API Error: method "" is not known in /home/howlate/public_html/master/api.php on line 79
+[13-Mar-2014 13:31:36] PHP Warning:  include_once(/stdinclude.php) [<a href='function.include-once'>function.include-once</a>]: failed to open stream: No such file or directory in /home/howlate/public_html/master/api.php on line 23
+[13-Mar-2014 13:31:36] PHP Warning:  include_once() [<a href='function.include'>function.include</a>]: Failed opening '/stdinclude.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/howlate/public_html/master/api.php on line 23
+[13-Mar-2014 13:31:36] PHP Fatal error:  API Error: method "" is not known in /home/howlate/public_html/master/api.php on line 79
+[13-Mar-2014 13:31:39] PHP Warning:  include_once(/stdinclude.php) [<a href='function.include-once'>function.include-once</a>]: failed to open stream: No such file or directory in /home/howlate/public_html/master/api.php on line 23
+[13-Mar-2014 13:31:39] PHP Warning:  include_once() [<a href='function.include'>function.include</a>]: Failed opening '/stdinclude.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/howlate/public_html/master/api.php on line 23
+[13-Mar-2014 13:31:39] PHP Fatal error:  API Error: method "" is not known in /home/howlate/public_html/master/api.php on line 79
+[13-Mar-2014 13:32:22] PHP Warning:  include_once(/home/howlate/public_html/master/../stdinclude.php) [<a href='function.include-once'>function.include-once</a>]: failed to open stream: No such file or directory in /home/howlate/public_html/master/api.php on line 23
+[13-Mar-2014 13:32:22] PHP Warning:  include_once() [<a href='function.include'>function.include</a>]: Failed opening '/home/howlate/public_html/master/../stdinclude.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/howlate/public_html/master/api.php on line 23
+[13-Mar-2014 13:32:22] PHP Fatal error:  API Error: method "" is not known in /home/howlate/public_html/master/api.php on line 79
+[13-Mar-2014 13:04:43] PHP Fatal error:  Call to a member function close() on a non-object in /home/howlate/public_html/lib/howlate_db.php on line 89
+[13-Mar-2014 13:07:24] PHP Fatal error:  Call to undefined method mysqli_stmt::get_result() in /home/howlate/public_html/lib/howlate_db.php on line 36
+[13-Mar-2014 13:37:27] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/howlate/public_html/lib/practitioner.php on line 5
+[13-Mar-2014 14:10:26] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/howlate/public_html/master/api.php on line 192
+[13-Mar-2014 14:15:06] PHP Parse error:  syntax error, unexpected ')' in /home/howlate/public_html/master/api.php on line 254
+[13-Mar-2014 14:00:40] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/howlate/public_html/lib/practitioner.php on line 11
+[13-Mar-2014 15:02:02] PHP Warning:  include(includes/init.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/howlate/public_html/master/index.php on line 12
+[13-Mar-2014 15:02:02] PHP Warning:  include(includes/init.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/howlate/public_html/master/index.php on line 12
+[13-Mar-2014 15:02:02] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Failed opening 'includes/init.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/howlate/public_html/master/index.php on line 12
+[13-Mar-2014 15:02:02] PHP Fatal error:  Class 'router' not found in /home/howlate/public_html/master/index.php on line 15
+[13-Mar-2014 15:02:02] PHP Warning:  include(includes/init.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/howlate/public_html/master/index.php on line 12
+[13-Mar-2014 15:02:02] PHP Warning:  include(includes/init.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/howlate/public_html/master/index.php on line 12
+[13-Mar-2014 15:02:02] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Failed opening 'includes/init.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/howlate/public_html/master/index.php on line 12
+[13-Mar-2014 15:02:02] PHP Fatal error:  Class 'router' not found in /home/howlate/public_html/master/index.php on line 15
+[13-Mar-2014 15:02:47] PHP Warning:  include(/home/howlate/public_html/master/controller/error404.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/howlate/public_html/master/application/router.class.php on line 69
+[13-Mar-2014 15:02:47] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Failed opening '/home/howlate/public_html/master/controller/error404.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/howlate/public_html/master/application/router.class.php on line 69
+[13-Mar-2014 15:02:47] PHP Fatal error:  Class 'error404Controller' not found in /home/howlate/public_html/master/application/router.class.php on line 73
+[13-Mar-2014 15:02:47] PHP Warning:  include(/home/howlate/public_html/master/controller/error404.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/howlate/public_html/master/application/router.class.php on line 69
+[13-Mar-2014 15:02:47] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Failed opening '/home/howlate/public_html/master/controller/error404.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/howlate/public_html/master/application/router.class.php on line 69
+[13-Mar-2014 15:02:47] PHP Fatal error:  Class 'error404Controller' not found in /home/howlate/public_html/master/application/router.class.php on line 73
+[13-Mar-2014 15:03:42] PHP Notice:  Undefined variable: blog_heading in /home/howlate/public_html/master/views/late_index.php on line 1
+[13-Mar-2014 15:08:44] PHP Notice:  Undefined variable: blog_heading in /home/howlate/public_html/master/views/late_index.php on line 1
+[13-Mar-2014 15:08:45] PHP Notice:  Undefined variable: blog_heading in /home/howlate/public_html/master/views/late_index.php on line 1
+[13-Mar-2014 15:09:07] PHP Notice:  Undefined variable: blog_heading in /home/howlate/public_html/master/views/late_index.php on line 1
+[13-Mar-2014 15:09:14] PHP Notice:  Undefined variable: page_header in /home/howlate/public_html/master/views/late_view.php on line 1
+[13-Mar-2014 15:17:30] PHP Notice:  Undefined variable: udid in /home/howlate/public_html/master/views/late_view.php on line 3
+[13-Mar-2014 15:26:23] PHP Parse error:  syntax error, unexpected T_STRING in /home/howlate/public_html/master/views/late_view.php on line 8
+[13-Mar-2014 15:27:32] PHP Parse error:  syntax error, unexpected '"', expecting T_STRING or T_VARIABLE or T_NUM_STRING in /home/howlate/public_html/master/views/late_view.php on line 9
+[13-Mar-2014 15:27:54] PHP Notice:  Undefined variable: lates in /home/howlate/public_html/master/views/late_view.php on line 8
+[13-Mar-2014 15:27:54] PHP Warning:  Invalid argument supplied for foreach() in /home/howlate/public_html/master/views/late_view.php on line 8
+[13-Mar-2014 15:29:16] PHP Parse error:  syntax error, unexpected T_STRING, expecting '(' in /home/howlate/public_html/master/views/late_view.php on line 8
+[13-Mar-2014 15:30:24] PHP Notice:  Undefined variable: lates in /home/howlate/public_html/master/views/late_view.php on line 8
+[13-Mar-2014 15:30:24] PHP Warning:  Wrong parameter count for property_exists() in /home/howlate/public_html/master/views/late_view.php on line 8
+[13-Mar-2014 15:30:36] PHP Fatal error:  Call to undefined function exists() in /home/howlate/public_html/master/views/late_view.php on line 8
+[13-Mar-2014 15:33:57] PHP Notice:  Undefined property: Template::$UDID in /home/howlate/public_html/master/controller/lateController.php on line 18
+[13-Mar-2014 15:34:43] PHP Fatal error:  Cannot use object of type Template as array in /home/howlate/public_html/master/controller/lateController.php on line 18
+[13-Mar-2014 15:44:35] PHP Fatal error:  Class 'db' not found in /home/howlate/public_html/master/controller/lateController.php on line 16
+[13-Mar-2014 15:44:56] PHP Fatal error:  Class 'howlate_db' not found in /home/howlate/public_html/master/controller/lateController.php on line 16
+[13-Mar-2014 15:18:41] PHP Fatal error:  Cannot redeclare __autoload() (previously declared in /home/howlate/public_html/master/lib/stdinclude.php:4) in /home/howlate/public_html/master/includes/init.php on line 25
+[13-Mar-2014 15:18:42] PHP Fatal error:  Cannot redeclare __autoload() (previously declared in /home/howlate/public_html/master/lib/stdinclude.php:4) in /home/howlate/public_html/master/includes/init.php on line 25
+[13-Mar-2014 15:27:25] PHP Fatal error:  Cannot use object of type stdClass as array in /home/howlate/public_html/master/views/late_view.php on line 10
+[13-Mar-2014 15:29:01] PHP Fatal error:  Cannot use object of type stdClass as array in /home/howlate/public_html/master/views/late_view.php on line 10
+[13-Mar-2014 15:36:25] PHP Parse error:  syntax error, unexpected '<' in /home/howlate/public_html/master/views/late_view.php on line 10
+[13-Mar-2014 16:39:11] PHP Warning:  include_once(/home/howlate/public_html/master/../lib/stdinclude.php) [<a href='function.include-once'>function.include-once</a>]: failed to open stream: No such file or directory in /home/howlate/public_html/master/api.php on line 21
+[13-Mar-2014 16:39:11] PHP Warning:  include_once() [<a href='function.include'>function.include</a>]: Failed opening '/home/howlate/public_html/master/../lib/stdinclude.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/howlate/public_html/master/api.php on line 21
+[13-Mar-2014 16:39:11] PHP Fatal error:  API Error: Method invite the following mandatory parameters were not supplied: 1 in /home/howlate/public_html/master/api.php on line 276
+[13-Mar-2014 16:41:02] PHP Warning:  include(__SITE_PATH/application/controller_base.class.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/howlate/public_html/master/includes/init.php on line 4
+[13-Mar-2014 16:41:02] PHP Warning:  include(__SITE_PATH/application/controller_base.class.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/howlate/public_html/master/includes/init.php on line 4
+[13-Mar-2014 16:41:02] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Failed opening '__SITE_PATH/application/controller_base.class.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/howlate/public_html/master/includes/init.php on line 4
+[13-Mar-2014 16:41:02] PHP Warning:  include(__SITE_PATH/application/registry.class.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/howlate/public_html/master/includes/init.php on line 7
+[13-Mar-2014 16:41:02] PHP Warning:  include(__SITE_PATH/application/registry.class.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/howlate/public_html/master/includes/init.php on line 7
+[13-Mar-2014 16:41:02] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Failed opening '__SITE_PATH/application/registry.class.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/howlate/public_html/master/includes/init.php on line 7
+[13-Mar-2014 16:41:02] PHP Warning:  include(__SITE_PATH/application/router.class.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/howlate/public_html/master/includes/init.php on line 10
+[13-Mar-2014 16:41:02] PHP Warning:  include(__SITE_PATH/application/router.class.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/howlate/public_html/master/includes/init.php on line 10
+[13-Mar-2014 16:41:02] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Failed opening '__SITE_PATH/application/router.class.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/howlate/public_html/master/includes/init.php on line 10
+[13-Mar-2014 16:41:02] PHP Warning:  include(__SITE_PATH/application/template.class.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/howlate/public_html/master/includes/init.php on line 13
+[13-Mar-2014 16:41:02] PHP Warning:  include(__SITE_PATH/application/template.class.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/howlate/public_html/master/includes/init.php on line 13
+[13-Mar-2014 16:41:02] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Failed opening '__SITE_PATH/application/template.class.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/howlate/public_html/master/includes/init.php on line 13
+[13-Mar-2014 16:41:02] PHP Fatal error:  Class 'registry' not found in /home/howlate/public_html/master/includes/init.php on line 28
+[13-Mar-2014 16:45:33] PHP Warning:  include(__SITE_PATH/application/controller_base.class.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/howlate/public_html/master/includes/init.php on line 4
+[13-Mar-2014 16:45:33] PHP Warning:  include(__SITE_PATH/application/controller_base.class.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/howlate/public_html/master/includes/init.php on line 4
+[13-Mar-2014 16:45:33] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Failed opening '__SITE_PATH/application/controller_base.class.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/howlate/public_html/master/includes/init.php on line 4
+[13-Mar-2014 16:45:33] PHP Warning:  include(__SITE_PATH/application/registry.class.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/howlate/public_html/master/includes/init.php on line 7
+[13-Mar-2014 16:45:33] PHP Warning:  include(__SITE_PATH/application/registry.class.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/howlate/public_html/master/includes/init.php on line 7
+[13-Mar-2014 16:45:33] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Failed opening '__SITE_PATH/application/registry.class.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/howlate/public_html/master/includes/init.php on line 7
+[13-Mar-2014 16:45:33] PHP Warning:  include(__SITE_PATH/application/router.class.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/howlate/public_html/master/includes/init.php on line 10
+[13-Mar-2014 16:45:33] PHP Warning:  include(__SITE_PATH/application/router.class.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/howlate/public_html/master/includes/init.php on line 10
+[13-Mar-2014 16:45:33] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Failed opening '__SITE_PATH/application/router.class.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/howlate/public_html/master/includes/init.php on line 10
+[13-Mar-2014 16:45:33] PHP Warning:  include(__SITE_PATH/application/template.class.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/howlate/public_html/master/includes/init.php on line 13
+[13-Mar-2014 16:45:33] PHP Warning:  include(__SITE_PATH/application/template.class.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/howlate/public_html/master/includes/init.php on line 13
+[13-Mar-2014 16:45:33] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Failed opening '__SITE_PATH/application/template.class.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/howlate/public_html/master/includes/init.php on line 13
+[13-Mar-2014 16:45:33] PHP Fatal error:  Class 'registry' not found in /home/howlate/public_html/master/includes/init.php on line 28
+[13-Mar-2014 20:30:46] PHP Parse error:  syntax error, unexpected T_IF in /home/howlate/public_html/master/views/late_view.php on line 19
+[14-Mar-2014 11:45:56] PHP Fatal error:  Cannot use object of type stdClass as array in /home/howlate/public_html/master/model/howlate_db.class.php on line 50
+[14-Mar-2014 11:56:59] PHP Fatal error:  Cannot use object of type stdClass as array in /home/howlate/public_html/master/model/howlate_db.class.php on line 50
+[14-Mar-2014 11:58:12] PHP Parse error:  syntax error, unexpected '{' in /home/howlate/public_html/master/model/howlate_db.class.php on line 50
+[14-Mar-2014 11:58:22] PHP Fatal error:  Cannot use object of type stdClass as array in /home/howlate/public_html/master/model/howlate_db.class.php on line 51
+[14-Mar-2014 11:59:36] PHP Fatal error:  Cannot use object of type stdClass as array in /home/howlate/public_html/master/model/howlate_db.class.php on line 50
+[14-Mar-2014 11:59:52] PHP Fatal error:  Cannot use object of type stdClass as array in /home/howlate/public_html/master/model/howlate_db.class.php on line 51
+[14-Mar-2014 12:00:06] PHP Fatal error:  Cannot use object of type stdClass as array in /home/howlate/public_html/master/model/howlate_db.class.php on line 51
+[14-Mar-2014 12:00:17] PHP Fatal error:  Cannot use object of type stdClass as array in /home/howlate/public_html/master/model/howlate_db.class.php on line 51
+[14-Mar-2014 12:01:32] PHP Fatal error:  Cannot use object of type stdClass as array in /home/howlate/public_html/master/model/howlate_db.class.php on line 50
+[14-Mar-2014 12:02:56] PHP Fatal error:  Cannot use object of type stdClass as array in /home/howlate/public_html/master/model/howlate_db.class.php on line 49
+[14-Mar-2014 12:04:18] PHP Fatal error:  Cannot use object of type stdClass as array in /home/howlate/public_html/master/model/howlate_db.class.php on line 50
+[14-Mar-2014 12:04:36] PHP Fatal error:  Cannot use object of type stdClass as array in /home/howlate/public_html/master/model/howlate_db.class.php on line 50
+[14-Mar-2014 12:04:47] PHP Fatal error:  Cannot use object of type stdClass as array in /home/howlate/public_html/master/model/howlate_db.class.php on line 50
+[14-Mar-2014 12:26:52] PHP Parse error:  syntax error, unexpected '{' in /home/howlate/public_html/master/model/howlate_db.class.php on line 51
+[14-Mar-2014 13:28:39] PHP Parse error:  syntax error, unexpected '<' in /home/howlate/public_html/master/views/late_view.php on line 21
+[15-Mar-2014 12:54:32] PHP Warning:  hash() [<a href='function.hash'>function.hash</a>]: Unknown hashing algorithm: sha2 in /home/howlate/public_html/master/test2.php on line 3
+[15-Mar-2014 12:38:22] PHP Fatal error:  Call to undefined method howlate_site::createSubdomain() in /home/howlate/public_html/master/test2.php on line 19
+[15-Mar-2014 13:33:22] PHP Fatal error:  Call to a member function close() on a non-object in /home/howlate/public_html/master/model/howlate_db.class.php on line 64
+[15-Mar-2014 17:40:58] PHP Fatal error:  Class 'footerController' not found in /home/howlate/public_html/master/views/late_view.php on line 65
+[16-Mar-2014 15:38:35] PHP Fatal error:  Class 'org_adminController' not found in /home/howlate/public_html/master/application/router.class.php on line 73
+[16-Mar-2014 16:03:38] PHP Parse error:  syntax error, unexpected T_ISSET, expecting '(' in /home/howlate/public_html/master/controller/lateController.php on line 13
+[16-Mar-2014 16:03:51] PHP Parse error:  syntax error, unexpected '{' in /home/howlate/public_html/master/controller/lateController.php on line 13
+[16-Mar-2014 17:49:04] PHP Fatal error:  Call to a member function getorganisation() on a non-object in /home/howlate/public_html/master/controller/org_adminController.php on line 14
+[16-Mar-2014 17:51:46] PHP Parse error:  syntax error, unexpected T_LNUMBER, expecting T_FUNCTION in /home/howlate/public_html/master/controller/org_adminController.php on line 18
+[16-Mar-2014 18:12:02] PHP Parse error:  syntax error, unexpected '/' in /home/howlate/public_html/master/views/org_admin_view.php on line 16
+[16-Mar-2014 18:25:34] PHP Parse error:  syntax error, unexpected $end in /home/howlate/public_html/master/views/org_admin_view.php on line 38
+[16-Mar-2014 19:17:36] PHP Parse error:  syntax error, unexpected '<' in /home/howlate/public_html/master/views/org_admin_view.php on line 30
+[16-Mar-2014 19:17:48] PHP Parse error:  syntax error, unexpected '<' in /home/howlate/public_html/master/views/org_admin_view.php on line 30
+[16-Mar-2014 19:17:53] PHP Parse error:  syntax error, unexpected '<' in /home/howlate/public_html/master/views/org_admin_view.php on line 30
+[16-Mar-2014 19:22:48] PHP Parse error:  syntax error, unexpected '}' in /home/howlate/public_html/master/views/org_admin_view.php on line 37
+[16-Mar-2014 20:15:14] PHP Fatal error:  Cannot use object of type stdClass as array in /home/howlate/public_html/master/views/org_admin_view.php on line 26
+[16-Mar-2014 20:16:17] PHP Parse error:  syntax error, unexpected ';' in /home/howlate/public_html/master/views/org_admin_view.php on line 26
+[16-Mar-2014 21:01:57] PHP Parse error:  syntax error, unexpected T_PUBLIC in /home/howlate/public_html/master/model/organisation.class.php on line 21
+[16-Mar-2014 21:02:22] PHP Fatal error:  Call to undefined method organisation::getby() in /home/howlate/public_html/master/controller/org_adminController.php on line 16
+[16-Mar-2014 21:02:38] PHP Parse error:  syntax error, unexpected T_PUBLIC in /home/howlate/public_html/master/model/organisation.class.php on line 21
+[16-Mar-2014 21:07:07] PHP Fatal error:  Call to a member function close() on a non-object in /home/howlate/public_html/master/model/howlate_db.class.php on line 97
+[16-Mar-2014 21:07:50] PHP Fatal error:  Call to a member function close() on a non-object in /home/howlate/public_html/master/model/howlate_db.class.php on line 97
+[16-Mar-2014 21:09:18] PHP Fatal error:  Call to a member function close() on a non-object in /home/howlate/public_html/master/model/howlate_db.class.php on line 97
+[16-Mar-2014 21:09:57] PHP Fatal error:  Call to a member function close() on a non-object in /home/howlate/public_html/master/model/howlate_db.class.php on line 98
+[16-Mar-2014 21:20:27] PHP Parse error:  syntax error, unexpected '}' in /home/howlate/public_html/master/model/clinic.class.php on line 31
+[16-Mar-2014 21:35:42] PHP Fatal error:  Call to a member function getallpractitioners() on a non-object in /home/howlate/public_html/master/controller/org_adminController.php on line 18
+[16-Mar-2014 22:15:05] PHP Parse error:  syntax error, unexpected '}', expecting ',' or ';' in /home/howlate/public_html/master/views/org_admin_view.php on line 25
+[16-Mar-2014 22:31:16] PHP Parse error:  syntax error, unexpected '"', expecting ',' or ';' in /home/howlate/public_html/master/views/org_admin_view.php on line 24
+[16-Mar-2014 22:40:56] PHP Parse error:  syntax error, unexpected '"', expecting ',' or ';' in /home/howlate/public_html/master/views/org_admin_view.php on line 37
+[16-Mar-2014 23:02:09] PHP Parse error:  syntax error, unexpected T_BOOLEAN_OR, expecting ',' or ')' in /home/howlate/public_html/master/controller/org_adminController.php on line 23
+[16-Mar-2014 23:26:08] PHP Fatal error:  Class 'TranType' not found in /home/howlate/public_html/master/controller/org_adminController.php on line 38
