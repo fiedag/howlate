@@ -102,7 +102,7 @@ private function getController() {
 
 	if (empty($route))
 	{
-		$route = 'index';
+		$route = 'login';
 	}
 	else
 	{
@@ -117,13 +117,13 @@ private function getController() {
 
 	if (empty($this->controller))
 	{
-		$this->controller = 'index';
+		$this->controller = 'login';
 	}
 
 	/*** Get action ***/
 	if (empty($this->action))
 	{
-		$this->action = 'index';
+		$this->action = 'login';
 	}
 
 	/*** set the file path ***/
