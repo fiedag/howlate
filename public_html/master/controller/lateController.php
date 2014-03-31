@@ -10,7 +10,9 @@ Class lateController Extends baseController {
 	
 	public function view(){
 		$this->registry->template->when_refreshed = 'Refreshed ' . date('h:i A');
-		if (isset($_GET['udid'])) {
+                $this->registry->template->bookmark_title = "How late";
+                $this->registry->template->bookmark_url = $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"];
+                if (isset($_GET['udid'])) {
 			$udid = $_GET['udid'];
 			$this->registry->template->UDID = $udid;
 			$db = new howlate_db();

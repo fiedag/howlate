@@ -1,43 +1,12 @@
 /*
-
-
-* {
-	color:black;
-	float: none;
+img.logo {
+	width:50px;
 }
 
-html, body {
-	font-size: 24pt;
-	padding: 3px;
-	margin: 0;
-	-webkit-text-size-adjust: none;
-}
+td.clinrow {
+  	font-size:0.8em;
+	min-height:0.8em;
 	
-#sidebar {
-	display: none;
 }
-	
-h1, h2, h3, h4, h5, h6 {
-	font-weight: normal;
-}
-
-img { 
-	max-width: 250px;
-}
-
-.center {
-	width: 100% ;
-	text-align: center;
-}
-
-a:link, a:visited {
-	text-decoration: underline;
-	color: #0000CC;
-}
-a:hover, a:active {
-	text-decoration: underline;
-	color: #660066;
-}
-
 
 */

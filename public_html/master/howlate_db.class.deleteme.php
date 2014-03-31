@@ -40,7 +40,7 @@ class howlate_db {
 	}
 
 	function getlatenesses($udid) {
-		$q = "SELECT ClinicName, AbbrevName, MinutesLate FROM vwMyLates WHERE UDID = '" . $udid . "'";
+		$q = "SELECT ClinicName, ClinicID, AbbrevName, MinutesLate FROM vwMyLates WHERE UDID = '" . $udid . "'";
 		$practArray = array();
 		$clinArray = array();
 		if ($result = $this->conn->query($q)) {

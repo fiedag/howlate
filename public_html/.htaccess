@@ -1,17 +1,10 @@
+RewriteEngine on
+#RewriteCond   %{HTTP_HOST}                 (^[^.]+\.)?how-late\.com$
+RewriteRule   ^(.+)                        http://how-late.com/en          [NC]
+
+
+
 AuthName "how-late root"
-
-# BEGIN WordPress
-<IfModule mod_rewrite.c>
-RewriteEngine On
-RewriteBase /
-RewriteRule ^index\.php$ - [L]
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /index.php [L]
-</IfModule>
-
-# END WordPress
-
 AuthType Basic
 AuthName "Please Log In"
 Require valid-user
@@ -19,5 +12,7 @@ Order deny,allow
 Deny from all
 Allow from 203.122.224.228 203.122.212.28
 Satisfy any
-#Options -Indexes
+Options -Indexes
 AuthUserFile "/home/howlate/.htpasswds/public_html/passwd"
+
+

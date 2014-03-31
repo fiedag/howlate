@@ -9,17 +9,6 @@
 	margin:none;
 }
 
-/*html, body {
-	height:100%;
-	width:100%;
-	//-webkit-text-size-adjust: none;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-    background-size: cover;
-    background: white;
-}*/
-
 td  img {
     background: linear-gradient( to top, white, #ecc);
 	border-width:0px;
@@ -28,13 +17,8 @@ td  img {
 }
 
 img { 
-	padding:0px; 
-	border-width:0px; 
-	margin:0px; 
 	display: block
 }
-
-
 
 span {
 	inline:block;
@@ -56,17 +40,19 @@ img.logo {
 }
 
 table.lateness {
-	border-collapse:collapse;
+        
+        border-width:1px;
+        border-color:black;
+	/*border-collapse:collapse; */
 	width:100%;
 	vertical-align:top;
 }
 
 td.clinrow {
     background: linear-gradient( to top, white, #ecc);
-	font-size:1.5em;
-	vertical-align:center;
-	min-height:1.2em;
-	
+    font-size:1.5em;
+    vertical-align:right;
+    min-height:1.2em;
 }
 
 
@@ -77,11 +63,10 @@ td.practrow  {
 
 td.practrow {
     background: linear-gradient( to top, white, #ecc);
-	border-width:0.5em;
-	margin:0.5em;
-	padding:0.5em;
-	text-align:center;
-	
+    border-width:0.5em;
+    margin:0.5em;
+    padding:0.5em;
+    text-align:left;
 }
 
 .modalDialog {

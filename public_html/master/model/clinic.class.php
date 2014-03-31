@@ -6,4 +6,14 @@ class clinic extends howlate_basetable {
 	public $ClinicID;
 	public $ClinicName;
 	public $Timezone;
+        public $Address1;
+        public $Address2;
+        public $City;
+        public $Country;
+        public $Location;
+        public $Phone;
+       
+        
+        
+        
 }

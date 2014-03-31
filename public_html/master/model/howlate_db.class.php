@@ -15,13 +15,14 @@ class howlate_db {
     }
 
     function getallclinics($orgID) {
-        $q = "SELECT ClinicID, OrgID, ClinicName FROM clinics WHERE OrgID = '" . $orgID . "'";
+        $q = "SELECT ClinicID, OrgID, ClinicName, Phone, Address1, Address2, City, Zip, Country, Location FROM clinics WHERE OrgID = '" . $orgID . "'";
 
         $myArray = array();
         if ($result = $this->conn->query($q)) {
             while ($row = $result->fetch_object()) {
                 $myArray[] = $row;
             }
+            
             return $myArray;
         }
         $result->close();
@@ -55,7 +56,7 @@ class howlate_db {
     // returns an array with a key of clinic names, and the value is an array of practitioners the $udid
     // is registered for.
     function getlatenesses($fieldval, $fieldname = 'UDID') {
-        $q = "SELECT ClinicName, AbbrevName, MinutesLate, MinutesLateMsg, OrgID, Subdomain FROM vwMyLates WHERE $fieldname = '" . $fieldval . "'";
+        $q = "SELECT ClinicName, ClinicID, AbbrevName, MinutesLate, MinutesLateMsg, OrgID, Subdomain FROM vwMyLates WHERE $fieldname = '" . $fieldval . "'";
         $practArray = array();
         $clinArray = array();
         if ($result = $this->conn->query($q)) {
