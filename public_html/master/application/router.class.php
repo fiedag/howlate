@@ -99,7 +99,7 @@ private function getController() {
 
 	/*** get the route from the url ***/
 	$route = (empty($_GET['rt'])) ? '' : $_GET['rt'];
-
+        //echo "Route = $route";
 	if (empty($route))
 	{
 		$route = 'login';

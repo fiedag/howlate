@@ -43,6 +43,12 @@ class organisation {
         $this->LogoURL = "/pri/$this->Subdomain/logo.png";
         return $this;
     }
+    
+    
+    public function isValidPassword($userid, $password) {
+        $db = new howlate_db();
+        return $db->isValidPassword($this->OrgID, $userid, $password);
+    }
 
 }
 

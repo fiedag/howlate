@@ -28,14 +28,14 @@
                     <td>
                         <div class="login-right-container">
                             <div class="login-forms">
-                                <form name="login" method="POST" id="form_login" style="display: block;" action="login/attempt">
+                                <form name="login" method="POST" id="form_login" style="display: block;" action="/login/attempt">
                                     <div class="form-block">
                                         <label for="username">Username:</label>
                                         <input type="text" name="username" id="username" maxlength="50" value=""  /><br />
 
                                         <label for="password">Password:</label>
                                         <input type="password" name="password" id="password" maxlength="120" value=""  /><br />
-
+                                        <span><?php if (isset($failmessage)) {echo $failmessage;} ?></span><p></p>
                                         <button class="button large green login" id="log_in" type="submit" name="Submit" value="Submit">Log in</button>
 
                                         <div class="forgot-link">
