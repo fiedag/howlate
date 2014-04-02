@@ -46,9 +46,9 @@
            
                 $i++;
                 if ($i == 1) {
-                    ?><tr onclick="DoNav('<?php echo "clinicinfo?orgid=$r->OrgID&clinicid=$r->ClinicID"; ?>')">
-                        <td class="clinrow"><?php echo $clinic ; ?></td>
-                        <td class="clinrow"><img class="logo" src="/pri/<?php echo $r->Subdomain; ?>/logo.png"></td> 
+                    ?><tr>
+                        <td class="clinrow"><a href='<?php echo "/clinicinfo?orgid=$r->OrgID&clinicid=$r->ClinicID"; ?>'><?php echo $clinic ; ?></a></td>
+                        <td class="clinrow logo"><img src="/pri/<?php echo $r->Subdomain; ?>/logo.png"></td> 
                     </tr>
                     <?php
                 }

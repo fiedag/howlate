@@ -6,10 +6,13 @@
 
 
 <div class='container primary-content'>
+    <div class="clinic-header">
+        <?php $controller->show_clinic_header(); ?>
+    </div>
 
     <?php $controller->show_lateness_form(); ?>
-    
-    
+
+
 </div>
 
 

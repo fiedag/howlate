@@ -57,7 +57,7 @@ class howlate_db {
     // is registered for.
     function getlatenessesByUDID($udid) {
 
-        $q = "SELECT ClinicName, ClinicID, AbbrevName, MinutesLate, MinutesLateMsg, OrgID, Subdomain FROM vwMyLates WHERE UDID = '" . $udid . "'";
+        $q = "SELECT ClinicID, ClinicName, AbbrevName, MinutesLate, MinutesLateMsg, OrgID, Subdomain FROM vwMyLates WHERE UDID = '" . $udid . "'";
         $practArray = array();
         $clinArray = array();
         if ($result = $this->conn->query($q)) {
@@ -80,7 +80,7 @@ class howlate_db {
 
     function getlatenessesByClinic($orgID, $clinicID) {
 
-        $q = "SELECT ClinicName, ClinicID, ID, AbbrevName, FullName, MinutesLate, OrgID, Subdomain FROM vwLateness WHERE OrgID = '" . $orgID . "' AND ClinicID = '" . $clinicID . "'";
+        $q = "SELECT ClinicID, ClinicName, ID, AbbrevName, FullName, MinutesLate, OrgID, Subdomain FROM vwLateness WHERE OrgID = '" . $orgID . "' AND ClinicID = '" . $clinicID . "'";
         $practArray = array();
         $clinArray = array();
         if ($result = $this->conn->query($q)) {
@@ -131,6 +131,8 @@ class howlate_db {
         $stmt = $this->conn->prepare($q);
         $stmt->bind_param('sss', $org, $id, $newlate);
         $stmt->execute() or trigger_error('# Query Error (' . $this->conn->errno . ') ' . $this->conn->error, E_USER_ERROR);
+        $this->trlog(TranType::LATE_UPD, "Lateness updated to $newlate", $org, null, $id);
+        
     }
 
     function validatePin($org, $id) {
