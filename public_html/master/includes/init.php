@@ -31,7 +31,7 @@ $host = $_SERVER["SERVER_NAME"];
 $subd = substr($host, 0, strpos($host, '.how-late.com'));
 
 define('__SUBDOMAIN', $subd);
-
+define('__FQDN', $subd . ".how-late.com");
 
 
 /* * * a new registry object ** */

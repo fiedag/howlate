@@ -72,10 +72,10 @@ function getlatenesses()
 {
 	global $udid, $met, $ver;
 	echo '<b>get</b> returns the json array of the current latenesses for all the practitioners the patient has registered for with device $udid' . "<br>"; 
-        $late = new latenesses($udid);
         
         $db = new howlate_db();
-	$res = $db->getLatenesses($udid, 'UDID');
+        
+	$res = $db->getLatenessesByUDID($udid);
 	
 	$db->trlog(TranType::LATE_GET, 'Lateness got for device ' . $udid);
 	echo json_encode($res);

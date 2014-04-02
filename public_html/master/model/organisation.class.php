@@ -50,6 +50,12 @@ class organisation {
         return $db->isValidPassword($this->OrgID, $userid, $password);
     }
 
+    public function getLatenesses($clinic) {
+        $db = new howlate_db();
+        return $db->getlatenessesByClinic($this->OrgID, $clinic);
+        
+    }
+    
 }
 
 ?>

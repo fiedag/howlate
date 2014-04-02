@@ -22,7 +22,7 @@ class howlate_db {
             while ($row = $result->fetch_object()) {
                 $myArray[] = $row;
             }
-            
+
             return $myArray;
         }
         $result->close();
@@ -30,7 +30,7 @@ class howlate_db {
 
     function getallusers($keyval, $fieldname = 'OrgID') {
         $q = "SELECT * FROM orgusers WHERE $fieldname = '" . $keyval . "'";
-        
+
         $myArray = array();
         if ($result = $this->conn->query($q)) {
             while ($row = $result->fetch_object()) {
@@ -55,8 +55,32 @@ class howlate_db {
 
     // returns an array with a key of clinic names, and the value is an array of practitioners the $udid
     // is registered for.
-    function getlatenesses($fieldval, $fieldname = 'UDID') {
-        $q = "SELECT ClinicName, ClinicID, AbbrevName, MinutesLate, MinutesLateMsg, OrgID, Subdomain FROM vwMyLates WHERE $fieldname = '" . $fieldval . "'";
+    function getlatenessesByUDID($udid) {
+
+        $q = "SELECT ClinicName, ClinicID, AbbrevName, MinutesLate, MinutesLateMsg, OrgID, Subdomain FROM vwMyLates WHERE UDID = '" . $udid . "'";
+        $practArray = array();
+        $clinArray = array();
+        if ($result = $this->conn->query($q)) {
+            $tempArray = array();
+            while ($row = $result->fetch_object()) {
+                $tempArray[] = $row;
+                if (array_key_exists($row->ClinicName, $clinArray)) {
+                    $clinArray[$row->ClinicName] = $tempArray;
+                } else {
+                    unset($tempArray);
+                    $tempArray = array();
+                    $tempArray[] = $row;
+                    $clinArray[$row->ClinicName] = $tempArray;
+                }
+            }
+            return $clinArray;
+        }
+        $result->close();
+    }
+
+    function getlatenessesByClinic($orgID, $clinicID) {
+
+        $q = "SELECT ClinicName, ClinicID, ID, AbbrevName, FullName, MinutesLate, OrgID, Subdomain FROM vwLateness WHERE OrgID = '" . $orgID . "' AND ClinicID = '" . $clinicID . "'";
         $practArray = array();
         $clinArray = array();
         if ($result = $this->conn->query($q)) {
@@ -209,14 +233,14 @@ class howlate_db {
 
         $result->close();
     }
-    
+
     // Checks that the hashed password matches what is in the database
     function isValidPassword($orgid, $userid, $passwordhash) {
         $q = "SELECT XPassword FROM orgusers WHERE OrgID = ? AND UserID = ?";
         $stmt = $this->conn->query($q);
         $stmt = $this->conn->prepare($q);
-        $stmt->bind_param('ss',$orgid, $userid);
-        $stmt->execute() or die('# Query Error (' . $this->conn->errno . ') ' . $this->conn->error); 
+        $stmt->bind_param('ss', $orgid, $userid);
+        $stmt->execute() or die('# Query Error (' . $this->conn->errno . ') ' . $this->conn->error);
         if ($stmt->affected_rows == 0) {
             $this->trlog(TranType::USER_DNE, "User login failed.  User $userid for $orgid does not exist.");
             return false;   // user does not exist TODO: add logging
@@ -224,7 +248,6 @@ class howlate_db {
         $stmt->bind_result($col1);
         $stmt->fetch();
         return ($col1 == $passwordhash);
-        
     }
 
 }

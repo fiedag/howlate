@@ -9,7 +9,7 @@ Class headerController Extends baseController {
 
     public function view($org) {
         $this->org = $org;
-        $this->registry->template->companyName = $this->org->OrgName;
+        $this->registry->template->org = $org;
         $this->registry->template->show('header_view');
     }
 

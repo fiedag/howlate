@@ -2,9 +2,12 @@
 <?php $controller->get_header(); ?>
 
 
-<div class='large form-block'>
+<?php $controller->get_valid_lateness_datalist(); ?>
 
-    <?php $controller->get_table(); ?>
+
+<div class='container primary-content'>
+
+    <?php $controller->show_lateness_form(); ?>
     
     
 </div>

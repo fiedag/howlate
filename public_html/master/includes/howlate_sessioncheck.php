@@ -12,7 +12,9 @@ if (!isset($_SESSION["USER"]) or $_SESSION["LAST_ACTIVITY"] < time() - 3600)
 {
     session_unset(); 
     session_destroy();
-    header("location: " . __SUBDOMAIN . ".how-late.com/login");
+
+    $login = "http://" . __FQDN . "/login";
+    header("location: " . $login);
 }
 
 $_SESSION["LAST_ACTIVITY"] = time();

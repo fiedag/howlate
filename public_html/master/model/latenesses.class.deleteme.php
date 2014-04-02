@@ -19,7 +19,7 @@ class latenesses {
         $db = new howlate_db();
 
         
-        $res = $db->getLatenesses($udid);
+        $res = $db->getLatenesses($key, $udid);
         
     }
     
