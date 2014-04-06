@@ -2,12 +2,16 @@
 
 Class error404Controller Extends baseController {
 
-public function index() 
-{
-        $this->registry->template->blog_heading = 'This is the 404';
+    public $org;
+    
+    public function index() {
+        
+        $this->registry->template->sorry = "We're sorry.  You have reached this page in error.";
+        $this->registry->template->controller = $this;
         $this->registry->template->show('error404');
+
+    }
+
 }
 
-
-}
 ?>

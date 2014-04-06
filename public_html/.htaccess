@@ -1,15 +1,12 @@
-RewriteEngine on
+#RewriteEngine on
 #RewriteCond   %{HTTP_HOST}                 (^[^.]+\.)?how-late\.com$
-RewriteRule   ^(.+)                        http://how-late.com/en          [NC]
+#RewriteRule   ^(.+)                        http://how-late.com/en          [NC]
 
 
 
 AuthName "how-late root"
-AuthType Basic
-AuthName "Please Log In"
-Require valid-user
 Order deny,allow
-Deny from all
+#Deny from all
 Allow from 203.122.224.228 203.122.212.28
 Satisfy any
 Options -Indexes

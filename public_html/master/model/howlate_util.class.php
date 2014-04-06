@@ -38,6 +38,7 @@ class howlate_util {
 	public static function checkdigit($str) {
 	$len = strlen($str);
 	//echo "strlen = $len <br>";
+	$num = 0;
 	for ($i=0;$i<$len;$i++) {
 		$asc = ord(substr($str,$len - $i - 1,1));
 		//echo "asc = $asc <br>";

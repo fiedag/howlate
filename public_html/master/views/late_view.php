@@ -4,6 +4,7 @@
         <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=2.0; user-scalable=1;">
         <link media="screen" href="/styles/howlate.css" type="text/css" rel="stylesheet">
         <link media="only screen and (max-device-width: 480px)" href="/styles/howlate_mobile.css" type="text/css" rel="stylesheet">
+        <link rel="apple-touch-icon" href="<?php echo $icon_url; ?>" >
         <script>
             function bookmark(address, sitename) {
                 if (window.sidebar) { //Firefox
@@ -30,7 +31,7 @@
 <body>
     <table>
         <tr>
-            <td id="when"><?php echo $when_refreshed; ?></td><td><a id="refresh" href="javascript:location.reload(true);">Refresh</a></td>
+            <td class='refresh '><?php echo $when_refreshed; ?></td><td><a class="refresh" href="javascript:location.reload(true);">Refresh</a></td>
         </tr>
     </table>
     <p />
@@ -68,8 +69,8 @@
 
 
     <span id="footer">
-        <a id="refresh" href="javascript:location.reload(true);">Refresh</a>
-        <a href="#" onclick="bookmark('<?php echo $bookmark_url; ?>', '<?php echo $bookmark_title; ?>')">Bookmark Us Now!</a>
+        <a class="refresh" href="javascript:location.reload(true);">Refresh</a>
+        <!-- a href="#" onclick="bookmark('<?php echo $bookmark_url; ?>', '<?php echo $bookmark_title; ?>')">Bookmark Us Now!</a -->
 
     </span>
 

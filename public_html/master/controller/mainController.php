@@ -5,6 +5,7 @@ Class mainController Extends baseController {
     public $org;
     public $currentClinic;
     public $currentClinicName;
+	public $currentClinicTimezone;
     
 
     public function index() {
@@ -18,14 +19,21 @@ Class mainController Extends baseController {
         if (isset($_SESSION["clinic"])) {
             $this->currentClinic = $_SESSION["clinic"];
             $this->currentClinicName = $_SESSION["clinicname"];
+			$this->currentClinicTimezone = $_SESSION["clinictz"];
         }
         else {
             $this->currentClinic = $this->org->Clinics[0]->ClinicID;
             $this->currentClinicName = $this->org->Clinics[0]->ClinicName;
+			$this->currentClinicTimezone = $this->org->Clinics[0]->Timezone;
+			
             $_SESSION["clinic"] = $this->currentClinic;
             $_SESSION["clinicname"] = $this->currentClinicName;
+			$_SESSION["clinictz"] = $this->currentClinicTimezone;
+			
         }
-        
+  
+		$this->registry->template->saved_ok = (isset($_GET["ok"]) and $_GET["ok"] == 'yes');
+
         $this->registry->template->controller = $this;
         $this->registry->template->show('main_index');
         
@@ -46,10 +54,11 @@ Class mainController Extends baseController {
             $db->updatelateness($org, $id, $newlate);
         }
 
-        $this->index();
-        //header("location: http://" . __FQDN . "/main");
+        //$this->index();
+        header("location: http://" . __FQDN . "/main?ok=yes");
     }
 
+    
     public function get_header() {
         include 'controller/headerController.php';
         $header = new headerController($this->registry);
@@ -62,6 +71,8 @@ Class mainController Extends baseController {
         $footer->view($this->org);
     }
 
+
+    
     //
     // returns html text of a container div inside which is a lateness
     // form and additional tabs for other clinics. 
@@ -70,8 +81,8 @@ Class mainController Extends baseController {
         echo "<table class='lateness-admin'>";
         echo "<tr>";
         echo "<th>Practitioner</th>";
-        echo "<th class='lateness-value'>How Late</th>";
-        echo "<th></th>";
+        echo "<th class='lateness-value'><span title='Update the number of minutes late below and hit Save'>How Late</span></th>";
+        echo "<th>Save</th>";
         echo "</tr>";
         // dodgy this for now
 
@@ -81,21 +92,24 @@ Class mainController Extends baseController {
         foreach($lates as $clinic => $latepract) {
             foreach($latepract as $key => $value) {
                 $pin = $this->org->OrgID . "." . $value->ID;
-                echo "<tr>";
-                    echo "<td class='col-80pct'>" . $value->AbbrevName . "</td>";
+               echo "<td class='col-80pct'>" . $value->AbbrevName;
+					echo "<span title='Click to invite a mobile phone user to receive updates for $value->AbbrevName' class='invite' onclick=\"gotoInvite('$pin','$value->AbbrevName')\">SMS Invite</span>";
+				echo "</td>";
                     echo "<td class='lateness-value'>";
                         echo "<input type='number' class='lateness-admin-entry' name='lateness[$pin]' list='valid_latenesses' min='0' value='$value->MinutesLate' >";
                         echo "<input type='hidden' name='oldlateness[$pin]' value='$value->MinutesLate' >";
                     echo "</td>";
                     echo "<td>";
-                        echo "<input type='submit' class='lateness-admin-save-button' id='save' name='Save' value='Save' />";
+                        echo "<input type='submit' class='medium green button' id='save' name='Save' value='Save' />";
                     echo "</td>";
                 echo "</tr>";
-                
             }
-            
         }
+		
         echo "</table>";
+        echo "<div class='form-pad-top clearb'></div>";
+        echo "<input type='submit' class='large green button float-right' id='largesave' name='Save' value='Save' />";
+		echo "<span id='saved_indicator'></span>";
         echo '</form>';
     }
 
@@ -118,15 +132,37 @@ Class mainController Extends baseController {
 </datalist>
 EOT;
     }
-    
-    
-    public function show_clinic_header() {
-        
-        echo<<<EOT
-        
-        <h1>$this->currentClinicName</h1>
-        
-EOT;
-        
-    }
+
+		public function invite() {
+		if (!isset($_GET["invitepin"]) or !isset($_GET["udid"])) {
+			
+			throw new Exception("Invalid invite.  Missing parameters.");
+		}
+		$pin = $_GET["invitepin"];
+		$udid = $_GET["udid"];
+		
+		//howlate_util::validatePin($pin);
+	
+		$org = howlate_util::orgFromPin($pin);
+		$id = howlate_util::idFromPin($pin);
+		
+		$db = new howlate_db();
+		//$db->validatePin($org, $id);
+		$db->register($udid,$org, $id);
+		$db->trlog(TranType::DEV_REG, 'Device ' . $udid . 'registered pin ' . $pin, $org, null, $id, $udid);
+
+		$prac = $db->getPractitioner($org, $id);
+
+		$clickatell = new clickatell();
+
+		$message = 'To receive lateness updates for ' . $prac->PractitionerName . ' at ' . $prac->ClinicName;
+		$message .= ', click : ';
+		$message .= "http://$prac->FQDN/late/view&udid=$udid";
+		$message .= " .  Please bookmark this link to your Home Screen.";
+		$clickatell->httpSend(null, $udid, $message);
+		
+		$this->index();
+	}
+
+
 }

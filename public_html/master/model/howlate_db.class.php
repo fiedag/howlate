@@ -15,7 +15,7 @@ class howlate_db {
     }
 
     function getallclinics($orgID) {
-        $q = "SELECT ClinicID, OrgID, ClinicName, Phone, Address1, Address2, City, Zip, Country, Location FROM clinics WHERE OrgID = '" . $orgID . "'";
+        $q = "SELECT ClinicID, OrgID, Timezone, ClinicName, Phone, Address1, Address2, City, Zip, Country, Location FROM clinics WHERE OrgID = '" . $orgID . "'";
 
         $myArray = array();
         if ($result = $this->conn->query($q)) {
@@ -47,7 +47,7 @@ class howlate_db {
         $stmt = $this->conn->prepare($q);
         $stmt->bind_param('ss', $org, $id);
         $stmt->execute() or trigger_error('# Query Error (' . $this->conn->errno . ') ' . $this->conn->error, E_USER_ERROR);
-        $p = new practitioner($a);
+        $p = new practitioner();
         $stmt->bind_result($p->OrgID, $p->PractitionerID, $p->Pin, $p->PractitionerName, $p->ClinicName, $p->OrgName, $p->FQDN);
         $stmt->fetch();
         return $p;

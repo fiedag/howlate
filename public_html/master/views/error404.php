@@ -1,3 +1,28 @@
-<h1><?php echo $blog_heading; ?></h1>
-<p>This is a custom 404 error page.</p>
-<p>You can put whatever content you like here such as search for your site</p>
+<!doctype html>
+
+<html>
+
+    <head>
+
+
+    </head>
+
+    <body>
+
+        <div class='container primary-content'>
+
+            <h1>
+                Error 404: You have reached this page in error.
+            </h1>
+            <i>
+                Did you mean to go to <a href="http://www.how-late.com">How-late.com?</a>
+            </i>
+
+
+        </div>
+
+
+    </body>
+
+</html>
+

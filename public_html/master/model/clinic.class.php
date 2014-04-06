@@ -12,8 +12,6 @@ class clinic extends howlate_basetable {
         public $Country;
         public $Location;
         public $Phone;
-       
-        
-        
-        
+       public $State;
+    
 }

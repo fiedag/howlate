@@ -12,6 +12,7 @@ Class lateController Extends baseController {
 		$this->registry->template->when_refreshed = 'Refreshed ' . date('h:i A');
                 $this->registry->template->bookmark_title = "How late";
                 $this->registry->template->bookmark_url = $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"];
+                $this->registry->template->icon_url = "/pri/" . __SUBDOMAIN . "/logo.png";
                 if (isset($_GET['udid'])) {
 			$udid = $_GET['udid'];
 			$this->registry->template->UDID = $udid;

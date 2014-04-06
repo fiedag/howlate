@@ -12,9 +12,10 @@
         <link media="screen" href="/styles/howlate_base.css" type="text/css" rel="stylesheet">
         <link media="screen" href="/styles/howlate_extra.css" type="text/css" rel="stylesheet">
         <link media="only screen and (max-device-width: 480px)" href="/styles/howlate_mobile.css" type="text/css" rel="stylesheet">        
-
+		
     </head>
     <body>
+	
         <div id="navmain" class="fresh-header">
 
             <div class="container  relative-box">
@@ -36,21 +37,22 @@
                         <img alt="" id="sysLogo" class="system-logo" src="/pri/<?php echo $org->Subdomain; ?>/logo.png" height="100" width="100">
                         <a href="#" class="logo-upload-button inverse" id="nav-upload-logo" style="display: none;">Upload your logo</a>
                     </div>
+					<div class="orgname">
+						<?php echo $org->OrgName; ?>
+					</div>
                     <div class="nav-mainlinks-container  font-on-custom-background">
-                        <ul class="nav-mainlinks custom-background">
-
-                            <li class="first active custom-background-dark-hover">
-                                <span><a id="nav-home" class="custom-font-on-white" href="http://<?php echo __FQDN;?>/main">Main</a></span>
+                        <ul class="nav-mainlinks custom-background" id="nav-mainlinks">
+                            <li class="first <?php if (get_class($controller) == "mainController") {echo 'active';}?> custom-background-dark-hover">
+                                <span><a id="nav-main" class="<?php echo (get_class($controller) == "mainController")?'custom-font-on-white':'font-on-custom-background';?>" href="http://<?php echo __FQDN;?>/main">Main</a></span>
                             </li>
-                            <li class="custom-background-dark-hover">
-                                <span><a id="nav-people" class="font-on-custom-background" href="http://<?php echo __FQDN;?>/clinics">Clinics</a></span>
+                            <li class="<?php if (get_class($controller) == "clinicsController")	 {echo 'active';}?> custom-background-dark-hover">
+                                <span><a id="nav-clinics" class="<?php echo (get_class($controller) == "clinicsController")?'custom-font-on-white':'font-on-custom-background';?>" href="http://<?php echo __FQDN;?>/clinics">Clinics</a></span>
                             </li>
-                            <li class="custom-background-dark-hover"><span><a id="nav-expenses" class="font-on-custom-background" href="http://<?php echo __FQDN;?>/practitioners">Practitioners</a></span>
+                            <li class="<?php if (get_class($controller) == "practController") {echo 'active';}?> custom-background-dark-hover">
+								<span><a id="nav-practitioners" class="<?php echo (get_class($controller) == "practController")?'custom-font-on-white':'font-on-custom-background';?>" href="http://<?php echo __FQDN;?>/pract">Practitioners</a></span>
                             </li>
-                            <li class="custom-background-dark-hover">
-                                <span>
-                                    <a id="nav-reports" class="font-on-custom-background" href="https://fiedlerconsulting.freshbooks.com/viewReport">Reports</a>
-                                </span>
+                            <li class="<?php if (get_class($controller) == "orgController") {echo 'active';}?> custom-background-dark-hover">
+								<span><a id="nav-organisation" class="<?php echo (get_class($controller) == "orgController")?'custom-font-on-white':'font-on-custom-background';?>" href="http://<?php echo __FQDN;?>/org">Organization</a></span>
                             </li>
                         </ul>
                     </div>

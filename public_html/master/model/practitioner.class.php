@@ -1,6 +1,6 @@
 <?php 
 
-class practitioner extends howlate_basetable {
+class practitioner {
 	public $OrgID;
 	public $ID;
         public $FullName;
@@ -15,13 +15,6 @@ class practitioner extends howlate_basetable {
         public $OrgName;
         public $FQDN;
         
-        
-        
-	public function __construct($arr) {
-		parent::__construct($arr);
-		
-		$this->Pin = $this->OrgID . '.' . $this->ID;
-	}
 }
 
 ?>
