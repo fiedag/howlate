@@ -2,9 +2,9 @@
 class Xcrud_config
 {
     // default connection
-    public static $dbname = 'dbname'; // Your database name
-    public static $dbuser = 'dbuser'; // Your database username
-    public static $dbpass = 'dbpass'; // // Your database password
+    public static $dbname = 'howlate_main'; // Your database name
+    public static $dbuser = 'howlate_super'; // Your database username
+    public static $dbpass = 'bdU,[}B}k@7n'; // // Your database password
     public static $dbhost = 'localhost'; // Your database host, 'localhost' is default.
     
     
@@ -153,7 +153,7 @@ class Xcrud_config
     
     
     // xcrud folder url
-    public static $scripts_url = ''; // URL to the xCRUD folder, not real path, without a trailing slash, can be relative, e.g. 'some_folder/xcrud' or absolute, e.g. 'http://www.your_site.com/some_folder/xcrud'. If empty - will be detected automatically
+    public static $scripts_url = 'includes/xcrud'; // URL to the xCRUD folder, not real path, without a trailing slash, can be relative, e.g. 'some_folder/xcrud' or absolute, e.g. 'http://www.your_site.com/some_folder/xcrud'. If empty - will be detected automatically
     public static $urls2abs = true; // makes relative urls to absolute. Turn off if you have some troubles with relative urls.
     
     

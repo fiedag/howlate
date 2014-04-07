@@ -4,7 +4,9 @@
 
 <div class='container primary-content'>
 
-
+<?php $controller->getXcrudTable(); ?>
+    
+    
 </div>
 
 

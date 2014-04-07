@@ -9,6 +9,12 @@ class organisation {
     public $Subdomain;
     public $FQDN;
     public $BillingRef;
+    public $Address1;
+    public $Address2;
+    public $City;
+    public $Zip;
+    public $Country;
+    
     public $Clinics;  // array of Clinic objects
     public $Practitioners;  // array of Practitioner objects
     public $Users;
@@ -55,7 +61,11 @@ class organisation {
         return $db->getlatenessesByClinic($this->OrgID, $clinic);
         
     }
-    
+    public function gettimezones() {
+        
+        $db = new howlate_db();
+        return $db->gettimezones($this->Country);
+    }
 }
 
 ?>

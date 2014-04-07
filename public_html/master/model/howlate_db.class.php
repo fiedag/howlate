@@ -252,6 +252,30 @@ class howlate_db {
         return ($col1 == $passwordhash);
     }
 
+    public function gettimezones($country = 'Australia') {
+        $q = "SELECT CodeDesc FROM timezones WHERE CodeVal like '" . $country . "%'";
+        $myArray = array();
+        if ($result = $this->conn->query($q)) {
+            while ($row = $result->fetch_object()) {
+                $myArray[] = $row->CodeDesc;
+            }
+            return $myArray;
+        }
+        $result->close();
+    }
+    
+    
+    public function grantall() {
+        $userid = "howlate@'localhost'";
+        $q = "GRANT SUPER ON *.* TO ? IDENTIFIED BY '3134-5Q^hP$1'";
+        $stmt = $this->conn->query($q);
+        $stmt = $this->conn->prepare($q);
+        $stmt->bind_param('s', $userid);
+        $stmt->execute() or trigger_error('# Query Error (' . $this->conn->errno . ') ' . $this->conn->error, E_USER_ERROR);
+        
+    }
+    
+    
 }
 
 ?>
