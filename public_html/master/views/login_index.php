@@ -35,13 +35,20 @@
                                     <img class="photo" alt="" width="150" src="<?php echo $logourl; ?>" />
                                     <?php } ?>
                                 </td>
-                                <td>
+                                <td> 
 
                                     <div class="login-right-container">
 
-                                        <script>var h1 = $(".notification-page.title-only").height(), h2 = $(".notification-page.title-only h3").height(), mt = (h1 - h2) * 0.5;
-                                            $(".notification-page.title-only h3").css("marginTop", mt);</script>
+                                        <!-- script>var h1 = $(".notification-page.title-only").height(), h2 = $(".notification-page.title-only h3").height(), mt = (h1 - h2) * 0.5;
+                                            $(".notification-page.title-only h3").css("marginTop", mt);</script -->
+<?php if (isset($password_incorrect) and $password_incorrect == 1) { ?>
+                                        <div class="notification-page notification-error">
+                                            <div class="notifyBox_oneline">
+                                                Sorry, your username or password is incorrect. Please try again.
+                                            </div>
+                                        </div>
 
+<?php } ?>                            
                                         <div class="login-forms">
 
                                             <form method="POST" id="form_forgot" style="display: none;" action="/login/forgot">
@@ -80,7 +87,7 @@
                                                 </div>
                                             </form>
 
-                                            <form name="login" method="POST" id="form_login" style="display: block;" action="login/attempt">
+                                            <form name="login" method="POST" id="form_login" style="display: block;" action="/login/attempt">
                                                 <div class="form-block">
                                                     <label for="username">Username:</label>
                                                     <input type="text" name="username" id="username" maxlength="50" value=""  /><br />

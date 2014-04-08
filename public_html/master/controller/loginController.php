@@ -15,10 +15,10 @@ Class loginController Extends baseController {
         
         public function fail() 
         {
-            $this->registry->template->failmessage = "Incorrect username or password.  Please try again.";
+            $this->registry->template->password_incorrect = 1;
             $this->index();
         }
-        
+       
         public function attempt() {
             
             $userid = $_POST["username"];

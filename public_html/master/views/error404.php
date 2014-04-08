@@ -8,7 +8,9 @@
     </head>
 
     <body>
-
+<?php if (isset($logourl))  { ?> 
+      <img class="photo" alt="" width="150" src="<?php echo $logourl; ?>" />
+<?php } ?>
         <div class='container primary-content'>
 
             <h1>

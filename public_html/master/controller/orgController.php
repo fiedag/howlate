@@ -17,6 +17,11 @@ Class orgController Extends baseController {
 		
     }
     
+    public function update() {
+        
+        
+        
+    }
 
 
 }
