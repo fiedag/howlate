@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=2.0; user-scalable=1;">
         <link media="screen" href="/styles/howlate_base.css" type="text/css" rel="stylesheet" >
         <link media="screen" href="/styles/howlate_login.css" type="text/css" rel="stylesheet">        
@@ -19,7 +20,7 @@
                 <div id="inner">
                     <div class="name-container font-on-custom-background">
                         <div class="company-name"><?php echo $companyname; ?></div>
-                        <div class="login-info">Please log in to your account.</div>
+                        <div class="login-info">Please log in to your account</div>
                     </div>
                     <div class="secure-info font-on-custom-background ">
                         <div class="secure-lock"></div>
@@ -30,7 +31,9 @@
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
                             <tr>
                                 <td width="275" class="login-table">
+                                    <?php if (isset($logourl))  { ?> 
                                     <img class="photo" alt="" width="150" src="<?php echo $logourl; ?>" />
+                                    <?php } ?>
                                 </td>
                                 <td>
 
@@ -41,7 +44,7 @@
 
                                         <div class="login-forms">
 
-                                            <form method="POST" id="form_forgot" style="display: none;">
+                                            <form method="POST" id="form_forgot" style="display: none;" action="/login/forgot">
                                                 <div class="form-block">
                                                     <p>Forgot your username or password? No worries, enter your email address below and we will hook you up.</p>
 
@@ -114,8 +117,9 @@
                 </div>
             </div>
         </div>
+        
+        <script src="js/login.js" type="text/javascript" ></script>
 
-        <script src="/cache/js/login.v1396375771.js" type="text/javascript" ></script>
         <script type="text/javascript">
                                             $(document).ready(function() {
                                                 $('#welcome').slideDown();
@@ -177,7 +181,4 @@
                                                 });
                                             }
 
-        </script>
-
-        <script type="text/javascript">window.NREUM || (NREUM = {});
-            NREUM.info = {"beacon": "beacon-1.newrelic.com", "licenseKey": "41a722aaf8", "applicationID": "654484", "transactionName": "MlAHNkpUXEZRBxAPDAsaMBBRGl5aVw0KSBMNRQ==", "queueTime": 0, "applicationTime": 192, "ttGuid": "", "agentToken": "", "userAttributes": "", "errorBeacon": "jserror.newrelic.com", "agent": "js-agent.newrelic.com\/nr-372.min.js"}</script></body></html>
+        </script>        

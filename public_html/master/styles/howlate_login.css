@@ -69,8 +69,13 @@ and open the template in the editor.
     height: 100%;
 }
 
+#login-message {
+    height:20px;
+    
+    
+}
 .custom-background, .custom-background-hover:hover {
-    background-color: #195A8C !important;
+    background-color: #5742bf !important;
 }
 
 .new-form .company-name {
@@ -258,3 +263,6 @@ button {
     margin-left: 45px;
 }
 
+.form-block p {
+    font-size:15px;
+}

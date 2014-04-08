@@ -8,6 +8,7 @@
         <meta name='description' content='Change the lateness of doctors in your organisation.'>
 
         <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=2.0; user-scalable=1;">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <link media="screen" href="/styles/howlate_branding.css" type="text/css" rel="stylesheet">
         <link media="screen" href="/styles/howlate_base.css" type="text/css" rel="stylesheet">
         <link media="screen" href="/styles/howlate_extra.css" type="text/css" rel="stylesheet">

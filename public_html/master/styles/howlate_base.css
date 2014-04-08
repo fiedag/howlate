@@ -1,29 +1,6 @@
 /* Howlate_base.css - used throughout and overridden if device is small 
 */
 
-/*
-* {
-	font-family:Arial,Helvetica,sans-serif;
-	font-size:100%;
-	border:none;
-	padding:none;
-	margin:none;
-}
-
-
-
-td  img {
-    background: linear-gradient( to top, white, #ecc);
-	border-width:0px;
-	margin:0px;
-	padding:0px;
-}
-
-
-img { 
-	display: block
-}
-*/
 
 span {
 	inline:block;

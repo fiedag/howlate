@@ -265,17 +265,57 @@ class howlate_db {
     }
     
     
-    public function grantall() {
-        $userid = "howlate@'localhost'";
-        $q = "GRANT SUPER ON *.* TO ? IDENTIFIED BY '3134-5Q^hP$1'";
+    public function save_reset_token($user, $email, $org) {
+        $key = uniqid(mt_rand(), true);
+                
+        $token = md5($email . $key);
+       
+        $q = "INSERT INTO resetrequests (Token, EmailAddress, UserID, OrgID, DateCreated) VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP)";
+
         $stmt = $this->conn->query($q);
         $stmt = $this->conn->prepare($q);
-        $stmt->bind_param('s', $userid);
+        $stmt->bind_param('ssss', $token, $email, $user, $org);
         $stmt->execute() or trigger_error('# Query Error (' . $this->conn->errno . ') ' . $this->conn->error, E_USER_ERROR);
-        
+        if ($stmt->affected_rows == 0) {
+            trigger_error("The Reset Request was not inserted into the database, token= $token , email = $email ,user = $user", E_USER_ERROR);
+            
+        }
+        return $token;
     }
     
-    
+    public function check_token($token, $org) {
+
+        $q = "SELECT UserID, DateCreated FROM resetrequests WHERE Token = '" . $token . "' AND OrgID = '" . $org . "'";
+        if ($result = $this->conn->query($q)) {
+            $row = $result->fetch_object();
+        }
+
+        if (count($row) != 1) {
+            return array("The password reset link is invalid.");
+        }
+
+        $elapsed = $row->DateCreated - time();
+        if ($elapsed > 3600) {
+            return array("The password reset link has elapsed.");
+        }
+        return array("OK",$row->UserID);
+        
+    }
+
+    public function change_password($userid, $password, $orgID) {
+        $q = "UPDATE orgusers SET XPassword = ? WHERE UserID = ? AND OrgID = ?";
+        //echo "[$userid, $password,$orgID]";
+        $stmt = $this->conn->query($q);
+        $stmt = $this->conn->prepare($q);
+        $stmt->bind_param('sss', $password, $userid, $orgID);
+        $stmt->execute();
+        echo $this->conn->error;
+        if ($stmt->affected_rows != 1) {
+            trigger_error("The Password change request was not successful. $stmt->affected_rows", E_USER_ERROR);
+            return false;
+        }
+        return true;
+    }
 }
 
 ?>
