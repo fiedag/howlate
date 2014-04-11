@@ -13,8 +13,9 @@
 
 
     <body class="new-form custom-background">
+        
 
-
+        
         <div id="outer">
             <div id="middle">
                 <div id="inner">
@@ -32,7 +33,7 @@
                             <tr>
                                 <td width="275" class="login-table">
                                     <?php if (isset($logourl))  { ?> 
-                                    <img class="photo" alt="" width="150" src="<?php echo $logourl; ?>" />
+                                    <img class="photo" alt="" title="<?php if (isset($usercookie)) {echo "User cookie $usercookie .";} if (isset($orgidcookie)) {echo "  OrgID cookie $orgidcookie";} ?>" width="150" src="<?php echo $logourl; ?>" />
                                     <?php } ?>
                                 </td>
                                 <td> 

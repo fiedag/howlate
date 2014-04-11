@@ -21,8 +21,9 @@ Class practController Extends baseController {
     public function getXcrudTable() {
         include('includes/xcrud/xcrud.php');
         $xcrud = Xcrud::get_instance();
-        $xcrud->table('practitioners')->where('OrgID =', $this->org->OrgID)->columns('OrgID, ID', true);
-
+        $xcrud->table('practitioners')->where('OrgID =', $this->org->OrgID)->limit(10)->columns('OrgID, ID, UpdIndic, SurrogKey', true);
+        $xcrud->fields('OrgID, ID, UpdIndic, SurrogKey', true, false, 'edit');
+        $xcrud->hide_button('view');
         $xcrud->label(array('FullName' => 'Full Name', 'AbbrevName' => 'Abbrev Name', 'DateCreated' => 'Created', 'SurrogKey' => 'PIN'));
         $xcrud->unset_csv(true)->unset_numbers(true)->unset_print(true)->unset_limitlist(true)->hide_button('save_and_edit')->hide_button('save_and_new');
 

@@ -37,15 +37,21 @@
 <?php $controller->get_valid_lateness_datalist(); ?>
 
 
+
+
 <div class='container primary-content'>
     <div class="clinic-header">
-        <?php echo $controller->currentClinicName; ?> <span id="clinictime" class="timefield" title='<?php echo $controller->currentClinicTimezone; ?>'></span><!--script> startTime(); </script -->
-	</div>
+        <form name="clinics" id="clinics" action="/main/setclinic" method="post">
+            <select name="selectedclinic" id="selectedclinic" class="dropdown" onchange="this.form.submit();" value="<?echo $controller->currentClinicName; ?>" >
+                <?php $controller->get_clinic_options(); ?>
+            </select>
+        </form>
+    </div>
 
     <?php $controller->show_lateness_form(); ?>
 
 	
-	<?php if ($saved_ok) { echo '<script>saved_ok_indicator();</script>'; } ?>
+	<?php if (isset($saved_ok)) { echo '<script>saved_ok_indicator();</script>'; } ?>
 </div>
 
 <div id="invite" class="modalDialog">

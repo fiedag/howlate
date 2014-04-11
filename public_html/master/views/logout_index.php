@@ -1,9 +1,4 @@
-<?php
-    session_start();
-    session_unset(); 
-    session_destroy();
-    
-?>
+
 
 <div class='large form-block'>
 

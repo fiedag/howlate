@@ -14,12 +14,14 @@ class organisation {
     public $City;
     public $Zip;
     public $Country;
-    
     public $Clinics;  // array of Clinic objects
     public $Practitioners;  // array of Practitioner objects
     public $Users;
     public $LogoURL;  // relative to master 
-
+    public $UpdIndic;
+    
+    private $columns;
+    
     public function getby($fieldval, $fieldname) {
         $db = new howlate_db();
 
@@ -66,6 +68,14 @@ class organisation {
         $db = new howlate_db();
         return $db->gettimezones($this->Country);
     }
+    
+    public function update() {
+        // uses the current public attributes to update the record
+        
+        
+        
+    }
+    
 }
 
 ?>

@@ -21,9 +21,9 @@ Class clinicsController Extends baseController {
     public function getXcrudTable() {
         include('includes/xcrud/xcrud.php');
         $xcrud = Xcrud::get_instance();
-        $xcrud->table('clinics')->where('OrgID =', $this->org->OrgID)->columns('OrgID, Country, Location', true);
-
-        
+        $xcrud->table('clinics')->where('OrgID =', $this->org->OrgID)->limit(10)->columns('OrgID, Country, Location, Zip, Timezone, UpdIndic', true);
+        $xcrud->fields('OrgID, UpdIndic, Location', true, false, 'edit');
+        $xcrud->hide_button('view');
         $xcrud->label(array('ClinicName' => 'Clinic', 'Address1' => 'Address', 'Address2' => 'Address', 'Timezone' => 'Time Zone'));
 
         

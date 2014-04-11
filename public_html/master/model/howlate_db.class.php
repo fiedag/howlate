@@ -316,6 +316,25 @@ class howlate_db {
         }
         return true;
     }
+    
+    public function update_org($values) {
+        // $org is the organisation object
+        // $values is the array of new values
+        $q = "UPDATE orgs SET " ;
+        foreach ($values as $key => $val) {
+            if ( $key != "UpdIndic" and $key != "OrgID" ) {$q .= "$key = '" . $val . "'," ;}
+        }
+        $q .= "UpdIndic = UpdIndic + 1";
+        $q .= " WHERE OrgID = ? AND UpdIndic = ?";
+        
+        $stmt = $this->conn->query($q);
+        $stmt = $this->conn->prepare($q);     
+        $stmt->bind_param('si', $values["OrgID"], $values["UpdIndic"]);
+        $stmt->execute() ;
+        if ($stmt->affected_rows == 0) {
+            trigger_error("The orgs record was not updated, error= " . $this->conn->error , E_USER_ERROR);
+        }
+        
+        
+    }
 }
-
-?>
