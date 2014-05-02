@@ -46,11 +46,14 @@
                             <li class="first <?php if (get_class($controller) == "mainController") {echo 'active';}?> custom-background-dark-hover">
                                 <span><a id="nav-main" class="<?php echo (get_class($controller) == "mainController")?'custom-font-on-white':'font-on-custom-background';?>" href="http://<?php echo __FQDN;?>/main">Main</a></span>
                             </li>
-                            <li class="<?php if (get_class($controller) == "clinicsController")	 {echo 'active';}?> custom-background-dark-hover">
-                                <span><a id="nav-clinics" class="<?php echo (get_class($controller) == "clinicsController")?'custom-font-on-white':'font-on-custom-background';?>" href="http://<?php echo __FQDN;?>/clinics">Clinics</a></span>
+                            <li class="<?php if (get_class($controller) == "placeController") {echo 'active';}?> custom-background-dark-hover">
+								<span><a id="nav-placements" class="<?php echo (get_class($controller) == "placeController")?'custom-font-on-white':'font-on-custom-background';?>" href="http://<?php echo __FQDN;?>/place">Placements</a></span>
                             </li>
                             <li class="<?php if (get_class($controller) == "practController") {echo 'active';}?> custom-background-dark-hover">
 								<span><a id="nav-practitioners" class="<?php echo (get_class($controller) == "practController")?'custom-font-on-white':'font-on-custom-background';?>" href="http://<?php echo __FQDN;?>/pract">Practitioners</a></span>
+                            </li>
+                            <li class="<?php if (get_class($controller) == "clinicsController")	 {echo 'active';}?> custom-background-dark-hover">
+                                <span><a id="nav-clinics" class="<?php echo (get_class($controller) == "clinicsController")?'custom-font-on-white':'font-on-custom-background';?>" href="http://<?php echo __FQDN;?>/clinics">Clinics</a></span>
                             </li>
                             <li class="<?php if (get_class($controller) == "orgController") {echo 'active';}?> custom-background-dark-hover">
 								<span><a id="nav-organisation" class="<?php echo (get_class($controller) == "orgController")?'custom-font-on-white':'font-on-custom-background';?>" href="http://<?php echo __FQDN;?>/org">Organization</a></span>

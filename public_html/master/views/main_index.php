@@ -45,9 +45,12 @@
             <select name="selectedclinic" id="selectedclinic" class="dropdown" onchange="this.form.submit();" value="<?echo $controller->currentClinicName; ?>" >
                 <?php $controller->get_clinic_options(); ?>
             </select>
+            <span ><?php echo $controller->currentClinicTimezone; ?></span>
+            <span><?php echo date('l h:i:s A'); ?></span>
         </form>
+        
     </div>
-
+    
     <?php $controller->show_lateness_form(); ?>
 
 	

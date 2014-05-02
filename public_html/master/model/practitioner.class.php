@@ -1,6 +1,6 @@
 <?php 
 
-class practitioner {
+class practitioner extends howlate_basetable {
 	public $OrgID;
 	public $ID;
         public $FullName;

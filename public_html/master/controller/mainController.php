@@ -184,14 +184,16 @@ EOT;
             } 
         }
         //echo "NEw clinic = $this->currentClinicName<br> ";
-
+        date_default_timezone_set ( $this->currentClinicTimezone );
+        
         $_SESSION["clinic"] = $this->currentClinic;
         $_SESSION["clinicname"] = $this->currentClinicName;
         $_SESSION["clinictz"] = $this->currentClinicTimezone;
-        
         $this->registry->template->controller = $this;
         $this->registry->template->show('main_index');
 
+
+        
 }
 
 }

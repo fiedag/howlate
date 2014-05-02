@@ -29,7 +29,12 @@ Class clinicsController Extends baseController {
         
         
         $tz = $this->org->gettimezones();
-        $xcrud->change_type('Timezone', 'select', 'Australia/Adelaide', $tz);
+        $tz_csv="";
+        foreach($tz as $val) {
+            $tz_csv .= ($tz_csv=="")?$val:",$val";
+        } 
+        
+        $xcrud->change_type('Timezone', 'select', 'Australia/Adelaide', $tz_csv);
         
         $xcrud->unset_csv(true)->unset_numbers(true)->unset_print(true)->unset_limitlist(true)->hide_button('save_and_edit')->hide_button('save_and_new');     
 

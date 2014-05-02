@@ -4,7 +4,7 @@ class Xcrud_config
     // default connection
     public static $dbname = 'howlate_main'; // Your database name
     public static $dbuser = 'howlate_super'; // Your database username
-    public static $dbpass = 'bdU,[}B}k@7n'; // // Your database password
+    public static $dbpass = 'NuNbHG4NQn'; // // Your database password
     public static $dbhost = 'localhost'; // Your database host, 'localhost' is default.
     
     

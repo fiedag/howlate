@@ -5,7 +5,7 @@ class howlate_db {
     protected $conn;
 
     function __construct() {
-        $this->conn = new mysqli('localhost', 'howlate_super', 'bdU,[}B}k@7n', 'howlate_main');
+        $this->conn = new mysqli('localhost', 'howlate_super', 'NuNbHG4NQn', 'howlate_main');
     }
 
     function __destruct() {
