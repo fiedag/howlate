@@ -126,6 +126,7 @@ private function getController() {
 		$this->action = 'login';
 	}
 
+        //echo "action=" . $this->action;
 	/*** set the file path ***/
 	$this->file = $this->path .'/'. $this->controller . 'Controller.php';
 }
