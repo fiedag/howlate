@@ -334,7 +334,18 @@ class howlate_db {
         if ($stmt->affected_rows == 0) {
             trigger_error("The orgs record was not updated, error= " . $this->conn->error , E_USER_ERROR);
         }
-        
+    }
+    
+    public function create_org() {
+        $q = "INSERT INTO orgs (OrgID, OrgName, OrgShortName, Subdomain, FQDN, UpdateIndic) VALUES (?, ?, ?, ?, ?, 1)";
+        $stmt = $this->conn->query($q);
+        $stmt = $this->conn->prepare($q);     
+        $stmt->bind_param('sssss', $orgid, $orgname, $shortname, $subdomain, $fqdn);
+        $stmt->execute() ;
+        if ($stmt->affected_rows == 0) {
+            trigger_error("The orgs record was not created, error= " . $this->conn->error , E_USER_ERROR);
+        }        
         
     }
+    
 }

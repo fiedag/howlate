@@ -28,10 +28,17 @@ Class mainController Extends baseController {
             $_SESSION["clinicname"] = $this->currentClinicName;
             $_SESSION["clinictz"] = $this->currentClinicTimezone;
         }
+        
+        date_default_timezone_set($this->currentClinicTimezone);
+
+        
         $this->registry->template->saved_ok = (isset($_GET["ok"]) and $_GET["ok"] == 'yes');
 
         $this->registry->template->controller = $this;
         $this->registry->template->show('main_index');
+        
+        
+        
     }
 
     public function save() {
@@ -181,6 +188,7 @@ EOT;
                 $this->currentClinic = $clin->ClinicID;
                 $this->currentClinicName = $clin->ClinicName;
                 $this->currentClinicTimezone = $clin->Timezone;
+
             } 
         }
         //echo "NEw clinic = $this->currentClinicName<br> ";

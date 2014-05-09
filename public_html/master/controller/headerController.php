@@ -17,6 +17,8 @@ Class headerController Extends baseController {
 
         $this->org = $org;
         $this->registry->template->org = $org;
+        
+        
         $this->registry->template->show('header_view');
     }
 

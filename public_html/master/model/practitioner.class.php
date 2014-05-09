@@ -15,6 +15,11 @@ class practitioner extends howlate_basetable {
         public $OrgName;
         public $FQDN;
         
+        
+        public function logoURL() {
+            return howlate_util::logoURL($this->Subdomain);
+        }
+        
 }
 
 ?>

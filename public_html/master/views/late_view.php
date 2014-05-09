@@ -49,7 +49,7 @@
                 if ($i == 1) {
                     ?><tr>
                         <td class="clinrow"><a href='<?php echo "/clinicinfo?orgid=$r->OrgID&clinicid=$r->ClinicID"; ?>'><?php echo $clinic ; ?></a></td>
-                        <td class="clinrow logo"><img src="/pri/<?php echo $r->Subdomain; ?>/logo.png"></td> 
+                        <td class="clinrow logo"><img src="<?php echo howlate_util::logoURL($r->Subdomain); ?>"></td> 
                     </tr>
                     <?php
                 }
