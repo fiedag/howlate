@@ -15,6 +15,7 @@ class organisation {
     public $Zip;
     public $Country;
     public $Clinics;  // array of Clinic objects
+    public $ActiveClinics;  // array of Active Clinic objects having placements
     public $Practitioners;  // array of Practitioner objects
     public $Users;
     public $LogoURL;  // relative to master 
@@ -35,7 +36,13 @@ class organisation {
             $c = new clinic($val);
             $this->Clinics[] = $c;
         }
-
+        
+        $clin = $db->getactiveclinics($this->OrgID, 'OrgID');
+        foreach ($clin as $key => $val) {
+            $c = new clinic($val);
+            $this->ActiveClinics[] = $c;
+        }
+        
         $prac = $db->getallpractitioners($this->OrgID, 'OrgID');
         foreach ($prac as $key => $val) {
             $p = new practitioner($val);

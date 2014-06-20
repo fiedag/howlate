@@ -91,7 +91,7 @@ Class mainController Extends baseController {
             foreach ($latepract as $key => $value) {
                 $pin = $this->org->OrgID . "." . $value->ID;
                 echo "<td class='col-80pct'>" . $value->AbbrevName;
-                echo "<span title='Click to invite a mobile phone user to receive updates for $value->AbbrevName' class='invite' onclick=\"gotoInvite('$pin','$value->AbbrevName')\">SMS Invite</span>";
+                echo "<span onmouseover=\"changeCursor(this,'arrow');\" onmouseout=\"changeCursor(this,'default');\" title='Click to invite a mobile phone user to receive updates for $value->AbbrevName' class='invite' onclick=\"gotoInvite('$pin','$value->AbbrevName')\">SMS Invite</span>";
                 echo "</td>";
                 echo "<td class='lateness-value'>";
                 echo "<input type='number' class='lateness-admin-entry' name='lateness[$pin]' list='valid_latenesses' min='0' value='$value->MinutesLate' >";
@@ -164,7 +164,7 @@ EOT;
 
     public function get_clinic_options() {
         $i=0;
-        foreach ($this->org->Clinics as $value) {
+        foreach ($this->org->ActiveClinics as $value) {
             echo "<option value='" . $value->ClinicID . "' ";
             if($value->ClinicID == $this->currentClinic) {echo "selected";}
             echo ">$value->ClinicName</option>";

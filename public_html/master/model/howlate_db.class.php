@@ -28,6 +28,22 @@ class howlate_db {
         $result->close();
     }
 
+    
+    function getactiveclinics($orgID) {
+        $q = "SELECT ClinicID, OrgID, Timezone, ClinicName, Phone, Address1, Address2, City, Zip, Country, Location FROM vwActiveClinics WHERE OrgID = '" . $orgID . "'";
+
+        $myArray = array();
+        if ($result = $this->conn->query($q)) {
+            while ($row = $result->fetch_object()) {
+                $myArray[] = $row;
+            }
+
+            return $myArray;
+        }
+        $result->close();
+    }
+    
+    
     function getallusers($keyval, $fieldname = 'OrgID') {
         $q = "SELECT * FROM orgusers WHERE $fieldname = '" . $keyval . "'";
 
@@ -345,6 +361,20 @@ class howlate_db {
         if ($stmt->affected_rows == 0) {
             trigger_error("The orgs record was not created, error= " . $this->conn->error , E_USER_ERROR);
         }        
+        
+    }
+ 
+    
+    public function getNextPractID($orgID) {
+        $q = "SELECT getNextPractitionerID2('$orgID') AS ID";
+        if ($result = $this->conn->query($q)) {
+            $row = $result->fetch_object();
+        }
+        if (count($row) != 1) {
+            return ("Error returning next practitioner ID.");
+        }
+
+        return ($row->ID);
         
     }
     
