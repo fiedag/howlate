@@ -14,12 +14,15 @@ Class loginController Extends baseController {
         
         if (isset($_COOKIE["USER"]) and isset($_COOKIE["ORGID"])) {
             // get some info from the cookie
+
             session_start();
+
             $_SESSION["ORGID"] = $_COOKIE["ORGID"];
             $_SESSION["USER"] = $_COOKIE["USER"];
             $_SESSION['LAST_ACTIVITY'] = time();
-            if (isset($_COOKIE["URL"])) {
-                header("location: " . $_COOKIE["URL"]);
+            if (isset($_COOKIE["URL"]) and $_COOKIE["URL"] != "login") {
+                
+                //header("location: " . $_COOKIE["URL"]);
             }
         }
 
@@ -51,10 +54,10 @@ Class loginController Extends baseController {
             setcookie("ORGID", $this->org->OrgID, time() + 3600);
             
             session_start();
+            
             $_SESSION["ORGID"] = $this->org->OrgID;
             $_SESSION["USER"] = $userid;
             $_SESSION['LAST_ACTIVITY'] = time();
-
 
             header("location: http://" . __SUBDOMAIN . ".how-late.com/main");
         } else {

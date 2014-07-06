@@ -1,34 +1,43 @@
-/* http API - 
+<!DOCTYPE html>
+<html>
+    
+<?php
+/* http API for how-late.com  
 * everything here is called using a http GET
-* mostly everything returns a JSON string 
+* Most everything returns a JSON string 
 * try to make controllers do all the work.  
 * TODO : remove direct calls to db class
 *
 *
 */
-<!DOCTYPE html>
-<?php
-
 function unh_exception_handler($exception) {
   echo "Unhandled exception: " , $exception->getMessage(), "\n";
 }
+
+
 set_exception_handler('unh_exception_handler');
 
 $site_path = realpath(dirname(__FILE__));
 define ('__SITE_PATH', $site_path);
  
 include_once('includes/init.php');
-include_once('lib/stdinclude.php');
 
-$debug = $_GET["debug"];
+$debug = filter_input(INPUT_GET,"debug");
 define ('__DEBUG', $debug);
 
-required(array("udid", "met", "ver"));
+// these three are required no matter what
 
-$udid = $_GET["udid"];
-$met = $_GET["met"];
-$ver = $_GET["ver"];
- 
+
+
+$udid = filter_input(INPUT_GET,"udid");
+$met = filter_input(INPUT_GET,"met");
+$ver = filter_input(INPUT_GET,"ver");
+
+if (empty($udid)) { trigger_error("Parameter udid must be supplied", E_USER_ERROR);}
+if (empty($met)) { trigger_error("Parameter met must be supplied", E_USER_ERROR);}
+if (empty($ver)) { trigger_error("Parameter ver must be supplied", E_USER_ERROR);}
+
+
 switch ($met)
 {
 	case "get":
@@ -63,14 +72,14 @@ switch ($met)
 		break;
 	default:
 		trigger_error ('API Error: method "' . $met . '" is not known', E_USER_ERROR);  
-};
-return;
+}
+
 
 // FUNCTIONS FOLLOW.  THESE FUNCTIONS ARE TO VALIDATE THAT THE API CALL HAS ALL THE REQUIRED PARAMETERS
 
 function getlatenesses()
 {
-	global $udid, $met, $ver;
+	global $udid, $ver;
 	echo '<b>get</b> returns the json array of the current latenesses for all the practitioners the patient has registered for with device $udid' . "<br>"; 
         
         $db = new howlate_db();
@@ -84,14 +93,14 @@ function getlatenesses()
 
 function help()
 {
-	global $udid, $met, $ver;
+	//global $udid, $met, $ver;
 	echo '<b>TODO: $met</b> returns the html for application help' . "<br>"; 
 }
 
 function registerpin()
 {
 	global $udid, $met, $ver;
-	$pin = $_GET["pin"];
+	$pin = filter_input(INPUT_GET,"pin");
 	if (! $pin)	{
 		trigger_error('API Error: <b>$met</b> - you must supply the $pin parameter <br>', E_USER_ERROR);
 	}
@@ -111,7 +120,7 @@ function registerpin()
 function unregisterpin()
 {
 	global $udid, $met, $ver;
-	$pin = $_GET["pin"];
+	$pin = filter_input(INPUT_GET,"pin");
 	if (! $pin)	{
 		trigger_error('API Error: <b>$met</b> - you must supply the $pin parameter <br>', E_USER_ERROR);
 	}
@@ -135,8 +144,8 @@ function updatelateness()
 {
 	global $udid, $met, $ver;
 	required(array("pin","newlate"));
- 	$pin = $_GET["pin"];
-	$newlate = $_GET["newlate"];
+ 	$pin = filter_input(INPUT_GET,"pin");
+	$newlate = filter_input(INPUT_GET,"newlate");
 	
 	howlate_util::validatePin($pin);
 		
@@ -151,7 +160,7 @@ function getclinics()
 {
 	global $udid, $met, $ver;
 	required(array("pin"));
-	$pin = $_GET["pin"];  // identifies the Org and practitioner
+	$pin = filter_input(INPUT_GET,"pin");  // identifies the Org and practitioner
 
 	echo "<b>$met</b> uses the PIN ($pin) to decode the organisation and returns a json list of clinics for that org.<br>";
 
@@ -164,7 +173,7 @@ function getPractitioner() {
 	global $udid, $met, $ver;
 	required(array("pin"));
 
-  $pin = $_GET["pin"];  // identifies the Org and practitioner
+        $pin = filter_input(INPUT_GET,"pin");  // identifies the Org and practitioner
 
 	howlate_util::validatePin($pin);
 	
@@ -183,8 +192,8 @@ function place() {
 	global $udid, $met, $ver;
 	required(array("clinic", "pin"));
 	
-	$clinic = $_GET["clinic"];
-	$pin = $_GET["pin"];
+	$clinic = filter_input(INPUT_GET,"clinic");
+	$pin = filter_input(INPUT_GET,"pin");
 	
 	howlate_util::validatePin($pin);
 	
@@ -204,8 +213,8 @@ function displace() {
 	global $udid, $met, $ver;
 	required(array("clinic", "pin"));
 	
-	$clinic = $_GET["clinic"];
-	$pin = $_GET["pin"];
+	$clinic = filter_input(INPUT_GET,"clinic");
+	$pin = filter_input(INPUT_GET,"pin");
 	
 	howlate_util::validatePin($pin);
 	
@@ -224,7 +233,7 @@ function sendInvitation() {
 	global $udid, $met, $ver;
 	required(array("pin"));
 	
-	$pin = $_GET["pin"];
+	$pin = filter_input(INPUT_GET,"pin");
 	
 	registerpin();  // uses the mobile number as the UDID.  registers it.
 
@@ -237,18 +246,20 @@ function sendInvitation() {
 	$clickatell = new clickatell();
 
 	$message = 'To receive lateness updates for ' . $prac->PractitionerName . ' at ' . $prac->ClinicName;
-  $message .= ', click : ';
-  $message .= "http://$prac->FQDN/late/view&udid=$udid";
+        $message .= ', click : ';
+        $message .= "http://$prac->FQDN/late/view&udid=$udid";
 
 	$clickatell->httpSend(null, $udid, $message);
 	
 }
 
 function required($arr) {
-	global $udid, $met, $ver;
+
+        global $met;
+        
 	foreach($arr as $value) {
-		if (!$_GET[$value]) {
-			trigger_error('API Error: Method <b>' . $met . '</b> : The following mandatory parameter was not supplied: <b>' . $value . '</b>', E_USER_ERROR);
+		if (!filter_input(INPUT_GET,$value)) {
+			$missing[] = $value;
 		}
 	}
 
@@ -257,17 +268,8 @@ function required($arr) {
 	}
 	
 }
-/*
-abstract class TranType {
-	const CLIN_ADD   =  "CLIN_ADD";	const CLIN_ARCH  =  "CLIN_ARCH";	const CLIN_CHG   =  "CLIN_CHG";	const CLIN_DEL   =  "CLIN_DEL";
-	const DEV_REG    =  "DEV_REG";	const DEV_UNREG  =  "DEV_UNREG";
-	const LATE_GET   =  "LATE_GET";	const LATE_RESET =  "LATE_RESET";	const LATE_UPD   =  "LATE_UPD";
-	const MISC_MISC  =  "MISC_MISC";
-	const ORG_ADD    =  "ORG_ADD";	const ORG_CHG    =  "ORG_CHG";	const ORG_DEL    =  "ORG_DEL";
-	const PRAC_ARCH  =  "PRAC_ARCH";const PRAC_CRE   =  "PRAC_CRE";	const PRAC_DEL   =  "PRAC_DEL";	const PRAC_DISP  =  "PRAC_DISP"; const PRAC_PLACE =  "PRAC_PLACE";
-	const USER_ADD   =  "USER_ADD";	const USER_ARCH  =  "USER_ARCH";const USER_CHG   =  "USER_CHG";	const USER_SUSP  =  "USER_SUSP";
-}
-*/
+
 ?>
+</html>
 
 

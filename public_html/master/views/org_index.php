@@ -1,4 +1,4 @@
-<?php include 'includes/howlate_sessioncheck.php'; ?>
+
 <?php $controller->get_header(); ?>
 
 

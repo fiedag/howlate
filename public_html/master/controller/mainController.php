@@ -1,5 +1,8 @@
 <?php
 
+///
+/// This controller is for the main page which is used by Clinic admins to update lateness
+/// and send invitations.
 Class mainController Extends baseController {
 
     public $org;
@@ -7,38 +10,35 @@ Class mainController Extends baseController {
     public $currentClinicName;
     public $currentClinicTimezone;
 
+    private $diagnostics;
+    
     public function index() {
-        if (!isset($this->org)) {
-            $this->org = new organisation();
-            $this->org->getby(__SUBDOMAIN, "Subdomain");
-            $this->registry->template->companyname = $this->org->OrgName;
-            $this->registry->template->logourl = $this->org->LogoURL;
-        }
 
-        if (isset($_SESSION["clinic"])) {
-            $this->currentClinic = $_SESSION["clinic"];
-            $this->currentClinicName = $_SESSION["clinicname"];
-            $this->currentClinicTimezone = $_SESSION["clinictz"];
+        $this->getOrg();
+
+        if (isset($_SESSION["CLINIC"])) {
+
+            $this->currentClinic = $_SESSION['CLINIC'];
+            $this->currentClinicName = $_SESSION['CLINICNAME'];
+            $this->currentClinicTimezone = $_SESSION['CLINICTZ'];
         } else {
+
             $this->currentClinic = $this->org->Clinics[0]->ClinicID;
             $this->currentClinicName = $this->org->Clinics[0]->ClinicName;
             $this->currentClinicTimezone = $this->org->Clinics[0]->Timezone;
 
-            $_SESSION["clinic"] = $this->currentClinic;
-            $_SESSION["clinicname"] = $this->currentClinicName;
-            $_SESSION["clinictz"] = $this->currentClinicTimezone;
+            $_SESSION["CLINIC"] = $this->currentClinic;
+            $_SESSION['CLINICNAME'] = $this->currentClinicName;
+            $_SESSION['CLINICTZ'] = $this->currentClinicTimezone;
         }
-        
+
         date_default_timezone_set($this->currentClinicTimezone);
 
-        
         $this->registry->template->saved_ok = (isset($_GET["ok"]) and $_GET["ok"] == 'yes');
 
         $this->registry->template->controller = $this;
         $this->registry->template->show('main_index');
-        
-        
-        
+
     }
 
     public function save() {
@@ -50,14 +50,15 @@ Class mainController Extends baseController {
             if ($newlate == 'On time') {
                 $newlate = 0;
             }
+            
             $elems = split('\.', $pin);
             $org = $elems[0];
             $id = $elems[1];
             $db->updatelateness($org, $id, $newlate);
         }
 
-        //$this->index();
         header("location: http://" . __FQDN . "/main?ok=yes");
+        
     }
 
     public function get_header() {
@@ -162,46 +163,52 @@ EOT;
         $this->index();
     }
 
+    ///
+    /// Put together the clinics dropdown
+    ///
     public function get_clinic_options() {
-        $i=0;
+        $i = 0;
         foreach ($this->org->ActiveClinics as $value) {
             echo "<option value='" . $value->ClinicID . "' ";
-            if($value->ClinicID == $this->currentClinic) {echo "selected";}
+            if ($value->ClinicID == $this->currentClinic) {
+                echo "selected";
+            }
             echo ">$value->ClinicName</option>";
         }
-
     }
 
     public function setclinic() {
+
+        $this->getOrg();
+        $selectedclinic = $_POST["selectedclinic"];
+
+        //echo $newclinic . "<br>";
+        foreach ($this->org->Clinics as $clin) {
+            //echo $clin->ClinicID . "<br>";
+            if ($selectedclinic == $clin->ClinicID) {
+                $this->currentClinic = $clin->ClinicID;
+                $this->currentClinicName = $clin->ClinicName;
+                $this->currentClinicTimezone = $clin->Timezone;
+            }
+        }
+        //echo "NEw clinic = $this->currentClinicName<br> ";
+        date_default_timezone_set($this->currentClinicTimezone);
+              
+        $_SESSION["CLINIC"] = $this->currentClinic;
+        $_SESSION["CLINICNAME"] = $this->currentClinicName;
+        $_SESSION["CLINICTZ"] = $this->currentClinicTimezone;
+        $this->registry->template->controller = $this;
+        
+        $this->registry->template->show('main_index');
+    }
+
+    private function getOrg() {
         if (!isset($this->org)) {
             $this->org = new organisation();
             $this->org->getby(__SUBDOMAIN, "Subdomain");
             $this->registry->template->companyname = $this->org->OrgName;
             $this->registry->template->logourl = $this->org->LogoURL;
         }
-        
-        $newclinic = $_POST["selectedclinic"];
-        //echo $newclinic . "<br>";
-        foreach($this->org->Clinics as $clin) {
-            //echo $clin->ClinicID . "<br>";
-            if($newclinic == $clin->ClinicID) {
-                $this->currentClinic = $clin->ClinicID;
-                $this->currentClinicName = $clin->ClinicName;
-                $this->currentClinicTimezone = $clin->Timezone;
-
-            } 
-        }
-        //echo "NEw clinic = $this->currentClinicName<br> ";
-        date_default_timezone_set ( $this->currentClinicTimezone );
-        
-        $_SESSION["clinic"] = $this->currentClinic;
-        $_SESSION["clinicname"] = $this->currentClinicName;
-        $_SESSION["clinictz"] = $this->currentClinicTimezone;
-        $this->registry->template->controller = $this;
-        $this->registry->template->show('main_index');
-
-
-        
-}
+    }
 
 }

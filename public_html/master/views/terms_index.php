@@ -1,4 +1,4 @@
-<?php include 'includes/howlate_sessioncheck.php'; ?>
+
 <?php $controller->get_header(); ?>
 <div class='container primary-content'>
 <h2>Terms and Conditions of Use</h2>

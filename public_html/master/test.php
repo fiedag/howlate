@@ -1,6 +1,11 @@
 <?php
    
+echo  $_SERVER["SERVER_NAME"];
 
+
+$site_path = realpath(dirname(__FILE__));
+
+echo $site_path;
 
     
 ?>

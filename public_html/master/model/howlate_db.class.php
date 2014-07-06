@@ -142,7 +142,7 @@ class howlate_db {
     }
 
     function updatelateness($org, $id, $newlate) {
-        $q = "REPLACE INTO lates (OrgID, ID, Updated, Minutes) VALUES (?, ?, curdate(), ?)";
+        $q = "REPLACE INTO lates (OrgID, ID, Minutes) VALUES (?, ?, ?)";
         $stmt = $this->conn->query($q);
         $stmt = $this->conn->prepare($q);
         $stmt->bind_param('sss', $org, $id, $newlate);
@@ -377,5 +377,30 @@ class howlate_db {
         return ($row->ID);
         
     }
+    //
+    // Get all latenesses which may have expired 
+    //
+    public function getAllLatenessesTZ() {
+        $q = "SELECT OrgID, ID, ClinicID, Updated, Timezone, OpeningHrs, ClosingHrs FROM vwLatenessTZ";
+        $myArray = array();
+        if ($result = $this->conn->query($q)) {
+            while ($row = $result->fetch_object()) {
+                $myArray[] = $row;
+            }
+            return $myArray;
+        }
+        $result->close(); 
+    }
     
+    public function deleteLate($orgid, $id) {
+        $q = "DELETE FROM lates WHERE OrgID = ? AND ID = ?";
+        $stmt = $this->conn->query($q);
+        $stmt = $this->conn->prepare($q);     
+        $stmt->bind_param('ss', $orgid, $id);
+        $stmt->execute() ;
+        if ($stmt->affected_rows == 0) {
+            trigger_error("The lates record was not deleted, error= " . $this->conn->error , E_USER_ERROR);
+        }
+    }
+
 }

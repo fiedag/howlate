@@ -1,4 +1,4 @@
-<?php include 'includes/howlate_sessioncheck.php'; ?>
+
 <?php $controller->get_header(); ?>
 
 <script>
@@ -43,9 +43,7 @@
     }
 
 </script>
-
 <?php $controller->get_valid_lateness_datalist(); ?>
-
 
 <div class='container primary-content'>
     <div class="clinic-header">
@@ -59,7 +57,6 @@
     </div>
 
 <?php $controller->show_lateness_form(); ?>
-
 
 <?php if (isset($saved_ok)) {
     echo '<script>saved_ok_indicator();</script>';
@@ -80,5 +77,3 @@
 </div>
 
 <?php $controller->get_footer(); ?>
-
-

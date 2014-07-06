@@ -1,16 +1,14 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+ echo "in howlate_sessioncheck";
+    
+/*session_start();*/
 
-session_start();
 
-if (!isset($_SESSION["USER"]) or $_SESSION["LAST_ACTIVITY"] < time() - 3600) {
+if (!isset($_SESSION["USER"]) or $_SESSION["LAST_ACTIVITY"] < (time() - 3600)) {
     
     if (isset($_COOKIE["USER"]) and isset($_COOKIE["ORGID"])) {
+        $_SESSION["DIAG"] .= ",cookie is set so assign and redirect to " . $_COOKIE["URL"];
         // get some info from the cookie
         $_SESSION["ORGID"] = $_COOKIE["ORGID"];
         $_SESSION["USER"] = $_COOKIE["USER"];
@@ -29,6 +27,7 @@ if (!isset($_SESSION["USER"]) or $_SESSION["LAST_ACTIVITY"] < time() - 3600) {
 }
  
 $_SESSION["LAST_ACTIVITY"] = time();
+
 
 $callingURL = "http://" . $_SERVER['HTTP_HOST'] . "/" . $_GET['rt'];
 setcookie("URL", $callingURL, time() + 3600);

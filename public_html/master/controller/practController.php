@@ -13,11 +13,10 @@ Class practController Extends baseController {
 
         $this->registry->template->controller = $this;
         $this->registry->template->show('pract_index');
-		
-		
     }
    
     public function getXcrudTable() {
+        //session_start();
         include('includes/xcrud/xcrud.php');
         $xcrud = Xcrud::get_instance();
         $xcrud->table('practitioners')->where('OrgID =', $this->org->OrgID)->limit(10);
