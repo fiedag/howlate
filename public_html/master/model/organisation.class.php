@@ -103,7 +103,7 @@ class organisation {
 
         $message = 'You have registered for lateness updates from ' . $prac->PractitionerName . ' at ' . $prac->ClinicName;
         $message .= ', click : ';
-        $message .= "http://$prac->FQDN/late/view&udid=$udid";
+        $message .= "http://secure." . __DOMAIN .  "/late/view&udid=$udid";
         $message .= " .  Please bookmark this link to your Home Screen.";
         $clickatell->httpSend(null, $udid, $message);
 

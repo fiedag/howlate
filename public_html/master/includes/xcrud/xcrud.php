@@ -2620,7 +2620,7 @@ class Xcrud
             if (!$this->demo_mode) {
                 $q = "UPDATE `{$this->table}` SET " . implode(",\r\n", $set) . " WHERE `{$this->primary_key}` = " . $db->
                     escape($primary) . " LIMIT 1";
-                echo $q;
+                
                 $res = $db->query($q);
             }
         }

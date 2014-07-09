@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=2.0; user-scalable=1;">
-        <meta http-equiv="refresh" content="30" >
+        <meta http-equiv="refresh" content="<?php echo $refresh;?>">
         <link media="screen" href="/styles/howlate.css" type="text/css" rel="stylesheet">
         <link media="only screen and (max-device-width: 480px)" href="/styles/howlate_mobile.css" type="text/css" rel="stylesheet">
         <link rel="apple-touch-icon" href="<?php echo $icon_url; ?>" >
@@ -26,13 +26,6 @@
 <body>
     <h1>How late is my doctor?</h1>
     
-    
-    <table>
-        <tr>
-            <td class='refresh '><?php echo $when_refreshed; ?></td><td><a class="refresh" href="javascript:location.reload(true);">Update</a></td>
-        </tr>
-    </table>
-    <p />
     <?php
     foreach ($lates as $clinic => $latepract) {
         ?>
@@ -46,8 +39,8 @@
                 $i++;
                 if ($i == 1) {
                     ?><tr>
-                        <td class="clinrow"><a href='<?php echo "/clinicinfo?orgid=$r->OrgID&clinicid=$r->ClinicID"; ?>'><?php echo $clinic ; ?></a></td>
-                        <td class="clinrow logo"><img src="<?php echo howlate_util::logoURL($r->Subdomain); ?>"></td> 
+                        <td class="clinrow"><a class="clinicname" href='<?php echo "/clinicinfo?orgid=$r->OrgID&clinicid=$r->ClinicID"; ?>'><?php echo $clinic ; ?></a></td>
+                        <td class="logo"><img src="<?php echo howlate_util::logoURL($r->Subdomain); ?>"></td> 
                     </tr>
                     <?php
                 }
@@ -64,10 +57,6 @@
         <?php
     }
     ?>
-
-    <span id="footer">
-        <a class="refresh" href="javascript:location.reload(true);">Update</a>
-    </span>
 
 </body>
 

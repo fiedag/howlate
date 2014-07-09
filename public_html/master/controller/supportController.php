@@ -1,6 +1,7 @@
 <?php
 
 Class supportController Extends baseController {
+
     public $org;
     public $controller;
 
@@ -13,10 +14,7 @@ Class supportController Extends baseController {
     public function pricing() {
         $this->getOrg();
         $this->registry->template->controller = $this;
-        $this->registry->template->monthly_fee = "$45";
-        $this->registry->template->num_clinics = 2;
-        $this->registry->template->num_practitioners = 20;
-        
+
         $this->registry->template->show('support_pricing');
     }
 
@@ -40,6 +38,22 @@ Class supportController Extends baseController {
             $this->registry->template->companyname = $this->org->OrgName;
             $this->registry->template->logourl = $this->org->LogoURL;
         }
+    }
+
+    public function getPricing() {
+        include('includes/xcrud/xcrud.php');
+        $xcrud2 = Xcrud::get_instance("Billing Database");
+        $xcrud2->connection('howlate_super','NuNbHG4NQn','howlate_billing','localhost','utf8');
+        $xcrud2->table('pricing')->where("CountryCode = 'EN'");
+
+        $xcrud2->unset_csv(true)->unset_numbers(true)->unset_print(true)->unset_limitlist(true)->hide_button('save_and_edit')->hide_button('save_and_new');
+
+        $xcrud2->unset_add()->unset_edit()->unset_search();
+        $xcrud2->unset_view()->unset_remove()->unset_sortable();
+        $xcrud2->columns('CountryCode',true);
+        
+        $xcrud2->column_name('Description','$AUD per clinic per month');
+        echo $xcrud2->render();
     }
 
 }

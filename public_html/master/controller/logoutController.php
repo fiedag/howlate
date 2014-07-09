@@ -11,8 +11,6 @@ Class logoutController Extends baseController {
         
         session_unset();
 
-        echo 'cookies have been radically expired';
-        
         $this->registry->template->show('logout_index');
     }
 

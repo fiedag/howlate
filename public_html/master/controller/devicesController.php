@@ -20,17 +20,13 @@ Class devicesController Extends baseController {
     public function getXcrudTable() {
         include('includes/xcrud/xcrud.php');
         $xcrud = Xcrud::get_instance();
-        $xcrud->table('devicereg')->where('OrgID =', $this->org->OrgID)->limit(30);
+        $xcrud->table('devicereg')->table_name('Registered phone devices','You can add or delete registered mobile phones here')->where('OrgID =', $this->org->OrgID)->limit(30);
         
-        
+       
         $xcrud->pass_default('OrgID', $this->org->OrgID);
-
         $xcrud->hide_button('view');
-
       
         $xcrud->unset_csv(true)->unset_numbers(true)->unset_print(true)->unset_limitlist(true)->hide_button('save_and_edit')->hide_button('save_and_new');     
-
-        
         echo $xcrud->render();
     }
 

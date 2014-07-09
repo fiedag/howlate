@@ -16,8 +16,8 @@ Class mainController Extends baseController {
 
         $this->getOrg();
 
-        
-        if (isset($_SESSION["CLINIC"]) and in_array($_SESSION["CLINIC"],$this->org->ActiveClinics)) {
+        //if (isset($_SESSION["CLINIC"]) and in_array($_SESSION["CLINIC"],$this->org->ActiveClinics)) {
+        if (isset($_SESSION["CLINIC"]) ) {
 
             $this->currentClinic = $_SESSION['CLINIC'];
             $this->currentClinicName = $_SESSION['CLINICNAME'];
@@ -157,7 +157,7 @@ EOT;
 
         $message = 'To receive lateness updates for ' . $prac->PractitionerName . ' at ' . $prac->ClinicName;
         $message .= ', click : ';
-        $message .= "http://$prac->FQDN/late/view&udid=$udid";
+        $message .= "http://secure." . __DOMAIN . "/late/view&udid=$udid";
         $message .= " .  Please bookmark this link to your Home Screen.";
         $clickatell->httpSend(null, $udid, $message);
 
