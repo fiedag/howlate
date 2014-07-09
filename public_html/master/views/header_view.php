@@ -48,6 +48,9 @@
                             <li class="first <?php if (get_class($controller) == "mainController") {echo 'active';}?> custom-background-dark-hover">
                                 <span><a id="nav-main" class="<?php echo (get_class($controller) == "mainController")?'custom-font-on-white':'font-on-custom-background';?>" href="http://<?php echo __FQDN;?>/main">Main</a></span>
                             </li>
+                            <li class="<?php if (get_class($controller) == "devicesController") {echo 'active';}?> custom-background-dark-hover">
+								<span><a id="nav-devices" class="<?php echo (get_class($controller) == "devicesController")?'custom-font-on-white':'font-on-custom-background';?>" href="http://<?php echo __FQDN;?>/devices">Devices</a></span>
+                            </li>
                             <li class="<?php if (get_class($controller) == "practController") {echo 'active';}?> custom-background-dark-hover">
 								<span><a id="nav-practitioners" class="<?php echo (get_class($controller) == "practController")?'custom-font-on-white':'font-on-custom-background';?>" href="http://<?php echo __FQDN;?>/pract">Practitioners</a></span>
                             </li>

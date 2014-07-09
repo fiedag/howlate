@@ -23,6 +23,9 @@ Class lateController Extends baseController {
 				$this->registry->template->lates = $lates;
 				$this->registry->template->show('late_view');
 			}
+                        else {
+                            $this->registry->template->show('late_none');
+                        }
 		}
 	}
 }

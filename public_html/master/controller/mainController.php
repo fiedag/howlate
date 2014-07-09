@@ -16,7 +16,8 @@ Class mainController Extends baseController {
 
         $this->getOrg();
 
-        if (isset($_SESSION["CLINIC"])) {
+        
+        if (isset($_SESSION["CLINIC"]) and in_array($_SESSION["CLINIC"],$this->org->ActiveClinics)) {
 
             $this->currentClinic = $_SESSION['CLINIC'];
             $this->currentClinicName = $_SESSION['CLINICNAME'];
@@ -80,7 +81,7 @@ Class mainController Extends baseController {
         echo '<form name="lateness" action="/main/save" method="POST">';
         echo "<table class='lateness-admin'>";
         echo "<tr>";
-        echo "<th>Practitioner</th>";
+        echo "<th>Practitioners at $this->currentClinicName</th>";
         echo "<th class='lateness-value'><span title='Update the number of minutes late below and hit Save'>How Late</span></th>";
         echo "<th>Save</th>";
         echo "</tr>";

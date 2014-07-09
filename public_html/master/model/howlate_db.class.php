@@ -156,7 +156,7 @@ class howlate_db {
         if ($result = $this->conn->query($q)) {
             $row = $result->fetch_object();
             if ($row == "") {
-                trigger_Error('Data Error: Organisation with ID' . $org . ' does not exist.', E_USER_ERROR);
+                trigger_error('Data Error: Organisation with ID' . $org . ' does not exist.', E_USER_ERROR);
             }
         }
         $result->close();
@@ -206,6 +206,13 @@ class howlate_db {
         $stmt = $this->conn->query($q);
         $stmt = $this->conn->prepare($q);
         $stmt->bind_param('sss', $org, $id, $clinic);
+        $stmt->execute() or trigger_error('# Query Error (' . $this->conn->errno . ') ' . $this->conn->error, E_USER_ERROR);
+    }
+    function place2($org, $surrogkey, $clinic) {
+        $q = "REPLACE INTO placements (OrgID, ID, ClinicID) SELECT OrgID, ID, '$clinic' FROM practitioners WHERE OrgID = ? AND SurrogKey = ?";
+        $stmt = $this->conn->query($q);
+        $stmt = $this->conn->prepare($q);
+        $stmt->bind_param('ss', $org, $surrogkey);
         $stmt->execute() or trigger_error('# Query Error (' . $this->conn->errno . ') ' . $this->conn->error, E_USER_ERROR);
     }
 

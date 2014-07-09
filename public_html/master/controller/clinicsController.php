@@ -38,9 +38,9 @@ Class clinicsController Extends baseController {
         
         $xcrud->change_type('Timezone', 'select', 'Australia/Adelaide', $tz_csv);        
         $xcrud->unset_csv(true)->unset_numbers(true)->unset_print(true)->unset_limitlist(true)->hide_button('save_and_edit')->hide_button('save_and_new');     
-
+        $xcrud->after_remove("clinic_deleted");
         
         echo $xcrud->render();
     }
-
+    
 }

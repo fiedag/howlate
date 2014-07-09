@@ -1,6 +1,6 @@
 <?php
 
-Class registrationsController Extends baseController {
+Class devicesController Extends baseController {
 
     public $org;
 
@@ -13,7 +13,7 @@ Class registrationsController Extends baseController {
 
 	$this->registry->template->controller = $this;
        
-        $this->registry->template->show('registrations_index');
+        $this->registry->template->show('devices_index');
 		
     }
     
@@ -22,6 +22,9 @@ Class registrationsController Extends baseController {
         $xcrud = Xcrud::get_instance();
         $xcrud->table('devicereg')->where('OrgID =', $this->org->OrgID)->limit(30);
         
+        
+        $xcrud->pass_default('OrgID', $this->org->OrgID);
+
         $xcrud->hide_button('view');
 
       
