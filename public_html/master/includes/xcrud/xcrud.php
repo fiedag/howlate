@@ -12,6 +12,7 @@ date_default_timezone_set(@date_default_timezone_get()); // xcrud code not depen
 
 class Xcrud
 {
+    private $simple_update_only = true;  // default behaviour is to update joined tables.  We do NOT want this!
     private $demo_mode = false;
     protected static $instance = array();
     protected static $css_loaded = false;
@@ -2442,9 +2443,12 @@ class Xcrud
         {
             self::error('Can\'t insert a row. No primary value.');
         }
-        if (!$this->demo_mode)
-            $db->query('INSERT INTO `' . $this->table . '` (' . implode(',', array_keys($set[$this->table])) . ') VALUES (' .
-                implode(',', $set[$this->table]) . ')');
+        if (!$this->demo_mode) {
+            $q = 'INSERT INTO `' . $this->table . '` (' . implode(',', array_keys($set[$this->table])) . ') VALUES (' .
+                implode(',', $set[$this->table]) . ')';
+            
+            $db->query($q);
+        }
         if ($this->primary_ai)
         {
             $ins_id = $db->insert_id();
@@ -2455,15 +2459,17 @@ class Xcrud
         {
             $ins_id = $postdata[$this->table . '.' . $this->primary_key];
         }
-        if ($this->join)
+        if ($this->join and !$this->simple_update_only)
         {
             foreach ($this->join as $alias => $param)
-            {
+            { 
                 $set[$alias]['`' . $param['join_field'] . '`'] = $set[$param['table']]['`' . $param['field'] . '`'];
-                // change made Alex Fiedler 8 July 2014
-                if (!$this->demo_mode or false)
-                    $db->query("INSERT INTO `{$param['join_table']}` (" . implode(',', array_keys($set[$alias])) . ") VALUES (" . implode(',',
-                        $set[$alias]) . ")");
+                if (!$this->demo_mode) {
+                    $q = "INSERT INTO `{$param['join_table']}` (" . implode(',', array_keys($set[$alias])) . ") VALUES (" . implode(',',
+                    $set[$alias]) . ")"; 
+
+                    $db->query($q);
+                }
             }
         }
 
@@ -2604,7 +2610,7 @@ class Xcrud
         {
             self::error('Nothing to update');
         }
-        if (!$this->join)
+        if (!$this->join or ($this->join and $this->simple_update_only))
         {
             if (!$this->demo_mode)
                 $res = $db->query("UPDATE `{$this->table}` SET " . implode(",\r\n", $set) . " WHERE `{$this->primary_key}` = " . $db->
@@ -2620,10 +2626,13 @@ class Xcrud
                 $joins[] = "INNER JOIN `{$param['join_table']}` AS `{$alias}` 
                     ON `{$param['table']}`.`{$param['field']}` = `{$alias}`.`{$param['join_field']}`";
             }
-            // change made Alex Fiedler 8 July 2014 
-            if (!$this->demo_mode or false)
-                $res = $db->query("UPDATE `{$this->table}` AS `{$this->table}` " . implode(' ', $joins) . " SET " . implode(",\r\n", $set) .
-                    " WHERE `{$this->table}`.`{$this->primary_key}` = " . $db->escape($primary));
+            if (!$this->demo_mode) {
+                $q = "UPDATE `{$this->table}` AS `{$this->table}` " . implode(' ', $joins) . " SET " . implode(",\r\n", $set) .
+                    " WHERE `{$this->table}`.`{$this->primary_key}` = " . $db->escape($primary);
+                    
+                $res = $db->query($q);
+            }
+
         }
         if (isset($postdata[$this->table . '.' . $this->primary_key]) && $res)
             $primary = $postdata[$this->table . '.' . $this->primary_key];
@@ -2738,7 +2747,7 @@ class Xcrud
                     }
                 }
             }
-            if (!$this->join)
+            if (!$this->join or ($this->join and $this->simple_update_only))
             {
                 if ($fields)
                 {
