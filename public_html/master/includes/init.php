@@ -1,5 +1,7 @@
 <?php
 
+define("__DOMAIN", "how-late.com");
+
 /* * * include the controller class ** */
 include __SITE_PATH . '/application/' . 'controller_base.class.php';
 
@@ -28,11 +30,12 @@ include_once("error_handler.php");
 date_default_timezone_set('Australia/Adelaide');
 
 $host = $_SERVER["SERVER_NAME"];
-$subd = substr($host, 0, strpos($host, '.how-late.com'));
+
+$subd = substr($host, 0, strpos($host, '.' . __DOMAIN));
 
 define('__SUBDOMAIN', $subd);
-define('__FQDN', $subd . ".how-late.com");
 
+define('__FQDN', $subd . "." . __DOMAIN);
 
 /* * * a new registry object ** */
 $registry = new registry;

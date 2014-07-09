@@ -3,6 +3,7 @@
 class howlate_util {
 
     public static function tobase10($base26) {
+        $base10 = 0;
         $len = strlen($base26);
         for ($x = 0; $x < $len; $x++) {
             $char = substr($base26, $len - $x - 1, 1);
@@ -28,7 +29,7 @@ class howlate_util {
                 $res = chr($rem + 64);
             }
             $intval = intval($base10 / 26);
-            return (($intval == 0) ? '' : tobase26($intval)) . $res;
+            return (($intval == 0) ? '' : self::tobase26($intval)) . $res;
         }
     }
 
@@ -103,6 +104,23 @@ class howlate_util {
         }
     }
 
+    
+    public static function diag($str) {
+        if (defined('__DIAG')) {
+            echo $str . "<br>";           
+        }
+        
+    }
+    
+    private function redirect($url) {
+        if (headers_sent()) {
+            die('<script type="text/javascript">window.location.href="' . $url . '";</script>');
+        } else {
+            header('Location: ' . $url);
+            die();
+        }
+    }
+    
 }
 
 ?>

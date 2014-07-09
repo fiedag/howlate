@@ -1,6 +1,15 @@
 /* Howlate_base.css - used throughout and overridden if device is small 
 */
 
+table {
+    
+    font-size: 12px;
+}
+
+table.pricing {
+    border-width: 2px;
+    border-color: black;
+}
 
 span {
 	inline:block;

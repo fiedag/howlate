@@ -52,7 +52,7 @@
                     <a href="http://secure.how-late.com/external/subscribe/prices" id="show-pricing">
                         Paid plans
                     </a>
-                    start at only $19.95/month
+                    for the cost of a mobile phone plan*
                 </p>
             </div>
         </div>

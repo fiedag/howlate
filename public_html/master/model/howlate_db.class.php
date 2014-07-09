@@ -45,7 +45,7 @@ class howlate_db {
     
     
     function getallusers($keyval, $fieldname = 'OrgID') {
-        $q = "SELECT * FROM orgusers WHERE $fieldname = '" . $keyval . "'";
+        $q = "SELECT * FROM vwOrgUsers WHERE $fieldname = '" . $keyval . "'";
 
         $myArray = array();
         if ($result = $this->conn->query($q)) {
@@ -183,7 +183,7 @@ class howlate_db {
     }
 
     function register($udid, $orgID, $id) {
-        $q = "REPLACE INTO devicereg (ID, OrgID, UDID) VALUES (?,?,?)";
+        $q = "REPLACE INTO devicereg (ID, OrgID, UDID, Expires) VALUES (?,?,?, CURDATE() + INTERVAL 6 MONTH )";
         $stmt = $this->conn->query($q);
         $stmt = $this->conn->prepare($q);
         $stmt->bind_param('sss', $id, $orgID, $udid);
@@ -320,7 +320,7 @@ class howlate_db {
 
     public function change_password($userid, $password, $orgID) {
         $q = "UPDATE orgusers SET XPassword = ? WHERE UserID = ? AND OrgID = ?";
-        //echo "[$userid, $password,$orgID]";
+        echo "[$userid, $password,$orgID]";
         $stmt = $this->conn->query($q);
         $stmt = $this->conn->prepare($q);
         $stmt->bind_param('sss', $password, $userid, $orgID);
@@ -352,10 +352,11 @@ class howlate_db {
         }
     }
     
-    public function create_org() {
-        $q = "INSERT INTO orgs (OrgID, OrgName, OrgShortName, Subdomain, FQDN, UpdateIndic) VALUES (?, ?, ?, ?, ?, 1)";
+    public function create_org($orgid, $orgname, $shortname, $subdomain, $fqdn) {
+        $q = "INSERT INTO orgs (OrgID, OrgName, OrgShortName, Subdomain, FQDN, UpdIndic) VALUES (?, ?, ?, ?, ?, 1)";
         $stmt = $this->conn->query($q);
-        $stmt = $this->conn->prepare($q);     
+        $stmt = $this->conn->prepare($q);    
+        
         $stmt->bind_param('sssss', $orgid, $orgname, $shortname, $subdomain, $fqdn);
         $stmt->execute() ;
         if ($stmt->affected_rows == 0) {
@@ -363,7 +364,63 @@ class howlate_db {
         }        
         
     }
+    
+    public function create_user($orgid, $userid, $emailaddress) {
+        $q = "INSERT INTO orgusers (OrgID, UserID, EmailAddress) VALUES (?, ?, ?)";
+        $stmt = $this->conn->query($q);
+        $stmt = $this->conn->prepare($q);    
+        
+        $stmt->bind_param('sss', $orgid, $userid, $emailaddress);
+        $stmt->execute() ;
+        if ($stmt->affected_rows == 0) {
+            trigger_error("The user record was not created, error= " . $this->conn->error , E_USER_ERROR);
+        }        
+    }
  
+    public function create_default_clinic($orgid) {
+        $q = "INSERT INTO clinics (OrgID, ClinicName) SELECT OrgID, OrgName FROM orgs WHERE OrgID = ?";
+        $stmt = $this->conn->query($q);
+        $stmt = $this->conn->prepare($q);    
+        
+        $stmt->bind_param('s', $orgid);
+        $stmt->execute() ;
+        if ($stmt->affected_rows == 0) {
+            trigger_error("The default clinic record was not created, error= " . $this->conn->error , E_USER_ERROR);
+        }        
+    }
+ 
+    public function create_default_practitioner($orgid, $name) {
+        $q = "INSERT INTO practitioners (OrgID, ID, FullName, AbbrevName) SELECT '$orgid', getNextPractitionerID2('$orgid'), '$name', '$name'";
+        echo $q;
+        $stmt = $this->conn->query($q);
+        $stmt = $this->conn->prepare($q);    
+        
+        $stmt->execute() ;
+        if ($stmt->affected_rows == 0) {
+            trigger_error("The default practitioner was not created, error= " . $this->conn->error , E_USER_ERROR);
+        }        
+        
+        
+    }
+ 
+    
+    public function getNextOrgID() {
+        $q = "SELECT IFNULL(MAX(OrgID),'AAAAA') As last FROM orgs";
+        if ($result = $this->conn->query($q)) {
+            $row = $result->fetch_object();
+            $orgid = $row->last;
+            echo "Highest so far = $orgid <br>";
+            $canonical = substr($orgid,0,4);
+            echo "Canonical = $canonical<br>";
+            $as_number = howlate_util::tobase10($canonical);
+            $as_number++;
+            $new_high = howlate_util::tobase26($as_number);
+            echo "New high = $new_high<br>";
+            $checkdigit = howlate_util::checkdigit($new_high);
+            return $new_high . $checkdigit;           
+        }
+        
+    }
     
     public function getNextPractID($orgID) {
         $q = "SELECT getNextPractitionerID2('$orgID') AS ID";
