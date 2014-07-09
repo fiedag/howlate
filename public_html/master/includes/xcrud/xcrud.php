@@ -2536,6 +2536,11 @@ class Xcrud
         $fields = array_merge($this->fields, $this->hidden_fields);
         foreach ($postdata as $key => $val)
         {
+            if ($this->simple_update_only and $fields[$key]['table'] != $this->table) {
+                // let's not attempt to update views!!!
+                continue;
+            }
+                
             if (isset($fields[$key]) && !isset($this->locked_fields[$key]))
             {
                 if (isset($this->field_type[$key]))
@@ -2610,30 +2615,33 @@ class Xcrud
         {
             self::error('Nothing to update');
         }
-        if (!$this->join or ($this->join and $this->simple_update_only))
+        if (!$this->join)
         {
-            if (!$this->demo_mode)
-                $res = $db->query("UPDATE `{$this->table}` SET " . implode(",\r\n", $set) . " WHERE `{$this->primary_key}` = " . $db->
-                    escape($primary) . " LIMIT 1");
+            if (!$this->demo_mode) {
+                $q = "UPDATE `{$this->table}` SET " . implode(",\r\n", $set) . " WHERE `{$this->primary_key}` = " . $db->
+                    escape($primary) . " LIMIT 1";
+                echo $q;
+                $res = $db->query($q);
+            }
         }
-        else
+        else // join
         {
-            //$tables = array('`' . $this->table . '`');
+                //$tables = array('`' . $this->table . '`');
             $joins = array();
-            foreach ($this->join as $alias => $param)
-            {
+            foreach ($this->join as $alias => $param) {
                 //$tables[] = '`' . $alias . '`';
                 $joins[] = "INNER JOIN `{$param['join_table']}` AS `{$alias}` 
                     ON `{$param['table']}`.`{$param['field']}` = `{$alias}`.`{$param['join_field']}`";
             }
             if (!$this->demo_mode) {
                 $q = "UPDATE `{$this->table}` AS `{$this->table}` " . implode(' ', $joins) . " SET " . implode(",\r\n", $set) .
-                    " WHERE `{$this->table}`.`{$this->primary_key}` = " . $db->escape($primary);
-                    
+                        " WHERE `{$this->table}`.`{$this->primary_key}` = " . $db->escape($primary);
+
                 $res = $db->query($q);
             }
-
         }
+        
+        
         if (isset($postdata[$this->table . '.' . $this->primary_key]) && $res)
             $primary = $postdata[$this->table . '.' . $this->primary_key];
         else
