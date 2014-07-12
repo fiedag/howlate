@@ -40,8 +40,8 @@
                 </button>
 
                 <div class="signup-truste">
-                    <a href="https://privacy-policy.truste.com/" title="TRUSTe online privacy certification" target="_blank">
-                        <img src="https://privacy-policy.truste.com/certified-seal/wps/en/www.how-late.com/seal_m.png" alt="TRUSTe online privacy certification" width="115px" height="36px" />
+                    <a href="http://privacy-policy.truste.com/" title="TRUSTe online privacy certification" target="_blank">
+                        <img src="http://privacy-policy.truste.com/certified-seal/wps/en/www.how-late.com/seal_m.png" alt="TRUSTe online privacy certification" width="115px" height="36px" />
                     </a>
                 </div>
 

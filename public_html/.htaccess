@@ -1,15 +1,18 @@
+Options -Indexes
+
+# this rewrites anything how-late.com
 #RewriteEngine on
-#RewriteCond   %{HTTP_HOST}                 (^[^.]+\.)?how-late\.com$
+#RewriteCond   %{HTTP_HOST}                 ^(www\.)?how-late\.com$
 #RewriteRule   ^(.+)                        http://how-late.com/en          [NC]
 
 
 
-AuthName "how-late root"
-Order deny,allow
-#Deny from all
-Allow from 203.122.224.228 203.122.212.28
-Satisfy any
-Options -Indexes
-AuthUserFile "/home/howlate/.htpasswds/public_html/passwd"
+#AuthName "how-late root"
+#Order deny,allow
+##Deny from all
+##Allow from 203.122.224.228 203.122.212.28
+#Satisfy any
+#Options -Indexes
+#AuthUserFile "/home/howlate/.htpasswds/public_html/passwd"
 
 

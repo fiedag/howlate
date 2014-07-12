@@ -101,10 +101,9 @@ class organisation {
 
         $clickatell = new clickatell();
 
-        $message = 'You have registered for lateness updates from ' . $prac->PractitionerName . ' at ' . $prac->ClinicName;
-        $message .= ', click : ';
+        $message = 'Click for lateness updates from ' . $prac->PractitionerName . ' at ' . $prac->ClinicName;
+        $message .= ': ';
         $message .= "http://secure." . __DOMAIN .  "/late/view&udid=$udid";
-        $message .= " .  Please bookmark this link to your Home Screen.";
         $clickatell->httpSend(null, $udid, $message);
 
     }
@@ -127,9 +126,7 @@ class organisation {
         $clickatell = new clickatell();
 
         $message = 'You have chosen to unregister for lateness updates from ' . $prac->PractitionerName . ' at ' . $prac->ClinicName;
-        $message .= " .  If you did not request this, you may safely ignore this message.";
         $clickatell->httpSend(null, $udid, $message);
-
 
     }    
     

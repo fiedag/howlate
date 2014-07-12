@@ -9,7 +9,7 @@ Class lateController Extends baseController {
 	
 	
 	public function view(){
-                $this->registry->template->refresh = 30;  // seconds
+                $this->registry->template->refresh = 600;  // seconds
                 $this->registry->template->when_refreshed = 'Updated ' . date('h:i A');
                 $this->registry->template->bookmark_title = "How late";
                 $this->registry->template->bookmark_url = $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"];

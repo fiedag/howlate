@@ -332,9 +332,8 @@ class howlate_db {
         $stmt = $this->conn->prepare($q);
         $stmt->bind_param('sss', $password, $userid, $orgID);
         $stmt->execute();
-        echo $this->conn->error;
         if ($stmt->affected_rows != 1) {
-            trigger_error("The Password change request was not successful. $stmt->affected_rows", E_USER_ERROR);
+            trigger_error("The Password change request was not successful. affected rows = $stmt->affected_rows", E_USER_ERROR);
             return false;
         }
         return true;

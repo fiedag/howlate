@@ -37,9 +37,10 @@
         <input type="hidden" readonly="readonly" class="controls" id="Subdomain" name="Subdomain" value="<?php echo $controller->org->Subdomain;?>"><br>
         <input type="hidden" readonly="readonly" class="controls" id="FQDN" name="FQDN" value="<?php echo $controller->org->FQDN;?>"><br>
         <input type="hidden" readonly="readonly" class="controls" id="UpdIndic" name="UpdIndic" value="<?php echo $controller->org->UpdIndic;?>"><br>
-
-        <button class="button large green " type="submit" name="Submit" value="Submit">Save Changes</button>
-
+        <div class="xcrud-nav">
+            <button class="xcrud-button xcrud-cyan " type="submit" name="Submit" value="Submit">Save Changes</button>
+        </div>
+        
 
     </form>
 

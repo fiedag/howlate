@@ -165,7 +165,7 @@
                                                 $('#forgotten').val('1');
                                                 $('#openid').val('');
 
-                                                guiders.hideAll();
+                                                //guiders.hideAll();
 
                                                 var form = $('#form_forgot').is(':visible') ? $('#form_forgot') : $('#form_login');
 
