@@ -118,11 +118,12 @@ class howlate_db {
     }
 
     function getOrganisation($val, $field = 'Subdomain') {
+        
         $q = "SELECT * FROM orgs WHERE $field = '$val'";
         if ($result = $this->conn->query($q)) {
             return $result->fetch_object();
         }
-        //$result->close();
+        return array();
     }
 
     // returns an array with a key of clinic names, and the value is an array of practitioners

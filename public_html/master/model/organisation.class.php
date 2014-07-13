@@ -24,40 +24,42 @@ class organisation {
 
     public function getby($fieldval, $fieldname) {
         $db = new howlate_db();
-
         $org = $db->getOrganisation($fieldval, $fieldname);
-        foreach ($org as $key => $val) {
-            $this->$key = $val;
-        }
 
-        $clin = $db->getallclinics($this->OrgID, 'OrgID');
-        foreach ($clin as $key => $val) {
-            $c = new clinic($val);
-            $this->Clinics[] = $c;
-        }
+        if (isset($org)) {
+            foreach ($db->getOrganisation($fieldval, $fieldname) as $key => $val) {
+                $this->$key = $val;
+            }
 
-        $clin = $db->getactiveclinics($this->OrgID, 'OrgID');
-        foreach ($clin as $key => $val) {
-            $c = new clinic($val);
-            $this->ActiveClinics[] = $c;
-        }
+            $clin = $db->getallclinics($this->OrgID, 'OrgID');
+            foreach ($clin as $key => $val) {
+                $c = new clinic($val);
+                $this->Clinics[] = $c;
+            }
 
-        $prac = $db->getallpractitioners($this->OrgID, 'OrgID');
-        foreach ($prac as $key => $val) {
-            $p = new practitioner($val);
-            $this->Practitioners[] = $p;
-        }
+            $clin = $db->getactiveclinics($this->OrgID, 'OrgID');
+            foreach ($clin as $key => $val) {
+                $c = new clinic($val);
+                $this->ActiveClinics[] = $c;
+            }
 
-        $users = $db->getallusers($this->OrgID, 'OrgID');
-        foreach ($users as $key => $val) {
-            $u = new howlate_user($val);
-            $this->Users[] = $u;
-        }
+            $prac = $db->getallpractitioners($this->OrgID, 'OrgID');
+            foreach ($prac as $key => $val) {
+                $p = new practitioner($val);
+                $this->Practitioners[] = $p;
+            }
 
-        if (file_exists("pri/$this->Subdomain/logo.png")) {
-            $this->LogoURL = "/pri/$this->Subdomain/logo.png";
-        } else {
-            $this->LogoURL = "/pri/default.gif";
+            $users = $db->getallusers($this->OrgID, 'OrgID');
+            foreach ($users as $key => $val) {
+                $u = new howlate_user($val);
+                $this->Users[] = $u;
+            }
+
+            if (file_exists("pri/$this->Subdomain/logo.png")) {
+                $this->LogoURL = "/pri/$this->Subdomain/logo.png";
+            } else {
+                $this->LogoURL = "/pri/default.gif";
+            }
         }
 
         return $this;
@@ -103,12 +105,10 @@ class organisation {
 
         $message = 'Click for lateness updates from ' . $prac->PractitionerName . ' at ' . $prac->ClinicName;
         $message .= ': ';
-        $message .= "http://secure." . __DOMAIN .  "/late/view&udid=$udid";
+        $message .= "http://secure." . __DOMAIN . "/late/view&udid=$udid";
         $clickatell->httpSend(null, $udid, $message);
-
     }
 
-    
     public function unregister($pin, $udid) {
 
         //howlate_util::validatePin($pin);
@@ -127,9 +127,8 @@ class organisation {
 
         $message = 'You have chosen to unregister for lateness updates from ' . $prac->PractitionerName . ' at ' . $prac->ClinicName;
         $clickatell->httpSend(null, $udid, $message);
+    }
 
-    }    
-    
 }
 
 ?>

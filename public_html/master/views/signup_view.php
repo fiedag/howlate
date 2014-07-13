@@ -9,7 +9,7 @@
             <h2>No credit card required. Cancel anytime.</h2>
 
             <form novalidate class="signup-form subscribe-form" name="form"
-                  action="http://secure.how-late.com/subscribe" method="post">
+                  action="/subscribe" method="post">
 
                 <input name="company" placeholder="Your Company Name"
                        type="text" size="25" maxlength="50" class="input-company signupfield"/>

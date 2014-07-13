@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        
+
         <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=2.0; user-scalable=1;">
         <link media="screen" href="/styles/howlate.css" type="text/css" rel="stylesheet" >
         <link media="screen" href="/styles/howlate_login.css" type="text/css" rel="stylesheet">        
@@ -165,7 +167,7 @@
                                                 $('#forgotten').val('1');
                                                 $('#openid').val('');
 
-                                                //guiders.hideAll();
+                                                guiders.hideAll();
 
                                                 var form = $('#form_forgot').is(':visible') ? $('#form_forgot') : $('#form_login');
 

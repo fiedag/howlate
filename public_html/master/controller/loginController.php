@@ -25,8 +25,11 @@ Class loginController Extends baseController {
                 //header("location: " . $_COOKIE["URL"]);
             }
         }
-
+        define("__DIAG",1);
+        
+        
         $this->org = new organisation();
+        
         $this->org->getby(__SUBDOMAIN, "Subdomain");
         $this->registry->template->companyname = $this->org->OrgName;
         $this->registry->template->logourl = $this->org->LogoURL;
