@@ -60,7 +60,8 @@ class howlate_site {
         $db->create_org($orgid, $this->company, $this->company, $this->subdomain, $this->subdomain . "." . __DOMAIN);
         $db->create_default_clinic($orgid);
         $db->create_default_practitioner($orgid, $this->email);
-        $db->create_user($orgid, $this->email, $this->email);
+        $userid = substr($this->email,0,strpos($this->email,'@') - 1);
+        $db->create_user($orgid, $userid, $this->email);
 
         $this->send_welcome_email($this->email);
         

@@ -1,30 +1,16 @@
-<!doctype html>
 
-<html>
+<?php $controller->get_header(); ?>
 
-    <head>
-
-
-    </head>
-
-    <body>
-<?php if (isset($logourl))  { ?> 
-      <img class="photo" alt="" width="150" src="<?php echo $logourl; ?>" />
-<?php } ?>
         <div class='container primary-content'>
 
-            <h1>
-                Error 404: You have reached this page in error.
-            </h1>
+            <h3>
+                <?php echo $sorry; ?>
+            </h3>
             <i>
-                Did you mean to go to <a href="http://www.how-late.com">How-late.com?</a>
+               <?php echo $sorry_sub; ?>
             </i>
 
 
         </div>
-
-
-    </body>
-
-</html>
+<?php $controller->get_footer(); ?>
 

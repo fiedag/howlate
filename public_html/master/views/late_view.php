@@ -8,7 +8,7 @@
         <link rel="apple-touch-icon" href="<?php echo $icon_url; ?>" >
 
         <meta name="apple-mobile-web-app-capable" content="yes" />
-        <link rel="apple-touch-icon-precomposed" href="/images/icon_calendar.png" />
+        <link rel="apple-touch-icon-precomposed" href="<?php echo $icon_url; ?>" />
 
         <script type="text/javascript" src="/js/bookmark_bubble.js"></script>
         <script type="text/javascript" src="/js/bookmark_bubble_example.js"></script>
@@ -24,6 +24,12 @@
 
     </head>
     <body class="lateness">
+        
+        <img alt="" id="sysLogo" class="system-logo" 
+        title="<?php if (isset($usercookie)) {echo "User cookie $usercookie .";} if (isset($orgidcookie)) {echo "  OrgID cookie $orgidcookie";} ?>" 
+        src="<?php echo $icon_url; ?>" height="100" width="100">
+        
+        
         <h2>How late is my appointment?</h2>
 
         <?php

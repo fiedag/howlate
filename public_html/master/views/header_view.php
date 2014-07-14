@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=2.0; user-scalable=1;">
         <link media="screen" href="/styles/howlate.css" type="text/css" rel="stylesheet">
         <link media="screen" href="/includes/xcrud/themes/default/xcrud.css" type="text/css" rel="stylesheet">
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 		
     </head>
     <body>
@@ -49,6 +49,9 @@
                             </li>
                             <li class="<?php if (get_class($controller) == "orgController") {echo 'active';}?> custom-background-dark-hover">
 								<span><a id="nav-organisation" class="<?php echo (get_class($controller) == "orgController")?'custom-font-on-white':'font-on-custom-background';?>" href="https://<?php echo __FQDN;?>/org">Organization</a></span>
+                            </li>
+                            <li class="<?php if (get_class($controller) == "usersController") {echo 'active';}?> custom-background-dark-hover">
+								<span><a id="nav-users" class="<?php echo (get_class($controller) == "usersController")?'custom-font-on-white':'font-on-custom-background';?>" href="https://<?php echo __FQDN;?>/users">Users</a></span>
                             </li>
                         </ul>
                     </div>

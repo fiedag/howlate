@@ -7,3 +7,9 @@ RewriteRule ^(.*)$ index.php?rt=$1 [L,QSA]
 
 RewriteCond %{HTTPS} !=on
 RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [NC,R=301,L]
+
+
+
+ExpiresActive on
+ExpiresDefault "access plus 1 year"
+

@@ -16,6 +16,7 @@ body.lateness {
     background-color:darkgray;
     color: #ffffff;
     text-align: center;
+    
 }
 
 body.lateness table { 
@@ -34,9 +35,14 @@ table.lateness tr td:first-child{
 
 .clinic-logo {
     width:3em;
+    height:3em;
     
 }
 
+.lateness-header-logo {
+    width:6em;
+    
+}
 
 table.pricing {
     border-width: 2px;

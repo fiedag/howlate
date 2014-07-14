@@ -58,7 +58,7 @@ class organisation {
             if (file_exists("pri/$this->Subdomain/logo.png")) {
                 $this->LogoURL = "/pri/$this->Subdomain/logo.png";
             } else {
-                $this->LogoURL = "/pri/default.gif";
+                $this->LogoURL = "/pri/logo.png";
             }
         }
 

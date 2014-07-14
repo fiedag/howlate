@@ -100,7 +100,7 @@ class howlate_util {
         if (file_exists("pri/$subd/logo.png")) {
             return "/pri/$subd/logo.png";
         } else {
-            return "/pri/default.gif";
+            return "/pri/logo.png";
         }
     }
 

@@ -85,7 +85,8 @@ class router {
         
         
         if ($this->controller != "login") {
-        	$controller->session_start();
+            
+            $controller->session_start();
         }
         $controller->$action();
         

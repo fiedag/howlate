@@ -1,7 +1,7 @@
 <?php
 /**
  * howlate Administration Bootstrap
- *
+ * admin.php
  */
 
 ini_set('error_log','my_file.log'); 
@@ -14,7 +14,11 @@ function auth_redirect() {
 	}
 	
 	// redirect to login page if no good
-	$login_url = 'http://how-late.com/login.php';
+        if (defined("__SUBDOMAIN"))
+            $login_url = 'https://' . __SUBDOMAIN . "." . __DOMAIN . "/login";
+        else
+            $login_url = 'http://how-late.com';
+
 	header("Location: $login_url");
 	exit();
 }
@@ -94,9 +98,6 @@ function set_auth_cookie() {
 
 
 }
-
-
-
 
 
 auth_redirect();

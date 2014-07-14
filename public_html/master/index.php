@@ -14,7 +14,7 @@
 
  /*** include the init.php file ***/
  include 'includes/init.php';
-
+ 
  /*** load the router ***/
  $registry->router = new router($registry);
 
