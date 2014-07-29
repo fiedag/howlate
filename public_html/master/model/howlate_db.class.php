@@ -406,11 +406,20 @@ class howlate_db {
         if ($stmt->affected_rows == 0) {
             trigger_error("The default practitioner was not created, error= " . $this->conn->error , E_USER_ERROR);
         }        
-        
-        
     }
  
-    
+    public function create_practitioner($orgid, $clinicid, $firstname, $lastname, $integrkey ) {
+        $q = "CALL sp_CreatePractitioner ($orgid, $clinicid, $firstname, $lastname, $integrkey)";
+        echo $q;
+        $stmt = $this->conn->query($q);
+        $stmt = $this->conn->prepare($q); 
+        
+        $stmt->execute() ;
+        if ($stmt->affected_rows == 0) {
+            trigger_error("The  practitioner was not created, error= " . $this->conn->error , E_USER_ERROR);
+        }        
+    }
+     
     public function getNextOrgID() {
         $q = "SELECT IFNULL(MAX(OrgID),'AAAAA') As last FROM orgs";
         if ($result = $this->conn->query($q)) {
@@ -466,5 +475,5 @@ class howlate_db {
             trigger_error("The lates record was not deleted, error= " . $this->conn->error , E_USER_ERROR);
         }
     }
-
+      
 }

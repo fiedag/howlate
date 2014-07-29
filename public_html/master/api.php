@@ -1,15 +1,5 @@
-<!DOCTYPE html>
-<html>
-    
 <?php
-/* http API for how-late.com  
-* everything here is called using a http GET
-* Most everything returns a JSON string 
-* try to make controllers do all the work.  
-* TODO : remove direct calls to db class
-*
-*
-*/
+
 function unh_exception_handler($exception) {
   echo "Unhandled exception: " , $exception->getMessage(), "\n";
 }
@@ -69,6 +59,9 @@ switch ($met)
 		break;
 	case "getpract":	// gets practitioner information and returns json
 		getPractitioner();
+		break;
+	case "addpract":	// gets practitioner information and returns json
+		addPractitioner();
 		break;
 	default:
 		trigger_error ('API Error: method "' . $met . '" is not known', E_USER_ERROR);  
@@ -184,9 +177,32 @@ function getPractitioner() {
 	$db->validatePin($org, $id);
 
 	$result = $db->getPractitioner($org, $id);
+        header('Content-type: application/json');
 	echo json_encode(get_object_vars($result));
-	echo '<br>';
 }
+
+
+function addPractitioner() {
+	global $udid, $met, $ver;
+	required(array("org","clin","firstname","lastname","integrkey"));
+
+        $org = filter_input(INPUT_GET,"org");  // identifies the Org 
+        $clin = filter_input(INPUT_GET,"clin");  // identifies the Org 
+        $firstname = filter_input(INPUT_GET,"firstname");  // identifies the Org 
+        $lastname = filter_input(INPUT_GET,"lastname");  // identifies the Org 
+        $integrkey = filter_input(INPUT_GET,"integrkey");  // Key
+	
+	$db = new howlate_db();
+
+
+	$result = $db->create_practitioner($org,$clin,$firstname,$lastname,$integrkey);
+        header('Content-type: application/json');
+	echo json_encode(get_object_vars($result));
+}
+
+
+
+
 
 function place() {
 	global $udid, $met, $ver;
@@ -253,23 +269,20 @@ function sendInvitation() {
 	
 }
 
+
 function required($arr) {
 
         global $met;
         
-	foreach($arr as $value) {
+	foreach($arr as $key => $value) {
 		if (!filter_input(INPUT_GET,$value)) {
 			$missing[] = $value;
 		}
 	}
-
 	if (!empty($missing)) {
-		trigger_error('API Error: Method ' . $met . ' the following mandatory parameters were not supplied: ' . print_r($missing), E_USER_ERROR);
+		trigger_error('API Error: Method <b>' . $met . '</b> the following mandatory parameters were not supplied: ' . implode($missing), E_USER_ERROR);
 	}
-	
 }
 
 ?>
-</html>
-
 
