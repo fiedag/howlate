@@ -47,14 +47,6 @@
 
             </form>
 
-            <div class="signup-pricing">
-                <p>
-                    <a href="http://secure.how-late.com/external/subscribe/prices" id="show-pricing">
-                        Paid plans
-                    </a>
-                    for the cost of a mobile phone plan*
-                </p>
-            </div>
         </div>
     </body>
 
