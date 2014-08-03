@@ -4,7 +4,7 @@ function customErrorHandler($errno, $errstr, $errfile, $errline)
 {
 
     if (!(error_reporting() & $errno)) {
-        echo("This error code is not included in error_reporting");
+        echo("This error code is not included in error_reporting, errno =  $errno, errstr = $errstr <br>");
         return;
     }
 

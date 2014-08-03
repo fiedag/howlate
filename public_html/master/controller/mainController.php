@@ -52,7 +52,7 @@ Class mainController Extends baseController {
                 $newlate = 0;
             }
             
-            $elems = split('\.', $pin);
+            $elems = explode('.', $pin);
             $org = $elems[0];
             $id = $elems[1];
             $db->updatelateness($org, $id, $newlate);

@@ -22,11 +22,12 @@ Class practController Extends baseController {
         $xcrud->join("SurrogKey","vwAssigned","SurrogKey");
 
         $xcrud->columns('FullName,AbbrevName,DateCreated,vwAssigned.Assigned,SurrogKey', false);
-
+        
         $xcrud->readonly('OrgID,ID,SurrogKey,DateCreated,vwAssigned.Assigned');  //  for create/update/delete
 
         $xcrud->hide_button('view');
         $xcrud->label(array('FullName' => 'Full Name', 'AbbrevName' => 'Abbrev Name', 'DateCreated' => 'Created', 'SurrogKey' => 'Reassign'));
+        
         $xcrud->unset_csv(true)->unset_numbers(true)->unset_print(true)->unset_limitlist(true)->hide_button('save_and_edit')->hide_button('save_and_new');
 
         $xcrud->pass_default('OrgID', $this->org->OrgID);

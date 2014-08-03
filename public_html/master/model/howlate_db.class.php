@@ -22,7 +22,7 @@ class howlate_db {
             while ($row = $result->fetch_object()) {
                 $myArray[] = $row;
             }
-
+//
             return $myArray;
         }
         $result->close();
@@ -57,8 +57,9 @@ class howlate_db {
         $result->close();
     }
 
-    function getPractitioner($org, $id) {
-        $q = "SELECT OrgID, PractitionerID, Pin, PractitionerName, ClinicName, OrgName, FQDN FROM vwPractitioners WHERE OrgID = ? AND PractitionerID = ?";
+    function getPractitioner($org, $id, $fieldname = 'PractitionerID') {
+        $q = "SELECT OrgID, PractitionerID, Pin, PractitionerName, ClinicName, OrgName, FQDN FROM vwPractitioners WHERE OrgID = ? AND $fieldname = ?";
+
         $stmt = $this->conn->query($q);
         $stmt = $this->conn->prepare($q);
         $stmt->bind_param('ss', $org, $id);
@@ -69,6 +70,19 @@ class howlate_db {
         return $p;
     }
 
+    function getPractitionerID($org, $practitioner) {
+        $q = "SELECT ID from practitioners WHERE OrgID = '$org' AND IntegrKey = '$practitioner'";
+        
+        if ($result = $this->conn->query($q)) {
+            $row = $result->fetch_object();
+            if ($row == "") {
+                //trigger_error('Data Error: Practitioner ' . $practitioner . ' does not exist for organisation ' . $org, E_USER_ERROR);
+                // TODO: create a practitioner
+            }
+            return $row->ID;
+        }
+    }
+    
     // returns an array with a key of clinic names, and the value is an array of practitioners the $udid
     // is registered for.
     function getlatenessesByUDID($udid) {
@@ -114,6 +128,9 @@ class howlate_db {
             }
             return $clinArray;
         }
+        
+        
+        
         $result->close();
     }
 
@@ -475,5 +492,41 @@ class howlate_db {
             trigger_error("The lates record was not deleted, error= " . $this->conn->error , E_USER_ERROR);
         }
     }
-      
+
+    // returns all countries in the database
+    // useful for the setup wizard, in order to find organisations
+    public function getallcountries() {
+        $q = "SELECT DISTINCT Country FROM orgs WHERE Country <> ''";
+
+        $myArray = array();
+        if ($result = $this->conn->query($q)) {
+            $tempArray = array();
+            while ($row = $result->fetch_object()) {
+                $tempArray = $row;
+                array_push($myArray, $tempArray);
+            }
+            return $myArray;
+        }
+        $result->close();
+    }
+
+    // returns all countries in the database
+    // useful for the setup wizard, in order to find organisations
+    public function getallorgs($country) {
+        $q = "SELECT OrgName, OrgID FROM orgs WHERE Country = '$country'";
+
+        $myArray = array();
+        if ($result = $this->conn->query($q)) {
+            $tempArray = array();
+            while ($row = $result->fetch_object()) {
+                $tempArray = $row;
+                array_push($myArray, $tempArray);
+            }
+            return $myArray;
+        }
+        $result->close();
+    }
+    
+    
 }
+

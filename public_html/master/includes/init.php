@@ -1,4 +1,7 @@
 <?php
+
+
+
 /* * * include the controller class ** */
 include __SITE_PATH . '/application/' . 'controller_base.class.php';
 /* * * include the registry class ** */
@@ -17,7 +20,6 @@ function __autoload($class_name) {
     include ($file);
 }
 
-include_once("error_handler.php");
 date_default_timezone_set('Australia/Adelaide');
 
 $host = $_SERVER["SERVER_NAME"];
@@ -28,8 +30,7 @@ define('__SUBDOMAIN', substr($host, 0, $firstdot));
 define('__FQDN', $host);
 
 
-
-
+include_once("error_handler.php");
 
 /* * * a new registry object ** */
 $registry = new registry;

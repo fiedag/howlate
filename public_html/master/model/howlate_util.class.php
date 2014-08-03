@@ -60,7 +60,7 @@ class howlate_util {
     }
 
     public static function validatePin($pin) {
-        $elem = split('\.', $pin);
+        $elem = explode('.', $pin);
         if (count($elem) != 2) {
             die('Input Error: The PIN is not formatted correctly.  It must be of form X.Y e.g. ABD.R');
         }
@@ -71,13 +71,13 @@ class howlate_util {
 
     public static function orgFromPin($pin) {
         self::validatePin($pin);
-        $elem = split('\.', $pin);
+        $elem = explode('.', $pin);
         return $elem[0];
     }
 
     public static function idFromPin($pin) {
         self::validatePin($pin);
-        $elem = split('\.', $pin);
+        $elem = explode('.', $pin);
         return $elem[1];
     }
 
