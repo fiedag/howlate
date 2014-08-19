@@ -28,9 +28,11 @@ Class subscribeController Extends baseController {
     private function create($company, $email) {
         define("__DIAG",1);
         
+        
+        
         echo "<div id='message1'> $company site is being created.  Please wait...</div>";
-        $howlate_site = new howlate_site();
 
+        $howlate_site = new howlate_site();
         howlate_util::diag("Domain is " . __DOMAIN);
 
         $subdomain = $howlate_site->create($company, $email);

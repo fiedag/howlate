@@ -59,7 +59,6 @@ class howlate_db {
 
     function getPractitioner($org, $id, $fieldname = 'PractitionerID') {
         $q = "SELECT OrgID, PractitionerID, Pin, PractitionerName, ClinicName, OrgName, FQDN FROM vwPractitioners WHERE OrgID = ? AND $fieldname = ?";
-
         $stmt = $this->conn->query($q);
         $stmt = $this->conn->prepare($q);
         $stmt->bind_param('ss', $org, $id);
@@ -70,17 +69,16 @@ class howlate_db {
         return $p;
     }
 
-    function getPractitionerID($org, $practitioner) {
-        $q = "SELECT ID from practitioners WHERE OrgID = '$org' AND IntegrKey = '$practitioner'";
+    function getPractitionerID($org, $value, $fieldname = 'FullName') {
+        $q = "SELECT ID from practitioners WHERE OrgID = ? AND $fieldname = ?";
+        $stmt = $this->conn->query($q);
+        $stmt = $this->conn->prepare($q);
+        $stmt->bind_param('ss', $org, $value);
+        $stmt->execute() or trigger_error('# Query Error (' . $this->conn->errno . ') ' . $this->conn->error, E_USER_ERROR);
         
-        if ($result = $this->conn->query($q)) {
-            $row = $result->fetch_object();
-            if ($row == "") {
-                //trigger_error('Data Error: Practitioner ' . $practitioner . ' does not exist for organisation ' . $org, E_USER_ERROR);
-                // TODO: create a practitioner
-            }
-            return $row->ID;
-        }
+        $stmt->bind_result($ID);
+        $stmt->fetch();
+        return $ID;
     }
     
     // returns an array with a key of clinic names, and the value is an array of practitioners the $udid
@@ -266,15 +264,16 @@ class howlate_db {
     }
 
     function get_user_data($userid, $orgid) {
-        $q = "SELECT UserID, DateCreated, EmailAddress, FullName, XPassword, OrgID , SecretQuestion1, SecretAnswer1 FROM orgusers WHERE OrgID = '" . $orgID . "' AND UserID = '" . $userid . "'";
+        $q = "SELECT UserID, DateCreated, EmailAddress, FullName, XPassword, OrgID , SecretQuestion1, SecretAnswer1 FROM orgusers WHERE OrgID = '" . $orgid . "' AND UserID = '" . $userid . "'";
+        
         if ($result = $this->conn->query($q)) {
-            $user = $result->fetch_object('howlate_user');
-            if (!isset($user)) {
-                trigger_Error('Data Error: User ' . $userid . ' does not exist for org ' . $org, E_USER_ERROR);
-            }
+            return $result->fetch_object();
+        }
+        else {
+            $result->close();
+            trigger_error("User $userid not found for $orgid", E_USER_ERROR);
         }
 
-        $result->close();
     }
 
     // Checks that the hashed password matches what is in the database
@@ -414,15 +413,13 @@ class howlate_db {
     }
  
     public function create_default_practitioner($orgid, $name) {
-        $q = "INSERT INTO practitioners (OrgID, ID, FullName, AbbrevName) SELECT '$orgid', getNextPractitionerID2('$orgid'), '$name', '$name'";
-        echo $q;
-        $stmt = $this->conn->query($q);
+        $q = "CALL sp_CreatePractitioner ('$orgid','$name')";
         $stmt = $this->conn->prepare($q);    
-        
         $stmt->execute() ;
         if ($stmt->affected_rows == 0) {
             trigger_error("The default practitioner was not created, error= " . $this->conn->error , E_USER_ERROR);
-        }        
+        }   
+ 
     }
  
     public function create_practitioner($orgid, $clinicid, $firstname, $lastname, $integrkey ) {

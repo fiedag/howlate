@@ -28,6 +28,7 @@ class howlate_site {
         $org = $db->getOrganisation($this->subdomain);
 
         while (!empty($org)) {
+            echo "$org->OrgName already exists with this subdomain<br>";          
             var_dump($org);
             if (is_numeric(substr($this->subdomain, -1))) {
                 $digit = substr($this->subdomain, -1) + 1;
@@ -51,8 +52,13 @@ class howlate_site {
         }
 
         howlate_util::diag("Creating subdomain in cpanel, please wait about 1 minute...<br>");
-        $this->create_in_cpanel($this->subdomain);
-        howlate_util::diag("Cpanel subdomain has been created, creating org in database<br>");
+        if($this->create_in_cpanel($this->subdomain)) {
+            howlate_util::diag("Cpanel subdomain has been created, creating org in database<br>");
+        }
+        else {
+            trigger_error("Error creating subdomain in CPanel");
+        } 
+            
 
         $orgid = $db->getNextOrgID();
         howlate_util::diag("Using new OrgId = $orgid <br>");
@@ -62,12 +68,15 @@ class howlate_site {
         $db->create_default_practitioner($orgid, $this->email);
         $userid = substr($this->email,0,strpos($this->email,'@') - 1);
         $db->create_user($orgid, $userid, $this->email);
-
-        $this->send_welcome_email($this->email);
+        
+        howlate_util::diag("Sending welcome email<br>");
+        if ($this->send_welcome_email($this->email)) {
+            howlate_util::diag("Welcome email sent to $this->email <br>");
+        }
         
         howlate_util::diag("Created Organisation, $this->company <br>");
 
-        howlate_util::diag("Welcome to Please check your email at $this->email for further information on logging in<br>");
+        howlate_util::diag("Welcome to How-Late.  Please check your email at $this->email for further information on logging in<br>");
 
         return $this->subdomain;
     }
@@ -89,7 +98,7 @@ class howlate_site {
 
     protected function create_in_cpanel($subdomain) {
         $username = "howlate";
-        $password = "3134-5Q^hP$1";
+        $password = "PzaLQiH9av";
         $udomain = "how-late.com";
         $authstr = "$username:$password";
         $pass = base64_encode($authstr);
@@ -103,6 +112,7 @@ class howlate_site {
 
         $hasbeencreated = "has been created!";
         $alreadyexists = "already exists";
+        $accessdenied = "Access denied";
         $indom = "GET /frontend/x3/subdomain/doadddomain.html?domain=$subdomain&rootdomain=$udomain&dir=public_html%2Fmaster\r\n HTTP/1.0\r\nHost:$udomain\r\nAuthorization: Basic $pass\r\n\r\n";
         fputs($socket2, $indom);
         while (!feof($socket2)) {
@@ -117,8 +127,16 @@ class howlate_site {
                 trigger_error('Cpanel Subdomain already exists: <b>' . $indom . '</b>', E_USER_ERROR);
                 return false;
             }
+            if (strpos($buf, $accessdenied)) {
+                fclose($socket2);
+                trigger_error('Cpanel access denied: <b>' . $indom . '</b>', E_USER_ERROR);
+                return false;
+            }
+
         }
+        
         fclose($socket2);
+        trigger_error("Error creating cPanel subdomain, error=" + var_dump($ret));
         return false;
     }
 
@@ -130,7 +148,7 @@ class howlate_site {
         $db = new howlate_db();
         $users = $db->getallusers($email, 'EmailAddress');
         if (count($users) == 0) {
-            return 0;
+            return false;
         }
         $subject = "Welcome to how-late.com! Your login link is enclosed.";
 
@@ -155,7 +173,7 @@ class howlate_site {
         $headers .= 'Content-type: text/plain; charset=iso-8859-1' . "\n";
         $headers .= "From: $from";
         if (mail($email, $subject, $body, $headers)) {
-            $success = "true";
+            return true;
         }
     }
 

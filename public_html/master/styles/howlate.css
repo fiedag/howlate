@@ -1,12 +1,15 @@
 body{font-family:Verdana,sans-serif;font-size:12px;line-height:18px;color:#000;padding:0;margin:0;background-color:#fff;height:100%}
 body.wide_layout{min-width:960px}
 
-
 @font-face{font-family:'FranklinNarrow';src:url("/fonts/da6cca2b-e780-42d1-ae8c-501b1663c71c.eot");src:local("Franklin Condensed ITC Pro"),url("/fonts/da6cca2b-e780-42d1-ae8c-501b1663c71c.woff") format("woff"),url("/fonts/da6cca2b-e780-42d1-ae8c-501b1663c71c.ttf") format("truetype"),url("/fonts/da6cca2b-e780-42d1-ae8c-501b1663c71c.svg#web") format("svg");font-style:normal;font-weight:normal}
 @font-face{font-family:'FranklinMedium';src:url('/fonts/3accda00-15ce-4751-8dc9-6fe2eb02f8b8-2.eot');src:local("Franklin Gothic Narrow Medium"),url("/fonts/3accda00-15ce-4751-8dc9-6fe2eb02f8b8-3.woff") format("woff"),url("/fonts/3accda00-15ce-4751-8dc9-6fe2eb02f8b8-1.ttf") format("truetype"),url("/fonts/3accda00-15ce-4751-8dc9-6fe2eb02f8b8-4.svg#web") format("svg");font-style:normal;font-weight:normal}
 @font-face{font-family:'FranklinLight';src:url('/fonts/5f4b1577-5cab-49d7-9ed6-4ebedc9502ed-2.eot');src:local("Franklin Gothic Narrow Thin"),url("/fonts/5f4b1577-5cab-49d7-9ed6-4ebedc9502ed-3.woff") format("woff"),url("/fonts/5f4b1577-5cab-49d7-9ed6-4ebedc9502ed-1.ttf") format("truetype"),url("/fonts/5f4b1577-5cab-49d7-9ed6-4ebedc9502ed-4.svg#web") format("svg");font-style:normal;font-weight:normal}
 @font-face{font-family:'Freshfont';src:url('/fonts/freshfont-regular-webfont.eot');src:local("FreshFont"),url("/fonts/freshfont-regular-webfont.woff") format("woff"),url("/fonts/freshfont-regular-webfont.ttf") format("truetype"),url("/fonts/freshfont-regular-webfont.svg") format("svg");font-style:normal;font-weight:normal}
 @font-face{font-family:"Franklin-Book";src:url("/fonts/itcfranklingothicstd-book-webfont.eot");src:url("/fonts/itcfranklingothicstd-book-webfont.eot?") format("embedded-opentype"),url("/fonts/itcfranklingothicstd-book-webfont.woff") format("woff"),url("/fonts/itcfranklingothicstd-book-webfont.svg") format("svg"),url("/fonts/itcfranklingothicstd-book-webfont.ttf") format("truetype");font-style:normal;font-weight:normal}
+
+.clinic-dropdown { margin-left: 20px}
+
+.howlate-logo { background-image: url("/images/logos/hl_logo_trans.png"); }
 
 .ssl-seal {
     width:9em;
@@ -67,8 +70,6 @@ span {
 }
 */
 
-
-
 .modalDialog {
     position: fixed;
     font-family: Arial, Helvetica, sans-serif;
@@ -84,7 +85,6 @@ span {
     transition: opacity 400ms ease-in;
     pointer-events: none;
 }
-
 
 .modalDialog:target {
     opacity:1;
@@ -103,12 +103,6 @@ span {
     background: -webkit-linear-gradient(#fff, #999);
     background: -o-linear-gradient(#fff, #999);
 }
-
-
-
-
-
-
 
 .custom-background,
 .custom-background-hover:hover {
@@ -181,7 +175,6 @@ span {
 .ui-state-active:hover {
     background-color: #195A8C !important;
 }
-
 
 .index thead td,
 .index.disabled thead td,
@@ -347,11 +340,14 @@ a.link_white_system:hover {
     background-color: #fff;
     color: #000;
 }
+
 /* LOGO IMAGE */
+
 #sysLogo {
     vertical-align: middle;
     margin: 2px 0 14px;
 }
+
 #navmain ul li.manage a {
     background-color: transparent;
     font-size: 13px;
@@ -647,6 +643,7 @@ div.span-1,div.span-2,div.span-3,div.span-4,div.span-5,div.span-6,div.span-7,div
 .span-8{width:160px}
 .span-9{width:180px}
 .span-10{width:200px}
+.span-12{width:240px}
 
 .append-1{padding-right:20px}
 

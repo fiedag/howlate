@@ -24,20 +24,9 @@
         
     </head>
 <body>
-    <h1>How late is my doctor?</h1>
-    
-    
-    <table>
-        <tr>
-            <td class='refresh '><?php echo $when_refreshed; ?></td><td><a class="refresh" href="javascript:location.reload(true);">Update</a></td>
-        </tr>
-    </table>
-    <p />
+    <h1>You are not registered for lateness updates.</h1>
 
-
-    <span id="footer">
-        <a class="refresh" href="javascript:location.reload(true);">Update</a>
-    </span>
+    <a href="http://how-late.com">Visit How-Late.Com</a>
 
 </body>
 

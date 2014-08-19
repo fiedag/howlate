@@ -136,33 +136,33 @@ function unregisterpin()
 	
 }
 
-// Updates the lateness for a specific practitioner
-// Called from the HowLate Agent
-function updatelateness()
-{
-	global $met, $ver;
-	required(array("credentials","Provider","AppointmentTime","ConsultationTime"));
-        // also relevant is the subdomain of the request
-        
- 	$org = filter_input(($ver=="get")?INPUT_GET:INPUT_POST,"org");
-        $credentials = filter_input(($ver=="get")?INPUT_GET:INPUT_POST,"credentials");
-        list($userid,$passwordhash) = explode(".",$credentials);
- 	$practitioner = filter_input(($ver=="get")?INPUT_GET:INPUT_POST,"practitioner");
-        $newlate = filter_input(($ver=="get")?INPUT_GET:INPUT_POST,"newlate");
-        $db = new howlate_db();
-        
-        if($db->isValidPassword($org, $userid, $passwordhash)) {
-            try {
-                $id = $db->getPractitionerID($org,$practitioner);
-                $db->updatelateness($org,$id,$newlate);
-                $db->trlog(TranType::LATE_UPD, 'Practitioner ' . $practitioner . ' is now ' . $newlate . ' minutes late', $org, null, $id, null);
-            }
-            catch(Exception $ex) {
-                $db->trlog(TranType::LATE_UPD, 'Practitioner ' . $practitioner . ' lateness update failed, exception =' . $ex, $org, null, $null, $null);
-            }
-        }
-        return json_encode("Practitioner $practitioner lateness updated to $newlate");
-}
+//// Updates the lateness for a specific practitioner
+//// Called from the HowLate Agent
+//function updatelateness()
+//{
+//	global $met, $ver;
+//	required(array("credentials","Provider","AppointmentTime","ConsultationTime"));
+//        // also relevant is the subdomain of the request
+//        
+// 	$org = filter_input(($ver=="get")?INPUT_GET:INPUT_POST,"org");
+//        $credentials = filter_input(($ver=="get")?INPUT_GET:INPUT_POST,"credentials");
+//        list($userid,$passwordhash) = explode(".",$credentials);
+// 	$practitioner = filter_input(($ver=="get")?INPUT_GET:INPUT_POST,"practitioner");
+//        $newlate = filter_input(($ver=="get")?INPUT_GET:INPUT_POST,"newlate");
+//        $db = new howlate_db();
+//        
+//        if($db->isValidPassword($org, $userid, $passwordhash)) {
+//            try {
+//                $id = $db->getPractitionerID($org,$practitioner);
+//                $db->updatelateness($org,$id,$newlate);
+//                $db->trlog(TranType::LATE_UPD, 'Practitioner ' . $practitioner . ' is now ' . $newlate . ' minutes late', $org, null, $id, null);
+//            }
+//            catch(Exception $ex) {
+//                $db->trlog(TranType::LATE_UPD, 'Practitioner ' . $practitioner . ' lateness update failed, exception =' . $ex, $org, null, $null, $null);
+//            }
+//        }
+//        return json_encode("Practitioner $practitioner lateness updated to $newlate");
+//}
 
 function getclinics()
 {
@@ -215,23 +215,23 @@ function getPractitioner() {
         echo json_encode(get_object_vars($result));
 }
 
-
-function addPractitioner() {
-	global $met, $ver;
-	required(array("org","clin","firstname","lastname","integrkey"));
-
-        $org = filter_input(($ver=="get")?INPUT_GET:INPUT_POST,"org");  // identifies the Org 
-        $clin = filter_input(($ver=="get")?INPUT_GET:INPUT_POST,"clin");  // identifies the Org 
-        $firstname = filter_input(($ver=="get")?INPUT_GET:INPUT_POST,"firstname");  // identifies the Org 
-        $lastname = filter_input(($ver=="get")?INPUT_GET:INPUT_POST,"lastname");  // identifies the Org 
-        $integrkey = filter_input(($ver=="get")?INPUT_GET:INPUT_POST,"integrkey");  // Key
-	
-	$db = new howlate_db();
-
-        $result = $db->create_practitioner($org,$clin,$firstname,$lastname,$integrkey);
-        header('Content-type: application/json');
-	echo json_encode(get_object_vars($result));
-}
+//
+//function addPractitioner() {
+//	global $met, $ver;
+//	required(array("org","clin","firstname","lastname","integrkey"));
+//
+//        $org = filter_input(($ver=="get")?INPUT_GET:INPUT_POST,"org");  // identifies the Org 
+//        $clin = filter_input(($ver=="get")?INPUT_GET:INPUT_POST,"clin");  // identifies the Org 
+//        $firstname = filter_input(($ver=="get")?INPUT_GET:INPUT_POST,"firstname");  // identifies the Org 
+//        $lastname = filter_input(($ver=="get")?INPUT_GET:INPUT_POST,"lastname");  // identifies the Org 
+//        $integrkey = filter_input(($ver=="get")?INPUT_GET:INPUT_POST,"integrkey");  // Key
+//	
+//	$db = new howlate_db();
+//
+//        $result = $db->create_practitioner($org,$clin,$firstname,$lastname,$integrkey);
+//        header('Content-type: application/json');
+//	echo json_encode(get_object_vars($result));
+//}
 
 
 function place() {
