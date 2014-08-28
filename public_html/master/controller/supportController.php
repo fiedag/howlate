@@ -56,6 +56,18 @@ Class supportController Extends baseController {
         echo $xcrud2->render();
     }
 
+    
+    public function contactsubmit() {
+
+        
+        $this->getOrg();
+        $this->registry->template->controller = $this;
+        $this->registry->template->show('support_contact');
+
+        
+        
+    }
+    
 }
 
 ?>

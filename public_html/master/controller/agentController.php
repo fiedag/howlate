@@ -27,6 +27,16 @@ Class agentController Extends baseController {
         $this->registry->template->show('agent_index');
     }
 
+    public function further() {
+        $this->org = new organisation();
+        $this->org->getby(__SUBDOMAIN, "Subdomain");
+        $this->registry->template->companyname = $this->org->OrgName;
+        $this->registry->template->logourl = $this->org->LogoURL;
+
+        $this->registry->template->controller = $this;
+        $this->registry->template->show('agent_further');
+    }
+
     public function exe() {
         $this->org = new organisation();
         $this->org->getby(__SUBDOMAIN, "Subdomain");
@@ -39,13 +49,17 @@ Class agentController Extends baseController {
 
         $this->org = new organisation();
         $this->org->getby(__SUBDOMAIN, "Subdomain");
-        $this->registry->template->companyname = "What the Flick";
+        $this->registry->template->companyname = "";
 
         $this->registry->template->logourl = $this->org->LogoURL;
 
         $this->registry->template->controller = $this;
 
         $this->registry->template->show('agent_index');
+    }
+
+    public function install() {
+        $this->registry->template->show('agent_install');
     }
 
     public function update() {
@@ -75,18 +89,6 @@ Class agentController Extends baseController {
 
 
         $this->registry->template->show('agent_config');
-    }
-
-    public function update_hide() {
-        $db = new howlate_db();
-        $db->update_org($org);
-
-        $this->org->getby(__SUBDOMAIN, "Subdomain");
-        $this->registry->template->companyname = $this->org->OrgName;
-        $this->registry->template->logourl = $this->org->LogoURL;
-
-        $this->registry->template->controller = $this;
-        $this->registry->template->show('agent_index');
     }
 
     public function get_clinic_options() {

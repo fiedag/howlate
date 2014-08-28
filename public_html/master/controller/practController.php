@@ -15,7 +15,7 @@ Class practController Extends baseController {
     }
 
     public function getXcrudTable() {
-        //session_start();
+        
         include('includes/xcrud/xcrud.php');
         $xcrud = Xcrud::get_instance();
         $xcrud->table('practitioners')->where('OrgID =', $this->org->OrgID)->limit(10);

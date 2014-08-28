@@ -1,6 +1,9 @@
 <?php
 
-echo "This is script1.php";
+
+
+$db = new howlate_db();
+
 
 
 

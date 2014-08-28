@@ -8,8 +8,7 @@ Abstract Class baseController {
     protected $registry;
 
     function __construct($registry) {
-        $this->registry = $registry;
-        
+        $this->registry = $registry;   
     }
 
     /**
@@ -33,8 +32,8 @@ Abstract Class baseController {
         session_start();
 
         if (!isset($_SESSION["USER"]) or $_SESSION["LAST_ACTIVITY"] < (time() - 3600)) {
-
             if (isset($_COOKIE["USER"]) and isset($_COOKIE["ORGID"])) {
+                echo "no user session var or session is old, but cookies fine";
                 $_SESSION["DIAG"] .= ",cookie is set so assign and redirect to " . $_COOKIE["URL"];
                 // get some info from the cookie
                 $_SESSION["ORGID"] = $_COOKIE["ORGID"];
@@ -44,12 +43,12 @@ Abstract Class baseController {
                     header("location: " . $_COOKIE["URL"]);
                 }
             } else {
-
+                
                 session_unset();
                 session_destroy();
 
                 $login = "http://" . __FQDN . "/login";
-                //header("location: " . $login);
+                header("location: " . $login);
             }
         }
 

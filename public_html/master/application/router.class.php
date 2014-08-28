@@ -89,8 +89,7 @@ class router {
             $controller->session_start();
         }
         $controller->$action();
-        
-        
+      
  }
 
 

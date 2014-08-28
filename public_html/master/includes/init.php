@@ -1,7 +1,4 @@
 <?php
-
-
-
 /* * * include the controller class ** */
 include __SITE_PATH . '/application/' . 'controller_base.class.php';
 /* * * include the registry class ** */

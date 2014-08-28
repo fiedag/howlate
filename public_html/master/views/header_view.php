@@ -53,6 +53,9 @@
                             <li class="<?php if (get_class($controller) == "usersController") {echo 'active';}?> custom-background-dark-hover">
 								<span><a id="nav-users" class="<?php echo (get_class($controller) == "usersController")?'custom-font-on-white':'font-on-custom-background';?>" href="https://<?php echo __FQDN;?>/users">Users</a></span>
                             </li>
+                            <li class="<?php if (get_class($controller) == "agentController") {echo 'active';}?> custom-background-dark-hover">
+								<span><a id="nav-agent" class="<?php echo (get_class($controller) == "agentController")?'custom-font-on-white':'font-on-custom-background';?>" href="https://<?php echo __FQDN;?>/agent">Integration</a></span>
+                            </li>                            
                         </ul>
                     </div>
                     <div class="clearb"></div>
