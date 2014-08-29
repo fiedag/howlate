@@ -1,5 +1,7 @@
-<?php
+#!/bin/bash
+script_dir=$(dirname $0)
 
-include ("scripts/script1.php");
+LOG=$script_dir/howlate_`date +"%y%m%d"`.out
+echo `date` "Inside howlate_cron" >>$LOG
+php -f $script_dir/scripts/zeroLateness.php >> $LOG
 
-?>

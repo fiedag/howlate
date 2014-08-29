@@ -1,0 +1,438 @@
+Inside script1.php
+Inside script1.php
+Inside script1.php
+Inside howlate_cron
+Inside script1.php
+Thu Aug 28 16:54:38 EST 2014 Inside howlate_cron
+Inside script1.php
+Thu Aug 28 16:57:15 EST 2014 Inside howlate_cron
+Inside script1.php
+Thu Aug 28 17:02:44 EST 2014 Inside howlate_cron
+Thu Aug 28 17:11:10 EST 2014 Inside howlate_cron
+Thu Aug 28 17:23:01 EST 2014 Inside howlate_cron
+Inside script1.php
+Thu Aug 28 17:24:01 EST 2014 Inside howlate_cron
+Inside script1.php
+Thu Aug 28 17:25:01 EST 2014 Inside howlate_cron
+Inside script1.php<br />
+<b>Warning</b>:  include(/home/public_html/master/model/howlate_db.class.php): failed to open stream: No such file or directory in <b>/home/howlate/etc/scripts/script1.php</b> on line <b>3</b><br />
+<br />
+<b>Warning</b>:  include(): Failed opening '/home/public_html/master/model/howlate_db.class.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in <b>/home/howlate/etc/scripts/script1.php</b> on line <b>3</b><br />
+
+Thu Aug 28 17:26:01 EST 2014 Inside howlate_cron
+Inside script1.php<br />
+<b>Warning</b>:  include(/home/public_html/master/model/howlate_db.class.php): failed to open stream: No such file or directory in <b>/home/howlate/etc/scripts/script1.php</b> on line <b>3</b><br />
+<br />
+<b>Warning</b>:  include(): Failed opening '/home/public_html/master/model/howlate_db.class.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in <b>/home/howlate/etc/scripts/script1.php</b> on line <b>3</b><br />
+<br />
+<b>Fatal error</b>:  Class 'howlate_db' not found in <b>/home/howlate/etc/scripts/script1.php</b> on line <b>5</b><br />
+Thu Aug 28 17:27:01 EST 2014 Inside howlate_cron
+Inside script1.php<br />
+<b>Warning</b>:  include(/home/public_html/master/model/howlate_db.class.php): failed to open stream: No such file or directory in <b>/home/howlate/etc/scripts/script1.php</b> on line <b>3</b><br />
+<br />
+<b>Warning</b>:  include(): Failed opening '/home/public_html/master/model/howlate_db.class.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in <b>/home/howlate/etc/scripts/script1.php</b> on line <b>3</b><br />
+<br />
+<b>Fatal error</b>:  Class 'howlate_db' not found in <b>/home/howlate/etc/scripts/script1.php</b> on line <b>5</b><br />
+Thu Aug 28 17:28:01 EST 2014 Inside howlate_cron
+Inside script1.php<br />
+<b>Warning</b>:  include(/home/public_html/master/model/howlate_db.class.php): failed to open stream: No such file or directory in <b>/home/howlate/etc/scripts/script1.php</b> on line <b>3</b><br />
+<br />
+<b>Warning</b>:  include(): Failed opening '/home/public_html/master/model/howlate_db.class.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in <b>/home/howlate/etc/scripts/script1.php</b> on line <b>3</b><br />
+<br />
+<b>Fatal error</b>:  Class 'howlate_db' not found in <b>/home/howlate/etc/scripts/script1.php</b> on line <b>5</b><br />
+Thu Aug 28 17:29:02 EST 2014 Inside howlate_cron
+Inside script1.php
+Thu Aug 28 17:30:02 EST 2014 Inside howlate_cron
+Inside script1.php
+Thu Aug 28 17:31:01 EST 2014 Inside howlate_cron
+Inside script1.php
+Thu Aug 28 17:32:01 EST 2014 Inside howlate_cron
+Inside script1.php
+Thu Aug 28 17:33:01 EST 2014 Inside howlate_cron
+Inside script1.php
+Thu Aug 28 17:34:01 EST 2014 Inside howlate_cron
+Inside script1.php
+Thu Aug 28 17:35:01 EST 2014 Inside howlate_cron
+Inside script1.php
+Thu Aug 28 17:36:01 EST 2014 Inside howlate_cron
+Inside script1.php
+Thu Aug 28 17:37:01 EST 2014 Inside howlate_cron
+Inside script1.php
+Thu Aug 28 18:32:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 18:33:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 18:34:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 18:35:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 18:36:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 18:37:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 18:38:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 18:39:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 18:40:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 18:41:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 18:42:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 18:43:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 18:44:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 18:45:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 18:46:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 18:47:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 18:48:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 18:49:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 18:50:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 18:51:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 18:52:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 18:53:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 18:54:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 18:55:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 18:56:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 18:57:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 18:58:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 18:59:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 19:00:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 19:01:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 19:02:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 19:03:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 19:04:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 19:05:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 19:06:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 19:07:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 19:08:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 19:09:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 19:10:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 19:11:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 19:12:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 19:13:02 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 19:14:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 19:15:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 19:16:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 19:17:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 19:18:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 19:19:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 19:20:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 19:21:02 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 19:22:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 19:23:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 19:24:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 19:25:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 19:26:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 19:27:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 19:28:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 19:29:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 19:30:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 19:31:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 19:32:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 19:33:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 19:34:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 19:35:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 19:36:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 19:37:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 19:38:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 19:39:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 19:40:02 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 19:41:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 19:42:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 19:43:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 19:44:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 19:45:02 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 19:46:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 19:47:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 19:48:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 19:49:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 19:50:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 19:51:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 19:52:02 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 19:53:02 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 19:54:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 19:55:02 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 19:56:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 19:57:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 19:58:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 19:59:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 20:00:03 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 20:01:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 20:02:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 20:03:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 20:04:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 20:05:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 20:06:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 20:07:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 20:08:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 20:09:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 20:10:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 20:11:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 20:12:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 20:13:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 20:14:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 20:15:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 20:16:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 20:17:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 20:18:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 20:19:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 20:20:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 20:21:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 20:22:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 20:23:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 20:24:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 20:25:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 20:26:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 20:27:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 20:28:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 20:29:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 20:30:03 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 20:31:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 20:32:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 20:33:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 20:34:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 20:35:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 20:36:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 20:37:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 20:38:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 20:39:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 20:40:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 20:41:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 20:42:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 20:43:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 20:44:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 20:45:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 20:46:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 20:47:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 20:48:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 20:49:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 20:50:02 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 20:51:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 20:52:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 20:53:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 20:54:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 20:55:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 20:56:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 20:57:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 20:58:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 20:59:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 21:00:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 21:01:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 21:02:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 21:03:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 21:04:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 21:05:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 21:06:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 21:07:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 21:08:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 21:09:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 21:10:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 21:11:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 21:12:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 21:13:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 21:14:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 21:15:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 21:16:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 21:17:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 21:18:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 21:19:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 21:20:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 21:21:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 21:22:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 21:23:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 21:24:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 21:25:02 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 21:26:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 21:27:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 21:28:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 21:29:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 21:30:02 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 21:31:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 21:32:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 21:33:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 21:34:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 21:35:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 21:36:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 21:37:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 21:38:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 21:39:02 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created
+Thu Aug 28 21:40:01 EST 2014 Inside howlate_cron
+Inside zeroLateness.php, which zeroes out the lateness after hoursdatabase object created

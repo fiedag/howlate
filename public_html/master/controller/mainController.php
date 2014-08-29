@@ -158,7 +158,7 @@ EOT;
         $message = 'To receive lateness updates for ' . $prac->PractitionerName . ' at ' . $prac->ClinicName;
         $message .= ', click : ';
         $message .= "http://secure." . __DOMAIN . "/late/view&udid=$udid";
-        $message .= " .  Please bookmark this link to your Home Screen.";
+        //$message .= " .  Please bookmark this link to your Home Screen.";
         $clickatell->httpSend(null, $udid, $message);
 
         $this->index();

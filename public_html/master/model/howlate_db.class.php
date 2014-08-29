@@ -524,6 +524,23 @@ class howlate_db {
         $result->close();
     }
     
+    public function getclosedclinics() {
+        $q = "SELECT * FROM orgs WHERE Country = '$country'";
+
+        $myArray = array();
+        if ($result = $this->conn->query($q)) {
+            $tempArray = array();
+            while ($row = $result->fetch_object()) {
+                $tempArray = $row;
+                array_push($myArray, $tempArray);
+            }
+            return $myArray;
+        }
+        $result->close();        
+        
+        
+    }
+    
     
 }
 

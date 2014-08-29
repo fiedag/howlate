@@ -42,6 +42,7 @@ class howlate_api {
                 }
 
                 $db->updatelateness($practitioner->OrgID, $practitioner->PractitionerID, $newlate);
+                
                 $db->trlog(TranType::LATE_UPD, 'Practitioner ' . $practitioner->PractitionerName . ' is now ' . $newlate . ' minutes late', $org->OrgID, null, $practitioner->PractitionerID, null);
                 return "Lateness for $providername has been updated to $newlate minutes";
             } catch (Exception $ex) {
