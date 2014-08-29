@@ -120,6 +120,14 @@ class howlate_util {
         }
     }
     
+    ///
+    /// takes a real number of minutes and displays to the nearest x minutes, then subtracts the offset
+    /// and shows if positive else 0
+    private function displaylateness($real, $tonearest, $offset) {
+        $display = round($real / $tonearest, 0) * $tonearest - $offset;
+        $display = ($display>0)?$display:0;
+    }
+    
 }
 
 ?>

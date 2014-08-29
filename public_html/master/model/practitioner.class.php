@@ -15,6 +15,9 @@ class practitioner extends howlate_basetable {
         public $OrgName;
         public $FQDN;
         
+        public $NotificationThreshold;
+        public $LateToNearest;
+        public $LatenessOffset;
         
         public function logoURL() {
             return howlate_util::logoURL($this->Subdomain);

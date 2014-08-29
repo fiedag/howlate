@@ -58,13 +58,13 @@ class howlate_db {
     }
 
     function getPractitioner($org, $id, $fieldname = 'PractitionerID') {
-        $q = "SELECT OrgID, PractitionerID, Pin, PractitionerName, ClinicName, OrgName, FQDN FROM vwPractitioners WHERE OrgID = ? AND $fieldname = ?";
+        $q = "SELECT OrgID, PractitionerID, Pin, PractitionerName, ClinicName, OrgName, FQDN, NotificationThreshold, LateToNearest, LatenessOffset FROM vwPractitioners WHERE OrgID = ? AND $fieldname = ?";
         $stmt = $this->conn->query($q);
         $stmt = $this->conn->prepare($q);
         $stmt->bind_param('ss', $org, $id);
         $stmt->execute() or trigger_error('# Query Error (' . $this->conn->errno . ') ' . $this->conn->error, E_USER_ERROR);
         $p = new practitioner();
-        $stmt->bind_result($p->OrgID, $p->PractitionerID, $p->Pin, $p->PractitionerName, $p->ClinicName, $p->OrgName, $p->FQDN);
+        $stmt->bind_result($p->OrgID, $p->PractitionerID, $p->Pin, $p->PractitionerName, $p->ClinicName, $p->OrgName, $p->FQDN, $p->NotificationThreshold, $p->LateToNearest, $p->LatenessOffset);
         $stmt->fetch();
         return $p;
     }
@@ -132,6 +132,9 @@ class howlate_db {
         $result->close();
     }
 
+    
+    
+    
     function getOrganisation($val, $field = 'Subdomain') {
         
         $q = "SELECT * FROM orgs WHERE $field = '$val'";
@@ -467,8 +470,8 @@ class howlate_db {
     //
     // Get all latenesses which may have expired 
     //
-    public function getAllLatenessesTZ() {
-        $q = "SELECT OrgID, ID, ClinicID, Updated, Timezone, OpeningHrs, ClosingHrs FROM vwLatenessTZ";
+    public function getAllLatenesses() {
+        $q = "SELECT * FROM vwLateness";
         $myArray = array();
         if ($result = $this->conn->query($q)) {
             while ($row = $result->fetch_object()) {
