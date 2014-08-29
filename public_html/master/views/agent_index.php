@@ -28,7 +28,7 @@
         </div>
         <div class="control-group">
             <label class="control-label" for="PWD">Password:</label>
-            <input type="password" class="controls" id="PWD" name="PWD" size="25" value="123456"></input>
+            <input type="text" class="controls" id="PWD" name="PWD" size="25" value="123456"></input>
         </div>
     <h3>3. Download the config file and place in the same folder as the exe</h3>
         <div class="xcrud-nav">

@@ -95,16 +95,15 @@ class howlate_util {
     }
 
     
-    public static function logoURL($subd) {
+    public static function logoURL($subd = "") {
 
         if (file_exists("pri/$subd/logo.png")) {
             return "/pri/$subd/logo.png";
         } else {
-            return "/pri/logo.png";
+            return "/images/logos/logo_sm_trans.png";
         }
     }
 
-    
     public static function diag($str) {
         if (defined('__DIAG')) {
             echo $str . "<br>";           

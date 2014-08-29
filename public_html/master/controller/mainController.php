@@ -161,6 +161,8 @@ EOT;
         //$message .= " .  Please bookmark this link to your Home Screen.";
         $clickatell->httpSend(null, $udid, $message);
 
+        $db->trlog(TranType::DEV_SMS, "SMS invited $udid using Clickatell gateway", $org, null, $id, $udid);
+
         $this->index();
     }
 

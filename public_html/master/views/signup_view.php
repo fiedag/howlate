@@ -12,7 +12,7 @@
     <body>
         <div id="navmain" class="fresh-header">
             <header class="header">
-                <a href="http://how-late.com"><div class="howlate-logo"></div></a>
+                <a href="http://how-late.com"><div class="howlate-logo"><img src="<?php echo $logourl; ?>"></div></a>
             </header>
 
             <div class="signup">

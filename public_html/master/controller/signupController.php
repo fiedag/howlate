@@ -7,7 +7,7 @@ Class signupController Extends baseController {
     public function index() {
 
         $this->registry->template->controller = $this;
-
+        $this->registry->template->logourl = howlate_util::logoURL();
         $this->registry->template->show('signup_view');
     }
 

@@ -24,6 +24,7 @@ class clickatell {
 
 			if ($send[0] == "ID") {
 				//echo "success message ID: ". $send[1];
+                                
 			} else {
 				die("send message failed, " . print_r($ret));
 			}

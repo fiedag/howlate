@@ -55,11 +55,7 @@ class organisation {
                 $this->Users[] = $u;
             }
 
-            if (file_exists("pri/$this->Subdomain/logo.png")) {
-                $this->LogoURL = "/pri/$this->Subdomain/logo.png";
-            } else {
-                $this->LogoURL = "/pri/logo.png";
-            }
+            $this->LogoURL = howlate_util::logoURL($this->Subdomain);
         }
 
         return $this;

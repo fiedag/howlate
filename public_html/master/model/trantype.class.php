@@ -2,7 +2,7 @@
 
 abstract class TranType {
 	const CLIN_ADD   =  "CLIN_ADD";	const CLIN_ARCH  =  "CLIN_ARCH";	const CLIN_CHG   =  "CLIN_CHG";	const CLIN_DEL   =  "CLIN_DEL";
-	const DEV_REG    =  "DEV_REG";	const DEV_UNREG  =  "DEV_UNREG";
+	const DEV_REG    =  "DEV_REG";	const DEV_UNREG  =  "DEV_UNREG";    const DEV_SMS = "DEV_SMS";
 	const LATE_GET   =  "LATE_GET";	const LATE_RESET =  "LATE_RESET";	const LATE_UPD   =  "LATE_UPD";
 	const MISC_MISC  =  "MISC_MISC";
 	const ORG_ADD    =  "ORG_ADD";	const ORG_CHG    =  "ORG_CHG";	const ORG_DEL    =  "ORG_DEL";
