@@ -9,7 +9,7 @@ Class devicesController Extends baseController {
 	$this->org = new organisation();
         $this->org->getby(__SUBDOMAIN, "Subdomain");
         $this->registry->template->companyname = $this->org->OrgName;
-        $this->registry->template->logourl = $this->org->LogoURL;
+        $this->registry->template->logourl = howlate_util::logoURL(__SUBDOMAIN);
 
 	$this->registry->template->controller = $this;
        

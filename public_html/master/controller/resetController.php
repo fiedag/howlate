@@ -9,7 +9,7 @@ Class resetController Extends baseController {
         $this->org->getby(__SUBDOMAIN, 'Subdomain');
         $this->registry->template->org = $this->org;
         $this->registry->template->controller = $this;
-        $this->registry->template->logourl = $this->org->LogoURL;
+        $this->registry->template->logourl = howlate_util::logoURL(__SUBDOMAIN);
     }
     public function index() {
         

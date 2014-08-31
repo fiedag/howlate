@@ -21,7 +21,7 @@ Class clinicinfoController Extends baseController {
         $this->registry->template->clinic = $clin;
         $this->registry->template->formattedAddress = $this->formatAddress($clin);
         $this->registry->template->addressURL = $this->addressURL($clin);
-        $this->registry->template->logourl = $org->LogoURL;
+        $this->registry->template->logourl = howlate_util::logoURL(__SUBDOMAIN);
         $this->registry->template->subdomain = $org->Subdomain;
         $this->registry->template->show('clinicinfo_index');
 

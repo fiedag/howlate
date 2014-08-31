@@ -8,7 +8,7 @@ Class error404Controller Extends baseController {
         $this->org = new organisation();
         $this->org->getby(__SUBDOMAIN, 'Subdomain');
         $this->registry->template->companyname = $this->org->OrgName;
-        $this->registry->template->logourl = $this->org->LogoURL;
+        $this->registry->template->logourl = howlate_util::logoURL(__SUBDOMAIN);
         $this->registry->template->sorry = "Oops.  We couldn't find what you're looking for.";
         $this->registry->template->sorry_sub = "The requested page could not be found. Please go back and try looking again.";
         $this->registry->template->controller = $this;

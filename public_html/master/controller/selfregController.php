@@ -39,7 +39,7 @@ Class selfregController Extends baseController {
 
         
         $this->registry->template->companyname = $this->org->OrgName;
-        $this->registry->template->logourl = $this->org->LogoURL;
+        $this->registry->template->logourl = howlate_util::logoURL(__SUBDOMAIN);
 
         $this->registry->template->invitepin = $this->invitepin;
         $this->registry->template->show('selfreg_index');
