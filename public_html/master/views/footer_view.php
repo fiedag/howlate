@@ -27,9 +27,6 @@
                 <div class="span-8 append-1"><a href="https://www.positivessl.com" style="font-family: arial; font-size: 10px; color: #212121; text-decoration: none;"><img class="ssl-seal" src="https://www.positivessl.com/images-new/PositiveSSL_tl_trans.png" alt="Secured by COMODO Positive SSL" title="Secured by COMODO Positive SSL" border="0" /></a></div>
             </div>
             <div class="clearb"></div>
-            
-            
-            
         </div>
     </div>
 

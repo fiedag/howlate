@@ -2,31 +2,48 @@
 
 
 include("/home/howlate/public_html/master/model/howlate_db.class.php");
+include("/home/howlate/public_html/master/model/howlate_util.class.php");
 
 $db = new howlate_db();
 
-$result = $db->getAllLatenesses();
+$result = $db->getLateTimezones();
 foreach($result as $key => $val) {
-    $localtime = new DateTime(null, new DateTimeZone($val->Timezone));
+    echo "<h3>$key $val->Timezone</h3>"; 
+
+    $tolerance = 7200;  // two hours
     
-    echo "<h3>$key</h3>"; 
+    $day = howlate_util::dayName("now", $val->Timezone);
+    $time = howlate_util::secondsSinceMidnight("now", $val->Timezone);
     
-    echo "<b> $val->ClinicName : $val->Timezone </b> where the local time is : " . $localtime->format('H:i:s');
-    echo " and the clinic closes at " ;
+    // 
+    $toprocess = $db->getLatesAndSessions($val->Timezone, $day, $time);
     
-    
-//    $src_dt = '2012-05-15 10:50:00';
-//    $src_tz =  new DateTimeZone('Asia/Manila');
-//    $dest_tz = new DateTimeZone('America/Vancouver');
-//
-//    $dt = new DateTime($src_dt, $src_tz);
-//    $dt->setTimeZone($dest_tz);
-//
-//    $dest_dt = $dt->format('Y-m-d H:i:s');
-    
-    
-    
-    
+    if (count($toprocess) > 0) {
+        foreach ($toprocess as $key => $val) {
+
+            echo " time = $time, [UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [$val->UKey , $val->OrgID, $val->ID, $val->Updated, $val->Minutes, $val->Timezone, $val->Day, $val->StartTime, $val->EndTime ]<br>";
+            
+            // we are only going to delete entries where sessions exist at all for that day
+            // if sessions do not exist, then StartTime and EndTime will return -1
+            if ($val->StartTime >= 0 and $val->EndTime >= 0) {
+                $start = $val->StartTime - $tolerance;
+                $end = $val->EndTime + $tolerance;
+                
+                if ($start < 0) {
+                    $start = $start + 86400;
+                }
+                if ($end > 86400) {
+                    $end = $end - 86400;
+                }
+                if ($time < $start or $time > $end) {
+                $db->deleteLateByKey($val->UKey);
+                echo "Delete $val->UKey<br>";
+                }
+                
+            }
+            
+       }
+    }
 }
 
 ?>

@@ -424,7 +424,7 @@ class howlate_db {
  
     public function create_practitioner($orgid, $clinicid, $firstname, $lastname, $integrkey ) {
         $q = "CALL sp_CreatePractitioner ($orgid, $clinicid, $firstname, $lastname, $integrkey)";
-        echo $q;
+        //echo $q;
         $stmt = $this->conn->query($q);
         $stmt = $this->conn->prepare($q); 
         
@@ -489,7 +489,18 @@ class howlate_db {
             trigger_error("The lates record was not deleted, error= " . $this->conn->error , E_USER_ERROR);
         }
     }
-
+    
+    public function deleteLateByKey($key) {
+        $q = "DELETE FROM lates WHERE UKey = ?";
+        $stmt = $this->conn->query($q);
+        $stmt = $this->conn->prepare($q);     
+        $stmt->bind_param('i', $key);
+        $stmt->execute() ;
+        if ($stmt->affected_rows == 0) {
+            trigger_error("The lates record was not deleted, error= " . $this->conn->error , E_USER_ERROR);
+        }
+    }
+    
     // returns all countries in the database
     // useful for the setup wizard, in order to find organisations
     public function getallcountries() {
@@ -523,23 +534,48 @@ class howlate_db {
         }
         $result->close();
     }
-    
-    public function getclosedclinics() {
-        $q = "SELECT * FROM orgs WHERE Country = '$country'";
 
-        $myArray = array();
+    //
+    // Timezones which have lateness perhaps needing to be cleaned up
+    //
+    public function getLateTimezones() {
+        $q = "SELECT DISTINCT Timezone FROM vwLateTZ";
+
+        $timezones = array();
         if ($result = $this->conn->query($q)) {
             $tempArray = array();
             while ($row = $result->fetch_object()) {
                 $tempArray = $row;
-                array_push($myArray, $tempArray);
+                array_push($timezones, $tempArray);
             }
-            return $myArray;
+            return $timezones;
         }
         $result->close();        
-    
     }
 
+    /// for a given timezone, get all those latenesses joined to any session times which exist
+    public function getLatesAndSessions($timezone, $day, $time) {
+        // $day is Monday, Tuesday etc.
+        // $time is in seconds since midnight
+        $q = " SELECT v.*, s.Day, IFNULL(s.StartTime, -1) As StartTime, IFNULL(s.EndTime,-1) As EndTime " .
+             " FROM vwLateTZ v " .
+             " LEFT OUTER JOIN sessions s on s.OrgID = v.OrgID and s.ID = v.ID and Day = '$day' " .
+             " WHERE v.Timezone = '$timezone'" ;
+        echo "\r\n" . $q . "<br>";
+        
+        $toprocess = array();
+        if ($result = $this->conn->query($q)) {
+            $tempArray = array();
+            while ($row = $result->fetch_object()) {
+                $tempArray = $row;
+                array_push($toprocess, $tempArray);
+            }
+            return $toprocess;
+        }
+        
+    }
+    
+    
     public function updatesessions($org, $id, $day, $start, $end) {
         $q = "REPLACE INTO sessions (OrgID, ID, Day, StartTime, EndTime) VALUES (?,?,?,?,?)";
 
@@ -548,6 +584,6 @@ class howlate_db {
         $stmt->bind_param('sssii', $org, $id, $day, $start, $end);
         $stmt->execute() or trigger_error('# Query Error (' . $this->conn->errno . ') ' . $this->conn->error, E_USER_ERROR);               
     }
-    
+      
 }
 

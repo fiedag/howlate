@@ -35,7 +35,7 @@ Class clinicsController Extends baseController {
             $tz_csv .= ($tz_csv=="")?$val:",$val";
         } 
         $tz = trim($this->org->Timezone);
-        echo "[Organisation Timezone is $tz]";
+        //echo "[Organisation Timezone is $tz]";
         $xcrud->change_type('Timezone', 'select', $tz, $tz_csv); 
         $xcrud->pass_default('Timezone',$tz);
         $xcrud->unset_csv(true)->unset_numbers(true)->unset_print(true)->unset_limitlist(true)->hide_button('save_and_edit')->hide_button('save_and_new');     
