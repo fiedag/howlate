@@ -1,6 +1,15 @@
 <?php
 
-echo "\r\n ******************************* in zeroLateness.php program ***********************";
+date_default_timezone_set('Australia/Melbourne');
+
+
+ function log($msg) {
+    echo date("Y-m-d H:i:s e", time()) . ":" . $msg . "\r\n";
+    
+}
+
+
+log("**************** zeroing out old lateness records ******************");
 
 include("/home/howlate/public_html/master/model/howlate_db.class.php");
 include("/home/howlate/public_html/master/model/howlate_util.class.php");
@@ -9,7 +18,7 @@ $db = new howlate_db();
 
 $result = $db->getLateTimezones();
 foreach($result as $key => $val) {
-    echo "<h3>$key $val->Timezone</h3>"; 
+    log($val->Timezone); 
 
     $tolerance = 7200;  // two hours
     
@@ -22,7 +31,7 @@ foreach($result as $key => $val) {
     if (count($toprocess) > 0) {
         foreach ($toprocess as $key => $val) {
 
-            echo "\r\n time = $time, [UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [$val->UKey , $val->OrgID, $val->ID, $val->Updated, $val->Minutes, $val->Timezone, $val->Day, $val->StartTime, $val->EndTime ]<br>";
+            log("[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [$val->UKey , $val->OrgID, $val->ID, $val->Updated, $val->Minutes, $val->Timezone, $val->Day, $val->StartTime, $val->EndTime ]");
             
             // we are only going to delete entries where sessions exist at all for that day
             // if sessions do not exist, then StartTime and EndTime will return -1
@@ -37,8 +46,8 @@ foreach($result as $key => $val) {
                     $end = $end - 86400;
                 }
                 if ($time < $start or $time > $end) {
-                $db->deleteLateByKey($val->UKey);
-                echo "Delete $val->UKey<br>\r\n";
+                    $db->deleteLateByKey($val->UKey);
+                    log("Deleted lateness.UKey = $val->UKey");
                 }
                 
             }

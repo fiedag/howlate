@@ -1,0 +1,29 @@
+Sun Aug 31 21:32:01 EST 2014 Inside howlate_cron
+
+ ******************************* in zeroLateness.php program ***********************<h3>0 Australia/Adelaide</h3>
+ SELECT v.*, s.Day, IFNULL(s.StartTime, -1) As StartTime, IFNULL(s.EndTime,-1) As EndTime  FROM vwLateTZ v  LEFT OUTER JOIN sessions s on s.OrgID = v.OrgID and s.ID = v.ID and Day = 'Sunday'  WHERE v.Timezone = 'Australia/Adelaide'<br>
+ time = 75721, [UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [228 , AAADD, B, 2014-08-31 21:31:51, 18, Australia/Adelaide, Sunday    , 25200, 66600 ]<br>Delete 228<br>
+<h3>1 Australia/NSW</h3>
+ SELECT v.*, s.Day, IFNULL(s.StartTime, -1) As StartTime, IFNULL(s.EndTime,-1) As EndTime  FROM vwLateTZ v  LEFT OUTER JOIN sessions s on s.OrgID = v.OrgID and s.ID = v.ID and Day = 'Sunday'  WHERE v.Timezone = 'Australia/NSW'<br>
+ time = 77521, [UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [113 , AAAHH, A, 2014-08-31 20:52:58, 5, Australia/NSW, , -1, -1 ]<br>Sun Aug 31 21:33:01 EST 2014 Inside howlate_cron
+
+ ******************************* in zeroLateness.php program ***********************<h3>0 Australia/Adelaide</h3>
+ SELECT v.*, s.Day, IFNULL(s.StartTime, -1) As StartTime, IFNULL(s.EndTime,-1) As EndTime  FROM vwLateTZ v  LEFT OUTER JOIN sessions s on s.OrgID = v.OrgID and s.ID = v.ID and Day = 'Sunday'  WHERE v.Timezone = 'Australia/Adelaide'<br>
+ time = 75781, [UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [231 , AAADD, B, 2014-08-31 21:32:51, 18, Australia/Adelaide, Sunday    , 25200, 66600 ]<br>Delete 231<br>
+<h3>1 Australia/NSW</h3>
+ SELECT v.*, s.Day, IFNULL(s.StartTime, -1) As StartTime, IFNULL(s.EndTime,-1) As EndTime  FROM vwLateTZ v  LEFT OUTER JOIN sessions s on s.OrgID = v.OrgID and s.ID = v.ID and Day = 'Sunday'  WHERE v.Timezone = 'Australia/NSW'<br>
+ time = 77581, [UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [113 , AAAHH, A, 2014-08-31 20:52:58, 5, Australia/NSW, , -1, -1 ]<br>Sun Aug 31 21:34:01 EST 2014 Inside howlate_cron
+
+ ******************************* in zeroLateness.php program ***********************<h3>0 Australia/Adelaide</h3>
+ SELECT v.*, s.Day, IFNULL(s.StartTime, -1) As StartTime, IFNULL(s.EndTime,-1) As EndTime  FROM vwLateTZ v  LEFT OUTER JOIN sessions s on s.OrgID = v.OrgID and s.ID = v.ID and Day = 'Sunday'  WHERE v.Timezone = 'Australia/Adelaide'<br>
+ time = 75841, [UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [234 , AAADD, B, 2014-08-31 21:33:51, 18, Australia/Adelaide, Sunday    , 25200, 66600 ]<br>Delete 234<br>
+<h3>1 Australia/NSW</h3>
+ SELECT v.*, s.Day, IFNULL(s.StartTime, -1) As StartTime, IFNULL(s.EndTime,-1) As EndTime  FROM vwLateTZ v  LEFT OUTER JOIN sessions s on s.OrgID = v.OrgID and s.ID = v.ID and Day = 'Sunday'  WHERE v.Timezone = 'Australia/NSW'<br>
+ time = 77641, [UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [113 , AAAHH, A, 2014-08-31 20:52:58, 5, Australia/NSW, , -1, -1 ]<br>Sun Aug 31 21:35:01 EST 2014 Inside howlate_cron
+
+ ******************************* in zeroLateness.php program ***********************<h3>0 Australia/Adelaide</h3>
+ SELECT v.*, s.Day, IFNULL(s.StartTime, -1) As StartTime, IFNULL(s.EndTime,-1) As EndTime  FROM vwLateTZ v  LEFT OUTER JOIN sessions s on s.OrgID = v.OrgID and s.ID = v.ID and Day = 'Sunday'  WHERE v.Timezone = 'Australia/Adelaide'<br>
+ time = 75901, [UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [237 , AAADD, B, 2014-08-31 21:34:51, 18, Australia/Adelaide, Sunday    , 25200, 66600 ]<br>Delete 237<br>
+<h3>1 Australia/NSW</h3>
+ SELECT v.*, s.Day, IFNULL(s.StartTime, -1) As StartTime, IFNULL(s.EndTime,-1) As EndTime  FROM vwLateTZ v  LEFT OUTER JOIN sessions s on s.OrgID = v.OrgID and s.ID = v.ID and Day = 'Sunday'  WHERE v.Timezone = 'Australia/NSW'<br>
+ time = 77701, [UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [113 , AAAHH, A, 2014-08-31 20:52:58, 5, Australia/NSW, , -1, -1 ]<br>

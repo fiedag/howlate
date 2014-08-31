@@ -37,7 +37,7 @@ Class practController Extends baseController {
         
         $xcrud->column_pattern('SurrogKey', $this->assignSpan());  // display the assignment button
 
-        
+
         echo $xcrud->render();
     }
 
