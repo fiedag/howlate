@@ -5,7 +5,13 @@ class howlate_db {
     protected $conn;
 
     function __construct() {
-        $this->conn = new mysqli('localhost', 'howlate_super', 'NuNbHG4NQn', 'howlate_main');
+        if (__DOMAIN == "how-late.com") {
+            $this->conn = new mysqli('localhost', 'howlate_super', 'NuNbHG4NQn', 'howlate_main');
+        }
+        else if (__DOMAIN == "fiedlerconsulting.com.au")
+        {
+            $this->conn = new mysqli('localhost', 'fiedlerc_super', 'Az#XlXEx~hkk', 'fiedlerc_hldev');
+        }
     }
 
     function __destruct() {
