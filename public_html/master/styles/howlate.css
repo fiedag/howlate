@@ -8,6 +8,7 @@ body.wide_layout{min-width:960px}
 @font-face{font-family:"Franklin-Book";src:url("/fonts/itcfranklingothicstd-book-webfont.eot");src:url("/fonts/itcfranklingothicstd-book-webfont.eot?") format("embedded-opentype"),url("/fonts/itcfranklingothicstd-book-webfont.woff") format("woff"),url("/fonts/itcfranklingothicstd-book-webfont.svg") format("svg"),url("/fonts/itcfranklingothicstd-book-webfont.ttf") format("truetype");font-style:normal;font-weight:normal}
 
 .clinic-dropdown { margin-left: 20px}
+.timezone-dropdown { margin-left: 20px}
 
 .ssl-seal {
     width:9em;

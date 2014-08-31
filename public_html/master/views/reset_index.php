@@ -7,7 +7,7 @@
         <link media="screen" href="/styles/howlate.css" type="text/css" rel="stylesheet" >
         <link media="screen" href="/styles/howlate_login.css" type="text/css" rel="stylesheet">        
         <link media="only screen and (max-device-width: 480px)" href="/styles/howlate_mobile.css" type="text/css" rel="stylesheet">
-        <link rel="apple-touch-icon" href="<?php echo $logourl ?>/logo.png" >
+        <link rel="apple-touch-icon" href="<?php echo $logourl ?>" >
         <link rel="icon" type="image/png" href="<?php echo $logourl; ?>" />
 
     </head>

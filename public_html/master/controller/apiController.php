@@ -40,6 +40,9 @@ Class apiController Extends baseController {
             case "upd":
                 $this->registry->template->result = json_encode(howlate_api::updatelateness());  // a device is updating the lateness for a single practitioner.  Needs a password.
                 break;
+            case "sess":
+                $this->registry->template->result = json_encode(howlate_api::updatesessions());  // a device is updating the sessions from an org
+                break;
 //            case "getclinics":
 //                $this->registry->template->result = json_encode(getclinics());  // returns a list of clinics for this organisation
 //                break;

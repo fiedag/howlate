@@ -84,7 +84,8 @@ Class agentController Extends baseController {
         $this->registry->template->database = $_POST["Database"];
         $this->registry->template->uid = $_POST["UID"];
         $this->registry->template->pwd = $_POST["PWD"];
-        $this->registry->template->url = "https://" . __SUBDOMAIN . ".how-late.com/api?met=upd&amp;ver=post";
+        $this->registry->template->interval = $_POST["interval"];
+        $this->registry->template->url = "https://" . __SUBDOMAIN . ".how-late.com/api?ver=post";
         $this->registry->template->credentials = $userid . "." . $res->XPassword;
 
 

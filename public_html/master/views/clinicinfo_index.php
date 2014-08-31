@@ -8,7 +8,7 @@
 
     <body>
         <div class="container">
-            <img class="logo" src="/pri/<?php echo $subdomain; ?>/logo.png">
+            <img class="logo" src="<?php echo $logourl; ?>">
             <h1><?php echo $clinic->ClinicName; ?></h1>
             <div class="address">
                 Phone: <a href="tel:<?php echo $clinic->Phone; ?>"><?php echo $clinic->Phone; ?></a><p></p>

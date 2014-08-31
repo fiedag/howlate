@@ -7,7 +7,7 @@
         <link media="screen" href="/styles/howlate.css" type="text/css" rel="stylesheet" >
         <link media="screen" href="/styles/howlate_login.css" type="text/css" rel="stylesheet">        
         <link media="only screen and (max-device-width: 480px)" href="/styles/howlate_mobile.css" type="text/css" rel="stylesheet">
-        <link rel="apple-touch-icon" href="<?php echo $logourl ?>/logo.png" >
+        <link rel="apple-touch-icon" href="<?php echo $logourl ?>" >
         <link rel="icon" type="image/png" href="<?php echo $logourl; ?>" />
 
     </head>
@@ -34,13 +34,11 @@
                             <tr>
                                 <td width="275" class="login-table">
                                     <?php if (isset($logourl))  { ?> 
-                                    <img class="photo" alt="" title="<?php if (isset($usercookie)) {echo "User cookie $usercookie .";} if (isset($orgidcookie)) {echo "  OrgID cookie $orgidcookie";} ?>" width="150" src="<?php echo $logourl; ?>" />
+                                    <img class="photo" alt="" title="" width="150" src="<?php echo $logourl; ?>" />
                                     <?php } ?>
                                 </td>
                                 <td> 
-
                                     <div class="login-right-container">
-
                                         <!-- script>var h1 = $(".notification-page.title-only").height(), h2 = $(".notification-page.title-only h3").height(), mt = (h1 - h2) * 0.5;
                                             $(".notification-page.title-only h3").css("marginTop", mt);</script -->
 <?php if (isset($password_incorrect) and $password_incorrect == 1) { ?>

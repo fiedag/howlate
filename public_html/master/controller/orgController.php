@@ -33,7 +33,19 @@ Class orgController Extends baseController {
         $this->registry->template->controller = $this;       
         $this->registry->template->show('org_index');
     }
-
+    
+    public function get_tz_options() {
+        $tz = $this->org->gettimezones();
+        foreach ($tz as $val) {
+            echo "<option value='" . $val . "'";
+            
+            if ($val == $this->org->Timezone) {
+                echo "selected";
+            }
+            echo ">$val</option>";
+        }
+    }
+    
 }
 
 ?>

@@ -29,14 +29,15 @@ Class clinicsController Extends baseController {
         $xcrud->label(array('ClinicName' => 'Clinic', 'Address1' => 'Address', 'Address2' => 'Address', 'Timezone' => 'Time Zone'));
 
         $xcrud->pass_default('OrgID',$this->org->OrgID);
-      
         $tz = $this->org->gettimezones();
         $tz_csv="";
         foreach($tz as $val) {
             $tz_csv .= ($tz_csv=="")?$val:",$val";
         } 
-        
-        $xcrud->change_type('Timezone', 'select', 'Australia/Adelaide', $tz_csv);        
+        $tz = trim($this->org->Timezone);
+        echo "[Organisation Timezone is $tz]";
+        $xcrud->change_type('Timezone', 'select', $tz, $tz_csv); 
+        $xcrud->pass_default('Timezone',$tz);
         $xcrud->unset_csv(true)->unset_numbers(true)->unset_print(true)->unset_limitlist(true)->hide_button('save_and_edit')->hide_button('save_and_new');     
         $xcrud->after_remove("clinic_deleted");
         

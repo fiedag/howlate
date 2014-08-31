@@ -28,7 +28,6 @@ class howlate_db {
         $result->close();
     }
 
-    
     function getactiveclinics($orgID) {
         $q = "SELECT ClinicID, OrgID, Timezone, ClinicName, Phone, Address1, Address2, City, Zip, Country, Location FROM vwActiveClinics WHERE OrgID = '" . $orgID . "'";
 
@@ -132,9 +131,7 @@ class howlate_db {
         $result->close();
     }
 
-    
-    
-    
+
     function getOrganisation($val, $field = 'Subdomain') {
         
         $q = "SELECT * FROM orgs WHERE $field = '$val'";
@@ -540,10 +537,17 @@ class howlate_db {
             return $myArray;
         }
         $result->close();        
-        
-        
-    }
     
+    }
+
+    public function updatesessions($org, $id, $day, $start, $end) {
+        $q = "REPLACE INTO sessions (OrgID, ID, Day, StartTime, EndTime) VALUES (?,?,?,?,?)";
+
+        $stmt = $this->conn->query($q);
+        $stmt = $this->conn->prepare($q);
+        $stmt->bind_param('sssii', $org, $id, $day, $start, $end);
+        $stmt->execute() or trigger_error('# Query Error (' . $this->conn->errno . ') ' . $this->conn->error, E_USER_ERROR);               
+    }
     
 }
 

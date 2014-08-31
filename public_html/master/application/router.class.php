@@ -84,7 +84,7 @@ class router {
 	/*** run the action ***/
         
         
-        if ($this->controller != "login" and $this->controller != "late" and $this->controller != "signup") {
+        if ($this->controller != "login" and $this->controller != "late" and $this->controller != "signup" and $this->controller != "api") {
             
             $controller->session_start();
         }

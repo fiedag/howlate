@@ -14,6 +14,7 @@ class organisation {
     public $City;
     public $Zip;
     public $Country;
+    public $Timezone;
     public $Clinics;  // array of Clinic objects
     public $ActiveClinics;  // array of Active Clinic objects having placements
     public $Practitioners;  // array of Practitioner objects

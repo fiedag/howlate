@@ -35,6 +35,9 @@ echo '<?xml version="1.0" encoding="utf-8" ?>';
       <setting name="Credentials" serializeAs="String">
         <value><?php echo $credentials;?></value>
       </setting>
+      <setting name="PollIntervalSeconds" serializeAs="String">
+        <value><?php echo $interval;?></value>
+      </setting>
       <setting name="SelectBPS" serializeAs="String">
         <value>select a1.Provider, a1.Status, a1.ArrivalTime, a1.AppointmentTime, a1.ConsultationTime from BPS_Appointments a1 where a1.AppointmentDate = DATEADD(dd, 0, DATEDIFF(dd, 0, GETDATE()))
 and a1.ConsultationTime = 
@@ -43,9 +46,11 @@ WHERE a2.AppointmentDate = a1.AppointmentDate and a2.Provider
 = a1.Provider and a2.ConsultationTime != 0)
 </value>
       </setting>
-      <setting name="PollIntervalSeconds" serializeAs="String">
-        <value>20</value>
-      </setting>
+        
+      <setting name="SelectSessions" serializeAs="String">
+        <value>select * from BPS_Sessions where Provider &lt;&gt; ''</value>
+      </setting>        
+        
     </com.howlate.Properties.Settings>
 
   </applicationSettings>
