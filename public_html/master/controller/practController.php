@@ -31,12 +31,10 @@ Class practController Extends baseController {
         $xcrud->unset_csv(true)->unset_numbers(true)->unset_print(true)->unset_limitlist(true)->hide_button('save_and_edit')->hide_button('save_and_new');
 
         $xcrud->pass_default('OrgID', $this->org->OrgID);
-        $xcrud->pass_default('ID', $this->nextPractitionerID());
+        //$xcrud->pass_default('ID', $this->nextPractitionerID());
 
-        $xcrud->pass_default('DateCreated', date('Y-m-d'));
-        
+        $xcrud->pass_default('DateCreated', date('Y-m-d'));      
         $xcrud->column_pattern('SurrogKey', $this->assignSpan());  // display the assignment button
-
 
         echo $xcrud->render();
     }
