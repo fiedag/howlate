@@ -21,7 +21,7 @@ Class practController Extends baseController {
         $xcrud->table('practitioners')->where('OrgID =', $this->org->OrgID)->limit(10);
         $xcrud->join("SurrogKey","vwAssigned","SurrogKey");
 
-        $xcrud->columns('FullName,AbbrevName,DateCreated,vwAssigned.Assigned,SurrogKey', false);
+        $xcrud->columns('DateCreated,vwAssigned.Assigned,SurrogKey', false);
         
         $xcrud->readonly('OrgID,ID,SurrogKey,DateCreated,vwAssigned.Assigned');  //  for create/update/delete
 

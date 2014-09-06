@@ -1,4 +1,3 @@
-
 <?php $controller->get_header(); ?>
 
 <script>

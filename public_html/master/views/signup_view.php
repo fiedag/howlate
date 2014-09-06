@@ -19,8 +19,7 @@
                 <h1>Try How-Late Free</h1>
                 <h2>No credit card required. Cancel anytime.</h2>
 
-                <form novalidate class="signup-form subscribe-form" name="form"
-                      action="/signup/create" method="post">
+                <form class="signup-form subscribe-form" name="form" action="/signup/create" method="post">
 
                     <input name="company" placeholder="Your Company Name"
                            type="text" size="25" maxlength="50" class="input-company signupfield"/>
@@ -50,16 +49,19 @@
                         </span>
                     </button>
 
-                    <div class="signup-truste">
-                        <a href="http://privacy-policy.truste.com/" title="TRUSTe online privacy certification" target="_blank">
-                            <img src="http://privacy-policy.truste.com/certified-seal/wps/en/www.how-late.com/seal_m.png" alt="TRUSTe online privacy certification" width="115px" height="36px" />
-                        </a>
-                    </div>
+
 
                 </form>
 
             </div>
 
+            <div>
+                <b> <?php echo $signup_result; ?></b>
+                
+                
+                
+            </div>
+            
         </div>
 
     </body>

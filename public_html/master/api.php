@@ -290,13 +290,12 @@ function sendInvitation() {
 	$db = new howlate_db();
 	$prac = $db->getPractitioner($org, $id);
 	
-	$clickatell = new clickatell();
-
 	$message = 'To receive lateness updates for ' . $prac->PractitionerName . ' at ' . $prac->ClinicName;
         $message .= ', click : ';
         $message .= "http://$prac->FQDN/late/view&udid=$udid";
 
-	$clickatell->httpSend(null, $udid, $message);
+        howlate_sms::httpSend(null, $udid, $message);
+
 	
 }
 

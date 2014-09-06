@@ -1,0 +1,111 @@
+Fri Sep 5 09:37:45 EST 2014 Inside howlate_cron
+2014-09-05 09:37:45 Australia/Melbourne:**************** zeroing out old lateness records ******************
+
+Fatal error: Call to a member function query() on a non-object in /home/howlate/public_html/master/model/howlate_db.class.php on line 551
+Fri Sep 5 09:38:29 EST 2014 Inside howlate_cron
+2014-09-05 09:38:29 Australia/Melbourne:**************** zeroing out old lateness records ******************
+
+Fatal error: Call to a member function query() on a non-object in /home/howlate/public_html/master/model/howlate_db.class.php on line 551
+Fri Sep 5 09:44:46 EST 2014 Inside howlate_cron
+2014-09-05 09:44:46 Australia/Melbourne:**************** zeroing out old lateness records ******************
+2014-09-05 09:44:46 Australia/Melbourne:Processing timezone = Australia/NSW
+
+ SELECT v.*, s.Day, IFNULL(s.StartTime, -1) As StartTime, IFNULL(s.EndTime,-1) As EndTime  FROM vwLateTZ v  LEFT OUTER JOIN sessions s on s.OrgID = v.OrgID and s.ID = v.ID and Day = 'Friday'  WHERE v.Timezone = 'Australia/NSW'<br>2014-09-05 09:44:46 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [15107 , AAAHH, I, 2014-09-04 23:59:23, 4, Australia/NSW, Friday    , 28800, 54000 ]
+2014-09-05 09:44:46 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [15108 , AAAHH, O, 2014-09-04 23:59:23, 0, Australia/NSW, , -1, -1 ]
+2014-09-05 09:44:46 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [15110 , AAAHH, H, 2014-09-04 23:59:24, 21, Australia/NSW, , -1, -1 ]
+2014-09-05 09:44:46 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [15112 , AAAHH, F, 2014-09-04 23:59:24, 89, Australia/NSW, , -1, -1 ]
+2014-09-05 09:44:46 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [15113 , AAAHH, B, 2014-09-04 23:59:25, 3, Australia/NSW, Friday    , 52200, 60300 ]
+2014-09-05 09:44:46 Australia/Melbourne:Deleted lateness.UKey = 15113
+2014-09-05 09:44:46 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [15309 , AAAHH, D, 2014-09-05 09:43:23, 0, Australia/NSW, Friday    , 48600, 52200 ]
+2014-09-05 09:44:46 Australia/Melbourne:Deleted lateness.UKey = 15309
+2014-09-05 09:44:46 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [15310 , AAAHH, A, 2014-09-05 09:43:24, 29, Australia/NSW, Friday    , 50400, 59400 ]
+2014-09-05 09:44:46 Australia/Melbourne:Deleted lateness.UKey = 15310
+2014-09-05 09:44:46 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [15311 , AAAHH, C, 2014-09-05 09:43:25, 85, Australia/NSW, Friday    , 48600, 60300 ]
+2014-09-05 09:44:46 Australia/Melbourne:Deleted lateness.UKey = 15311
+2014-09-05 09:44:46 Australia/Melbourne:Processing timezone = Australia/Adelaide
+
+ SELECT v.*, s.Day, IFNULL(s.StartTime, -1) As StartTime, IFNULL(s.EndTime,-1) As EndTime  FROM vwLateTZ v  LEFT OUTER JOIN sessions s on s.OrgID = v.OrgID and s.ID = v.ID and Day = 'Friday'  WHERE v.Timezone = 'Australia/Adelaide'<br>2014-09-05 09:44:46 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [4538 , AAADD, B, 2014-09-01 23:26:51, 115, Australia/Adelaide, Friday    , 28800, 82800 ]
+2014-09-05 09:44:46 Australia/Melbourne:Deleted lateness.UKey = 4538
+2014-09-05 09:44:46 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [14826 , AAADD, A, 2014-09-04 22:47:29, 24, Australia/Adelaide, Friday    , 25200, 82800 ]
+2014-09-05 09:44:46 Australia/Melbourne:Deleted lateness.UKey = 14826
+Fri Sep 5 09:48:09 EST 2014 Inside howlate_cron
+2014-09-05 09:48:10 Australia/Melbourne:**************** zeroing out old lateness records ******************
+2014-09-05 09:48:10 Australia/Melbourne:++++++++++++++++++++++++ Processing timezone = Australia/NSW +++++++++++++++++
+
+ SELECT v.*, s.Day, IFNULL(s.StartTime, -1) As StartTime, IFNULL(s.EndTime,-1) As EndTime  FROM vwLateTZ v  LEFT OUTER JOIN sessions s on s.OrgID = v.OrgID and s.ID = v.ID and Day = 'Friday'  WHERE v.Timezone = 'Australia/NSW'<br>2014-09-05 09:48:10 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [15107 , AAAHH, I, 2014-09-04 23:59:23, 4, Australia/NSW, Friday    , 28800, 54000 ]
+2014-09-05 09:48:10 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [15108 , AAAHH, O, 2014-09-04 23:59:23, 0, Australia/NSW, , -1, -1 ]
+2014-09-05 09:48:10 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [15110 , AAAHH, H, 2014-09-04 23:59:24, 21, Australia/NSW, , -1, -1 ]
+2014-09-05 09:48:10 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [15112 , AAAHH, F, 2014-09-04 23:59:24, 89, Australia/NSW, , -1, -1 ]
+2014-09-05 09:48:10 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [15315 , AAAHH, D, 2014-09-05 09:47:23, 0, Australia/NSW, Friday    , 48600, 52200 ]
+2014-09-05 09:48:10 Australia/Melbourne:Deleted lateness.UKey = 15315
+2014-09-05 09:48:10 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [15316 , AAAHH, A, 2014-09-05 09:47:24, 29, Australia/NSW, Friday    , 50400, 59400 ]
+2014-09-05 09:48:10 Australia/Melbourne:Deleted lateness.UKey = 15316
+2014-09-05 09:48:10 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [15317 , AAAHH, C, 2014-09-05 09:47:24, 85, Australia/NSW, Friday    , 48600, 60300 ]
+2014-09-05 09:48:10 Australia/Melbourne:Deleted lateness.UKey = 15317
+Fri Sep 5 10:01:14 EST 2014 Inside howlate_cron
+2014-09-05 10:01:15 Australia/Melbourne:**************** zeroing out old lateness records ******************
+2014-09-05 10:01:15 Australia/Melbourne:++++++++++++++++++++++++ Processing timezone = Australia/NSW +++++++++++++++++
+
+ SELECT v.*, s.Day, IFNULL(s.StartTime, -1) As StartTime, IFNULL(s.EndTime,-1) As EndTime  FROM vwLateTZ v  LEFT OUTER JOIN sessions s on s.OrgID = v.OrgID and s.ID = v.ID and Day = 'Friday'  WHERE v.Timezone = 'Australia/NSW'<br>2014-09-05 10:01:15 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [15107 , AAAHH, I, 2014-09-04 23:59:23, 4, Australia/NSW, Friday    , 28800, 54000 ]
+2014-09-05 10:01:15 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [15110 , AAAHH, H, 2014-09-04 23:59:24, 21, Australia/NSW, , -1, -1 ]
+2014-09-05 10:01:15 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [15112 , AAAHH, F, 2014-09-04 23:59:24, 89, Australia/NSW, , -1, -1 ]
+2014-09-05 10:01:15 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [15333 , AAAHH, D, 2014-09-05 09:59:24, 0, Australia/NSW, Friday    , 48600, 52200 ]
+2014-09-05 10:01:15 Australia/Melbourne: so lateness can be deleted.
+2014-09-05 10:01:15 Australia/Melbourne:    Deleted lateness.UKey = 15333
+2014-09-05 10:01:15 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [15334 , AAAHH, A, 2014-09-05 09:59:24, 29, Australia/NSW, Friday    , 50400, 59400 ]
+2014-09-05 10:01:15 Australia/Melbourne: so lateness can be deleted.
+2014-09-05 10:01:15 Australia/Melbourne:    Deleted lateness.UKey = 15334
+2014-09-05 10:01:15 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [15335 , AAAHH, C, 2014-09-05 09:59:24, 80, Australia/NSW, Friday    , 48600, 60300 ]
+2014-09-05 10:01:15 Australia/Melbourne: so lateness can be deleted.
+2014-09-05 10:01:15 Australia/Melbourne:    Deleted lateness.UKey = 15335
+Fri Sep 5 10:02:59 EST 2014 Inside howlate_cron
+2014-09-05 10:02:59 Australia/Melbourne:**************** zeroing out old lateness records ******************
+2014-09-05 10:02:59 Australia/Melbourne:++++++++++++++++++++++++ Processing timezone = Australia/NSW +++++++++++++++++
+
+ SELECT v.*, s.Day, IFNULL(s.StartTime, -1) As StartTime, IFNULL(s.EndTime,-1) As EndTime  FROM vwLateTZ v  LEFT OUTER JOIN sessions s on s.OrgID = v.OrgID and s.ID = v.ID and Day = 'Friday'  WHERE v.Timezone = 'Australia/NSW'<br>2014-09-05 10:02:59 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [15107 , AAAHH, I, 2014-09-04 23:59:23, 4, Australia/NSW, Friday    , 28800, 54000 ]
+2014-09-05 10:02:59 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [15110 , AAAHH, H, 2014-09-04 23:59:24, 21, Australia/NSW, , -1, -1 ]
+2014-09-05 10:02:59 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [15112 , AAAHH, F, 2014-09-04 23:59:24, 89, Australia/NSW, , -1, -1 ]
+2014-09-05 10:02:59 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [15336 , AAAHH, D, 2014-09-05 10:01:23, 0, Australia/NSW, Friday    , 48600, 52200 ]
+2014-09-05 10:02:59 Australia/Melbourne:Time right now is 36179, session starts at 41400  so lateness can be deleted.
+2014-09-05 10:02:59 Australia/Melbourne:    Deleted lateness.UKey = 15336
+2014-09-05 10:02:59 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [15337 , AAAHH, A, 2014-09-05 10:01:23, 29, Australia/NSW, Friday    , 50400, 59400 ]
+2014-09-05 10:02:59 Australia/Melbourne:Time right now is 36179, session starts at 43200  so lateness can be deleted.
+2014-09-05 10:02:59 Australia/Melbourne:    Deleted lateness.UKey = 15337
+2014-09-05 10:02:59 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [15338 , AAAHH, C, 2014-09-05 10:01:24, 90, Australia/NSW, Friday    , 48600, 60300 ]
+2014-09-05 10:02:59 Australia/Melbourne:Time right now is 36179, session starts at 41400  so lateness can be deleted.
+2014-09-05 10:02:59 Australia/Melbourne:    Deleted lateness.UKey = 15338
+Fri Sep 5 10:03:20 EST 2014 Inside howlate_cron
+2014-09-05 10:03:20 Australia/Melbourne:**************** zeroing out old lateness records ******************
+2014-09-05 10:03:20 Australia/Melbourne:++++++++++++++++++++++++ Processing timezone = Australia/NSW +++++++++++++++++
+
+ SELECT v.*, s.Day, IFNULL(s.StartTime, -1) As StartTime, IFNULL(s.EndTime,-1) As EndTime  FROM vwLateTZ v  LEFT OUTER JOIN sessions s on s.OrgID = v.OrgID and s.ID = v.ID and Day = 'Friday'  WHERE v.Timezone = 'Australia/NSW'<br>2014-09-05 10:03:20 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [15107 , AAAHH, I, 2014-09-04 23:59:23, 4, Australia/NSW, Friday    , 28800, 54000 ]
+2014-09-05 10:03:20 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [15110 , AAAHH, H, 2014-09-04 23:59:24, 21, Australia/NSW, , -1, -1 ]
+2014-09-05 10:03:20 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [15112 , AAAHH, F, 2014-09-04 23:59:24, 89, Australia/NSW, , -1, -1 ]
+Fri Sep 5 10:04:05 EST 2014 Inside howlate_cron
+
+
+
+2014-09-05 10:04:05 Australia/Melbourne:**************** zeroing out old lateness records ******************
+2014-09-05 10:04:05 Australia/Melbourne:++++++++++++++++++++++++ Processing timezone = Australia/NSW +++++++++++++++++
+
+ SELECT v.*, s.Day, IFNULL(s.StartTime, -1) As StartTime, IFNULL(s.EndTime,-1) As EndTime  FROM vwLateTZ v  LEFT OUTER JOIN sessions s on s.OrgID = v.OrgID and s.ID = v.ID and Day = 'Friday'  WHERE v.Timezone = 'Australia/NSW'<br>2014-09-05 10:04:05 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [15107 , AAAHH, I, 2014-09-04 23:59:23, 4, Australia/NSW, Friday    , 28800, 54000 ]
+2014-09-05 10:04:05 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [15110 , AAAHH, H, 2014-09-04 23:59:24, 21, Australia/NSW, , -1, -1 ]
+2014-09-05 10:04:05 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [15112 , AAAHH, F, 2014-09-04 23:59:24, 89, Australia/NSW, , -1, -1 ]
+2014-09-05 10:04:05 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [15339 , AAAHH, D, 2014-09-05 10:03:24, 0, Australia/NSW, Friday    , 48600, 52200 ]
+2014-09-05 10:04:05 Australia/Melbourne:Time right now is 36245, session starts at 41400  so lateness can be deleted.
+2014-09-05 10:04:05 Australia/Melbourne:    Deleted lateness.UKey = 15339
+2014-09-05 10:04:05 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [15340 , AAAHH, A, 2014-09-05 10:03:24, 29, Australia/NSW, Friday    , 50400, 59400 ]
+2014-09-05 10:04:05 Australia/Melbourne:Time right now is 36245, session starts at 43200  so lateness can be deleted.
+2014-09-05 10:04:06 Australia/Melbourne:    Deleted lateness.UKey = 15340
+2014-09-05 10:04:06 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [15341 , AAAHH, C, 2014-09-05 10:03:25, 77, Australia/NSW, Friday    , 48600, 60300 ]
+2014-09-05 10:04:06 Australia/Melbourne:Time right now is 36245, session starts at 41400  so lateness can be deleted.
+2014-09-05 10:04:06 Australia/Melbourne:    Deleted lateness.UKey = 15341
+
+
+
+2014-09-05 10:05:02 Australia/Melbourne:**************** zeroing out old lateness records ******************
+2014-09-05 10:05:02 Australia/Melbourne:++++++++++++++++++++++++ Processing timezone = Australia/NSW +++++++++++++++++
+
+ SELECT v.*, s.Day, IFNULL(s.StartTime, -1) As StartTime, IFNULL(s.EndTime,-1) As EndTime  FROM vwLateTZ v  LEFT OUTER JOIN sessions s on s.OrgID = v.OrgID and s.ID = v.ID and Day = 'Friday'  WHERE v.Timezone = 'Australia/NSW'<br>2014-09-05 10:05:02 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [15107 , AAAHH, I, 2014-09-04 23:59:23, 4, Australia/NSW, Friday    , 28800, 54000 ]
+2014-09-05 10:05:02 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [15110 , AAAHH, H, 2014-09-04 23:59:24, 21, Australia/NSW, , -1, -1 ]
+2014-09-05 10:05:02 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [15112 , AAAHH, F, 2014-09-04 23:59:24, 89, Australia/NSW, , -1, -1 ]

@@ -91,12 +91,15 @@ Class mainController Extends baseController {
         $max = 360;
         foreach ($lates as $clinic => $latepract) {
             foreach ($latepract as $key => $value) {
+                
+                $title = "This will be advertises as " . $value->MinutesLateMsg;
+                
                 $pin = $this->org->OrgID . "." . $value->ID;
                 echo "<td class='col-80pct'>" . $value->AbbrevName;
                 echo "<span onmouseover=\"changeCursor(this,'arrow');\" onmouseout=\"changeCursor(this,'default');\" title='Click to invite a mobile phone user to receive updates for $value->AbbrevName' class='invite' onclick=\"gotoInvite('$pin','$value->AbbrevName')\">SMS Invite</span>";
                 echo "</td>";
                 echo "<td class='lateness-value'>";
-                echo "<input type='number' class='lateness-admin-entry' name='lateness[$pin]' list='valid_latenesses' min='0' value='$value->MinutesLate' >";
+                echo "<input type='number' title='$title' class='lateness-admin-entry' name='lateness[$pin]' list='valid_latenesses' min='0' value='$value->MinutesLate' >";
                 echo "<input type='hidden' name='oldlateness[$pin]' value='$value->MinutesLate' >";
                 echo "</td>";
                 echo "<td>";
@@ -141,31 +144,12 @@ EOT;
         $pin = $_GET["invitepin"];
         $udid = $_GET["udid"];
 
-        //howlate_util::validatePin($pin);
-
-        $org = howlate_util::orgFromPin($pin);
-        $id = howlate_util::idFromPin($pin);
-
-        $db = new howlate_db();
-        //$db->validatePin($org, $id);
-        $db->register($udid, $org, $id);
-        $db->trlog(TranType::DEV_REG, 'Device ' . $udid . 'registered pin ' . $pin, $org, null, $id, $udid);
-
-        $prac = $db->getPractitioner($org, $id);
-
-        $clickatell = new clickatell();
-
-        $message = 'To receive lateness updates for ' . $prac->PractitionerName . ' at ' . $prac->ClinicName;
-        $message .= ', click : ';
-        $message .= "http://secure." . __DOMAIN . "/late/view&udid=$udid";
-        //$message .= " .  Please bookmark this link to your Home Screen.";
-        $clickatell->httpSend(null, $udid, $message);
-
-        $db->trlog(TranType::DEV_SMS, "SMS invited $udid using Clickatell gateway", $org, null, $id, $udid);
-
+        howlate_util::register($pin,$udid);
+        howlate_util::invite($pin, $udid, __DOMAIN);
+ 
         $this->index();
     }
-
+    
     ///
     /// Put together the clinics dropdown
     ///

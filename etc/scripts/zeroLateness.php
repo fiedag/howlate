@@ -2,14 +2,15 @@
 
 date_default_timezone_set('Australia/Melbourne');
 
+echo "\r\n";
+echo "\r\n";
+echo "\r\n";
 
- function log($msg) {
+function mylog($msg) {
     echo date("Y-m-d H:i:s e", time()) . ":" . $msg . "\r\n";
-    
 }
 
-
-log("**************** zeroing out old lateness records ******************");
+mylog("**************** zeroing out old lateness records ******************");
 
 include("/home/howlate/public_html/master/model/howlate_db.class.php");
 include("/home/howlate/public_html/master/model/howlate_util.class.php");
@@ -17,43 +18,46 @@ include("/home/howlate/public_html/master/model/howlate_util.class.php");
 $db = new howlate_db();
 
 $result = $db->getLateTimezones();
-foreach($result as $key => $val) {
-    log($val->Timezone); 
+foreach ($result as $key => $val) {
+    mylog("++++++++++++++++++++++++ Processing timezone = " . $val->Timezone . " +++++++++++++++++");
 
     $tolerance = 7200;  // two hours
-    
+
     $day = howlate_util::dayName("now", $val->Timezone);
     $time = howlate_util::secondsSinceMidnight("now", $val->Timezone);
-    
-    // 
-    $toprocess = $db->getLatesAndSessions($val->Timezone, $day, $time);
-    
-    if (count($toprocess) > 0) {
-        foreach ($toprocess as $key => $val) {
 
-            log("[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [$val->UKey , $val->OrgID, $val->ID, $val->Updated, $val->Minutes, $val->Timezone, $val->Day, $val->StartTime, $val->EndTime ]");
-            
-            // we are only going to delete entries where sessions exist at all for that day
-            // if sessions do not exist, then StartTime and EndTime will return -1
-            if ($val->StartTime >= 0 and $val->EndTime >= 0) {
-                $start = $val->StartTime - $tolerance;
-                $end = $val->EndTime + $tolerance;
-                
-                if ($start < 0) {
-                    $start = $start + 86400;
-                }
-                if ($end > 86400) {
-                    $end = $end - 86400;
-                }
-                if ($time < $start or $time > $end) {
-                    $db->deleteLateByKey($val->UKey);
-                    log("Deleted lateness.UKey = $val->UKey");
-                }
-                
+    $toprocess = $db->getLatesAndSessions($val->Timezone, $day, $time);
+    foreach ($toprocess as $key => $val) {
+
+        mylog("[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [$val->UKey , $val->OrgID, $val->ID, $val->Updated, $val->Minutes, $val->Timezone, $val->Day, $val->StartTime, $val->EndTime ]");
+
+        // we are only going to delete entries where sessions exist at all for that day
+        // if sessions do not exist, then StartTime and EndTime will return -1 and we will ignore
+        // and rely on manual updates
+        if ($val->StartTime >= 0 and $val->EndTime >= 0) {
+            $start = $val->StartTime - $tolerance;
+            $end = $val->EndTime + $tolerance;
+
+            if ($start < 0) {
+                $start = $start + 86400;
             }
-            
-       }
+            if ($end > 86400) {
+                $end = $end - 86400;
+            }
+            if ($time < $start or $time > $end) {
+                $msg = "Time right now is $time, ";
+                if ($time < $start) {
+                    $msg .= "session starts at $start ";
+                }
+                if ($time > $end) {
+                    $msg .= "session ends at $end ";
+                }
+                $msg .= " so lateness can be deleted.";
+                mylog($msg);
+                $db->deleteLateByKey($val->UKey);
+                mylog("    Deleted lateness.UKey = $val->UKey");
+            }
+        }
     }
 }
-
 ?>

@@ -32,6 +32,9 @@ include_once("error_handler.php");
 /* * * a new registry object ** */
 $registry = new registry;
 
+
+
+
 /* * * create the database registry object ** */
 // $registry->db = db::getInstance();
 ?>

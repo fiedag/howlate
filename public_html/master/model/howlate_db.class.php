@@ -5,7 +5,7 @@ class howlate_db {
     protected $conn;
 
     function __construct() {
-        if (__DOMAIN == "how-late.com") {
+        if (__DOMAIN == "how-late.com" or !defined(__DOMAIN)) {
             $this->conn = new mysqli('localhost', 'howlate_super', 'NuNbHG4NQn', 'howlate_main');
         }
         else if (__DOMAIN == "fiedlerconsulting.com.au")
@@ -113,7 +113,7 @@ class howlate_db {
 
     function getlatenessesByClinic($orgID, $clinicID) {
 
-        $q = "SELECT ClinicID, ClinicName, ID, AbbrevName, FullName, MinutesLate, OrgID, Subdomain FROM vwLateness WHERE OrgID = '" . $orgID . "' AND ClinicID = '" . $clinicID . "'";
+        $q = "SELECT ClinicID, ClinicName, ID, AbbrevName, FullName, MinutesLate, MinutesLateMsg, OrgID, Subdomain FROM vwLateness WHERE OrgID = '" . $orgID . "' AND ClinicID = '" . $clinicID . "'";
         $practArray = array();
         $clinArray = array();
         if ($result = $this->conn->query($q)) {
@@ -261,11 +261,11 @@ class howlate_db {
 
     function trlog($trantype, $details, $org = null, $clinic = null, $practitioner = null, $udid = null) {
         $ipaddress = $_SERVER["REMOTE_ADDR"];
-        $q = "INSERT INTO transactionlog (TZ, TransType, OrgID, ClinicID, PractitionerID, Details, UDID, IPv4) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        $q = "INSERT INTO transactionlog (TransType, OrgID, ClinicID, PractitionerID, Details, UDID, IPv4) VALUES (?, ?, ?, ?, ?, ?, ?)";
         $stmt = $this->conn->query($q);
         $stmt = $this->conn->prepare($q);
         $tz = date_default_timezone_get();
-        $stmt->bind_param('sssissss', $tz, $trantype, $org, $clinic, $practitioner, $details, $udid, $ipaddress);
+        $stmt->bind_param('ssissss', $trantype, $org, $clinic, $practitioner, $details, $udid, $ipaddress);
         $stmt->execute() or die('# Query Error (' . $this->conn->errno . ') ' . $this->conn->error);  // no point going in circles
     }
 
@@ -445,13 +445,10 @@ class howlate_db {
         if ($result = $this->conn->query($q)) {
             $row = $result->fetch_object();
             $orgid = $row->last;
-            echo "Highest so far = $orgid <br>";
             $canonical = substr($orgid,0,4);
-            echo "Canonical = $canonical<br>";
             $as_number = howlate_util::tobase10($canonical);
             $as_number++;
             $new_high = howlate_util::tobase26($as_number);
-            echo "New high = $new_high<br>";
             $checkdigit = howlate_util::checkdigit($new_high);
             return $new_high . $checkdigit;           
         }
@@ -567,7 +564,6 @@ class howlate_db {
              " FROM vwLateTZ v " .
              " LEFT OUTER JOIN sessions s on s.OrgID = v.OrgID and s.ID = v.ID and Day = '$day' " .
              " WHERE v.Timezone = '$timezone'" ;
-        echo "\r\n" . $q . "<br>";
         
         $toprocess = array();
         if ($result = $this->conn->query($q)) {
@@ -581,7 +577,6 @@ class howlate_db {
         
     }
     
-    
     public function updatesessions($org, $id, $day, $start, $end) {
         $q = "REPLACE INTO sessions (OrgID, ID, Day, StartTime, EndTime) VALUES (?,?,?,?,?)";
 
@@ -590,6 +585,35 @@ class howlate_db {
         $stmt->bind_param('sssii', $org, $id, $day, $start, $end);
         $stmt->execute() or trigger_error('# Query Error (' . $this->conn->errno . ') ' . $this->conn->error, E_USER_ERROR);               
     }
-      
+
+    public function enqueueNotification($practitioner,$Patient,$AppointmentDate,$AppointmentTime,$MobilePhone) 
+    {
+        $q = "INSERT INTO notifqueue (Message,Status) VALUES (?,?)";
+        $stmt = $this->conn->query($q);
+        $stmt = $this->conn->prepare($q);
+        $stmt->bind_param('ss', $msg, 'Queued');
+
+        $udid = trim($MobilePhone);
+        $lateness = $this->getSingleLateness($pin);
+        $url = "http://secure." . $domain . "/late/view&udid=$udid";
+        $msg = $practitioner->PractitionerName . " is running " . $lateness . " late.  For updates, click " . $url;
+        
+        $stmt->execute() or trigger_error('# Query Error (' . $this->conn->errno . ') ' . $this->conn->error, E_USER_ERROR);               
+        
+    }
+
+    public function getSingleLateness($pin) 
+    {
+        $org = howlate_util::orgFromPin($pin);
+        $id = howlate_util::idFromPin($pin);
+        
+        $q = "SELECT * FROM vwDisplayLate WHERE OrgID = '$org' AND ID = '$id'";
+        if ($result = $this->conn->query($q)) {
+            return $result["MinutesLateMsg"];
+        }
+        $result->close();
+        
+    }
+    
 }
 

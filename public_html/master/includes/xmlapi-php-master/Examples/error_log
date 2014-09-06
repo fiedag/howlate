@@ -1,0 +1,79 @@
+[06-Sep-2014 06:43:41 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'No host defined' in /home/howlate/public_html/master/includes/xmlapi-php-master/xmlapi.php:237
+Stack trace:
+#0 /home/howlate/public_html/master/includes/xmlapi-php-master/Examples/api2_example.php(31): xmlapi->__construct(false)
+#1 {main}
+  thrown in /home/howlate/public_html/master/includes/xmlapi-php-master/xmlapi.php on line 237
+[06-Sep-2014 06:44:39 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'No host defined' in /home/howlate/public_html/master/includes/xmlapi-php-master/xmlapi.php:237
+Stack trace:
+#0 /home/howlate/public_html/master/includes/xmlapi-php-master/Examples/api1_example.php(35): xmlapi->__construct(false)
+#1 {main}
+  thrown in /home/howlate/public_html/master/includes/xmlapi-php-master/xmlapi.php on line 237
+[06-Sep-2014 06:47:58 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'No host defined' in /home/howlate/public_html/master/includes/xmlapi-php-master/xmlapi.php:237
+Stack trace:
+#0 /home/howlate/public_html/master/includes/xmlapi-php-master/Examples/listzones_example.php(29): xmlapi->__construct(false)
+#1 {main}
+  thrown in /home/howlate/public_html/master/includes/xmlapi-php-master/xmlapi.php on line 237
+[06-Sep-2014 06:48:44 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'No host defined' in /home/howlate/public_html/master/includes/xmlapi-php-master/xmlapi.php:237
+Stack trace:
+#0 /home/howlate/public_html/master/includes/xmlapi-php-master/Examples/listzones_example.php(30): xmlapi->__construct(false)
+#1 {main}
+  thrown in /home/howlate/public_html/master/includes/xmlapi-php-master/xmlapi.php on line 237
+[06-Sep-2014 06:48:45 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'No host defined' in /home/howlate/public_html/master/includes/xmlapi-php-master/xmlapi.php:237
+Stack trace:
+#0 /home/howlate/public_html/master/includes/xmlapi-php-master/Examples/listzones_example.php(30): xmlapi->__construct(false)
+#1 {main}
+  thrown in /home/howlate/public_html/master/includes/xmlapi-php-master/xmlapi.php on line 237
+[06-Sep-2014 06:49:09 UTC] URL: https://127.0.0.1:2087/xml-api/listzones
+[06-Sep-2014 06:49:09 UTC] DATA: 
+[06-Sep-2014 06:49:09 UTC] Authentication Header: Authorization: Basic aG93bGF0ZTpQemFMUWlIOWF2
+
+
+[06-Sep-2014 06:49:09 UTC] RESPONSE:
+ <?xml version="1.0" ?>
+<cpanelresult>
+    <error>Access denied</error>
+    <data>
+        <result>0</result>
+        <reason>Access denied</reason>
+    </data>
+</cpanelresult>
+
+[06-Sep-2014 06:49:09 UTC] SimpleXML var_dump:
+SimpleXMLElement Object
+(
+    [error] => Access denied
+    [data] => SimpleXMLElement Object
+        (
+            [result] => 0
+            [reason] => Access denied
+        )
+
+)
+
+[06-Sep-2014 06:50:04 UTC] URL: https://127.0.0.1:2087/xml-api/listzones
+[06-Sep-2014 06:50:04 UTC] DATA: 
+[06-Sep-2014 06:50:04 UTC] Authentication Header: Authorization: Basic aG93bGF0ZTpQemFMUWlIOWF2
+
+
+[06-Sep-2014 06:50:04 UTC] RESPONSE:
+ <?xml version="1.0" ?>
+<cpanelresult>
+    <error>Access denied</error>
+    <data>
+        <result>0</result>
+        <reason>Access denied</reason>
+    </data>
+</cpanelresult>
+
+[06-Sep-2014 06:50:04 UTC] SimpleXML var_dump:
+SimpleXMLElement Object
+(
+    [error] => Access denied
+    [data] => SimpleXMLElement Object
+        (
+            [result] => 0
+            [reason] => Access denied
+        )
+
+)
+

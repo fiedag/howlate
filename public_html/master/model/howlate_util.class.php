@@ -2,6 +2,9 @@
 
 class howlate_util {
 
+    public static $cpanelUser = "howlate";
+    public static $cpanelPassword = "PzaLQiH9av";
+    
     public static function tobase10($base26) {
         $base10 = 0;
         $len = strlen($base26);
@@ -131,6 +134,41 @@ class howlate_util {
     public static function dayName($datestr, $timezone) {
         $day = new DateTime($datestr, new DateTimeZone($timezone));
         return $day->format("l");
+    }
+    
+    //
+    // method probably belongs elsewhere
+    //
+    public static function register($pin, $udid) {
+        
+        $org = self::orgFromPin($pin);
+        $id = self::idFromPin($pin);       
+        
+        $db = new howlate_db();
+        $db->register($udid, $org, $id);
+        $db->trlog(TranType::DEV_REG, 'Device ' . $udid . 'registered pin ' . $pin, $org, null, $id, $udid);
+              
+    }
+    
+    public static function invite($pin, $udid, $domain) 
+    {
+        $org = self::orgFromPin($pin);
+        $id = self::idFromPin($pin);       
+        
+        $db = new howlate_db();
+        $prac = $db->getPractitioner($org, $id);
+
+        $message = 'To receive lateness updates for ' . $prac->PractitionerName . ' at ' . $prac->ClinicName;
+        $message .= ', click : ';
+        $message .= "http://secure." . $domain . "/late/view&udid=$udid";
+
+        howlate_sms::httpSend(null, $udid, $message);
+        $db->trlog(TranType::DEV_SMS, "invited $udid using SMS gateway", $org, null, $id, $udid);
+    }
+
+    public static function notifyLate($pin, $udid, $domain) {
+        
+        
     }
     
     

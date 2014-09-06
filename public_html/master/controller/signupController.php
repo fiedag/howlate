@@ -8,13 +8,12 @@ Class signupController Extends baseController {
 
         $this->registry->template->controller = $this;
         $this->registry->template->logourl = howlate_util::logoURL();
+        $this->registry->template->signup_result = "";
         $this->registry->template->show('signup_view');
     }
 
     public function create() {
         define("__DIAG", 1);
-
-        echo "<div id='message1'> $company site is being created.  Please wait...</div>";
 
         $this->registry->template->controller = $this;
 
@@ -29,14 +28,16 @@ Class signupController Extends baseController {
         $this->registry->template->CompanyName = $company;
         $this->registry->template->Email = $email;
 
-        $howlate_site = new howlate_site();
-        howlate_util::diag("Domain is " . __DOMAIN);
+        $howlate_site = new howlate_site($company,$email);
+        
+        $howlate_site->reduceName()->checkForDupe()->createPrivateArea()->createCPanelSubdomain()->installSSL();
+        $howlate_site->createOrgRecord()->createDefaultClinic()->createDefaultPractitioner()->createDefaultUser();
+        $howlate_site->sendWelcomeEmail();
+        
+        $this->registry->template->signup_result = $howlate_site->Result;
+        $this->registry->template->show('signup_view');
 
-        $subdomain = $howlate_site->create($company, $email);
-
-        $url = "http://" . $subdomain . "." . __DOMAIN . "/login";
-
-        echo "<a href='" . $url . "'>Click here to continue</a>";
+        
     }
 
 }

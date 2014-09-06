@@ -98,12 +98,10 @@ class organisation {
 
         $prac = $db->getPractitioner($org, $id);
 
-        $clickatell = new clickatell();
-
         $message = 'Click for lateness updates from ' . $prac->PractitionerName . ' at ' . $prac->ClinicName;
         $message .= ': ';
         $message .= "http://secure." . __DOMAIN . "/late/view&udid=$udid";
-        $clickatell->httpSend(null, $udid, $message);
+        howlate_sms::httpSend(null, $udid, $message);
     }
 
     public function unregister($pin, $udid) {
@@ -120,10 +118,8 @@ class organisation {
 
         $prac = $db->getPractitioner($org, $id);
 
-        $clickatell = new clickatell();
-
         $message = 'You have chosen to unregister for lateness updates from ' . $prac->PractitionerName . ' at ' . $prac->ClinicName;
-        $clickatell->httpSend(null, $udid, $message);
+        howlate_sms::httpSend(null, $udid, $message);
     }
 
 }

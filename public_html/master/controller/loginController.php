@@ -82,6 +82,8 @@ Class loginController Extends baseController {
         if (count($users) == 0) {
             return 0;
         }
+        
+        
         $subject = "Trouble logging in? Your username and password for " . $this->org->OrgName;
 
         $body = "";
@@ -89,8 +91,11 @@ Class loginController Extends baseController {
             $body = "It looks like you have " . count($users) . " different logins for " . $this->org->OrgName . "'s secure online services.\r\n\r\n";
             $body .= "-------- User Accounts ---------\r\n\r\n";
         }
-        $from = $this->org->OrgName . "<" . $users[0]->EmailAddress . ">";
-
+        
+        $toName = $users[0]->FullName;
+        $from = $users[0]->EmailAddress;
+        $fromName = $this->org->OrgName;
+        
         foreach ($users as $user) {
             $body .= "Username: " . $user->UserID . "\r\n";
             $body .= "If you have forgotten your password, you can reset it by following this link:\r\n";
@@ -106,9 +111,11 @@ Class loginController Extends baseController {
         $headers = 'MIME-Version: 1.0' . "\n";
         $headers .= 'Content-type: text/plain; charset=iso-8859-1' . "\n";
         $headers .= "From: $from";
-        if (mail($email, $subject, $body, $headers)) {
-            $success = "true";
-        }
+
+        $mail = new mailer();
+        $mail->send($email,$toName, $subject,$body, $from, $fromName);
+        
+        
     }
 
 }

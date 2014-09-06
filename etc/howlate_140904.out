@@ -1,0 +1,9 @@
+Thu Sep 4 21:05:01 EST 2014 Inside howlate_cron
+<br />
+<b>Fatal error</b>:  Cannot redeclare log() in <b>/home/howlate/etc/scripts/zeroLateness.php</b> on line <b>9</b><br />
+Thu Sep 4 22:05:01 EST 2014 Inside howlate_cron
+<br />
+<b>Fatal error</b>:  Cannot redeclare log() in <b>/home/howlate/etc/scripts/zeroLateness.php</b> on line <b>9</b><br />
+Thu Sep 4 23:05:01 EST 2014 Inside howlate_cron
+<br />
+<b>Fatal error</b>:  Cannot redeclare log() in <b>/home/howlate/etc/scripts/zeroLateness.php</b> on line <b>9</b><br />
