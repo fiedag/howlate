@@ -42,7 +42,7 @@ Class org_adminController Extends baseController {
 		$message .= ', click : ';
 		$message .= "http://$prac->FQDN/late/view&udid=$udid";
 
-		howlate_sms::httpSend(null, $udid, $message);
+		howlate_sms::httpSend($org, $udid, $message);
 		
 		$this->view();
 	}

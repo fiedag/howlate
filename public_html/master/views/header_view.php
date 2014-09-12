@@ -3,8 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <!-- Mobile Specific Meta -->
-        <title>Update the lateness of doctors for this organisation.</title>
-        <meta name='description' content='Change the lateness of doctors in your organisation.'>
+        <title>How Late</title>
+        <meta name='description' content='How Late is my appointment.'>
         <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=2.0; user-scalable=1;">
         <link media="screen" href="/styles/howlate.css" type="text/css" rel="stylesheet">
         <link media="screen" href="/includes/xcrud/themes/default/xcrud.css" type="text/css" rel="stylesheet">

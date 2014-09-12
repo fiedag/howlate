@@ -5,7 +5,7 @@ class practitioner extends howlate_basetable {
 	public $ID;
         public $FullName;
         public $AbbrevName;
-	public $ClinicPlaced;
+	public $ClinicID;
 	public $ClinicName;
         public $Subdomain;
 	public $Pin;
@@ -22,7 +22,7 @@ class practitioner extends howlate_basetable {
         public function logoURL() {
             return howlate_util::logoURL($this->Subdomain);
         }
-        
+
 }
 
 ?>

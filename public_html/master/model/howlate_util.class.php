@@ -2,8 +2,37 @@
 
 class howlate_util {
 
-    public static $cpanelUser = "howlate";
-    public static $cpanelPassword = "PzaLQiH9av";
+//    public static $cpanelUser = "howlate";
+//    public static $cpanelPassword = "PzaLQiH9av";
+//
+//    public static $mysqlUser = "howlate_super";
+//    public static $mysqlPassword = "NuNbHG4NQn";
+    
+    private static $testdomain = "fiedlerconsulting.com.au";
+    
+    public static function cpanelUser()
+    {
+        return (__DOMAIN==self::$testdomain)?"fiedlerc":"howlate";
+    }
+    public static function cpanelPassword() {
+        return (__DOMAIN==self::$testdomain)?"PqoXLF0FRS":"PzaLQiH9av";
+    }
+
+    public static function mysqlDb() {
+        return (__DOMAIN==self::$testdomain)?"fiedlerc_hldev":"howlate_main";
+    }
+
+    public static function mysqlBillingDb() {
+        return (__DOMAIN==self::$testdomain)?"fiedlerc_bill":"howlate_billing";
+    }
+
+    
+    public static function mysqlUser() {
+        return (__DOMAIN==self::$testdomain)?"fiedlerc_super":"howlate_super";
+    }
+    public static function mysqlPassword() {
+        return (__DOMAIN==self::$testdomain)?"Az#XlXEx~hkk":"NuNbHG4NQn";
+    }
     
     public static function tobase10($base26) {
         $base10 = 0;
@@ -63,24 +92,24 @@ class howlate_util {
     }
 
     public static function validatePin($pin) {
-        $elem = explode('.', $pin);
-        if (count($elem) != 2) {
-            die('Input Error: The PIN is not formatted correctly.  It must be of form X.Y e.g. ABD.R');
+        $elem = explode(".", $pin);
+        if (count($elem) != 2 or $elem[0] == '' or $elem[1] == '') {
+            die("Input Error: The PIN ($pin) is not formatted correctly.  It must be of form X.Y e.g. AAADD.R");
         }
         if (!$elem[1] == self::checkdigit($elem[0])) {
-            die('Input Error: The PIN entered is not valid.  The check digit should be "' . self::checkdigit($elem[0]) . '"');
+            die("Input Error: The PIN ($pin) entered is not valid.  (elem0 = $elem[0] , elem1 = $elem[1]) . The check digit should be '" . self::checkdigit($elem[0]) . "'");
         }
     }
 
     public static function orgFromPin($pin) {
         self::validatePin($pin);
-        $elem = explode('.', $pin);
+        $elem = explode(".", $pin);
         return $elem[0];
     }
 
     public static function idFromPin($pin) {
         self::validatePin($pin);
-        $elem = explode('.', $pin);
+        $elem = explode(".", $pin);
         return $elem[1];
     }
 
@@ -103,7 +132,7 @@ class howlate_util {
         if (file_exists("pri/$subd/logo.png")) {
             return "/pri/$subd/logo.png";
         } else {
-            return "/images/logos/logo_sm_trans.png";
+            return "/images/logos/logo.png";
         }
     }
 
@@ -162,15 +191,49 @@ class howlate_util {
         $message .= ', click : ';
         $message .= "http://secure." . $domain . "/late/view&udid=$udid";
 
-        howlate_sms::httpSend(null, $udid, $message);
+        howlate_sms::httpSend($org, $udid, $message);
         $db->trlog(TranType::DEV_SMS, "invited $udid using SMS gateway", $org, null, $id, $udid);
     }
 
-    public static function notifyLate($pin, $udid, $domain) {
-        
-        
+
+    // SSL Certificate for *.how-late.com
+    public static function getSSLCertificate()
+    {
+$crt = <<<EOD
+-----BEGIN CERTIFICATE-----
+MIIFUjCCBDqgAwIBAgIQOi70mLLxfvw50BzryWb//zANBgkqhkiG9w0BAQsFADCB
+kDELMAkGA1UEBhMCR0IxGzAZBgNVBAgTEkdyZWF0ZXIgTWFuY2hlc3RlcjEQMA4G
+A1UEBxMHU2FsZm9yZDEaMBgGA1UEChMRQ09NT0RPIENBIExpbWl0ZWQxNjA0BgNV
+BAMTLUNPTU9ETyBSU0EgRG9tYWluIFZhbGlkYXRpb24gU2VjdXJlIFNlcnZlciBD
+QTAeFw0xNDA3MTIwMDAwMDBaFw0xNTA3MTIyMzU5NTlaMFsxITAfBgNVBAsTGERv
+bWFpbiBDb250cm9sIFZhbGlkYXRlZDEdMBsGA1UECxMUUG9zaXRpdmVTU0wgV2ls
+ZGNhcmQxFzAVBgNVBAMUDiouaG93LWxhdGUuY29tMIIBIjANBgkqhkiG9w0BAQEF
+AAOCAQ8AMIIBCgKCAQEA0buK3REaVs/G+894spJs8n2NPF4Y5h+NjnNkmu8Xp7DY
+eswr123W9T+ZuAuwQ3Z2mS+da5g/ds2Rhx34revs2OAk8hGwBMd0GGYZv9fEfgx9
+4kR8/njkQlXZQwzc0IeSpFkYD8SRmN56NrF60F7Y4QQianFx6gYeScxT/qWquAct
+ZlYw/+YBS6N4PtUpC4ZpcNg2zQDc65kaeibzDJco4sOhjFU6D6V6HWhNJ7uCDIUh
+HDhgsnEsQeSJvrKqv6IgdJAy2RRJO1IifBMSfPg/8REQyNTw9fpWiborX4Hmuolh
+rH/1b76M/mXIV6sxeCGXoUvcu1WF9FMRtBR8z511dwIDAQABo4IB2jCCAdYwHwYD
+VR0jBBgwFoAUkK9qOpRaC9iQ6hJWc99DtDoo2ucwHQYDVR0OBBYEFKuWb/2Xyx50
+tRZBz4+MsuKq2NSaMA4GA1UdDwEB/wQEAwIFoDAMBgNVHRMBAf8EAjAAMB0GA1Ud
+JQQWMBQGCCsGAQUFBwMBBggrBgEFBQcDAjBQBgNVHSAESTBHMDsGDCsGAQQBsjEB
+AgEDBDArMCkGCCsGAQUFBwIBFh1odHRwczovL3NlY3VyZS5jb21vZG8ubmV0L0NQ
+UzAIBgZngQwBAgEwVAYDVR0fBE0wSzBJoEegRYZDaHR0cDovL2NybC5jb21vZG9j
+YS5jb20vQ09NT0RPUlNBRG9tYWluVmFsaWRhdGlvblNlY3VyZVNlcnZlckNBLmNy
+bDCBhQYIKwYBBQUHAQEEeTB3ME8GCCsGAQUFBzAChkNodHRwOi8vY3J0LmNvbW9k
+b2NhLmNvbS9DT01PRE9SU0FEb21haW5WYWxpZGF0aW9uU2VjdXJlU2VydmVyQ0Eu
+Y3J0MCQGCCsGAQUFBzABhhhodHRwOi8vb2NzcC5jb21vZG9jYS5jb20wJwYDVR0R
+BCAwHoIOKi5ob3ctbGF0ZS5jb22CDGhvdy1sYXRlLmNvbTANBgkqhkiG9w0BAQsF
+AAOCAQEAeEOvMpPm7vCC3UI/9ekwZWrTUyCuRFlHVbFA609AHyS5lY7SxL2lGgv6
+1fWyo3HjuGnI8i2J9hdL2UunIHynGGhviYMv/32/UqmpvT/QNRkEyEoI8Xd91xwv
+XqenwGF4LSO0bXBfnCHdSMbd5INC0773Tlu4yor+eRVeLdob5WqaZKFRZR+69ywm
+rCG64cbjMR8Z95wbEOvgxeAkewjbAk2taB7D3bBqQB+LfDJHlwdCDe814Sau8nEr
+f2CVGj8R4rYgHbWf7mkn4u3oX76Q6bu4vKtQlxjALTbwP2vp5GIOI1jES3JMbD9R
+Ec2JP4hnT/LFh0+kOuemIlOI+QnfHw==
+-----END CERTIFICATE-----
+EOD;
+    return $crt;
     }
-    
     
 }
 

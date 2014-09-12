@@ -294,7 +294,7 @@ function sendInvitation() {
         $message .= ', click : ';
         $message .= "http://$prac->FQDN/late/view&udid=$udid";
 
-        howlate_sms::httpSend(null, $udid, $message);
+        howlate_sms::httpSend($org, $udid, $message);
 
 	
 }

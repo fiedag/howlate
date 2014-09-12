@@ -11,7 +11,7 @@ RewriteCond %{HTTP_HOST} !^secure\.how-late\.com$ [NC]
 RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [NC,R=301,L]
 
 
-
-ExpiresActive on
-ExpiresDefault "access plus 1 year"
+# disable to prevent caching of the lateness page
+#ExpiresActive on
+#ExpiresDefault "access plus 1 year"
 

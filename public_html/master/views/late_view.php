@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title>How Late</title>
         <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=2.0; user-scalable=1;">
         <meta http-equiv="refresh" content="<?php echo $refresh; ?>">
         <link media="screen" href="/styles/howlate.css" type="text/css" rel="stylesheet">

@@ -16,17 +16,19 @@ include("/home/howlate/public_html/master/model/howlate_db.class.php");
 include("/home/howlate/public_html/master/model/howlate_util.class.php");
 
 $db = new howlate_db();
+// simply delete those older than 8 hours
+$db->deleteOldLates();
 
 $result = $db->getLateTimezones();
-foreach ($result as $key => $val) {
-    mylog("++++++++++++++++++++++++ Processing timezone = " . $val->Timezone . " +++++++++++++++++");
+foreach ($result as $key => $TZval) {
+    mylog("++++++++++++++++++++++++ Processing timezone = " . $TZval->Timezone . " +++++++++++++++++");
 
     $tolerance = 7200;  // two hours
 
-    $day = howlate_util::dayName("now", $val->Timezone);
-    $time = howlate_util::secondsSinceMidnight("now", $val->Timezone);
+    $day = howlate_util::dayName("now", $TZval->Timezone);
+    $time = howlate_util::secondsSinceMidnight("now", $TZval->Timezone);
 
-    $toprocess = $db->getLatesAndSessions($val->Timezone, $day, $time);
+    $toprocess = $db->getLatesAndSessions($TZval->Timezone, $day, $time);
     foreach ($toprocess as $key => $val) {
 
         mylog("[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [$val->UKey , $val->OrgID, $val->ID, $val->Updated, $val->Minutes, $val->Timezone, $val->Day, $val->StartTime, $val->EndTime ]");

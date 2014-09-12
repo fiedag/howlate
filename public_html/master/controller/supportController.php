@@ -43,7 +43,7 @@ Class supportController Extends baseController {
     public function getPricing() {
         include('includes/xcrud/xcrud.php');
         $xcrud2 = Xcrud::get_instance("Billing Database");
-        $xcrud2->connection('howlate_super','NuNbHG4NQn','howlate_billing','localhost','utf8');
+        $xcrud2->connection(howlate_util::mysqlUser(),howlate_util::mysqlPassword(),howlate_util::mysqlBillingDb(),'localhost','utf8');
         $xcrud2->table('pricing')->where("CountryCode = 'EN'");
 
         $xcrud2->unset_csv(true)->unset_numbers(true)->unset_print(true)->unset_limitlist(true)->hide_button('save_and_edit')->hide_button('save_and_new');

@@ -13,7 +13,7 @@ Class lateController Extends baseController {
         $this->registry->template->bookmark_url = $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"];
         $this->registry->template->icon_url = howlate_util::logoURL(__SUBDOMAIN);
         if (isset($_GET['udid'])) {
-            $udid = $_GET['udid'];
+            $udid = filter_input(INPUT_GET, 'udid');
             $this->registry->template->UDID = $udid;
             $db = new howlate_db();
             $lates = $db->getlatenessesByUDID($udid); // a two-dimensional array ["clinic name"][array]
@@ -27,8 +27,25 @@ Class lateController Extends baseController {
         }
     }
 
-    
-    
+    public function reg() {
+        // registers for lateness updates then redirects to the view() above
+        $api = new howlate_api();
+        $pin = filter_input(INPUT_GET, "pin");
+        $udid = filter_input(INPUT_GET, "udid");
+        if ($pin != "" and $udid != "") {
+
+            howlate_util::validatePin($pin);
+
+            $org = howlate_util::orgFromPin($pin);
+            $id = howlate_util::idFromPin($pin);
+            $db = new howlate_db();
+            $db->validatePin($org, $id);
+            $db->register($udid, $org, $id);
+            $db->trlog(TranType::DEV_REG, 'Device ' . $udid . 'registered pin ' . $pin);
+        }
+        $this->view();
+    }
+
     private function addressURL($clin) {
         $str = "http://maps.google.com/maps?q=$clin->Address1";
         if ($clin->Address2 != '') {

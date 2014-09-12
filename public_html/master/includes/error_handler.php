@@ -6,6 +6,13 @@ abstract class MyErrorTypes
 	const E_DATA_ERROR = 4;
 	const E_OTHER_ERROR = 0;
 }
+
+/*
+ * 
+ * Invoked below.  This custom error handler is used
+ * whenever a trigger_error is encountered.
+ * 
+ */
 function customErrorHandler($errno, $errstr, $errfile, $errline)
 {
 
@@ -33,7 +40,7 @@ function customErrorHandler($errno, $errstr, $errfile, $errline)
 		case E_USER_ERROR:
 			$db = new howlate_db();
 			$db->write_error($errno, $errtype, $errstr, $errfile, $errline);
-			echo "ERROR: $errstr <br>";
+			echo "ERROR: [$errno] $errstr <br>";
 			echo "File $errfile , line $errline " . "<br>";
 			echo "PHP " . PHP_VERSION . " (" . PHP_OS . ")<br>";
 			echo "Exiting...<br>";
@@ -43,19 +50,24 @@ function customErrorHandler($errno, $errstr, $errfile, $errline)
 		case E_USER_WARNING:
 			$db = new howlate_db();
 			$db->write_error($errno, $errtype, $errstr, $errfile, $errline);
-			echo "WARNING: $errstr <br>";
+			echo "WARNING: [$errno] $errstr <br>";
 			echo "File $errfile , line $errline " . "<br>";
 			echo "PHP " . PHP_VERSION . " (" . PHP_OS . ")<br>";
 			break;
 	
 		case E_USER_NOTICE:
-			echo "NOTICE: $errstr <br>";
+			echo "NOTICE: [$errno] $errstr <br>";
 			echo "File $errfile , line $errline " . "<br>";
 			echo "PHP " . PHP_VERSION . " (" . PHP_OS . ")<br>";
 			break;
 	
 		default:
-			echo "Unknown error type: [$errno] $errstr<br>";
+                        $db = new howlate_db();
+			$db->write_error($errno, $errtype, $errstr, $errfile, $errline);
+			echo "Unknown error type: [$errno] $errstr <br>";
+			echo "File $errfile , line $errline " . "<br>";
+			echo "PHP " . PHP_VERSION . " (" . PHP_OS . ")<br>";
+                        exit(1);
 			break;
     }
 

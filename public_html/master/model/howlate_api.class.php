@@ -126,6 +126,8 @@ class howlate_api {
     /// We will enter this info in a table and a cron job will process the new records in the table as required.
     public static function notify() 
     {
+        $clin = filter_input(INPUT_GET,"clin");
+        
         $credentials = filter_input(INPUT_POST, "credentials");
         if ($credentials == null) {
             return "Fatal Error: Credentials not supplied.";
@@ -143,19 +145,19 @@ class howlate_api {
                 $Provider = filter_input(INPUT_POST, "Provider");
                 $MobilePhone = filter_input(INPUT_POST, "MobilePhone");
                 
-                if ($Patient == null) {
+                if ($Patient == null or $Patient == "") {
                     return "Fatal Error: No Patient specified in the post parameters.";
                 }
-                if ($AppointmentDate == null) {
+                if ($AppointmentDate == null or $AppointmentDate == "") {
                     return "Fatal Error: No Appointment Date specified in the post parameters.";
                 }
-                if ($AppointmentTime == null) {
+                if ($AppointmentTime == null or $AppointmentTime == "") {
                     return "Fatal Error: No Appointment Time specified in the post parameters.";
                 }
-                if ($Provider == null) {
+                if ($Provider == null or $Provider == "") {
                     return "Fatal Error: No Provider specified in the post parameters.";
                 }
-                if ($MobilePhone == null) {
+                if ($MobilePhone == null or $MobilePhone == "") {
                     return "Fatal Error: No Mobile Phone number specified in the post parameters.";
                 }
 
@@ -165,7 +167,12 @@ class howlate_api {
                     $practitioner = $db->getPractitioner($org->OrgID, $Provider, 'FullName');
                 }
 
-                $db->enqueueNotification($practitioner,$Patient,$AppointmentDate,$AppointmentTime,$MobilePhone);
+                $pin = $practitioner->OrgID . "." . $practitioner->PractitionerID;
+                $lateness = $db->getSingleLateness($pin);
+                if ($lateness == "On time") {
+                    return "Fatal Error: " . $practitioner->PractitionerName . " was on time!!!";
+                }
+                $db->enqueueNotification($practitioner,$Patient,$AppointmentDate,$AppointmentTime,$MobilePhone, $lateness);
                 
                 $msg = "Success.  Notification put in queue for " . $MobilePhone ;
                 $db->trlog(TranType::QUE_NOTIF, $msg, $org->OrgID, null, $practitioner->PractitionerID, null);
@@ -176,32 +183,10 @@ class howlate_api {
             }
         } else {
             return "Fatal Error: Invalid credentials.";
-        }
-        
+        }   
         
     }
-    
- /*
- Post of entire datarow to https://margateclinic.how-late.com/api?ver=post&clin=31&met=notif
-
- [credentials] -> alexf.9cbf8a4dcb8e30682b927f352d6559a0
- [Patient] -> Ricardo Richard
- [InternalID] -> 2
- [AppointmentDate] -> 3/09/2014 12:00:00 AM
- [AppointmentTime] -> 36000
- [Provider] -> Dr Anthony Albanese
- [MobilePhone] -> 0403569377     
- and received 
-<br />
-<b>Fatal error</b>:  Call to undefined method howlate_api::notify() in <b>/home/howlate/public_html/master/controller/apiController.php</b> on line <b>47</b><br />
-
-  * 
-  * 
-  */   
-    
-    
-    
-    
+      
 }
 
 ?>

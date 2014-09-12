@@ -2,11 +2,11 @@
 class Xcrud_config
 {
     // default connection
+    
     public static $dbname = 'howlate_main'; // Your database name
     public static $dbuser = 'howlate_super'; // Your database username
     public static $dbpass = 'NuNbHG4NQn'; // // Your database password
     public static $dbhost = 'localhost'; // Your database host, 'localhost' is default.
-    
     
     // theme and language
     public static $theme = 'default'; // can be 'default', 'bootstrap', 'minimal' or your custom. Theme of xCRUD visual presentation. For using bootstrap you need to load it on your page.

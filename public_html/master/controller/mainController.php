@@ -83,6 +83,7 @@ Class mainController Extends baseController {
         echo "<tr>";
         echo "<th>Practitioners at $this->currentClinicName</th>";
         echo "<th class='lateness-value'><span title='Update the number of minutes late below and hit Save'>How Late</span></th>";
+        //echo "<th title='Tick and the lateness will not be automatically maintained by any agent.'>Manual</th>";
         echo "<th>Save</th>";
         echo "</tr>";
         // dodgy this for now
@@ -92,7 +93,7 @@ Class mainController Extends baseController {
         foreach ($lates as $clinic => $latepract) {
             foreach ($latepract as $key => $value) {
                 
-                $title = "This will be advertises as " . $value->MinutesLateMsg;
+                $title = "This will be advertised as " . $value->MinutesLateMsg;
                 
                 $pin = $this->org->OrgID . "." . $value->ID;
                 echo "<td class='col-80pct'>" . $value->AbbrevName;
@@ -102,6 +103,9 @@ Class mainController Extends baseController {
                 echo "<input type='number' title='$title' class='lateness-admin-entry' name='lateness[$pin]' list='valid_latenesses' min='0' value='$value->MinutesLate' >";
                 echo "<input type='hidden' name='oldlateness[$pin]' value='$value->MinutesLate' >";
                 echo "</td>";
+//                echo "<td>";
+//                echo "<input type='checkbox' class='' id='manual' name='Manual' value='0' />";
+//                echo "</td>";
                 echo "<td>";
                 echo "<input type='submit' class='medium green button' id='save' name='Save' value='Save' />";
                 echo "</td>";
