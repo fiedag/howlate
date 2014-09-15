@@ -17,8 +17,7 @@ function auth_redirect() {
         if (defined("__SUBDOMAIN"))
             $login_url = 'https://' . __SUBDOMAIN . "." . __DOMAIN . "/login";
         else
-            $login_url = 'http://how-late.com';
-
+            $login_url = 'http://' . __DOMAIN;
 	header("Location: $login_url");
 	exit();
 }

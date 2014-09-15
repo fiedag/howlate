@@ -26,8 +26,16 @@
 <body>
     <h1>You are not registered for lateness updates.</h1>
 
+<<<<<<< master
     <a href="http://how-late.com">Visit How-Late.Com</a>
 
 </body>
 
 </html>
+=======
+    <a href="http://<?php echo __DOMAIN;?>">Visit How-Late.Com</a>
+
+</body>
+
+</html>
+>>>>>>> local

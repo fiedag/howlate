@@ -20,7 +20,13 @@ Class clinicsController Extends baseController {
     
     public function getXcrudTable() {
         include('includes/xcrud/xcrud.php');
+<<<<<<< master
         $xcrud = Xcrud::get_instance();
+=======
+        $xcrud = Xcrud::get_instance('Main');
+        $xcrud->connection(howlate_util::mysqlUser(),howlate_util::mysqlPassword(),howlate_util::mysqlDb());
+               
+>>>>>>> local
         $xcrud->table('clinics')->where('OrgID =', $this->org->OrgID)->limit(10);
         $xcrud->columns('OrgID, Country, Location, Zip, Timezone', true);
         $xcrud->readonly('OrgID');

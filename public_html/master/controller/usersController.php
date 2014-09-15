@@ -18,6 +18,8 @@ Class usersController Extends baseController {
     public function getXcrudTable() {
         include('includes/xcrud/xcrud.php');
         $xcrud = Xcrud::get_instance();
+        $xcrud->connection(howlate_util::mysqlUser(),howlate_util::mysqlPassword(),howlate_util::mysqlDb());
+
         $xcrud->table('orgusers')->where('OrgID =', $this->org->OrgID)->limit(10)->table_name('Users Table','You can add or delete as many users as you want');
         $xcrud->columns('OrgID, XPassword,DateCreated,SecretQuestion1,SecretAnswer1', true);
         $xcrud->readonly('OrgID');

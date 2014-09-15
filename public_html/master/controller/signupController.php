@@ -28,6 +28,7 @@ Class signupController Extends baseController {
         $this->registry->template->CompanyName = $company;
         $this->registry->template->Email = $email;
 
+        $this->registry->template->logourl = howlate_util::logoURL();
         $howlate_site = new howlate_site($company,$email);
         
         $howlate_site->reduceName()->checkForDupe()->createPrivateArea()->createCPanelSubdomain()->installSSL();
