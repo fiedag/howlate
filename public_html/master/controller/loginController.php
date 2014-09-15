@@ -62,9 +62,9 @@ Class loginController Extends baseController {
             $_SESSION["USER"] = $userid;
             $_SESSION['LAST_ACTIVITY'] = time();
 
-            header("location: http://" . __SUBDOMAIN . ".how-late.com/main");
+            header("location: http://" . __SUBDOMAIN . "." . __DOMAIN . "/main");
         } else {
-            header("location: http://" . __SUBDOMAIN . ".how-late.com/login/fail");
+            header("location: http://" . __SUBDOMAIN . "." . __DOMAIN . "/login/fail");
         }
     }
 
@@ -73,7 +73,7 @@ Class loginController Extends baseController {
         $this->org = new organisation();
         $this->org->getby(__SUBDOMAIN, "Subdomain");
         $this->send_reset_emails($email);
-        header("location: http://" . __SUBDOMAIN . ".how-late.com/login?sent=ok");
+        header("location: http://" . __SUBDOMAIN . "." . __DOMAIN . "/login?sent=ok");
     }
 
     private function send_reset_emails($email) {

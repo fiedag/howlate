@@ -131,7 +131,7 @@ Class agentController Extends baseController {
         $this->registry->template->uid = $_POST["UID"];
         $this->registry->template->pwd = $_POST["PWD"];
         $this->registry->template->interval = $_POST["interval"];
-        $this->registry->template->url = "https://" . __SUBDOMAIN . ".how-late.com/api?ver=post";
+        $this->registry->template->url = "https://" . __SUBDOMAIN . __DOMAIN  . "/api?ver=post";
         
         $db = new howlate_db();
         $res = $db->get_user_data($userid, $orgid);

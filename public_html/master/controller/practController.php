@@ -17,7 +17,9 @@ Class practController Extends baseController {
     public function getXcrudTable() {
         
         include('includes/xcrud/xcrud.php');
-        $xcrud = Xcrud::get_instance();
+        $xcrud = Xcrud::get_instance('Main');
+        $xcrud->connection(howlate_util::mysqlUser(),howlate_util::mysqlPassword(),howlate_util::mysqlDb());
+        
         $xcrud->table('practitioners')->where('OrgID =', $this->org->OrgID)->limit(10);
         $xcrud->join("SurrogKey","vwAssigned","SurrogKey");
 
