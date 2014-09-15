@@ -24,3 +24,10 @@ Procedure for developing:
 - Get a git shell
 - Navigate to D:\Github\Prod
 - Do the commands listed in the pull request
+- 
+
+
+
+One article talks about doing "git fetch" followed by "git reset --hard origin/master" to ensure that the local copy is completely brought up to date from master.
+
+
