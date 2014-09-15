@@ -20,4 +20,7 @@ Procedure for developing:
 - Push those changes to the remote repo of that branch
 - You have the option to use the git shell to create a tag 'git tag v1.x' followed by 'git push --tags'
 - This should only create a tag for that branch
-- Now that these changes are made, 
+- Now that these changes are made and tested, create a new Pull Request
+- Get a git shell
+- Navigate to D:\Github\Prod
+- Do the commands listed in the pull request
