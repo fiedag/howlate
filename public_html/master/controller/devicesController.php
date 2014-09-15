@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 
 Class devicesController Extends baseController {
@@ -33,3 +34,41 @@ Class devicesController Extends baseController {
     }
 
 }
+=======
+<?php
+
+Class devicesController Extends baseController {
+
+    public $org;
+
+    public function index() {
+      
+	$this->org = new organisation();
+        $this->org->getby(__SUBDOMAIN, "Subdomain");
+        $this->registry->template->companyname = $this->org->OrgName;
+        $this->registry->template->logourl = howlate_util::logoURL(__SUBDOMAIN);
+
+	$this->registry->template->controller = $this;
+       
+        $this->registry->template->show('devices_index');
+		
+    }
+    
+    public function getXcrudTable() {
+        include('includes/xcrud/xcrud.php');
+        $xcrud = Xcrud::get_instance();
+
+        $xcrud->connection(howlate_util::mysqlUser(),howlate_util::mysqlPassword(),howlate_util::mysqlDb());
+        
+        $xcrud->table('devicereg')->table_name('Registered phone devices','You can add or delete registered mobile phones here')->where('OrgID =', $this->org->OrgID)->limit(30);
+        
+       
+        $xcrud->pass_default('OrgID', $this->org->OrgID);
+        $xcrud->hide_button('view');
+      
+        $xcrud->unset_csv(true)->unset_numbers(true)->unset_print(true)->unset_limitlist(true)->hide_button('save_and_edit')->hide_button('save_and_new');     
+        echo $xcrud->render();
+    }
+
+}
+>>>>>>> 81fa29f1384873cf49ed7f66d6c42f7637aff8dd

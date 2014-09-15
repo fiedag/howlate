@@ -13,8 +13,18 @@
                 <div class="span-8 append-1">
                     <h4>Community</h4>
                     <ul>
+<<<<<<< HEAD
                         <li><a target="_blank" href="http://<?php echo __DOMAIN;?>/en/welcome/blog/">Blog</a></li>
                         <li><a target="_blank" href="http://<?php echo __DOMAIN;?>/en/frequently-asked-questions/">FAQ</a></li>
+=======
+<<<<<<< master
+                        <li><a target="_blank" href="http://how-late.com/en/welcome/blog/">Blog</a></li>
+                        <li><a target="_blank" href="http://how-late.com/en/frequently-asked-questions/">FAQ</a></li>
+=======
+                        <li><a target="_blank" href="http://<?php echo __DOMAIN;?>/en/welcome/blog/">Blog</a></li>
+                        <li><a target="_blank" href="http://<?php echo __DOMAIN;?>/en/frequently-asked-questions/">FAQ</a></li>
+>>>>>>> local
+>>>>>>> 81fa29f1384873cf49ed7f66d6c42f7637aff8dd
                     </ul>
                 </div>
                 <div class="span-8 append-1">
@@ -38,4 +48,12 @@
 
 
 </body>
+<<<<<<< HEAD
 </html>
+=======
+<<<<<<< master
+</html>
+=======
+</html>
+>>>>>>> local
+>>>>>>> 81fa29f1384873cf49ed7f66d6c42f7637aff8dd
