@@ -7,8 +7,14 @@ RewriteRule ^(.*)$ index.php?rt=$1 [L,QSA]
 
 
 RewriteCond %{HTTPS} !=on
-RewriteCond %{HTTP_HOST} !^secure\.how-late\.com$ [NC]
+RewriteCond %{HTTP_HOST} !^secure\.how-late.com$ [NC]
 RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [NC,R=301,L]
+
+RewriteCond %{HTTPS} !=on
+RewriteCond %{HTTP_HOST} !^secure\.fiedlerconsulting\.com\.au$ [NC]
+RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [NC,R=301,L]
+
+
 
 
 # disable to prevent caching of the lateness page

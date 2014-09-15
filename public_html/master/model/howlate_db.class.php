@@ -8,14 +8,6 @@ class howlate_db {
         $this->conn = new mysqli('localhost', howlate_util::mysqlUser(), howlate_util::mysqlPassword(), howlate_util::mysqlDb());
     }
 
-    function __construct_deleteme() {
-        if (__DOMAIN == "how-late.com" or !defined(__DOMAIN)) {
-            $this->conn = new mysqli('localhost', 'howlate_super', 'NuNbHG4NQn', 'howlate_main');
-        } else if (__DOMAIN == "fiedlerconsulting.com.au") {
-            $this->conn = new mysqli('localhost', 'fiedlerc_super', 'Az#XlXEx~hkk', 'fiedlerc_hldev');
-        }
-    }
-
     function __destruct() {
         if (is_resource($this->conn) && get_resource_type($this->conn) == 'mysql link') {
             $this->conn->close();
