@@ -31,7 +31,7 @@
     </div>
 
 
-
+<!-- This is a comment in the footer view -->
 
 
 </footer>
