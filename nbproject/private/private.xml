@@ -2,6 +2,18 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/D:/Github/Dev/howlate/public_html/master/views/header_view.php</file>
+            <file>file:/D:/Github/Dev/howlate/public_html/master/views/main_index.php</file>
+            <file>file:/D:/Github/Dev/howlate/public_html/.htaccess</file>
+            <file>file:/D:/Github/Dev/howlate/public_html/master/model/howlate_site.class.php</file>
+            <file>file:/D:/Github/Dev/howlate/public_html/master/controller/footerController.php</file>
+            <file>file:/D:/Github/Dev/howlate/public_html/master/controller/signupController.php</file>
+            <file>file:/D:/Github/Dev/howlate/public_html/master/views/signup_view.php</file>
+            <file>file:/D:/Github/Dev/howlate/public_html/master/controller/loginController.php</file>
+            <file>file:/D:/Github/Dev/howlate/public_html/master/index.php</file>
+            <file>file:/D:/Github/Dev/howlate/public_html/master/model/howlate_util.class.php</file>
+            <file>file:/D:/Github/Dev/howlate/public_html/master/.htaccess</file>
+        </group>
     </open-files>
 </project-private>

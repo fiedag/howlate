@@ -81,7 +81,7 @@ class howlate_site {
     public function createCPanelSubdomain() 
     {
         $xmlapi = new xmlapi('localhost');
-        $xmlapi->password_auth(howlate_util::$cpanelUser, howlate_util::$cpanelPassword);
+        $xmlapi->password_auth(howlate_util::cpanelUser(), howlate_util::cpanelPassword());
         $xmlapi->set_output("xml");
         $xmlapi->set_protocol("http");
         $xmlapi->set_debug(1);
@@ -156,17 +156,8 @@ class howlate_site {
     }
     
     public function createDefaultUser() {
-        $namepart = substr($this->Email,0,strpos($this->Email,'@'));
-        if(strpos($namepart,".")) {
-            $userid = substr($namepart,strpos($namepart,"."));
-        }
-        else
-            $userid = $namepart;
-        if(strlen($userid)>12) {
-            $userid = substr($userid,12);
-        }      
-        $this->db->create_user($this->OrgID, $userid, $this->Email);
-        $this->mylog("Created default user <b>$userid</b>");
+        $this->db->create_user($this->OrgID, $this->Email, $this->Email);
+        $this->mylog("Created default user <b>$this->Email</b>");
         return $this;
     }
 
@@ -221,7 +212,7 @@ class howlate_site {
     public function installSSL() {
 
         $xmlapi = new xmlapi('localhost');
-        $xmlapi->password_auth(howlate_util::$cpanelUser, howlate_util::$cpanelPassword);
+        $xmlapi->password_auth(howlate_util::cpanelUser(), howlate_util::cpanelPassword());
         $xmlapi->set_output("xml");
         $xmlapi->set_protocol("http");
         $xmlapi->set_debug(1);

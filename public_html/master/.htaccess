@@ -7,7 +7,8 @@ RewriteRule ^(.*)$ index.php?rt=$1 [L,QSA]
 
 
 RewriteCond %{HTTPS} !=on
-RewriteCond %{HTTP_HOST} !^secure\.how-late\.com$ [NC]
+#RewriteCond %{HTTP_HOST} !^secure\.how-late\.com$ [NC]
+RewriteCond %{HTTP_HOST} !^secure\.how-late.com$|^fiedlerconsulting.com.au$ [NC]
 RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [NC,R=301,L]
 
 
