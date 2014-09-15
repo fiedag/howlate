@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 RewriteEngine on
 
 RewriteCond %{REQUEST_FILENAME} !-f
@@ -22,26 +21,3 @@ RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [NC,R=301,L]
 #ExpiresActive on
 #ExpiresDefault "access plus 1 year"
 
-=======
-RewriteEngine on
-
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-# rewrites a fileuri of controller/action into index.php?rt=controller/action
-RewriteRule ^(.*)$ index.php?rt=$1 [L,QSA]
-
-
-RewriteCond %{HTTPS} !=on
-RewriteCond %{HTTP_HOST} !^secure\.how-late.com$ [NC]
-RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [NC,R=301,L]
-
-RewriteCond %{HTTPS} !=on
-RewriteCond %{HTTP_HOST} !^secure\.fiedlerconsulting\.com\.au$ [NC]
-RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [NC,R=301,L]
-
-
-# disable to prevent caching of the lateness page
-#ExpiresActive on
-#ExpiresDefault "access plus 1 year"
-
->>>>>>> 81fa29f1384873cf49ed7f66d6c42f7637aff8dd
