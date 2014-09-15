@@ -34,3 +34,4 @@ Class usersController Extends baseController {
     }
     
 }
+?>

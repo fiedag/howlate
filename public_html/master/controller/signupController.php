@@ -41,3 +41,4 @@ Class signupController Extends baseController {
     }
 
 }
+?>
