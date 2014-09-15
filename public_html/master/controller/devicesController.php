@@ -33,3 +33,4 @@ Class devicesController Extends baseController {
     }
 
 }
+?>

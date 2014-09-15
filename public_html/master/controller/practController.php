@@ -72,3 +72,4 @@ Class practController Extends baseController {
     }
 
 }
+?>

@@ -47,3 +47,4 @@ Class clinicsController Extends baseController {
     }
     
 }
+?>
