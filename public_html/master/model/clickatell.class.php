@@ -17,19 +17,20 @@ class clickatell {
 		$sess = explode(":",$ret[0]);
 		if ($sess[0] == "OK") {
 			$sess_id = trim($sess[1]); // remove any whitespace
-			$sendurl = "$this->baseurl/http/sendmsg?session_id=$sess_id&from=''&to=$to&max_credits=3&concat=3&text=$text";
+			$sendurl = "$this->baseurl/http/sendmsg?session_id=$sess_id&from='how-late'&to=$to&max_credits=3&concat=3&text=$text";
 			//echo $sendurl . "<br>";
 			$ret = file($sendurl);
 			$send = explode(":",$ret[0]);
 
 			if ($send[0] == "ID") {
-				//echo "success message ID: ". $send[1];
+				$db = new howlate_db();
+                                $db->smslog($this->api_id, $sess_id, $send[1], $message);  
                                 
 			} else {
-				die("send message failed, " . print_r($ret));
+				error_log("send message failed, " . print_r($ret));
 			}
 		} else {
-			die("Authentication failure: ". $ret[0]);
+			error_log("Authentication failure: ". $ret[0]);
 		}
 	}
 	

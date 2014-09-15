@@ -654,7 +654,7 @@ class howlate_db {
 
     public function dequeueNotification($uid) {
         $q = "UPDATE notifqueue SET Status = 'Sent' WHERE UID = $uid";
-        echo $q;
+        //echo $q;
         $stmt = $this->conn->prepare($q);
         $stmt->execute() or trigger_error('# Query Error (' . $this->conn->errno . ') ' . $this->conn->error, E_USER_ERROR);
         if ($stmt->affected_rows == 0) {
@@ -662,4 +662,14 @@ class howlate_db {
         }
     }
 
+    public function smslog($api, $session, $messageid, $message)
+    {
+        $q = "INSERT INTO sentsms (API, SessionID, MessageID, MessageText) VALUES (?,?,?,?)";
+        $stmt = $this->conn->prepare($q);
+        $stmt->bind_param('ssss',$api,$session,$messageid,$message);
+        $stmt->execute() or trigger_error('# Query Error (' . $this->conn->errno . ') ' . $this->conn->error, E_USER_ERROR);
+        if ($stmt->affected_rows == 0) {
+           trigger_error("The row was not inserted into the sentsms table, error= " . $this->conn->error , E_USER_ERROR);
+        }
+    }
 }
