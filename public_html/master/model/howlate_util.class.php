@@ -7,33 +7,49 @@ class howlate_util {
 //
 //    public static $mysqlUser = "howlate_super";
 //    public static $mysqlPassword = "NuNbHG4NQn";
-    
+
     private static $testdomain = "fiedlerconsulting.com.au";
-    
-    public static function cpanelUser()
-    {
-        return (__DOMAIN==self::$testdomain)?"fiedlerc":"howlate";
+
+    public static function cpanelUser() {
+        return (__DOMAIN == self::$testdomain) ? "fiedlerc" : "howlate";
     }
+
     public static function cpanelPassword() {
-        return (__DOMAIN==self::$testdomain)?"PqoXLF0FRS":"PzaLQiH9av";
+        return (__DOMAIN == self::$testdomain) ? "PqoXLF0FRS" : "PzaLQiH9av";
     }
 
     public static function mysqlDb() {
-        return (__DOMAIN==self::$testdomain)?"fiedlerc_hldev":"howlate_main";
+        return (__DOMAIN == self::$testdomain) ? "fiedlerc_hldev" : "howlate_main";
     }
 
     public static function mysqlBillingDb() {
-        return (__DOMAIN==self::$testdomain)?"fiedlerc_bill":"howlate_billing";
+        return (__DOMAIN == self::$testdomain) ? "fiedlerc_bill" : "howlate_billing";
     }
 
-    
     public static function mysqlUser() {
-        return (__DOMAIN==self::$testdomain)?"fiedlerc_super":"howlate_super";
+        return (__DOMAIN == self::$testdomain) ? "fiedlerc_super" : "howlate_super";
     }
+
     public static function mysqlPassword() {
-        return (__DOMAIN==self::$testdomain)?"Az#XlXEx~hkk":"NuNbHG4NQn";
+        return (__DOMAIN == self::$testdomain) ? "Az#XlXEx~hkk" : "NuNbHG4NQn";
     }
-    
+
+    public static function basePath() {
+        return "/home/" . self::cpanelUser() . "/public_html";
+    }
+
+    public static function masterPath() {
+        return self::basePath() . "/master";
+    }
+
+    public static function noreplySmtpUsername() {
+        return "noreply@" . __DOMAIN;
+    }
+
+    public static function noreplySmtpPassword() {
+        return (__DOMAIN == self::$testdomain) ? "qC7MK1JnAh" : "Kh6z9z6y6c";
+    }
+
     public static function tobase10($base26) {
         $base10 = 0;
         $len = strlen($base26);
@@ -126,7 +142,6 @@ class howlate_util {
         return (substr($haystack, -$length) === $needle);
     }
 
-    
     public static function logoURL($subd = "") {
 
         if (file_exists("pri/$subd/logo.png")) {
@@ -138,52 +153,39 @@ class howlate_util {
 
     public static function diag($str) {
         if (defined('__DIAG')) {
-            echo $str . "<br>";           
-        }
-        
-    }
-    
-    private function redirect($url) {
-        if (headers_sent()) {
-            die('<script type="text/javascript">window.location.href="' . $url . '";</script>');
-        } else {
-            header('Location: ' . $url);
-            die();
+            echo $str . "<br>";
         }
     }
-    
 
     public static function secondsSinceMidnight($datestr, $timezone) {
         $midnight = new DateTime("00:00:00", new DateTimeZone($timezone));
         $localtime = new DateTime($datestr, new DateTimeZone($timezone));
-        
+
         return ($localtime->format("U") - $midnight->format("U"));
     }
-    
+
     public static function dayName($datestr, $timezone) {
         $day = new DateTime($datestr, new DateTimeZone($timezone));
         return $day->format("l");
     }
-    
+
     //
     // method probably belongs elsewhere
     //
     public static function register($pin, $udid) {
-        
+
         $org = self::orgFromPin($pin);
-        $id = self::idFromPin($pin);       
-        
+        $id = self::idFromPin($pin);
+
         $db = new howlate_db();
         $db->register($udid, $org, $id);
         $db->trlog(TranType::DEV_REG, 'Device ' . $udid . 'registered pin ' . $pin, $org, null, $id, $udid);
-              
     }
-    
-    public static function invite($pin, $udid, $domain) 
-    {
+
+    public static function invite($pin, $udid, $domain) {
         $org = self::orgFromPin($pin);
-        $id = self::idFromPin($pin);       
-        
+        $id = self::idFromPin($pin);
+
         $db = new howlate_db();
         $prac = $db->getPractitioner($org, $id);
 
@@ -192,14 +194,40 @@ class howlate_util {
         $message .= "http://secure." . $domain . "/late/view&udid=$udid";
 
         howlate_sms::httpSend($org, $udid, $message);
-        $db->trlog(TranType::DEV_SMS, "invited $udid using SMS gateway", $org, null, $id, $udid);
     }
 
-
     // SSL Certificate for *.how-late.com
-    public static function getSSLCertificate()
-    {
-$crt = <<<EOD
+    public static function getSSLCertificate() {
+        if (__DOMAIN == self::$testdomain) {
+            $crt = <<<EOD
+-----BEGIN CERTIFICATE-----
+MIIESzCCAzOgAwIBAgIFARQgvXEwDQYJKoZIhvcNAQEFBQAwgb0xCzAJBgNVBAgM
+AlNBMSwwKgYJKoZIhvcNAQkBFh1hbGV4QGZpZWRsZXJjb25zdWx0aW5nLmNvbS5h
+dTELMAkGA1UEBhMCQVUxIzAhBgNVBAMMGiouZmllZGxlcmNvbnN1bHRpbmcuY29t
+LmF1MRQwEgYDVQQHDAtCZXVsYWggUGFyazEbMBkGA1UECwwSRmllZGxlciBDb25z
+dWx0aW5nMRswGQYDVQQKDBJGaWVkbGVyIENvbnN1bHRpbmcwHhcNMTQwODI5MDQx
+NjQ5WhcNMTUwODI5MDQxNjQ5WjCBvTELMAkGA1UECAwCU0ExLDAqBgkqhkiG9w0B
+CQEWHWFsZXhAZmllZGxlcmNvbnN1bHRpbmcuY29tLmF1MQswCQYDVQQGEwJBVTEj
+MCEGA1UEAwwaKi5maWVkbGVyY29uc3VsdGluZy5jb20uYXUxFDASBgNVBAcMC0Jl
+dWxhaCBQYXJrMRswGQYDVQQLDBJGaWVkbGVyIENvbnN1bHRpbmcxGzAZBgNVBAoM
+EkZpZWRsZXIgQ29uc3VsdGluZzCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoC
+ggEBAMaZ1K8HiKub2e3s6929Es9PCrGPEhIlQb7k6/I7m8ddiUI1nL/dk3kRsmka
+ZNVH78k5x+KequIbwSr3MrBS/Pu1IJY2yU1sylnz8yjn9T6b63dMbb7FMplCGHkz
+MLU2iID/An0hGncekqQiKiOYc9MfXzZygPM0y9XuTZ9UJ9uDWP+khBeHcrl0KJpT
+glok1slTCnuNpfK0ZYulmgKRgWa7nLYuT/V34f1Of0g+Aky6xxBgvtXRoJcRoV9m
+tv7xF9Z3zuYTXuLVweBklpRikEYXCq7OVDOnH9ufnesXlm5tx3Ufp1LhoQ8og80Y
+DMFRSIm/RUSYg9AaJ4xsBufdR58CAwEAAaNQME4wHQYDVR0OBBYEFEb/en3oKQQQ
+3Qv7zhJijV/KewEmMB8GA1UdIwQYMBaAFEb/en3oKQQQ3Qv7zhJijV/KewEmMAwG
+A1UdEwQFMAMBAf8wDQYJKoZIhvcNAQEFBQADggEBAMCbJGabGdBtqtlXmz/I8v1a
+BJtHs888toJP3nVvgHSNbkb4l7e3acqqTVQ7I8xN734Uy2g/1Z5r39QQrqLe341D
+cSYAwLdnWDEnjW5WFSUU9RbO6AvI/xjeLcDI33deIUAOYv2ubLwGT+0k4cnnsdSm
+fFmyWdmdZLpfJKDS+xww0t+GgAa+mr92NtvQI//km5LAsQ73LiPS5xe5GlyZIjOr
+3J9scGjP3nl486IODAkyR9sZeNXOIuvp2P4jOSddI2UBPZK2QEQN9sKp9fi/BMc2
+2ByNXGmeylCtYGmcCeY6cuCROiM/TtR37NzZsEV1rdg+OkTqCa+X7ohiYtUF4q0=
+-----END CERTIFICATE-----
+EOD;
+        } else {  // how-late real certificate
+            $crt = <<<EOD
 -----BEGIN CERTIFICATE-----
 MIIFUjCCBDqgAwIBAgIQOi70mLLxfvw50BzryWb//zANBgkqhkiG9w0BAQsFADCB
 kDELMAkGA1UEBhMCR0IxGzAZBgNVBAgTEkdyZWF0ZXIgTWFuY2hlc3RlcjEQMA4G
@@ -232,9 +260,10 @@ f2CVGj8R4rYgHbWf7mkn4u3oX76Q6bu4vKtQlxjALTbwP2vp5GIOI1jES3JMbD9R
 Ec2JP4hnT/LFh0+kOuemIlOI+QnfHw==
 -----END CERTIFICATE-----
 EOD;
-    return $crt;
+        }
+        return $crt;
     }
-    
+
 }
 
 ?>

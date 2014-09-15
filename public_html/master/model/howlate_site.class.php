@@ -12,27 +12,27 @@ class howlate_site {
     public $PrivateArea;   // a hashed folder location for organisation's logos icons and style sheets
     
     
-    protected $base_path = '/home/howlate/public_html';
-    protected $template_path = '/home/howlate/public_html/master';
+    protected $base_path;
+    protected $template_path;
 
-    private $username = "howlate";
-    private $password = "PzaLQiH9av";
-    private $udomain = __DOMAIN;
         
     protected $org;  // will hold organisation() object
-    
     protected $db;
-
     public $Result;
     
     function __construct($co,$email)
     {
+        $this->base_path = howlate_util::basePath();
+        $this->template_path = howlate_util::masterPath();
         $this->CompanyName = $co;
         $this->Email = $email;        
         $this->db = new howlate_db();
+        // the xmlapi is the API to interact with cpanel and
+        // thereby create subdomains and apply certificates
         include_once('includes/xmlapi-php-master/xmlapi.php');
     }
-    
+
+    // abbreviate names where possible and make unique
     public function reduceName() {
         // check in database and set if valid, else exception
 
@@ -48,6 +48,7 @@ class howlate_site {
         return $this;
     }
 
+    // check for duplicates and append number to make unique
     public function checkForDupe() {
         $org = $this->db->getOrganisation($this->Subdomain);
 
@@ -72,6 +73,9 @@ class howlate_site {
         if (file_exists($this->PrivateArea)) {
             $this->mylog("Private area $this->PrivateArea exists already<br>");
         } else {
+            if(!file_exists($this->template_path . '/pri')) {
+                mkdir($this->template_path . '/pri');
+            }
             mkdir($this->PrivateArea);
             $this->mylog("Private area $this->PrivateArea created<br>");
         }
@@ -86,56 +90,13 @@ class howlate_site {
         $xmlapi->set_protocol("http");
         $xmlapi->set_debug(1);
         
-        $domain = $this->Subdomain . "." . $this->udomain;
-        $this->mylog("Creating subdomain for $domain");
-        $result = $xmlapi->api2_query('howlate', "SubDomain","addsubdomain", array('domain'=>$domain, 'dir'=>"/public_html/master", 'rootdomain'=>"how-late.com"));
+        $subd = $this->Subdomain . "." . __DOMAIN;
+        $this->mylog("Creating subdomain for $subd");
+        $result = $xmlapi->api2_query('howlate', "SubDomain","addsubdomain", array('domain'=>$subd, 'dir'=>"/public_html/master", 'rootdomain'=>__DOMAIN));
         $this->mylog($result);
         return $this;
     }
     
-    public function createInCPanel_Obsolete() {
-
-        $authstr = howlate_util::$cpanelUser . ":" . howlate_util::$cpanelPassword;
-        $pass = base64_encode($authstr);
-        $ustring = $this->Subdomain;
-
-        $socket2 = fsockopen($this->udomain, 2082);
-        if (!$socket2) {
-            trigger_error('Socket error trying to connect to cpanel to create the subdomain', E_USER_ERROR);
-            return false;
-        }
-
-        $hasbeencreated = "has been created!";
-        $alreadyexists = "already exists";
-        $accessdenied = "Access denied";
-        $indom = "GET /frontend/x3/subdomain/doadddomain.html?domain=$this->Subdomain&rootdomain=$this->udomain&dir=public_html%2Fmaster\r\n HTTP/1.0\r\nHost:$this->udomain\r\nAuthorization: Basic $pass\r\n\r\n";
-        fputs($socket2, $indom);
-        while (!feof($socket2)) {
-            $buf = fgets($socket2, 128);
-            $ret[] = $buf;
-            if (strpos($buf, $hasbeencreated)) {    //  SUCCESS!!
-                fclose($socket2);
-                return $this;
-            }
-            if (strpos($buf, $alreadyexists)) {
-                fclose($socket2);
-                $this->mylog('Cpanel Subdomain already exists: <b>' . $indom . '</b>');
-                return $this;
-            }
-            if (strpos($buf, $accessdenied)) {
-                fclose($socket2);
-                $this->mylog('Cpanel access denied: <b>' . $indom . '</b>');
-               return $this;
-            }
-
-        }
-        fclose($socket2);
-        $this->mylog("Error creating cPanel subdomain, error=" + var_dump($ret));
-        
-        return $this;
-    }
-    
-  
     public function createOrgRecord() {
         $this->OrgID = $this->db->getNextOrgID();
         $this->mylog("Using new OrgId = $this->OrgID <br>");
@@ -196,11 +157,10 @@ class howlate_site {
         $headers .= 'Content-type: text/plain; charset=iso-8859-1' . "\n";
         $headers .= "From: $from";
 
-        $mail = new mailer();
+        $mail = new howlate_mailer();
         $mail->send($this->Email,$this->Email, $subject,$body, $from, $fromName);   
         $this->mylog("Welcome email sent to $this->Email");
         return $this;
-        
     }
 
     private function mylog($msg)
@@ -217,7 +177,7 @@ class howlate_site {
         $xmlapi->set_protocol("http");
         $xmlapi->set_debug(1);
         
-        $domain = $this->Subdomain . "." . $this->udomain;
+        $domain = $this->Subdomain . "." . __DOMAIN;
         $this->mylog("Installing certificate for $domain");
         $crt = howlate_util::getSSLCertificate();
         $result = $xmlapi->api2_query('howlate', "SSL", "installssl", array('domain'=>$domain,'crt'=>$crt));

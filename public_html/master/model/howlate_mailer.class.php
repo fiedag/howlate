@@ -1,17 +1,20 @@
 <?php
-class mailer {
+class howlate_mailer {
 
     private $Host = "localhost";
-    private $Username = "noreply@how-late.com";
-    private $Password = "Kh6z9z6y6c";
+    private $Username;
+    private $Password;
 
     private $mail;
     
     function __construct() {
+        
+        $this->Username = howlate_util::noreplySmtpUsername();
+        $this->Password = howlate_util::noreplySmtpPassword();
         include('includes/PHPMailer-master/PHPMailerAutoload.php');
     }
 
-    public function send($toEmail, $toName, $subject, $body, $from = 'noreply@how-late.com', $fromName = 'noreply@how-late.com') {
+    public function send($toEmail, $toName, $subject, $body, $from, $fromName) {
         $this->mail = new PHPMailer(true);
         $this->mail->CharSet = 'utf-8';
 
@@ -27,7 +30,7 @@ class mailer {
         $this->mail->SMTPAuth = true;
         $this->mail->Username = $this->Username;
         $this->mail->Password = $this->Password;
-        $this->mail->addReplyTo("noreply@how-late.com", "How-Late.Com");
+        $this->mail->addReplyTo($this->Username, "How-Late.Com");
         $this->mail->From = $from;
         $this->mail->FromName = $fromName;
         $this->mail->addAddress($toEmail, $toName);
