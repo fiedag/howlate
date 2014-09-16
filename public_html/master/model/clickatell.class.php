@@ -8,7 +8,7 @@ class clickatell {
 	private $baseurl ="http://api.clickatell.com";
 
 	
-	public function httpSend($to, $message) {
+	public function httpSend($to, $message, $orgid) {
 		$text = urlencode($message);
 		// do authorisation call
 		$authurl = "$this->baseurl/http/auth?user=$this->user&password=$this->password&api_id=$this->api_id";
@@ -24,7 +24,7 @@ class clickatell {
 
 			if ($send[0] == "ID") {
 				$db = new howlate_db();
-                                $db->smslog($this->api_id, $sess_id, $send[1], $message);  
+                                $db->smslog($orgid, $this->api_id, $sess_id, $send[1], $message);  
                                 
 			} else {
 				error_log("send message failed, " . print_r($ret));

@@ -662,11 +662,11 @@ class howlate_db {
         }
     }
 
-    public function smslog($api, $session, $messageid, $message)
+    public function smslog($orgid, $api, $session, $messageid, $message)
     {
-        $q = "INSERT INTO sentsms (API, SessionID, MessageID, MessageText) VALUES (?,?,?,?)";
+        $q = "INSERT INTO sentsms (OrgID, API, SessionID, MessageID, MessageText) VALUES (?,?,?,?,?)";
         $stmt = $this->conn->prepare($q);
-        $stmt->bind_param('ssss',$api,$session,$messageid,$message);
+        $stmt->bind_param('sssss',$orgid, $api,$session,$messageid,$message);
         $stmt->execute() or trigger_error('# Query Error (' . $this->conn->errno . ') ' . $this->conn->error, E_USER_ERROR);
         if ($stmt->affected_rows == 0) {
            trigger_error("The row was not inserted into the sentsms table, error= " . $this->conn->error , E_USER_ERROR);
