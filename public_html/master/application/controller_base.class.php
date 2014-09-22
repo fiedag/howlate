@@ -7,6 +7,8 @@ Abstract Class baseController {
 
     protected $registry;
 
+    protected $org;
+    
     function __construct($registry) {
         $this->registry = $registry;  
         set_exception_handler(array($this, 'unh_exception'));
@@ -27,6 +29,12 @@ Abstract Class baseController {
         include 'controller/footerController.php';
         $footer = new footerController($this->registry);
         $footer->view($this->org);
+    }
+
+    function get_simplefooter() {
+        include 'controller/footerController.php';
+        $footer = new footerController($this->registry);
+        $footer->index();
     }
 
     

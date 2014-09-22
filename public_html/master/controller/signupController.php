@@ -36,7 +36,6 @@ Class signupController Extends baseController {
         
         $this->registry->template->signup_result = $howlate_site->Result;
         $this->registry->template->show('signup_view');
-
         
     }
 

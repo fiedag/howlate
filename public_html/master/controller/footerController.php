@@ -3,7 +3,8 @@
 Class footerController Extends baseController {
 
     public function index() {
-        $this->view();
+        $this->registry->template->copyright = "Copyright " . date('Y', time()) . " How-Late.Com";
+        $this->registry->template->show('footer_view');
     }
 
     public function view($org) {
