@@ -1,9 +1,9 @@
 Options -Indexes
 
 # this rewrites anything how-late.com
-#RewriteEngine on
-#RewriteCond   %{HTTP_HOST}                 ^(www\.)?how-late\.com|^(www\.)?fiedlerconsulting\.com\.au$
-#RewriteRule   ^(.+)                        http://how-late.com/en          [NC]
+RewriteEngine on
+RewriteCond   %{HTTP_HOST}                 ^(www\.)?how-late\.com$
+RewriteRule   ^(.+)                        http://how-late.com/en          [NC]
 
 
 #AuthName "how-late root"

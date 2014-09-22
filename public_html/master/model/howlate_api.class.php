@@ -177,6 +177,8 @@ class howlate_api {
         if ($lateness == "On time") {
             throw new Exception($practitioner->PractitionerName . " was on time (or would be reported as on time)");
         }
+        
+        howlate_util::register($pin,$MobilePhone);
         $db->enqueueNotification($practitioner, $Patient, $MobilePhone, $lateness);
 
         $msg = "Success.  Notification put in queue for " . $MobilePhone;

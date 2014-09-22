@@ -578,18 +578,16 @@ class howlate_db {
         $stmt->execute() or trigger_error('# Query Error (' . $this->conn->errno . ') ' . $this->conn->error, E_USER_ERROR);
     }
 
-    public function enqueueNotification($practitioner, $Patient, $MobilePhone, $Lateness) {
+    public function enqueueNotification($practitioner, $Patient, $MobilePhone, $Lateness, $testmobile = "") {
         $q = "INSERT INTO notifqueue (OrgID, ClinicID, PractitionerID, MobilePhone, Message,Status, TestMobile) VALUES (?,?,?,?,?,?,?)";
         $stmt = $this->conn->query($q);
         $stmt = $this->conn->prepare($q);
 
         $MobilePhone = trim($MobilePhone);
         $pin = $practitioner->OrgID . "." . $practitioner->PractitionerID;
- 
-        $url = "http://secure." . __DOMAIN . "/late/reg&udid=$MobilePhone&pin=$pin";
+        $url = "http://secure." . __DOMAIN . "/late/view&udid=$MobilePhone";
         $msg = $practitioner->PractitionerName . " is running " . $Lateness . ".  For updates, click " . $url;
         $status = 'Queued';
-        $testmobile = "0403569377";
         $stmt->bind_param('sssssss', $practitioner->OrgID, $practitioner->ClinicID, $practitioner->PractitionerID, $MobilePhone, $msg, $status, $testmobile);
         $stmt->execute() or trigger_error('# Query Error (' . $this->conn->errno . ') ' . $this->conn->error, E_USER_ERROR);
     }
