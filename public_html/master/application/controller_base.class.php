@@ -8,7 +8,8 @@ Abstract Class baseController {
     protected $registry;
 
     function __construct($registry) {
-        $this->registry = $registry;   
+        $this->registry = $registry;  
+        set_exception_handler(array($this, 'unh_exception'));
     }
 
     /**
@@ -28,6 +29,15 @@ Abstract Class baseController {
         $footer->view($this->org);
     }
 
+    
+    public function unh_exception($exception) {
+        $db = new howlate_db();
+        $db->write_error(0, 1, $exception->getMessage(), $exception->getFile(), $exception->getLine());
+        include 'controller/exceptionController.php';
+        $controller = new exceptionController($this->registry);
+        $controller->view($exception);
+    }
+    
     function session_start() {
         session_start();
 

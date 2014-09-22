@@ -75,6 +75,7 @@ function customErrorHandler($errno, $errstr, $errfile, $errline)
     return true;
 }
 
+// this is used by error_log function.  being superseded by exception handling
 set_error_handler("customErrorHandler");
 
 ?>

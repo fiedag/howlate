@@ -1,11 +1,22 @@
 <?php
 
+
+/*
+ * called by the apiController class
+ * the methods in this class return valid
+ * arrays which can be JSON encoded
+ * else a string like 
+ * "The text of the error".
+ * 
+ * 
+ */
 class howlate_api {
 
     //
     // Updates lateness of a practitioner.  called from HowLateAgent
     //
     public static function updatelateness() {
+
         $credentials = filter_input(INPUT_POST, "credentials");
         if ($credentials == null) {
             return "Credentials not supplied.";
@@ -124,69 +135,55 @@ class howlate_api {
     ///
     /// there are post parameters telling us who to notify.  
     /// We will enter this info in a table and a cron job will process the new records in the table as required.
-    public static function notify() 
-    {
-        $clin = filter_input(INPUT_GET,"clin");
-        
+    public static function notify() {
+
+        $clin = filter_input(INPUT_GET, "clin");
+
         $credentials = filter_input(INPUT_POST, "credentials");
         if ($credentials == null) {
-            return "Fatal Error: Credentials not supplied.";
-        }      
+            throw new Exception("Credentials not supplied.");
+        }
         list($userid, $passwordhash) = explode(".", $credentials);
         $db = new howlate_db();
 
         $org = new organisation();
         $org->getby(__SUBDOMAIN, "Subdomain");
-        if ($db->isValidPassword($org->OrgID, $userid, $passwordhash)) {
-            try {
-                $Patient = filter_input(INPUT_POST, "Patient");
-                $AppointmentDate = filter_input(INPUT_POST, "AppointmentDate");
-                $AppointmentTime = filter_input(INPUT_POST, "AppointmentTime");
-                $Provider = filter_input(INPUT_POST, "Provider");
-                $MobilePhone = filter_input(INPUT_POST, "MobilePhone");
-                
-                if ($Patient == null or $Patient == "") {
-                    return "Fatal Error: No Patient specified in the post parameters.";
-                }
-                if ($AppointmentDate == null or $AppointmentDate == "") {
-                    return "Fatal Error: No Appointment Date specified in the post parameters.";
-                }
-                if ($AppointmentTime == null or $AppointmentTime == "") {
-                    return "Fatal Error: No Appointment Time specified in the post parameters.";
-                }
-                if ($Provider == null or $Provider == "") {
-                    return "Fatal Error: No Provider specified in the post parameters.";
-                }
-                if ($MobilePhone == null or $MobilePhone == "") {
-                    return "Fatal Error: No Mobile Phone number specified in the post parameters.";
-                }
+        if (!$db->isValidPassword($org->OrgID, $userid, $passwordhash)) {
+            throw new Exception("Invalid user credentials.");
+        }
 
-                $practitioner = $db->getPractitioner($org->OrgID, $Provider, 'FullName');
-                if ($practitioner->OrgID == null) {
-                    $db->create_default_practitioner($org->OrgID, $Provider);
-                    $practitioner = $db->getPractitioner($org->OrgID, $Provider, 'FullName');
-                }
+        $Patient = filter_input(INPUT_POST, "Patient");
+        $Provider = filter_input(INPUT_POST, "Provider");
+        $MobilePhone = filter_input(INPUT_POST, "MobilePhone");
 
-                $pin = $practitioner->OrgID . "." . $practitioner->PractitionerID;
-                $lateness = $db->getSingleLateness($pin);
-                if ($lateness == "On time") {
-                    return "Fatal Error: " . $practitioner->PractitionerName . " was on time!!!";
-                }
-                $db->enqueueNotification($practitioner,$Patient,$AppointmentDate,$AppointmentTime,$MobilePhone, $lateness);
-                
-                $msg = "Success.  Notification put in queue for " . $MobilePhone ;
-                $db->trlog(TranType::QUE_NOTIF, $msg, $org->OrgID, null, $practitioner->PractitionerID, null);
-                return $msg;
-            } catch (Exception $ex) {
-                $db->trlog(TranType::QUE_NOTIF, 'Practitioner ' . $practitioner->PractitionerID . ' failed to queue notification, exception=' . $ex, $org->OrgID, null, $null, $null);
-                return $ex;
-            }
-        } else {
-            return "Fatal Error: Invalid credentials.";
-        }   
-        
+        if ($Patient == null or $Patient == "") {
+            throw new Exception("No Patient specified in the post parameters.");
+        }
+        if ($Provider == null or $Provider == "") {
+            throw new Exception("No Provider specified in the post parameters.");
+        }
+        if ($MobilePhone == null or $MobilePhone == "") {
+            throw new Exception("No Mobile Phone number specified in the post parameters.");
+        }
+
+        $practitioner = $db->getPractitioner($org->OrgID, $Provider, 'FullName');
+        if ($practitioner->OrgID == null) {
+            $db->create_default_practitioner($org->OrgID, $Provider);
+            $practitioner = $db->getPractitioner($org->OrgID, $Provider, 'FullName');
+        }
+
+        $pin = $practitioner->OrgID . "." . $practitioner->PractitionerID;
+        $lateness = $db->getSingleLateness($pin);
+        if ($lateness == "On time") {
+            throw new Exception($practitioner->PractitionerName . " was on time (or would be reported as on time)");
+        }
+        $db->enqueueNotification($practitioner, $Patient, $MobilePhone, $lateness);
+
+        $msg = "Success.  Notification put in queue for " . $MobilePhone;
+        $db->trlog(TranType::QUE_NOTIF, $msg, $org->OrgID, null, $practitioner->PractitionerID, null);
+        return $msg;
     }
-      
+
 }
 
 ?>

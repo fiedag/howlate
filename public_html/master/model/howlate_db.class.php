@@ -578,7 +578,7 @@ class howlate_db {
         $stmt->execute() or trigger_error('# Query Error (' . $this->conn->errno . ') ' . $this->conn->error, E_USER_ERROR);
     }
 
-    public function enqueueNotification($practitioner, $Patient, $AppointmentDate, $AppointmentTime, $MobilePhone, $Lateness) {
+    public function enqueueNotification($practitioner, $Patient, $MobilePhone, $Lateness) {
         $q = "INSERT INTO notifqueue (OrgID, ClinicID, PractitionerID, MobilePhone, Message,Status, TestMobile) VALUES (?,?,?,?,?,?,?)";
         $stmt = $this->conn->query($q);
         $stmt = $this->conn->prepare($q);

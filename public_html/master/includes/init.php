@@ -7,6 +7,8 @@ include __SITE_PATH . '/application/' . 'registry.class.php';
 include __SITE_PATH . '/application/' . 'router.class.php';
 /* * * include the template class ** */
 include __SITE_PATH . '/application/' . 'template.class.php';
+
+
 /* * * auto load model classes ** */
 function __autoload($class_name) {
     $filename = strtolower($class_name) . '.class.php';
@@ -33,8 +35,17 @@ include_once("error_handler.php");
 $registry = new registry;
 
 
-
-
 /* * * create the database registry object ** */
 // $registry->db = db::getInstance();
+
+
+
+set_exception_handler('unh_excep');
+
+function unh_excep() {
+    
+    
+}
+
+
 ?>

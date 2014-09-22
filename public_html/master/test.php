@@ -1,19 +1,15 @@
 <?php
 
+set_exception_handler(unh_excep);
 
 
-
-try {
-
-echo "Throwing an exception:";
-
-include("test2.php");
+throw new Exception("This is the exception from test.php");
 
 
-}
-catch(Exception $ex)
-{
-    echo "Something went wrong.  The exception has been caught and logged but not shown to the user.";
+function unh_excep() {
+    
+    echo "Something bad happened.  Don worry bout it.";
     
 }
+
 ?>

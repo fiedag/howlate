@@ -21,7 +21,7 @@ $db->deleteOldLates();
 
 $result = $db->getLateTimezones();
 foreach ($result as $key => $TZval) {
-    mylog("++++++++++++++++++++++++ Processing timezone = " . $TZval->Timezone . " +++++++++++++++++");
+    mylog("++++++zeroing lateness ++++++++++++++++++ Processing timezone = " . $TZval->Timezone . " +++++++++++++++++");
 
     $tolerance = 7200;  // two hours
 

@@ -6,14 +6,11 @@ Class clinicsController Extends baseController {
 
 
     public function index() {
-      
-	$this->org = new organisation();
+        $this->org = new organisation();
         $this->org->getby(__SUBDOMAIN, "Subdomain");
         $this->registry->template->companyname = $this->org->OrgName;
         $this->registry->template->logourl = howlate_util::logoURL(__SUBDOMAIN);
-
 	$this->registry->template->controller = $this;
-       
         $this->registry->template->show('clinics_index');
 		
     }
@@ -48,4 +45,3 @@ Class clinicsController Extends baseController {
     
 }
 ?>
-
