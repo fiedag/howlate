@@ -17,7 +17,7 @@ class clickatell {
 		$sess = explode(":",$ret[0]);
 		if ($sess[0] == "OK") {
 			$sess_id = trim($sess[1]); // remove any whitespace
-			$sendurl = "$this->baseurl/http/sendmsg?session_id=$sess_id&from='how-late'&to=$to&max_credits=3&concat=3&text=$text";
+			$sendurl = "$this->baseurl/http/sendmsg?session_id=$sess_id&from=how-late&to=$to&max_credits=3&concat=3&text=$text";
 			//echo $sendurl . "<br>";
 			$ret = file($sendurl);
 			$send = explode(":",$ret[0]);
