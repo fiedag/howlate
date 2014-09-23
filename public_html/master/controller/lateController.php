@@ -7,11 +7,14 @@ Class lateController Extends baseController {
     }
 
     public function view() {
+        $this->registry->template->controller = $this;
         $this->registry->template->refresh = 30;  // seconds
         $this->registry->template->when_refreshed = 'Updated ' . date('h:i A');
         $this->registry->template->bookmark_title = "How late";
         $this->registry->template->bookmark_url = $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"];
         $this->registry->template->icon_url = howlate_util::logoURL(__SUBDOMAIN);
+        $this->registry->template->apple_icon_url = howlate_util::logoWhiteBG();
+        
         if (isset($_GET['udid'])) {
             $udid = filter_input(INPUT_GET, 'udid');
             $this->registry->template->UDID = $udid;
@@ -46,21 +49,8 @@ Class lateController Extends baseController {
         $this->view();
     }
 
-    private function addressURL($clin) {
-        $str = "http://maps.google.com/maps?q=$clin->Address1";
-        if ($clin->Address2 != '') {
-            $str .= "+$clin->Address2";
-        }
-        if ($clin->City != '') {
-            $str .= "+$clin->City";
-        }
-        if ($clin->Zip != '') {
-            $str .= "+$clin->Zip";
-        }
-
-        return $str;
-    }
-
+    
+    
 }
 
 ?>

@@ -1,6 +1,6 @@
 <?php
 
-Class devicesController Extends baseController {
+Class tranlogController Extends baseController {
 
     public $org;
 
@@ -13,7 +13,7 @@ Class devicesController Extends baseController {
 
 	$this->registry->template->controller = $this;
        
-        $this->registry->template->show('devices_index');
+        $this->registry->template->show('tranlog_index');
 		
     }
     
@@ -22,13 +22,13 @@ Class devicesController Extends baseController {
         $xcrud = Xcrud::get_instance();
         $xcrud->connection(howlate_util::mysqlUser(),howlate_util::mysqlPassword(),howlate_util::mysqlDb());
         
-        $xcrud->table('devicereg')->table_name('Registered phone devices','You can add or delete registered mobile phones here')->where('OrgID =', $this->org->OrgID)->limit(30);
-        
-       
+        $xcrud->table('vwWeeksLog')->table_name('Transaction Log',"This week's log shown in latest first order.  See CSV export button at end.")->where('OrgID =', $this->org->OrgID)->limit(50);
+        $xcrud->order_by('Id','desc');        
+        $xcrud->columns('OrgID', true);
         $xcrud->pass_default('OrgID', $this->org->OrgID);
-        $xcrud->hide_button('view');
-        $xcrud->order_by('Created','desc');   
-        $xcrud->unset_csv(true)->unset_numbers(true)->unset_print(true)->unset_limitlist(true)->hide_button('save_and_edit')->hide_button('save_and_new');     
+        //$xcrud->hide_button('view');
+      
+        $xcrud->unset_numbers(true)->unset_print(true)->unset_limitlist(true)->hide_button('save_and_edit')->hide_button('save_and_new');     
         echo $xcrud->render();
     }
 

@@ -6,10 +6,10 @@
         <meta http-equiv="refresh" content="<?php echo $refresh; ?>">
         <link media="screen" href="/styles/howlate.css" type="text/css" rel="stylesheet">
         <link media="only screen and (max-device-width: 480px)" href="/styles/howlate_mobile.css" type="text/css" rel="stylesheet">
-        <link rel="apple-touch-icon" href="<?php echo $icon_url; ?>" >
+        <link rel="apple-touch-icon" href="<?php echo $apple_icon_url; ?>" >
 
         <meta name="apple-mobile-web-app-capable" content="yes" />
-        <link rel="apple-touch-icon-precomposed" href="<?php echo $icon_url; ?>" />
+        <link rel="apple-touch-icon-precomposed" href="<?php echo $apple_icon_url; ?>" />
 
         <script type="text/javascript" src="/js/bookmark_bubble.js"></script>
         <script type="text/javascript" src="/js/bookmark_bubble_example.js"></script>
@@ -29,9 +29,7 @@
         <img alt="" id="sysLogo" class="system-logo" 
         title="<?php if (isset($usercookie)) {echo "User cookie $usercookie .";} if (isset($orgidcookie)) {echo "  OrgID cookie $orgidcookie";} ?>" 
         src="<?php echo $icon_url; ?>" height="100" width="100">
-        
-        
-        <h2>How late is my appointment?</h2>
+        <h3>How late is my appointment?</h3>
 
         <?php
         foreach ($lates as $clinic => $latepract) {
@@ -46,7 +44,7 @@
                     $i++;
                     if ($i == 1) {
                         ?><tr>
-                            <td><a href='<?php echo "/clinicinfo?orgid=$r->OrgID&clinicid=$r->ClinicID"; ?>'><?php echo $clinic; ?></a></td>
+                            <td class="clinrow"><?php echo $clinic ; ?></td>
                         </tr> 
                         <tr>
                             <td><img class="clinic-logo" src="<?php echo howlate_util::logoURL($r->Subdomain); ?>"></td> 
@@ -67,6 +65,13 @@
         }
         ?>
 
+            
+    <table>
+        <tr>
+            <td class='refresh '><?php echo $when_refreshed; ?></td><td><a class="refresh" href="javascript:location.reload(true);">Refresh</a></td>
+        </tr>
+    </table>            
+            
     </body>
 
 </html>

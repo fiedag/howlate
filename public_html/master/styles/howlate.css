@@ -18,7 +18,7 @@ body.lateness {
     background-color:darkgray;
     color: #ffffff;
     text-align: center;
-    
+    font-size:0.8em;
 }
 
 body.lateness table { 
@@ -43,7 +43,6 @@ table.lateness tr td:first-child{
 
 .lateness-header-logo {
     width:6em;
-    
 }
 
 table.pricing {
@@ -507,6 +506,12 @@ a:hover .timer-reset-icon {
     padding-left: 10px;
 }
 
+td.clinrow {
+  	font-size:1.2em;
+	min-height:0.8em;
+	
+}
+
 .form-pad-top {
     height: 18px;
 }
@@ -645,11 +650,6 @@ div.span-1,div.span-2,div.span-3,div.span-4,div.span-5,div.span-6,div.span-7,div
 
 
 
-
-
-
-
-
 #navmain.fresh-header .nav-toplinks{font-size:11px;padding:0;margin:0;float:right}
 #navmain.fresh-header .nav-toplinks li{padding:0;margin:0;float:left;display:block;list-style:none}
 #navmain.fresh-header .nav-toplinks li a{font-weight:normal;line-height:25px;display:block;float:left;padding:0 7px;height:25px;background:transparent;color:#888}
@@ -700,9 +700,7 @@ div.span-1,div.span-2,div.span-3,div.span-4,div.span-5,div.span-6,div.span-7,div
 #subnav.fresh-header .dark-font a,#subnav.fresh-header .dark-font a:hover,#subnav.fresh-header .dark-font .active a{color:#000}
 
 
-
 .relative-box{position:relative}
-
 
 
 .logo-exists .logo-upload-button{display:none}
@@ -710,7 +708,6 @@ div.span-1,div.span-2,div.span-3,div.span-4,div.span-5,div.span-6,div.span-7,div
 
 a.logo-upload-button{background:url(/cache/images/application.v1395769518.png) 0 -304px no-repeat;width:117px;height:29px;padding:0 0 0 15px;font-size:12px;line-height:29px;font-weight:normal;color:#d3d3d3;display:inline-block;position:relative;margin-left:5px}
 a.logo-upload-button.inverse{color:#888}
-
 
 
 
@@ -775,4 +772,11 @@ body.signup {
     color: #000000;
     text-align: center;
     
+}
+
+.clinic-info {
+    background-color:darkgray;
+    color: #ffffff;
+    text-align: center;
+    font-size:0.5em;
 }

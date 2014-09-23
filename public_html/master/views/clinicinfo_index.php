@@ -6,7 +6,7 @@
         <link media="only screen and (max-device-width: 480px)" href="/styles/howlate_mobile.css" type="text/css" rel="stylesheet">
     </head>
 
-    <body>
+    <body class="clinic-info">
         <div class="container">
             <img class="logo" src="<?php echo $logourl; ?>">
             <h1><?php echo $clinic->ClinicName; ?></h1>

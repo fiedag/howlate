@@ -88,6 +88,7 @@ class router {
                 and $this->controller != "late" 
                 and $this->controller != "signup" 
                 and $this->controller != "api"
+                and $this->controller != "clinicinfo"
                 and $this->controller != "reset" ) {
             
             $controller->session_start();

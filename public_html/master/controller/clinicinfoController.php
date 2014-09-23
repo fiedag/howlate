@@ -57,6 +57,8 @@ Class clinicinfoController Extends baseController {
         return $str;
     }
 
+    
+    
 }
 
 ?>

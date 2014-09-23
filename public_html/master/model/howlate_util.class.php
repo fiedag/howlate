@@ -150,7 +150,12 @@ class howlate_util {
             return "/images/logos/logo.png";
         }
     }
+    public static function logoWhiteBG() {
+        return "/images/logos/logo_sq_whbk.png";
+    }
 
+    
+    
     public static function diag($str) {
         if (defined('__DIAG')) {
             echo $str . "<br>";
@@ -264,6 +269,27 @@ EOD;
         return $crt;
     }
 
+    
+    
+    public static function googleMapsURL($address1, $address2, $city, $zip) {
+        $str = "http://maps.google.com/maps?q=$address1";
+        if ($clin->Address2 != '') {
+            $str .= "+$address2";
+        }
+        if ($clin->City != '') {
+            $str .= "+$city";
+        }
+        if ($clin->Zip != '') {
+            $str .= "+$zip";
+        }
+
+        return $str;
+    }
+        
+    
 }
+
+
+
 
 ?>
