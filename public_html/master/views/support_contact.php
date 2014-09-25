@@ -5,9 +5,13 @@
 <div class='container primary-content'>
 
     <form id="org" name="org" method="post" action="/support/contactsubmit">
+        
+        <div>
+            <h3><?php echo $msg; ?></h3>
+        </div>
         <div class="control-group">
             <label class="control-label" for="Note">Note:</label>
-            <textarea class="controls" id="Note" name="Note" rows="5" cols="80"></textarea>
+            <textarea class="controls" id="Note" name="Note" rows="5" cols="80" required></textarea>
         </div>
         <input type="hidden" readonly="readonly" class="controls" id="OrgID" name="OrgID" value="<?php echo $controller->org->OrgID;?>"><br>
         <input type="hidden" readonly="readonly" class="controls" id="Subdomain" name="Subdomain" value="<?php echo $controller->org->Subdomain;?>"><br>

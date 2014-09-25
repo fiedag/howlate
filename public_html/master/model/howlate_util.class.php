@@ -8,6 +8,14 @@ class howlate_util {
 //    public static $mysqlUser = "howlate_super";
 //    public static $mysqlPassword = "NuNbHG4NQn";
 
+    
+    public static function admin_sms() {
+        return "61403569377";
+    }
+    public static function admin_email() {
+        return "admin@how-late.com";
+    }
+    
     private static $testdomain = "fiedlerconsulting.com.au";
 
     public static function cpanelUser() {

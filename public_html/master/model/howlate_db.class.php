@@ -15,7 +15,7 @@ class howlate_db {
     }
 
     function getallclinics($orgID) {
-        $q = "SELECT ClinicID, OrgID, Timezone, ClinicName, Phone, Address1, Address2, City, Zip, Country, Location FROM clinics WHERE OrgID = '" . $orgID . "'";
+        $q = "SELECT ClinicID, OrgID, Timezone, ClinicName, Phone, Address1, Address2, City, Zip, Country FROM clinics WHERE OrgID = '" . $orgID . "'";
 
         $myArray = array();
         if ($result = $this->conn->query($q)) {
@@ -29,7 +29,7 @@ class howlate_db {
     }
 
     function getactiveclinics($orgID) {
-        $q = "SELECT ClinicID, OrgID, Timezone, ClinicName, Phone, Address1, Address2, City, Zip, Country, Location FROM vwActiveClinics WHERE OrgID = '" . $orgID . "'";
+        $q = "SELECT ClinicID, OrgID, Timezone, ClinicName, Phone, Address1, Address2, City, Zip, Country FROM vwActiveClinics WHERE OrgID = '" . $orgID . "'";
 
         $myArray = array();
         if ($result = $this->conn->query($q)) {
@@ -422,17 +422,6 @@ class howlate_db {
         }
     }
 
-    public function create_practitioner($orgid, $clinicid, $firstname, $lastname, $integrkey) {
-        $q = "CALL sp_CreatePractitioner ($orgid, $clinicid, $firstname, $lastname, $integrkey)";
-        //echo $q;
-        $stmt = $this->conn->query($q);
-        $stmt = $this->conn->prepare($q);
-
-        $stmt->execute();
-        if ($stmt->affected_rows == 0) {
-            trigger_error("The  practitioner was not created, error= " . $this->conn->error, E_USER_ERROR);
-        }
-    }
 
     public function getNextOrgID() {
         $q = "SELECT IFNULL(MAX(OrgID),'AAAAA') As last FROM orgs";
@@ -571,7 +560,7 @@ class howlate_db {
 
     public function updatesessions($org, $id, $day, $start, $end) {
         $q = "REPLACE INTO sessions (OrgID, ID, Day, StartTime, EndTime) VALUES (?,?,?,?,?)";
-
+        
         $stmt = $this->conn->query($q);
         $stmt = $this->conn->prepare($q);
         $stmt->bind_param('sssii', $org, $id, $day, $start, $end);

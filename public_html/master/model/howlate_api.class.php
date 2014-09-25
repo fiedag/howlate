@@ -181,7 +181,7 @@ class howlate_api {
         howlate_util::register($pin,$MobilePhone);
         $db->enqueueNotification($practitioner, $Patient, $MobilePhone, $lateness);
 
-        $msg = "Success.  Notification put in queue for " . $MobilePhone;
+        $msg = "Notification put in queue for " . $MobilePhone;
         $db->trlog(TranType::QUE_NOTIF, $msg, $org->OrgID, null, $practitioner->PractitionerID, null);
         return $msg;
     }

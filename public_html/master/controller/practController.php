@@ -26,7 +26,7 @@ Class practController Extends baseController {
         $xcrud->columns('FullName,AbbrevName,DateCreated,vwAssigned.Assigned,SurrogKey', false);
         
         $xcrud->readonly('OrgID,ID,SurrogKey,DateCreated,vwAssigned.Assigned');  //  for create/update/delete
-
+        $xcrud->fields('vwAssigned.OrgID,vwAssigned.ID,vwAssigned.ClinicID,DateCreated',true);
         $xcrud->hide_button('view');
         $xcrud->label(array('FullName' => 'Full Name', 'AbbrevName' => 'Abbrev Name', 'DateCreated' => 'Created', 'SurrogKey' => 'Reassign', 'LateToNearest' => 'Late To Nearest', 'LatenessOffset' => "Lateness Offset", 'NotificationThreshold' => 'Notification Threshold'));
         
@@ -38,6 +38,10 @@ Class practController Extends baseController {
         $xcrud->pass_default('DateCreated', date('Y-m-d'));      
         $xcrud->column_pattern('SurrogKey', $this->assignSpan());  // display the assignment button
 
+        
+        $xcrud->field_tooltip('NotificationThreshold','Lateness less than this (minutes) is shown as On Time');
+        $xcrud->field_tooltip('LateToNearest','Round to nearest number of minutes');
+        $xcrud->field_tooltip('LatenessOffset','Finally, subtract this number of minutes');
         echo $xcrud->render();
     }
 

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 script_dir=$(dirname $0)
 
 LOG=$script_dir/howlate_`date +"%y%m%d"`.out

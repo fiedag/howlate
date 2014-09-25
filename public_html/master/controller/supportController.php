@@ -17,6 +17,12 @@ Class supportController Extends baseController {
 
         $this->registry->template->show('support_pricing');
     }
+    public function pricingbare() {
+        $this->getOrg();
+        $this->registry->template->controller = $this;
+
+        $this->registry->template->show('support_pricingbare');
+    }
 
     public function newfeatures() {
         $this->getOrg();
@@ -28,6 +34,7 @@ Class supportController Extends baseController {
     public function contact() {
         $this->getOrg();
         $this->registry->template->controller = $this;
+        $this->registry->template->msg = "Please enter a note and hit submit.  Our administrator will take prompt action.";
         $this->registry->template->show('support_contact');
     }
 
@@ -58,10 +65,20 @@ Class supportController Extends baseController {
 
     
     public function contactsubmit() {
-
+        
+        $note = filter_input(INPUT_POST,"Note");
         
         $this->getOrg();
         $this->registry->template->controller = $this;
+        $administrator = "61403569377";
+        $smstext = "User " .  $_SESSION["USER"] . " from " . $this->org->OrgName . " has sent you a note.  Check admin@how-late.com";
+        howlate_sms::httpSend($this->org->OrgID, $administrator, $smstext);
+        
+        
+        $mailer = new howlate_mailer();
+        $mailer->send(howlate_util::admin_email(),'Administrator', 'A note has been received', $note, 'admin@how-late.com', 'Administrator');
+          
+        $this->registry->template->msg = "Thank you.  Your note is being actioned!";
         $this->registry->template->show('support_contact');
 
         

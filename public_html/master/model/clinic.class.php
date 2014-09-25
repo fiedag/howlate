@@ -10,11 +10,8 @@ class clinic extends howlate_basetable {
         public $Address2;
         public $City;
         public $Country;
-        public $Location;
         public $Phone;
         public $State;
-        public $OpeningHrs;
-        public $ClosingHrs;
-        
+      
     
 }

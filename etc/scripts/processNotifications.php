@@ -1,5 +1,14 @@
 <?php
-
+/*
+ * Table howlate_main.notifqueue contains SMS notifications which are 
+ * queued to go out.  This program gets those which have not yet been sent
+ * and sends them.
+ * 
+ * TODO: What happens when an exception is thrown.  Test and ensure 
+ * the results are detected.
+ * 
+ * 
+ */
 
 function __autoload($class_name) {
     $filename = strtolower($class_name) . '.class.php';

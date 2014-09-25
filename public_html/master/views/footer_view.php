@@ -13,8 +13,8 @@
                 <div class="span-8 append-1">
                     <h4>Community</h4>
                     <ul>
-                        <li><a target="_blank" href="http://<?php echo __DOMAIN;?>/en/welcome/blog/">Blog</a></li>
-                        <li><a target="_blank" href="http://<?php echo __DOMAIN;?>/en/frequently-asked-questions/">FAQ</a></li>
+                        <li><a target="_blank" href="http://<?php echo __DOMAIN;?>/welcome/blog/">Blog</a></li>
+                        <li><a target="_blank" href="http://<?php echo __DOMAIN;?>/frequently-asked-questions/">FAQ</a></li>
                     </ul>
                 </div>
                 <div class="span-8 append-1">

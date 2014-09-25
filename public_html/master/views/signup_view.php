@@ -45,7 +45,7 @@
                         </div>
                     </div>
 
-                    <button type="submit" name="submit" value="submit" class="green">
+                    <button type="submit" name="submit" value="submit" class="getstarted-button">
                             Get Started for Free
                     </button>
 

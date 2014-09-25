@@ -38,11 +38,17 @@ echo '<?xml version="1.0" encoding="utf-8" ?>';
         <value><?php echo $interval;?></value>
       </setting>
       <setting name="SelectBPS" serializeAs="String">
-        <value>select a1.Provider, a1.Status, a1.ArrivalTime, a1.AppointmentDate, a1.AppointmentTime, a1.ConsultationTime, 7200 As Horizon from BPS_Appointments a1 where a1.AppointmentDate = DATEADD(dd, 0, DATEDIFF(dd, 0, GETDATE()))
+          <value>select a1.Provider, a1.Status, a1.ArrivalTime, a1.AppointmentDate, a1.AppointmentTime, a1.ConsultationTime, 7200 As Horizon 
+from BPS_Appointments a1, BPS_Sessions b1 
+where a1.AppointmentDate = DATEADD(dd, 0, DATEDIFF(dd, 0, GETDATE()))
 and a1.ConsultationTime = 
 (SELECT MAX(a2.ConsultationTime) FROM BPS_Appointments a2 
 WHERE a2.AppointmentDate = a1.AppointmentDate and a2.Provider 
 = a1.Provider and a2.ConsultationTime != 0)
+and a1.Provider = b1.Provider
+and b1.Day = datename(dw,getdate())
+and b1.EndTime + 7200 &gt; DATEDIFF(s, 0,DATEADD(Day, 0 - DATEDIFF(Day, 0, getdate()), getdate()))
+          
 </value>
       </setting>
       <setting name="SelectSessions" serializeAs="String">
@@ -52,7 +58,7 @@ WHERE a2.AppointmentDate = a1.AppointmentDate and a2.Provider
         <value>select a1.Patient, a1.InternalID, a1.AppointmentDate, a1.AppointmentTime, a1.Provider, p.MobilePhone from BPS_Appointments a1
 inner join BPS_Patients p on p.InternalID = a1.InternalID
 inner join PATIENTS ON PATIENTS.INTERNALID = p.InternalID
-where a1.Provider = @Provider and p.MobilePhone &lt;&gt; '' and PATIENTS.CONSENTSMSREMINDER = 1
+where a1.ArrivalTime = 0 and a1.Provider = @Provider and p.MobilePhone &lt;&gt; '' and PATIENTS.CONSENTSMSREMINDER = 1
 and (
  (a1.AppointmentDate = @AppointmentDate
 and a1.AppointmentTime &gt; @AppointmentTime

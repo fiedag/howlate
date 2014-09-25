@@ -780,3 +780,11 @@ body.signup {
     text-align: center;
     font-size:0.5em;
 }
+
+
+.getstarted-button {
+    font-size:initial;
+    background-color:chartreuse;
+    color:black;
+    
+}

@@ -1,5 +1,14 @@
 <?php
-
+/*
+ * deletes lateness records which are no longer current
+ * does this both by age and by checking session times
+ * 
+ * If a lateness record is over 8 hours old it gets deleted
+ * If a doctor's session ended over 2 hours ago, the lateness gets deleted
+ * 
+ * 
+ * 
+ */
 date_default_timezone_set('Australia/Melbourne');
 
 echo "\r\n";
