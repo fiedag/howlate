@@ -344,7 +344,6 @@ class howlate_db {
 
     public function change_password($userid, $password, $orgID) {
         $q = "UPDATE orgusers SET XPassword = ? WHERE UserID = ? AND OrgID = ?";
-        echo "[$userid, $password,$orgID]";
         $stmt = $this->conn->query($q);
         $stmt = $this->conn->prepare($q);
         $stmt->bind_param('sss', $password, $userid, $orgID);
@@ -421,7 +420,6 @@ class howlate_db {
             trigger_error("The default practitioner was not created, error= " . $this->conn->error, E_USER_ERROR);
         }
     }
-
 
     public function getNextOrgID() {
         $q = "SELECT IFNULL(MAX(OrgID),'AAAAA') As last FROM orgs";
@@ -659,4 +657,13 @@ class howlate_db {
            trigger_error("The row was not inserted into the sentsms table, error= " . $this->conn->error , E_USER_ERROR);
         }
     }
+    
+    public function deleteSubdomain($subdomain) {
+        $q = "CALL sp_DeleteSubd('" . $subdomain . "')";
+        $stmt = $this->conn->prepare($q);
+        $stmt->execute() or trigger_error('# Query Error (' . $this->conn->errno . ') ' . $this->conn->error, E_USER_ERROR);
+        
+    }
+    
+    
 }

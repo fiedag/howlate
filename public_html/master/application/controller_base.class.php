@@ -24,7 +24,7 @@ Abstract Class baseController {
         $header = new headerController($this->registry);
         $header->view($this->org);
     }
-
+    
     function get_footer() {
         include 'controller/footerController.php';
         $footer = new footerController($this->registry);

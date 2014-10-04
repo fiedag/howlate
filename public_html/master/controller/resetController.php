@@ -25,7 +25,7 @@ Class resetController Extends baseController {
             if ($result[0] == "OK") { 
                 $this->registry->template->token = $token;
                 $this->registry->template->userid = $result[1];
-                $this->registry->template->login_info = "Please enter a new password";
+                $this->registry->template->login_info = "Please enter a new password for $result[1].";
                 
                 $this->registry->template->show_form = '<script>$("#notification_page").hide();$("#notification_page_button").hide();</script>';
                 
@@ -55,7 +55,6 @@ Class resetController Extends baseController {
         $password2 = $_POST["password2"];
         $userid = $_POST["userid"];
         $token = $_POST["token"];
-        //echo "[$password, $password2, $userid, $token]";
         $err = "";
         if ($password != $password2) {
             $err .= "Passwords do not match";

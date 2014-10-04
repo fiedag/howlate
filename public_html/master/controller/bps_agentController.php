@@ -1,6 +1,6 @@
 <?php
 
-Class agentController Extends baseController {
+Class bps_agentController Extends baseController {
 
     public $org;
     public $currentClinic;
@@ -46,7 +46,8 @@ Class agentController Extends baseController {
         $this->registry->template->pwd = $result->PWD;
         $this->registry->template->interval = $result->PollInterval;        
         $this->registry->template->hluserid = $result->HLUserID;
-        $this->registry->template->show('agent_index');       
+        
+        $this->registry->template->show('bps_agent_index');       
     }
     
     public function update() {
@@ -83,13 +84,9 @@ Class agentController Extends baseController {
         $res = $db->get_user_data($hluserid, $orgid);
         $this->registry->template->credentials = $hluserid . "." . $res->XPassword;
         
-
-        $this->registry->template->show('agent_config');
+        $this->registry->template->show('bps_agent_config');
     }
-    
-    
-    
-    
+ 
     public function further() {
         $this->org = new organisation();
         $this->org->getby(__SUBDOMAIN, "Subdomain");
@@ -97,7 +94,7 @@ Class agentController Extends baseController {
         $this->registry->template->logourl = howlate_util::logoURL(__SUBDOMAIN);
 
         $this->registry->template->controller = $this;
-        $this->registry->template->show('agent_further');
+        $this->registry->template->show('bps_agent_further');
     }
 
     public function exe() {
@@ -106,46 +103,12 @@ Class agentController Extends baseController {
 
         // this will initiate a download of HowLateAgent.exe
         $this->registry->template->controller = $this;
-        $this->registry->template->show('agent_exe');
-    }
-
-    public function update_DeleteMe() {
-
-        // this will initiate a download of HowLateAgent.exe.config
-        if (!isset($_SESSION["USER"])) {
-            trigger_error("User session variable not defined.", E_USER_ERROR);
-        }
-        if (!isset($_SESSION["ORGID"])) {
-            trigger_error("Org ID variable not defined.", E_USER_ERROR);
-        }
-
-        $userid = $_SESSION["USER"];
-        $orgid = $_SESSION["ORGID"];
-        
-
-        
-        $this->registry->template->subdomain = __SUBDOMAIN;
-        $this->registry->template->clinic = $_POST["Clinic"];
-        $this->registry->template->instance = $_POST["Instance"];
-        $this->registry->template->database = $_POST["Database"];
-        $this->registry->template->uid = $_POST["UID"];
-        $this->registry->template->pwd = $_POST["PWD"];
-        $this->registry->template->interval = $_POST["interval"];
-        $this->registry->template->url = "https://" . __SUBDOMAIN . __DOMAIN  . "/api?ver=post";
-        
-        $db = new howlate_db();
-        $res = $db->get_user_data($userid, $orgid);
-        $this->registry->template->credentials = $userid . "." . $res->XPassword;
-
-        $this->registry->template->controller = $this;
-        $this->registry->template->show('agent_config');
-        
+        $this->registry->template->show('bps_agent_exe');
     }
 
     public function install() {
-        $this->registry->template->show('agent_install');
+        $this->registry->template->show('bps_agent_install');
     }
-    
 
     public function get_clinic_options() {
         $i = 0;
@@ -157,7 +120,11 @@ Class agentController Extends baseController {
             echo ">$value->ClinicName</option>";
         }
     }
-
+    
+    public function get_subheader() {
+        $this->registry->template->show('subheader_view');
+    }
+    
 }
 
 ?>

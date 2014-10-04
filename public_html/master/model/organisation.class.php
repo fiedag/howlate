@@ -121,7 +121,7 @@ class organisation {
         $message = 'You have chosen to unregister for lateness updates from ' . $prac->PractitionerName . ' at ' . $prac->ClinicName;
         howlate_sms::httpSend($org, $udid, $message);
     }
-
+    
 }
 
 ?>

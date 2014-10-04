@@ -12,19 +12,25 @@ Class signupController Extends baseController {
         $this->registry->template->show('signup_view');
     }
 
+    //
+    // We are calling this with AJAX therefore
+    // it is easier to use GET parameters
+    //
     public function create() {
         define("__DIAG", 1);
-
+        
+        
+        $db = new howlate_db();
+        $db->trlog(TranType::SESS_UPD, "Creating site");
+        
         $this->registry->template->controller = $this;
 
-        if (!isset($_POST["company"]) or !isset($_POST["email"])) {
-            echo "Invalid parameters.";
-            return;
+        $company = filter_input(INPUT_GET, "company");
+        $email = filter_input(INPUT_GET, "email");
+        if (!isset($company) or !isset($email)) {
+            throw new Exception("Program called with incorrect parameters");
         }
-
-        $company = $_POST["company"];
-        $email = $_POST["email"];
-
+        
         $this->registry->template->CompanyName = $company;
         $this->registry->template->Email = $email;
         $this->registry->template->logourl = howlate_util::logoURL();
@@ -36,8 +42,21 @@ Class signupController Extends baseController {
         
         $this->registry->template->signup_result = $howlate_site->Result;
         $this->registry->template->show('signup_view');
-        
+
     }
 
+    
+    public function deldomain()
+    {
+        $subdomain = filter_input(INPUT_GET, "subdomain");
+        
+        $howlate_site = new howlate_site('','');
+        $howlate_site->deleteCPanelSubdomain($subdomain);
+        echo "Subdomain $subdomain deleted.";
+        
+        $db = new howlate_db();
+        $db->deleteSubdomain($subdomain);
+        echo "Org $subdomain deleted.";
+    }
 }
 ?>

@@ -70,7 +70,7 @@ class howlate_api {
     public static function updatesessions() {
         $credentials = filter_input(INPUT_POST, "credentials");
         if ($credentials == null) {
-            return "Credentials not supplied.";
+            throw new Exception("Credentials not supplied.");
         }
         list($userid, $passwordhash) = explode(".", $credentials);
         $db = new howlate_db();
@@ -103,12 +103,9 @@ class howlate_api {
                 $db->trlog(TranType::SESS_UPD, 'Practitioner ' . $practitioner->PractitionerID . ' session info update failed, exception =' . $ex, $org->OrgID, null, $null, $null);
             }
         } else {
-            return "Invalid credentials.";
+            throw new Exception("Invalid credentials.");
         }
     }
-    
-    
-    
     
     public static function registerpin($met, $ver) {
        
@@ -186,6 +183,46 @@ class howlate_api {
         return $msg;
     }
 
+    public static function agent_start() {
+        $credentials = filter_input(INPUT_POST, "credentials");
+        //if ($credentials == null) {
+            //throw new Exception("Credentials not supplied.");
+        //}
+        list($userid, $passwordhash) = explode(".", $credentials);
+        $db = new howlate_db();
+
+        $org = new organisation();
+        $org->getby(__SUBDOMAIN, "Subdomain");
+        if (!$db->isValidPassword($org->OrgID, $userid, $passwordhash)) {
+            throw new Exception("Invalid Credentials.");
+        }
+        $assemblyversion = filter_input(INPUT_POST, "assemblyversion");
+        $clinic = filter_input(INPUT_GET, "clin");
+        $msg = "Agent version " . $assemblyversion . " started at clinic " . $clinic;
+        $db->trlog(TranType::AGT_START, $msg, $org->OrgID, $clinic, null,null);
+        return $msg;
+
+    }
+    
+    public static function agent_stop() {
+        $credentials = filter_input(INPUT_POST, "credentials");
+        //if ($credentials == null) {
+            //throw new Exception("Credentials not supplied.");
+        //}
+        list($userid, $passwordhash) = explode(".", $credentials);
+        $db = new howlate_db();
+
+        $org = new organisation();
+        $org->getby(__SUBDOMAIN, "Subdomain");
+        if (!$db->isValidPassword($org->OrgID, $userid, $passwordhash)) {
+            throw new Exception("Invalid Credentials.");
+        }
+        $assemblyversion = filter_input(INPUT_POST, "assemblyversion");
+        $clinic = filter_input(INPUT_GET, "clin");
+        $msg = "Agent version " . $assemblyversion . " stopped at clinic " . $clinic;
+        $db->trlog(TranType::AGT_STOP, $msg, $org->OrgID, $clinic, null,null);
+        return $msg;
+    }
 }
 
 ?>

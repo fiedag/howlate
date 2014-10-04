@@ -184,6 +184,19 @@ class howlate_site {
         $this->mylog($result);
     } 
     
+      public function deleteCPanelSubdomain($subd) 
+    {
+        $xmlapi = new xmlapi('localhost');
+        $xmlapi->password_auth(howlate_util::cpanelUser(), howlate_util::cpanelPassword());
+        $xmlapi->set_output("xml");
+        $xmlapi->set_protocol("http");
+        $xmlapi->set_debug(1);
+        
+        $this->mylog("Deleting subdomain for $subd");
+        $result = $xmlapi->api2_query('howlate', "SubDomain","delsubdomain", array('domain'=>$subd, 'dir'=>"/public_html/master", 'rootdomain'=>__DOMAIN));
+        $this->mylog($result);
+        return $this;
+    }
 }
 ?>
 

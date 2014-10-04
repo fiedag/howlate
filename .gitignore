@@ -1,2 +1,7 @@
 /wp-content/
 /public_html/en/index.php
+/public_html/master/includes/downloads/HowLateAgent.application
+/public_html/master/includes/downloads/HowLateAgent.exe.config
+/public_html/master/includes/downloads/HowLateAgent.exe.manifest
+/public_html/master/includes/downloads/HowLateAgent.pdb
+/public_html/master/includes/downloads/svc_install.bat

@@ -29,8 +29,10 @@
         <img alt="" id="sysLogo" class="system-logo" 
         title="<?php if (isset($usercookie)) {echo "User cookie $usercookie .";} if (isset($orgidcookie)) {echo "  OrgID cookie $orgidcookie";} ?>" 
         src="<?php echo $icon_url; ?>" height="100" width="100">
-        <h3>How late is my appointment?</h3>
-
+        <div>HOW-LATE.COM</div>
+        <div>How late is my appointment?</div>
+        &nbsp;
+        
         <?php
         foreach ($lates as $clinic => $latepract) {
             ?>

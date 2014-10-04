@@ -31,7 +31,7 @@
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
                             <tr>
                                 <td width="275" class="login-table">
-                                    <img  />
+                                    <img class="photo" alt="" title="" width="150" src="<?php echo $logourl; ?>" />
                                 </td>
                                 <td>
 

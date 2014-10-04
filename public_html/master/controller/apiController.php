@@ -58,6 +58,12 @@ Class apiController Extends baseController {
             case "notif":
                 $result = howlate_api::notify();
                 break;
+            case "agent_start":
+                $result = howlate_api::agent_start();
+                break;
+            case "agent_stop":
+                $result = howlate_api::agent_stop();
+                break;
 //            case "getclinics":
 //                $this->registry->template->result = json_encode(getclinics());  // returns a list of clinics for this organisation
 //                break;
