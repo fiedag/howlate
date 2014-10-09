@@ -2,6 +2,24 @@
 
 <script>
 
+    function lateHelper(pin) {
+        curtime = document.getElementById('lateness[' + pin + ']').value;
+        tonearest = document.getElementById('tonearest[' + pin + ']').value;
+        threshold = document.getElementById('threshold[' + pin + ']').value;
+        offset = document.getElementById('offset[' + pin + ']').value;
+        if (tonearest == 0) { tonearest = 1; }
+        rounded = tonearest * Math.round(curtime / tonearest);
+        if (rounded < threshold) { 
+            result = "on time"; 
+        } else {
+            result = rounded - offset; 
+            result = result + ' minutes late.';
+        }
+  
+        document.getElementById('lateness[' + pin + ']').title = "This will be displayed as " + result;
+  
+    }
+
 
     function changeCursor(el, cursor) {
         el.style.cursor = cursor;

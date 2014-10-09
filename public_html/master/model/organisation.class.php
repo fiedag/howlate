@@ -122,6 +122,47 @@ class organisation {
         howlate_sms::httpSend($org, $udid, $message);
     }
     
+    public function send_reset_emails($email) {
+        $db = new howlate_db();
+        $users = $db->getallusers($email, 'EmailAddress');
+        if (count($users) == 0) {
+            return 0;
+        }
+        
+        
+        $subject = "Trouble logging in? Your username and password for " . $this->OrgName;
+
+        $body = "";
+        if (count($users) > 1) {
+            $body = "It looks like you have " . count($users) . " different logins for " . $this->OrgName . "'s secure online services.\r\n\r\n";
+            $body .= "-------- User Accounts ---------\r\n\r\n";
+        }
+        
+        $toName = $users[0]->FullName;
+        $from = $users[0]->EmailAddress;
+        $fromName = $this->OrgName;
+        
+        foreach ($users as $user) {
+            $body .= "Username: " . $user->UserID . "\r\n";
+            $body .= "If you have forgotten your password, you can reset it by following this link:\r\n";
+            $token = $db->save_reset_token($user->UserID, $email, $user->OrgID);
+            $link = "http://" . $user->FQDN . "/reset?token=$token" . "\r\n";
+            $body .= $link . "\r\n";
+        }
+
+        $body .= "Afterwards, you can securely access your account by going to your login page:\r\n\r\n";
+        $body .= "http://" . __SUBDOMAIN . "." . __DOMAIN . "\r\n\r\n";
+        $body .= "If you did not send this request, you can safely ignore this email.\r\n";
+
+        $headers = 'MIME-Version: 1.0' . "\n";
+        $headers .= 'Content-type: text/plain; charset=iso-8859-1' . "\n";
+        $headers .= "From: $from";
+
+        $mail = new howlate_mailer();
+        $mail->send($email,$toName, $subject,$body, $from, $fromName);
+        
+        
+    }
 }
 
 ?>

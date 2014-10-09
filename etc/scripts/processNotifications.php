@@ -45,9 +45,9 @@ foreach ($new_notif as $key => $val) {
     echo "New queued notification to send: $val->MobilePhone , $val->Message \r\n";
     try {
         if ($val->TestMobile == '') {
-            howlate_sms::httpSend($val->OrgID, $val->MobilePhone, $val->Message);
+            howlate_sms::httpSend($val->OrgID, $val->MobilePhone, $val->Message, $val->ClinicID);
         } else {
-            howlate_sms::httpSend($val->OrgID, $val->TestMobile, $val->Message);
+            howlate_sms::httpSend($val->OrgID, $val->TestMobile, $val->Message, $val->ClinicID);
         }
         $db->dequeueNotification($val->UID);
     } catch (Exception $ex) {

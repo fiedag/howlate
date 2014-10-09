@@ -37,7 +37,7 @@
     </head>
     <body>
 
-        <form id="delsubdomain" action="signup/deldomain">
+        <form id="api_call" action="api?met=''" action='POST'>
             <input name="subdomain" id="subdomain" type="text" size="25" maxlength="50" class="input-company signupfield" required></input>
             <button type="submit" name="submit" value="submit">Delete Subdomain</button>
         </form>

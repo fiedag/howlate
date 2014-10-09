@@ -106,7 +106,7 @@ class howlate_db {
 
     function getlatenessesByClinic($orgID, $clinicID) {
 
-        $q = "SELECT ClinicID, ClinicName, ID, AbbrevName, FullName, MinutesLate, MinutesLateMsg, OrgID, Subdomain FROM vwLateness WHERE OrgID = '" . $orgID . "' AND ClinicID = '" . $clinicID . "'";
+        $q = "SELECT ClinicID, ClinicName, ID, AbbrevName, FullName, MinutesLate, MinutesLateMsg, OrgID, Subdomain, Sticky, NotificationThreshold, LateToNearest, LatenessOffset FROM vwLateness WHERE OrgID = '" . $orgID . "' AND ClinicID = '" . $clinicID . "'";
         $practArray = array();
         $clinArray = array();
         if ($result = $this->conn->query($q)) {
@@ -124,8 +124,6 @@ class howlate_db {
             }
             return $clinArray;
         }
-
-
 
         $result->close();
     }
@@ -155,13 +153,24 @@ class howlate_db {
         $result->close();
     }
 
-    function updatelateness($org, $id, $newlate) {
-        $q = "REPLACE INTO lates (OrgID, ID, Minutes) VALUES (?, ?, ?)";
+    
+    function agent_updatelateness($org, $id, $real_late) {
+        $q = "CALL sp_AgentLateUpd(?,?,?)";
         $stmt = $this->conn->query($q);
         $stmt = $this->conn->prepare($q);
-        $stmt->bind_param('sss', $org, $id, $newlate);
+        $stmt->bind_param('ssi', $org, $id, $real_late);
         $stmt->execute() or trigger_error('# Query Error (' . $this->conn->errno . ') ' . $this->conn->error, E_USER_ERROR);
-        $this->trlog(TranType::LATE_UPD, "Lateness updated to $newlate", $org, null, $id);
+        $this->trlog(TranType::LATE_UPD, "Lateness updated via API to $real_late", $org, null, $id);
+    }
+
+    
+    function updatelateness($org, $id, $newlate, $sticky = 0) {
+        $q = "REPLACE INTO lates (OrgID, ID, Minutes, Sticky) VALUES (?, ?, ?, ?)";
+        $stmt = $this->conn->query($q);
+        $stmt = $this->conn->prepare($q);
+        $stmt->bind_param('sssi', $org, $id, $newlate, $sticky);
+        $stmt->execute() or trigger_error('# Query Error (' . $this->conn->errno . ') ' . $this->conn->error, E_USER_ERROR);
+        $this->trlog(TranType::LATE_UPD, "Lateness updated to $newlate, sticky = $sticky", $org, null, $id);
     }
 
     function validatePin($org, $id) {
@@ -348,7 +357,7 @@ class howlate_db {
         $stmt = $this->conn->prepare($q);
         $stmt->bind_param('sss', $password, $userid, $orgID);
         $stmt->execute();
-        if ($stmt->affected_rows != 1) {
+        if ($stmt->affected_rows > 1) {
             trigger_error("The Password change request was not successful. affected rows = $stmt->affected_rows", E_USER_ERROR);
             return false;
         }

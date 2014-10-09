@@ -39,7 +39,7 @@ function __autoload($class_name) {
 }
 
 include_once("includes/error_handler.php");
-date_default_timezone_set('Australia/Adelaide');
+//date_default_timezone_set('Australia/Adelaide');
 
 /* * * a new registry object ** */
 $registry = new registry;

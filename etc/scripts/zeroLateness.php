@@ -25,7 +25,7 @@ include("/home/howlate/public_html/master/model/howlate_db.class.php");
 include("/home/howlate/public_html/master/model/howlate_util.class.php");
 
 $db = new howlate_db();
-// simply delete those older than 8 hours
+// simply delete those older than 8 hours, even sticky ones
 $db->deleteOldLates();
 
 $result = $db->getLateTimezones();
@@ -66,6 +66,7 @@ foreach ($result as $key => $TZval) {
                 $msg .= " so lateness can be deleted.";
                 mylog($msg);
                 $db->deleteLateByKey($val->UKey);
+                $db->trlog(TranType::LATE_RESET,"Lateness deleted because session ended", $val->OrgID, null, $val->ID, null);
                 mylog("    Deleted lateness.UKey = $val->UKey");
             }
         }

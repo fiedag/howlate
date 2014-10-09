@@ -19,7 +19,7 @@ function __autoload($class_name) {
     include ($file);
 }
 
-date_default_timezone_set('Australia/Adelaide');
+//date_default_timezone_set('Australia/Adelaide');
 
 $host = $_SERVER["SERVER_NAME"];
 $firstdot = strpos($host,'.');

@@ -45,23 +45,24 @@ Class mainController Extends baseController {
     public function save() {
         $db = new howlate_db();
         foreach ($_POST['lateness'] as $pin => $newlate) {
-            if (!isset($newlate) or (!is_numeric($newlate) and $newlate != 'On time') or ($newlate == $_POST['oldlateness'][$pin])) {
+            if (!isset($newlate) or (!is_numeric($newlate) and $newlate != 'On time'))  {
                 continue;
             }
             if ($newlate == 'On time') {
                 $newlate = 0;
             }
             
+            $sticky = (isset($_POST['sticky'][$pin]));
+            
             $elems = explode('.', $pin);
             $org = $elems[0];
             $id = $elems[1];
-            $db->updatelateness($org, $id, $newlate);
+            $db->updatelateness($org, $id, $newlate, $sticky);
         }
-
         header("location: http://" . __FQDN . "/main?ok=yes");
-        
     }
 
+        
     public function get_header() {
         include 'controller/headerController.php';
         $header = new headerController($this->registry);
@@ -83,6 +84,7 @@ Class mainController Extends baseController {
         echo "<tr>";
         echo "<th>Practitioners at $this->currentClinicName</th>";
         echo "<th class='lateness-value'><span title='Update the number of minutes late below and hit Save'>How Late</span></th>";
+        echo "<th class='lateness-sticky'><span title='If sticky, manual updates override automatic updates from Agents'>Sticky</span></th>";
         //echo "<th title='Tick and the lateness will not be automatically maintained by any agent.'>Manual</th>";
         echo "<th>Save</th>";
         echo "</tr>";
@@ -93,19 +95,25 @@ Class mainController Extends baseController {
         foreach ($lates as $clinic => $latepract) {
             foreach ($latepract as $key => $value) {
                 
-                $title = "This will be advertised as " . $value->MinutesLateMsg;
+                //$title = "This will be advertised as " . $value->MinutesLateMsg;
                 
                 $pin = $this->org->OrgID . "." . $value->ID;
                 echo "<td class='col-80pct'>" . $value->AbbrevName;
                 echo "<span onmouseover=\"changeCursor(this,'arrow');\" onmouseout=\"changeCursor(this,'default');\" title='Click to invite a mobile phone user to receive updates for $value->AbbrevName' class='invite' onclick=\"gotoInvite('$pin','$value->AbbrevName')\">SMS Invite</span>";
                 echo "</td>";
                 echo "<td class='lateness-value'>";
-                echo "<input type='number' title='$title' class='lateness-admin-entry' name='lateness[$pin]' list='valid_latenesses' min='0' value='$value->MinutesLate' >";
+                echo "<input type='number' class='lateness-admin-entry' id='lateness[$pin]' name='lateness[$pin]' onmouseover=\"lateHelper('$pin');return;\" list='valid_latenesses' min='0' value='$value->MinutesLate' >";
+                
                 echo "<input type='hidden' name='oldlateness[$pin]' value='$value->MinutesLate' >";
+                echo "<input type='hidden' name='oldsticky[$pin]' value='$value->Sticky' >";
+                echo "<input type='hidden' id='threshold[$pin]' name='threshold[$pin]' value='$value->NotificationThreshold' >";
+                echo "<input type='hidden' id='tonearest[$pin]' name='tonearest[$pin]' value='$value->LateToNearest' >";
+                echo "<input type='hidden' id='offset[$pin]' name='offset[$pin]' value='$value->LatenessOffset' >";
                 echo "</td>";
-//                echo "<td>";
-//                echo "<input type='checkbox' class='' id='manual' name='Manual' value='0' />";
-//                echo "</td>";
+                echo "<td>";
+                echo "<input type='checkbox' id='sticky[$pin]' name='sticky[$pin]' " . (($value->Sticky == 1)?"checked":"") . "/>";
+                
+                echo "</td>";
                 echo "<td>";
                 echo "<input type='submit' class='medium green button' id='save' name='Save' value='Save' />";
                 echo "</td>";
