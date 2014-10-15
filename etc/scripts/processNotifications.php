@@ -29,17 +29,9 @@ function mylog($msg) {
     echo date("Y-m-d H:i:s e", time()) . ":" . $msg . "\r\n";
 }
 
-/*
-include("/home/howlate/public_html/master/model/howlate_db.class.php");
-include("/home/howlate/public_html/master/model/howlate_util.class.php");
-include("/home/howlate/public_html/master/model/howlate_sms.class.php");
-include("/home/howlate/public_html/master/model/clickatell.class.php");
-*/
+mylog("**************** Processing Queued notifications ******************");
 
-mylog("**************** processing queued notifications ******************");
-
-$db = new howlate_db();
-$new_notif = $db->getQueuedNotifications();
+$new_notif = howlate_util::getQueuedNotifications();
 
 foreach ($new_notif as $key => $val) {
     echo "New queued notification to send: $val->MobilePhone , $val->Message \r\n";
@@ -49,7 +41,7 @@ foreach ($new_notif as $key => $val) {
         } else {
             howlate_sms::httpSend($val->OrgID, $val->TestMobile, $val->Message, $val->ClinicID);
         }
-        $db->dequeueNotification($val->UID);
+        howlate_util::dequeueNotification($val->UID);
     } catch (Exception $ex) {
         throw $ex;
     }
