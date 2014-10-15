@@ -8,14 +8,15 @@ class howlate_util {
 //    public static $mysqlUser = "howlate_super";
 //    public static $mysqlPassword = "NuNbHG4NQn";
 
-    
+
     public static function admin_sms() {
         return "61403569377";
     }
+
     public static function admin_email() {
         return "admin@how-late.com";
     }
-    
+
     private static $testdomain = "fiedlerconsulting.com.au";
 
     public static function cpanelUser() {
@@ -150,20 +151,17 @@ class howlate_util {
         return (substr($haystack, -$length) === $needle);
     }
 
-    public static function logoURL($subd = "") {
-
+    public static function logoURL($subd = '') {
         if (file_exists("pri/$subd/logo.png")) {
             return "/pri/$subd/logo.png";
-        } else {
-            return "/images/logos/logo.png";
         }
+        return "/images/logos/logo.png";
     }
+
     public static function logoWhiteBG() {
         return "/images/logos/logo_sq_whbk.png";
     }
 
-    
-    
     public static function diag($str) {
         if (defined('__DIAG')) {
             echo $str . "<br>";
@@ -192,21 +190,7 @@ class howlate_util {
 
         $db = new howlate_db();
         $db->register($udid, $org, $id);
-        $db->trlog(TranType::DEV_REG, 'Device ' . $udid . 'registered pin ' . $pin, $org, null, $id, $udid);
-    }
-
-    public static function invite($pin, $udid, $domain) {
-        $org = self::orgFromPin($pin);
-        $id = self::idFromPin($pin);
-
-        $db = new howlate_db();
-        $prac = $db->getPractitioner($org, $id);
-
-        $message = 'To receive lateness updates for ' . $prac->PractitionerName . ' at ' . $prac->ClinicName;
-        $message .= ', click : ';
-        $message .= "http://secure." . $domain . "/late/view&udid=$udid";
-
-        howlate_sms::httpSend($org, $udid, $message);
+        //$db->trlog(TranType::DEV_REG, 'Device ' . $udid . ' registered pin ' . $pin, $org, null, $id, $udid);
     }
 
     // SSL Certificate for *.how-late.com
@@ -277,8 +261,6 @@ EOD;
         return $crt;
     }
 
-    
-    
     public static function googleMapsURL($address1, $address2, $city, $zip) {
         $str = "http://maps.google.com/maps?q=$address1";
         if ($clin->Address2 != '') {
@@ -293,11 +275,83 @@ EOD;
 
         return $str;
     }
-        
+
+    //
+    // Timezones which have lateness perhaps needing to be cleaned up
+    //
+    public static function getLateTimezones() {
+        $q = "SELECT DISTINCT Timezone FROM vwLateTZ";
+
+        $timezones = array();
+        if ($result = maindb::getInstance()->query($q)) {
+            $tempArray = array();
+            while ($row = $result->fetch_object()) {
+                $tempArray = $row;
+                array_push($timezones, $tempArray);
+            }
+            return $timezones;
+        }
+        $result->close();
+    }
+
+    /// for a given timezone, get all those latenesses joined to any session times which exist
+    public static function getLatesAndSessions($timezone, $day, $time) {
+        // $day is Monday, Tuesday etc.
+        // $time is in seconds since midnight
+        $q = " SELECT v.*, s.Day, IFNULL(s.StartTime, -1) As StartTime, IFNULL(s.EndTime,-1) As EndTime " .
+                " FROM vwLateTZ v " .
+                " LEFT OUTER JOIN sessions s on s.OrgID = v.OrgID and s.ID = v.ID and Day = '$day' " .
+                " WHERE v.Timezone = '$timezone'";
+
+        $toprocess = array();
+        if ($result = maindb::getInstance()->query($q)) {
+            $tempArray = array();
+            while ($row = $result->fetch_object()) {
+                $tempArray = $row;
+                array_push($toprocess, $tempArray);
+            }
+            return $toprocess;
+        }
+    }
+
+    public static function deleteOldLates() {
+        $q = "DELETE FROM lates WHERE Updated < ADDTIME(NOW(),'-08:00:00')";
+        $stmt = maindb::getInstance()->prepare($q);
+        $stmt->execute() or trigger_error('# Query Error (' . $this->conn->errno . ') ' . $this->conn->error, E_USER_ERROR);
+    }
+
+    public static function getQueuedNotifications() {
+        $q = "SELECT * FROM notifqueue WHERE Status = 'Queued'";
+        $toprocess = array();
+        if ($result = maindb::getInstance()->query($q)) {
+            $tempArray = array();
+            while ($row = $result->fetch_object()) {
+                $tempArray = $row;
+                array_push($toprocess, $tempArray);
+            }
+            return $toprocess;
+        }
+    }
+
+    public static function dequeueNotification($uid) {
+        $q = "UPDATE notifqueue SET Status = 'Sent' WHERE UID = $uid";
+        //echo $q;
+        $stmt = maindb::getInstance()->prepare($q);
+        $stmt->execute();
+        if ($stmt->affected_rows == 0) {
+            trigger_error("The notification record was not deueued, error= " . $this->conn->error, E_USER_ERROR);
+        }
+    }
+
+
+    public static function deleteSubdomain($subdomain) {
+        $q = "CALL sp_DeleteSubd('" . $subdomain . "')";
+        $stmt = maindb::getInstance()->prepare($q);
+        $stmt->execute() or trigger_error('# Query Error (' . $this->conn->errno . ') ' . $this->conn->error, E_USER_ERROR);
+    }
+    
+    
     
 }
-
-
-
 
 ?>

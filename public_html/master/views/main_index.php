@@ -1,5 +1,14 @@
 <?php $controller->get_header(); ?>
 
+<link rel="stylesheet" href="/styles/modal.css">
+
+<!--[if lt IE 9]>
+    <script src="/js/html5shiv.js"></script>
+    <script src="/js/bean.js"></script>
+<![endif]-->
+
+
+
 <script>
 
     function lateHelper(pin) {
@@ -25,11 +34,11 @@
         el.style.cursor = cursor;
     }
 
-    function gotoInvite(pin, prac) {
+    function gotoInvite(invitepin, PractitionerName) {
         //document.getElementById(pin).innerHTML = document.getElementById(pin).innerHTML + "*"; 
-        document.getElementById('invitepin').value = pin;
-        document.getElementById('inviteprac').innerHTML = prac;
-        window.location.href = "#invite";
+        document.getElementById('invitepin').value = invitepin;
+        document.getElementById('PractitionerName').innerHTML = PractitionerName;
+        window.location.href = "#modal-show";
     }
 
     function leadingZero(i) {
@@ -60,7 +69,6 @@
     }
 
 </script>
-<?php $controller->get_valid_lateness_datalist(); ?>
 
 <div class='container primary-content'>
     <div class="clinic-header">
@@ -80,17 +88,37 @@
 } ?>
 </div>
 
-<div id="invite" class="modalDialog">
-    <div> 
-        <a href="#close" title="Close" class="close">X</a>
-        <h2>Invite a smartphone user to updates for <p id="inviteprac">Drs name goes here</p></h2>
-        <p>Please enter a mobile phone number to send an invitation to</p>
-        <form name="invite" action="/main/invite" method='GET'>
-            <input type="hidden" id="invitepin" name="invitepin" readonly='readonly'>
-            Mobile:<input type="text" id="udid" name="udid">
-            <input type="submit" id="submit" name="submit" value="Invite">
-        </form>
-    </div>
-</div>
+		<!-- A modal with its content -->
+		<section class="modal--show" id="modal-show"
+				tabindex="-1" role="dialog" aria-labelledby="label-show" aria-hidden="true">
+
+                    <div class="modal-inner">
+                        <header>
+                            <h2 id="label-show">Enter a mobile number</h2>
+                        </header>
+
+                        <div class="modal-content">
+                            <div> 
+                                <h2>Invite a smart-phone user to updates for <p id="PractitionerName">Drs name goes here</p></h2>
+                                <p>Please enter a mobile phone number to send an invitation to</p>
+                                <form name="invite" action="/main/invite" method='POST'>
+                                    <input type="hidden" id="invitepin" name="invitepin" readonly='readonly'>
+                                    Mobile:<input type="text" id="udid" name="udid">
+                                    <input type="submit" id="submit" name="submit" value="Invite">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <footer>
+                        <p>Footer</p>
+                    </footer>
+                </div>
+			<a href="#!" class="modal-close" title="Close this modal"
+					data-dismiss="modal" data-close="Close">&times;</a>
+		</section>
+
+
+
 
 <?php $controller->get_footer(); ?>

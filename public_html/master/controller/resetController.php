@@ -5,11 +5,11 @@ Class resetController Extends baseController {
     
 
     private function getorg() {
-        $this->org = new organisation();
-        $this->org->getby(__SUBDOMAIN, 'Subdomain');
+        $this->org = organisation::getInstance(__SUBDOMAIN);
+        $this->org->getRelated();
         $this->registry->template->org = $this->org;
         $this->registry->template->controller = $this;
-        $this->registry->template->logourl = howlate_util::logoURL(__SUBDOMAIN);
+        $this->registry->template->logourl = $this->org->LogoURL;
     }
     public function index() {
         
@@ -20,8 +20,8 @@ Class resetController Extends baseController {
             $this->registry->template->show('reset_index');
         } else {
             $token = $_GET["token"];
-            $db = new howlate_db();
-            $result = $db->check_token($token, $this->org->OrgID);
+            
+            $result = $this->org->check_token($token, $this->org->OrgID);
             if ($result[0] == "OK") { 
                 $this->registry->template->token = $token;
                 $this->registry->template->userid = $result[1];
@@ -34,21 +34,10 @@ Class resetController Extends baseController {
                 $this->registry->template->no_access = 1;
                 $this->registry->template->notification_header = "You are not allowed to access what you are looking for.";
             }
-            $this->registry->template->show("reset_index");         
-            
+            $this->registry->template->show("reset_index");
         }
     }
 
-    private function check_token($token) {
-        $db = new howlate_db();
-        $result = $db->check_token($token, $this->org->OrgID);
-        if ($result[0] == "OK") {
-            return "Please enter a new password";
-        }
-        else {
-            return $result[0];
-        }
-    }
     
     public function change() {
         $password = $_POST["password"];
@@ -70,8 +59,7 @@ Class resetController Extends baseController {
         
         if ($err == "") {
             $xpassword = md5($password);
-            $db = new howlate_db();
-            $db->change_password($userid, $xpassword, $this->org->OrgID);
+            orguser::getInstance($this->org->OrgID, $userid)->changePassword($xpassword);
             $this->registry->template->no_access = 1;
             $this->registry->template->login_info = "Password changed.";
             $this->registry->template->notification_header = "Success!  Password has been changed.  Click to go to the login page.";

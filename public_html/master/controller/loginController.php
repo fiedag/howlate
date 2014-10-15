@@ -28,11 +28,9 @@ Class loginController Extends baseController {
         define("__DIAG",1);
         
         
-        $this->org = new organisation();
-        
-        $this->org->getby(__SUBDOMAIN, "Subdomain");
+        $this->org = organisation::getInstance(__SUBDOMAIN);
         $this->registry->template->companyname = $this->org->OrgName;
-        $this->registry->template->logourl = howlate_util::logoURL(__SUBDOMAIN);
+        $this->registry->template->logourl = $this->org->LogoURL;
         $this->registry->template->show('login_index');
     }
 
@@ -46,13 +44,12 @@ Class loginController Extends baseController {
         $userid = $_POST["username"];
         $passwd = md5($_POST["password"]);
 
-        $this->org = new organisation();
-        $this->org->getby(__SUBDOMAIN, "Subdomain");
+        $this->org = organisation::getInstance(__SUBDOMAIN);
         $this->registry->template->companyname = $this->org->OrgName;
-        $this->registry->template->logourl = howlate_util::logoURL(__SUBDOMAIN);
+        $this->registry->template->logourl = $this->org->LogoURL;
 
         //echo md5($userid);
-        if ($this->org->isValidPassword($userid, $passwd)) {
+        if ($this->org->isValidPassword($this->org->OrgID, $userid, $passwd)) {
             setcookie("USER", $userid, time() + 3600);
             setcookie("ORGID", $this->org->OrgID, time() + 3600);
             
@@ -70,14 +67,10 @@ Class loginController Extends baseController {
 
     public function forgot() {
         $email = $_POST["email"];
-        $this->org = new organisation();
-        $this->org->getby(__SUBDOMAIN, "Subdomain");
-        $this->send_reset_emails($email);
+        $this->org = organisation::getInstance(__SUBDOMAIN);
+        $this->org->getRelated();
+        $this->org->sendResetEmails($email);
         header("location: http://" . __SUBDOMAIN . "." . __DOMAIN . "/login?sent=ok");
-    }
-
-    private function send_reset_emails($email) {
-        $this->org->send_reset_emails($email);
     }
 
 }

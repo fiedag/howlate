@@ -10,10 +10,8 @@ Class exceptionController Extends baseController {
     }
   
     public function view($exception) {
-        $this->org = new organisation();
-        $this->org->getby(__SUBDOMAIN, 'Subdomain');
+        $this->org = organisation::getInstance(__SUBDOMAIN);
         $this->registry->template->companyname = $this->org->OrgName;
-        $this->registry->template->logourl = howlate_util::logoURL(__SUBDOMAIN);
         $this->registry->template->sorry = "Something went wrong...";
         $this->registry->template->sorry2 = "We have entered the error into our issues list and will deal with it in due course.";
         $this->registry->template->message = $exception->getMessage();

@@ -41,10 +41,7 @@ Class supportController Extends baseController {
 
     private function getOrg() {
         if (!isset($this->org)) {
-            $this->org = new organisation();
-            $this->org->getby(__SUBDOMAIN, "Subdomain");
-            $this->registry->template->companyname = $this->org->OrgName;
-            $this->registry->template->logourl = howlate_util::logoURL(__SUBDOMAIN);
+            $this->org = organisation::getInstance(__SUBDOMAIN);
         }
     }
 

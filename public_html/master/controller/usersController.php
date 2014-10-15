@@ -6,11 +6,7 @@ Class usersController Extends baseController {
 
     public function index() {
       
-	$this->org = new organisation();
-        $this->org->getby(__SUBDOMAIN, "Subdomain");
-        $this->registry->template->companyname = $this->org->OrgName;
-        $this->registry->template->logourl = howlate_util::logoURL(__SUBDOMAIN);
-
+	$this->org = organisation::getInstance(__SUBDOMAIN);
 	$this->registry->template->controller = $this;
         $this->registry->template->show('users_index');
     }
@@ -18,10 +14,9 @@ Class usersController Extends baseController {
     
     public function passwordreset() {
         $resetemail = filter_input(INPUT_POST, "resetemail");
-	$this->org = new organisation();
-        $this->org->getby(__SUBDOMAIN, "Subdomain");
-        
-        $this->org->send_reset_emails($resetemail);
+	$this->org = organisation::getInstance(__SUBDOMAIN);
+        $this->org->getRelated();
+        $this->org->SendResetEmails($resetemail);
         $this->registry->template->companyname = $this->org->OrgName;
         $this->registry->template->controller = $this;
         $this->registry->template->show('users_index');

@@ -19,10 +19,6 @@ Class signupController Extends baseController {
     public function create() {
         define("__DIAG", 1);
         
-        
-        $db = new howlate_db();
-        $db->trlog(TranType::SESS_UPD, "Creating site");
-        
         $this->registry->template->controller = $this;
 
         $company = filter_input(INPUT_GET, "company");
@@ -37,7 +33,9 @@ Class signupController Extends baseController {
         $howlate_site = new howlate_site($company,$email);
         
         $howlate_site->reduceName()->checkForDupe()->createPrivateArea()->createCPanelSubdomain()->installSSL();
+        
         $howlate_site->createOrgRecord()->createDefaultClinic()->createDefaultPractitioner()->createDefaultUser();
+        
         $howlate_site->sendWelcomeEmail();
         
         $this->registry->template->signup_result = $howlate_site->Result;
@@ -46,17 +44,5 @@ Class signupController Extends baseController {
     }
 
     
-    public function deldomain()
-    {
-        $subdomain = filter_input(INPUT_GET, "subdomain");
-        
-        $howlate_site = new howlate_site('','');
-        $howlate_site->deleteCPanelSubdomain($subdomain);
-        echo "Subdomain $subdomain deleted.";
-        
-        $db = new howlate_db();
-        $db->deleteSubdomain($subdomain);
-        echo "Org $subdomain deleted.";
-    }
 }
 ?>

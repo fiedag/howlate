@@ -37,10 +37,21 @@
     </head>
     <body>
 
-        <form id="api_call" action="api?met=''" action='POST'>
-            <input name="subdomain" id="subdomain" type="text" size="25" maxlength="50" class="input-company signupfield" required></input>
-            <button type="submit" name="submit" value="submit">Delete Subdomain</button>
+        <form id="api_call" action="api/notify" method="POST">
+            <input name="credentials" id="credentials" type="text" size="25" maxlength="50" value="alexf.9cbf8a4dcb8e30682b927f352d6559a0"></input>
+            <input name="Provider" id="Provider" type="text" size="25" maxlength="50" value='Dr A Fiedler'></input>
+            <input name="MobilePhone" id="MobilePhone" type="text" size="25" maxlength="50" value='0403569377'></input>
+            <button type="submit" name="submit" value="submit">api/notify</button>
         </form>
 
+        
+        <form id="api_call" action="api/org" method="POST">
+            <input name="credentials" id="credentials" type="text" size="25" maxlength="50" value="alexf.fe008700f25cb28940ca8ed91b23b354"></input>
+            <input name="Subdomain" id="Subdomain" type="text" size="25" maxlength="50" value='bogus'></input>
+            <button type="submit" name="submit" value="submit">test method</button>
+        </form>
+        
+        
+        
     </body>
 </html>

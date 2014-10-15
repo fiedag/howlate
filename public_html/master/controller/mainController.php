@@ -5,16 +5,14 @@
 /// and send invitations.
 Class mainController Extends baseController {
 
-    public $org;
     public $currentClinic;
     public $currentClinicName;
     public $currentClinicTimezone;
 
-    private $diagnostics;
-    
-    public function index() {
 
-        $this->getOrg();
+    public function index() {
+        
+        $this->org->getRelated();
 
         //if (isset($_SESSION["CLINIC"]) and in_array($_SESSION["CLINIC"],$this->org->ActiveClinics)) {
         if (isset($_SESSION["CLINIC"]) ) {
@@ -43,7 +41,6 @@ Class mainController Extends baseController {
     }
 
     public function save() {
-        $db = new howlate_db();
         foreach ($_POST['lateness'] as $pin => $newlate) {
             if (!isset($newlate) or (!is_numeric($newlate) and $newlate != 'On time'))  {
                 continue;
@@ -57,22 +54,10 @@ Class mainController Extends baseController {
             $elems = explode('.', $pin);
             $org = $elems[0];
             $id = $elems[1];
-            $db->updatelateness($org, $id, $newlate, $sticky);
+            
+            practitioner::updateLateness($org, $id, $newlate, $sticky);
         }
         header("location: http://" . __FQDN . "/main?ok=yes");
-    }
-
-        
-    public function get_header() {
-        include 'controller/headerController.php';
-        $header = new headerController($this->registry);
-        $header->view($this->org);
-    }
-
-    public function get_footer() {
-        include 'controller/footerController.php';
-        $footer = new footerController($this->registry);
-        $footer->view($this->org);
     }
 
     //
@@ -99,10 +84,12 @@ Class mainController Extends baseController {
                 
                 $pin = $this->org->OrgID . "." . $value->ID;
                 echo "<td class='col-80pct'>" . $value->AbbrevName;
-                echo "<span onmouseover=\"changeCursor(this,'arrow');\" onmouseout=\"changeCursor(this,'default');\" title='Click to invite a mobile phone user to receive updates for $value->AbbrevName' class='invite' onclick=\"gotoInvite('$pin','$value->AbbrevName')\">SMS Invite</span>";
+                echo "<span onmouseover=\"changeCursor(this,'arrow');\" onmouseout=\"changeCursor(this,'default');\" " . 
+                     " title='Click to invite a mobile phone user to receive updates for $value->AbbrevName' class='invite' " . 
+                     " onclick=\"gotoInvite('$pin','$value->AbbrevName')\">SMS Invite</span>";
                 echo "</td>";
                 echo "<td class='lateness-value'>";
-                echo "<input type='number' class='lateness-admin-entry' id='lateness[$pin]' name='lateness[$pin]' onmouseover=\"lateHelper('$pin');return;\" list='valid_latenesses' min='0' value='$value->MinutesLate' >";
+                echo "<input type='number' class='lateness-admin-entry' id='lateness[$pin]' name='lateness[$pin]' onmouseover=\"lateHelper('$pin');return;\" value='$value->MinutesLate' >";
                 
                 echo "<input type='hidden' name='oldlateness[$pin]' value='$value->MinutesLate' >";
                 echo "<input type='hidden' name='oldsticky[$pin]' value='$value->Sticky' >";
@@ -149,15 +136,16 @@ EOT;
     }
 
     public function invite() {
-        if (!isset($_GET["invitepin"]) or !isset($_GET["udid"])) {
 
-            throw new Exception("Invalid invite.  Missing parameters.");
-        }
-        $pin = $_GET["invitepin"];
-        $udid = $_GET["udid"];
+        $pin = filter_input(INPUT_POST,'invitepin');
+        $udid = filter_input(INPUT_POST,'udid');
 
-        howlate_util::register($pin,$udid);
-        howlate_util::invite($pin, $udid, __DOMAIN);
+        if (!$pin or !$udid)
+            throw new Exception("Parameters not supplied.");
+        
+        list($org,$id) = explode('.',$pin);
+        device::register($org,$id,$udid);
+        device::invite($org, $id, $udid, __DOMAIN);
  
         $this->index();
     }
@@ -178,7 +166,8 @@ EOT;
 
     public function setclinic() {
 
-        $this->getOrg();
+        $this->org->getRelated();
+        
         $selectedclinic = $_POST["selectedclinic"];
 
         //echo $newclinic . "<br>";
@@ -199,15 +188,6 @@ EOT;
         $this->registry->template->controller = $this;
         
         $this->registry->template->show('main_index');
-    }
-
-    private function getOrg() {
-        if (!isset($this->org)) {
-            $this->org = new organisation();
-            $this->org->getby(__SUBDOMAIN, "Subdomain");
-            $this->registry->template->companyname = $this->org->OrgName;
-            $this->registry->template->logourl = howlate_util::logoURL(__SUBDOMAIN);
-        }
     }
 
 }

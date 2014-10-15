@@ -20,10 +20,7 @@ Class meddir_agentController Extends baseController {
         // one of the post parameters was the selected clinic
         // so retrieve that.
 
-        $this->org = new organisation();
-        $this->org->getby(__SUBDOMAIN, "Subdomain");
-        $this->registry->template->companyname = $this->org->OrgName;
-        $this->registry->template->logourl = howlate_util::logoURL(__SUBDOMAIN);
+        $this->org = organisation::getInstance(__SUBDOMAIN);
         $this->registry->template->controller = $this;
     
         if (is_null($clinicID)) {
@@ -31,11 +28,12 @@ Class meddir_agentController Extends baseController {
         } else {
             $this->currentClinic = $clinicID;
         }
-        $db = new howlate_db();
-        $result = $db->getClinicIntegration($this->org->OrgID, $this->currentClinic);
+        
+        $result = clinic::getInstance($this->org->OrgID,$this->currentClinic)->getClinicIntegration();
         if (is_null($result)) {
-            $db->createClinicIntegration($this->org->OrgID, $this->currentClinic);
-            $result = $db->getClinicIntegration($this->org->OrgID, $this->currentClinic);
+            clinic::getInstance($this->org->OrgID,$this->currentClinic)->createClinicIntegration();
+            $result = clinic::getInstance($this->org->OrgID,$this->currentClinic)->getClinicIntegration();
+
         }
         
         $this->registry->template->subdomain = __SUBDOMAIN;

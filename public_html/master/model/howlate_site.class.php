@@ -15,6 +15,7 @@ class howlate_site {
     protected $base_path;
     protected $template_path;
 
+    protected $DefaultUser;
         
     protected $org;  // will hold organisation() object
     protected $db;
@@ -50,7 +51,7 @@ class howlate_site {
 
     // check for duplicates and append number to make unique
     public function checkForDupe() {
-        $org = $this->db->getOrganisation($this->Subdomain);
+        $org = organisation::getInstance($this->Subdomain);
 
         while (!empty($org)) {
             $this->mylog("$org->OrgName already exists with this subdomain<br>");          
@@ -62,7 +63,7 @@ class howlate_site {
             }
 
             $this->mylog("Already exists, changing subdomain to $this->Subdomain <br>");
-            $org = $this->db->getOrganisation($this->Subdomain);
+            $org = organisation::getInstance($this->Subdomain);
         }
         return $this;
     }
@@ -98,38 +99,35 @@ class howlate_site {
     }
     
     public function createOrgRecord() {
-        $this->OrgID = $this->db->getNextOrgID();
+        $this->OrgID = organisation::getNextOrgID();
         $this->mylog("Using new OrgId = $this->OrgID <br>");
-        $this->db->create_org($this->OrgID, $this->CompanyName, $this->CompanyName, $this->Subdomain, $this->Subdomain . "." . __DOMAIN);
+        
+        $this->org = organisation::createOrg($this->OrgID, $this->CompanyName, $this->CompanyName, $this->Subdomain, $this->Subdomain . "." . __DOMAIN);
         return $this;
     }
     
     public function createDefaultClinic() {
-        $this->db->create_default_clinic($this->OrgID);
+        clinic::createDefaultClinic($this->OrgID);
         $this->mylog("Created default clinic <br>");
         return $this;
     }
     
     public function createDefaultPractitioner() {
-        $this->db->create_default_practitioner($this->OrgID, $this->Email);
+        practitioner::createDefaultPractitioner($this->OrgID, $this->Email);
         $this->mylog("Created default practitioner <br>");        
         return $this;
     }
     
     public function createDefaultUser() {
-        $this->db->create_user($this->OrgID, $this->Email, $this->Email);
-        $this->mylog("Created default user <b>$this->Email</b>");
+        $this->DefaultUser = orguser::createUser($this->OrgID, $this->Email, $this->Email);
+        $this->mylog("Created default user <b>$this->DefaultUser</b>");
         return $this;
     }
 
     public function sendWelcomeEmail() {
-        
-        $this->org = new organisation();
-        $this->org->getby($this->Subdomain, 'Subdomain'); 
-        
-        $users = $this->db->getallusers($this->Email, 'EmailAddress');
+        $users = organisation::findUsers($this->Email, 'EmailAddress');
         if (count($users) == 0) {
-            $this->mylog("error, no users with email $this->Email so no welcome email sent!");
+            $this->mylog("Error, no users with email $this->Email so no welcome email sent!");
             return false;
         }
         $subject = "Welcome to how-late.com! Your login link is enclosed.";
@@ -197,6 +195,24 @@ class howlate_site {
         $this->mylog($result);
         return $this;
     }
+    
+    
+//    public function deldomain()
+//    {
+//        $subdomain = filter_input(INPUT_GET, "subdomain");
+//        
+//        $howlate_site = new howlate_site('','');
+//        $howlate_site->deleteCPanelSubdomain($subdomain);
+//        echo "Subdomain $subdomain deleted.";
+//        
+//        $db = new howlate_db();
+//        $db->deleteSubdomain($subdomain);
+//        echo "Org $subdomain deleted.";
+//    }
+//    
+    
+    
+    
 }
 ?>
 

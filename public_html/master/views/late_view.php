@@ -13,12 +13,38 @@
 
         <script type="text/javascript" src="/js/bookmark_bubble.js"></script>
         <script type="text/javascript" src="/js/bookmark_bubble_example.js"></script>
-        <script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+       <script>
 
             function DoNav(theUrl)
             {
                 document.location.href = theUrl;
             }
+
+
+            /* use JQuery to assemble a GET parameter comprising comma-separated pins we need to refresh
+             * then we make an AJAX call to get these latenesses which is returned as a JSON string
+             * This JSON string is used to update the spans with the corresponding ID
+             */
+
+            function assembleParam(){
+                var str = "";
+                $("#latenesses span").each(function() { str = str + ((str=="")?"":",") + $(this).attr('id'); });
+                return str;
+            }
+  
+            function refreshLates(){
+                var start = new Date();
+                var start_ticks = start.getTime();
+                var str = assembleParam();
+                var url = "https://hastings1.fiedlerconsulting.com.au/late/pins?pins=" + str;
+                $("#result").load(url);
+                var stop = new Date();
+                var stop_ticks = stop.getTime();
+                var elapsed_ticks = stop_ticks - start_ticks;
+                $("#stop").text("elapsed ms=" + elapsed_ticks);
+            }
+            
 
         </script>
 
@@ -36,7 +62,7 @@
         <?php
         foreach ($lates as $clinic => $latepract) {
             ?>
-            <table>
+            <table id="latenesses">
 
                 <?php
                 $i = 0;
@@ -55,7 +81,7 @@
                     }
                     ?>
                     <tr>
-                        <td><?php echo $r->AbbrevName; ?> is <?php echo $r->MinutesLateMsg; ?></td>
+                        <td><?php echo $r->AbbrevName; ?> is <span id="<?php echo "$r->OrgID.$r->ID";?>"><?php echo $r->MinutesLateMsg; ?></span></td>
                     </tr>
 
                     <?php
@@ -73,6 +99,7 @@
             <td class='refresh '><?php echo $when_refreshed; ?></td><td><a class="refresh" href="javascript:location.reload(true);">Refresh</a></td>
         </tr>
     </table>            
+
             
     </body>
 

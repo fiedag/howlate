@@ -6,13 +6,9 @@ Class devicesController Extends baseController {
 
     public function index() {
       
-	$this->org = new organisation();
-        $this->org->getby(__SUBDOMAIN, "Subdomain");
+	$this->org = organisation::getInstance(__SUBDOMAIN);
         $this->registry->template->companyname = $this->org->OrgName;
-        $this->registry->template->logourl = howlate_util::logoURL(__SUBDOMAIN);
-
 	$this->registry->template->controller = $this;
-       
         $this->registry->template->show('devices_index');
 		
     }

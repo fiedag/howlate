@@ -5,11 +5,8 @@ Class practController Extends baseController {
     public $org;
 
     public function index() {
-        $this->org = new organisation();
-        $this->org->getby(__SUBDOMAIN, "Subdomain");
-        $this->registry->template->companyname = $this->org->OrgName;
-        $this->registry->template->logourl = howlate_util::logoURL(__SUBDOMAIN);
-
+        $this->org = organisation::getInstance(__SUBDOMAIN);
+        $this->org->getRelated();
         $this->registry->template->controller = $this;
         $this->registry->template->show('pract_index');
     }
@@ -53,15 +50,18 @@ Class practController Extends baseController {
     }
 
     public function assign() {
-        $db = new howlate_db();
+        
         $orgid = $_POST['assignorgid'];
         $surrogkey = $_POST['assignsurrogkey'];
         $clinicID = $_POST['selectedclinic'];
 
-        //$db->place($orgID,$PractID,$clinicID);
-        $db->place2($orgid, $surrogkey, $clinicID);
+        practitioner::getInstance($orgid, $surrogkey, 'SurrogKey')->place2($orgid, $surrogkey, $clinicID);
 
-        header("location: http://" . __FQDN . "/pract?ok=yes");
+        $this->org = organisation::getInstance(__SUBDOMAIN);
+        $this->org->getRelated();
+        $this->registry->template->controller = $this;
+        $this->registry->template->show('pract_index');
+
     }
 
     private function assignSpan() {
@@ -69,11 +69,6 @@ Class practController Extends baseController {
         return $span;
     }
 
-
-    private function nextPractitionerID() {
-        $db = new howlate_db();
-        return $db->getNextPractID($this->org->OrgID);
-    }
 
 }
 ?>

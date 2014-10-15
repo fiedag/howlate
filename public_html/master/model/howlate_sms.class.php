@@ -6,8 +6,8 @@ class howlate_sms {
        $clickatell = new clickatell();
 
        $clickatell->httpSend( $udid, $message, $orgid);
-       $db = new howlate_db();
-       $db->trlog(TranType::DEV_SMS, $message, $orgid, $clinicid, $practitionerid, $udid);
+       logging::trlog(TranType::DEV_SMS, $message, $orgid, $clinicid, $practitionerid, $udid);
+       
 
     }
     

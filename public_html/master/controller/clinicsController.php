@@ -6,10 +6,7 @@ Class clinicsController Extends baseController {
 
 
     public function index() {
-        $this->org = new organisation();
-        $this->org->getby(__SUBDOMAIN, "Subdomain");
-        $this->registry->template->companyname = $this->org->OrgName;
-        $this->registry->template->logourl = howlate_util::logoURL(__SUBDOMAIN);
+        $this->org = organisation::getInstance(__SUBDOMAIN);
 	$this->registry->template->controller = $this;
         $this->registry->template->show('clinics_index');
 		
@@ -28,7 +25,7 @@ Class clinicsController Extends baseController {
         $xcrud->label(array('ClinicName' => 'Clinic', 'Address1' => 'Address', 'Address2' => 'Address', 'Timezone' => 'Time Zone'));
 
         $xcrud->pass_default('OrgID',$this->org->OrgID);
-        $tz = $this->org->gettimezones();
+        $tz = $this->org->getTimezones();
         $tz_csv="";
         foreach($tz as $val) {
             $tz_csv .= ($tz_csv=="")?$val:",$val";

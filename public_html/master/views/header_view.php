@@ -7,6 +7,7 @@
         <meta name='description' content='How Late is my appointment.'>
         <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=2.0; user-scalable=1;">
         <link media="screen" href="/styles/howlate.css" type="text/css" rel="stylesheet">
+
         <link media="screen" href="/includes/xcrud/themes/default/xcrud.css" type="text/css" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 		
@@ -27,11 +28,11 @@
                     <div class="logo-container">
                         <img alt="" id="sysLogo" class="system-logo" 
                              title="<?php if (isset($usercookie)) {echo "User cookie $usercookie .";} if (isset($orgidcookie)) {echo "  OrgID cookie $orgidcookie";} ?>" 
-                             src="<?php echo howlate_util::logoURL(__SUBDOMAIN); ?>" height="100" width="100">
+                             src="<?php echo $controller->org->LogoURL; ?>" height="100" width="100">
                         <a href="#" class="logo-upload-button inverse" id="nav-upload-logo" style="display: none;">Upload your logo</a>
                     </div>
 					<div class="orgname">
-						<?php echo $org->OrgName; ?>
+						<?php echo $controller->org->OrgName; ?>
 					</div>
                     <div class="nav-mainlinks-container  font-on-custom-background">
                         <ul class="nav-mainlinks custom-background" id="nav-mainlinks">

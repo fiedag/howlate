@@ -7,11 +7,12 @@ Abstract Class baseController {
 
     protected $registry;
 
-    protected $org;
+    public $org;
     
     function __construct($registry) {
         $this->registry = $registry;  
-        set_exception_handler(array($this, 'unh_exception'));
+        set_exception_handler(array($this, 'handle_exception'));
+        $this->org = organisation::getInstance(__SUBDOMAIN);
     }
 
     /**
@@ -38,14 +39,18 @@ Abstract Class baseController {
     }
 
     
-    public function unh_exception($exception) {
-        $db = new howlate_db();
-        $db->write_error(0, 1, $exception->getMessage(), $exception->getFile(), $exception->getLine());
+    public function handle_exception($exception) {
+        try {
+            $ip = $_SERVER["REMOTE_ADDR"];
+            logging::write_error(0, 1, $exception->getMessage(), $exception->getFile(), $exception->getLine(), $ip);
+        } catch (Exception $ex) {
+        }
+
         include 'controller/exceptionController.php';
         $controller = new exceptionController($this->registry);
         $controller->view($exception);
     }
-    
+
     function session_start() {
         session_start();
 

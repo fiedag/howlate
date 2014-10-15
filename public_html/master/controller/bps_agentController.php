@@ -2,14 +2,12 @@
 
 Class bps_agentController Extends baseController {
 
-    public $org;
     public $currentClinic;
 
     public function index() {
         if (isset($_SESSION["CLINIC"]) ) {
            $this->currentClinic = $_SESSION['CLINIC'];
         } else {
-            $this->org = new organisation();
             $this->currentClinic = $this->org->Clinics[0]->ClinicID;        
         }
         $this->registry->template->controller = $this;
@@ -20,10 +18,7 @@ Class bps_agentController Extends baseController {
         // one of the post parameters was the selected clinic
         // so retrieve that.
 
-        $this->org = new organisation();
-        $this->org->getby(__SUBDOMAIN, "Subdomain");
-        $this->registry->template->companyname = $this->org->OrgName;
-        $this->registry->template->logourl = howlate_util::logoURL(__SUBDOMAIN);
+        $this->org->getRelated();
         $this->registry->template->controller = $this;
     
         if (is_null($clinicID)) {
@@ -31,11 +26,12 @@ Class bps_agentController Extends baseController {
         } else {
             $this->currentClinic = $clinicID;
         }
-        $db = new howlate_db();
-        $result = $db->getClinicIntegration($this->org->OrgID, $this->currentClinic);
+
+        $result = clinic::getInstance($this->org->OrgID,$this->currentClinic)->getClinicIntegration();
         if (is_null($result)) {
-            $db->createClinicIntegration($this->org->OrgID, $this->currentClinic);
-            $result = $db->getClinicIntegration($this->org->OrgID, $this->currentClinic);
+            clinic::getInstance($this->org->OrgID,$this->currentClinic)->createClinicIntegration();
+            $result = clinic::getInstance($this->org->OrgID,$this->currentClinic)->getClinicIntegration();
+
         }
         
         $this->registry->template->subdomain = __SUBDOMAIN;
@@ -63,12 +59,7 @@ Class bps_agentController Extends baseController {
         $interval = filter_input(INPUT_POST, "Interval");  
         $hluserid = filter_input(INPUT_POST, "HLUserID");  
 
-        //echo $orgid . $clinic . $instance . $database . $uid . $pwd . $interval . $hluserid;
-        
-        $db = new howlate_db();
-       
-        $db->updateClinicIntegration($orgid, $clinic, $instance, $database, $uid, $pwd, $interval, $hluserid);
-        
+        clinic::getInstance($orgid,$clinic)->updateClinicIntegration($instance, $database, $uid, $pwd, $interval, $hluserid);
         
         $this->registry->template->subdomain = __SUBDOMAIN;
         $this->registry->template->clinic = $clinic;
@@ -78,28 +69,24 @@ Class bps_agentController Extends baseController {
         $this->registry->template->pwd = $pwd;
         $this->registry->template->interval = $interval;
         
-        $url = "https://" . __SUBDOMAIN . "." . __DOMAIN . "/api?ver=post";
+        $url = "https://" . __SUBDOMAIN . "." . __DOMAIN . "/api";
         $this->registry->template->url = $url;
         
-        $res = $db->get_user_data($hluserid, $orgid);
+        $res = orguser::getInstance($orgid, $hluserid);
+
         $this->registry->template->credentials = $hluserid . "." . $res->XPassword;
         
         $this->registry->template->show('bps_agent_config');
     }
  
     public function further() {
-        $this->org = new organisation();
-        $this->org->getby(__SUBDOMAIN, "Subdomain");
-        $this->registry->template->companyname = $this->org->OrgName;
-        $this->registry->template->logourl = howlate_util::logoURL(__SUBDOMAIN);
-
+        $this->org = organisation::getInstance(__SUBDOMAIN);
         $this->registry->template->controller = $this;
         $this->registry->template->show('bps_agent_further');
     }
 
     public function exe() {
-        $this->org = new organisation();
-        $this->org->getby(__SUBDOMAIN, "Subdomain");
+        $this->org = organisation::getInstance(__SUBDOMAIN);
 
         // this will initiate a download of HowLateAgent.exe
         $this->registry->template->controller = $this;
@@ -120,7 +107,12 @@ Class bps_agentController Extends baseController {
             echo ">$value->ClinicName</option>";
         }
     }
-    
+
+    /*
+     * Shows the second level of menu options below the integration menu option
+     * 
+     * 
+     */
     public function get_subheader() {
         $this->registry->template->show('subheader_view');
     }
