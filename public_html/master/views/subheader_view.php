@@ -8,12 +8,12 @@
             </li> 
             <li>
                 <span>
-                    <a class="custom-background-fixed-lightness-95<?php echo (get_class($controller) == "genie_agentController")?'':'-hover';?> custom-font-on-white" href="/genie_agent" id="nav-sub-genie"><span>Genie</span></a>
+                    <a class="custom-background-fixed-lightness-95<?php echo (get_class($controller) == "meddir_agentController")?'':'-hover';?> custom-font-on-white" href="/meddir_agent" id="nav-sub-genie"><span>Medical Director</span></a>
                 </span>
             </li> 
             <li>
                 <span>
-                    <a class="custom-background-fixed-lightness-95<?php echo (get_class($controller) == "meddir_agentController")?'':'-hover';?> custom-font-on-white" href="/meddir_agent" id="nav-sub-genie"><span>Medical Director</span></a>
+                    <a class="custom-background-fixed-lightness-95<?php echo (get_class($controller) == "genie_agentController")?'':'-hover';?> custom-font-on-white" href="/genie_agent" id="nav-sub-genie"><span>Genie</span></a>
                 </span>
             </li> 
             <li>

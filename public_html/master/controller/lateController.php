@@ -2,13 +2,17 @@
 
 Class lateController Extends baseController {
 
+    function __construct($registry) {
+        $this->registry = $registry;  
+    }    
+    
     public function index() {
         $this->view();
     }
 
     public function view() {
         $this->registry->template->controller = $this;
-        $this->registry->template->refresh = 3600;  // 1 hour
+        $this->registry->template->refresh = 15000;  // milliseconds
         $this->registry->template->when_refreshed = 'Updated ' . date('h:i A');
         $this->registry->template->bookmark_title = "How late";
         $this->registry->template->bookmark_url = $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"];
@@ -34,10 +38,17 @@ Class lateController Extends baseController {
     /// pins is a list of pins delimited by commas
     ///
     public function pins() {
-        $pins = explode(',',filter_input(INPUT_GET,'pins'));
+        $pins = filter_input(INPUT_GET,'pins');
+        if (!$pins) {
+            
+            throw new Exception("pins parameter must be supplied.");
+        }            
+        $pins = explode(',',$pins);
+        
         $late_arr = array();
         foreach($pins as $key=>$value) {
             list($OrgID,$PractitionerID) = explode('.',$value);
+            
             $late_arr[$value] = practitioner::getInstance($OrgID,$PractitionerID)->getCurrentLateness();
         }
         

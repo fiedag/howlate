@@ -70,9 +70,6 @@ and a1.AppointmentTime &lt;= @AppointmentTime + @Horizon)
 )
 </value>
       </setting>
-      <setting name="PMS" serializeAs="String">
-        <value>BestPractice</value>
-      </setting>
     </com.howlate.Properties.Settings>
 
   </applicationSettings>

@@ -46,7 +46,7 @@ Class genie_agentController Extends baseController {
         $this->registry->template->interval = $result->PollInterval;        
         $this->registry->template->hluserid = $result->HLUserID;
         
-        $this->registry->template->show('bps_agent_index');       
+        $this->registry->template->show('genie_agent_index');       
     }
     
     public function update() {

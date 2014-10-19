@@ -1,4 +1,3 @@
-
 <?php $controller->get_header(); ?>
 
 <?php $controller->get_subheader(); ?>

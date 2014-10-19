@@ -51,6 +51,7 @@ Abstract Class baseController {
         $controller->view($exception);
     }
 
+    
     function session_start() {
         session_start();
 

@@ -1,13 +1,15 @@
 <?php
 
-Class bluechip_agentController Extends baseController {
+Class agentController Extends baseController {
 
+    public $org;
     public $currentClinic;
 
     public function index() {
         if (isset($_SESSION["CLINIC"]) ) {
            $this->currentClinic = $_SESSION['CLINIC'];
         } else {
+            $this->org = new organisation();
             $this->currentClinic = $this->org->Clinics[0]->ClinicID;        
         }
         $this->registry->template->controller = $this;
@@ -18,7 +20,10 @@ Class bluechip_agentController Extends baseController {
         // one of the post parameters was the selected clinic
         // so retrieve that.
 
-        $this->org->getRelated();
+        $this->org = new organisation();
+        $this->org->getby(__SUBDOMAIN, "Subdomain");
+        $this->registry->template->companyname = $this->org->OrgName;
+        $this->registry->template->logourl = howlate_util::logoURL(__SUBDOMAIN);
         $this->registry->template->controller = $this;
     
         if (is_null($clinicID)) {
@@ -26,12 +31,11 @@ Class bluechip_agentController Extends baseController {
         } else {
             $this->currentClinic = $clinicID;
         }
-
-        $result = clinic::getInstance($this->org->OrgID,$this->currentClinic)->getClinicIntegration();
+        $db = new howlate_db();
+        $result = $db->getClinicIntegration($this->org->OrgID, $this->currentClinic);
         if (is_null($result)) {
-            clinic::getInstance($this->org->OrgID,$this->currentClinic)->createClinicIntegration();
-            $result = clinic::getInstance($this->org->OrgID,$this->currentClinic)->getClinicIntegration();
-
+            $db->createClinicIntegration($this->org->OrgID, $this->currentClinic);
+            $result = $db->getClinicIntegration($this->org->OrgID, $this->currentClinic);
         }
         
         $this->registry->template->subdomain = __SUBDOMAIN;
@@ -42,8 +46,7 @@ Class bluechip_agentController Extends baseController {
         $this->registry->template->pwd = $result->PWD;
         $this->registry->template->interval = $result->PollInterval;        
         $this->registry->template->hluserid = $result->HLUserID;
-        
-        $this->registry->template->show('bluechip_agent_index');       
+        $this->registry->template->show('agent_index');       
     }
     
     public function update() {
@@ -59,7 +62,12 @@ Class bluechip_agentController Extends baseController {
         $interval = filter_input(INPUT_POST, "Interval");  
         $hluserid = filter_input(INPUT_POST, "HLUserID");  
 
-        clinic::getInstance($orgid,$clinic)->updateClinicIntegration($instance, $database, $uid, $pwd, $interval, $hluserid);
+        //echo $orgid . $clinic . $instance . $database . $uid . $pwd . $interval . $hluserid;
+        
+        $db = new howlate_db();
+       
+        $db->updateClinicIntegration($orgid, $clinic, $instance, $database, $uid, $pwd, $interval, $hluserid);
+        
         
         $this->registry->template->subdomain = __SUBDOMAIN;
         $this->registry->template->clinic = $clinic;
@@ -72,28 +80,72 @@ Class bluechip_agentController Extends baseController {
         $url = "https://" . __SUBDOMAIN . "." . __DOMAIN . "/api?ver=post";
         $this->registry->template->url = $url;
         
-        $res = orguser::getInstance($orgid, $hluserid);
-
+        $res = $db->get_user_data($hluserid, $orgid);
         $this->registry->template->credentials = $hluserid . "." . $res->XPassword;
         
-        //$this->registry->template->show('bps_agent_config');
+
+        $this->registry->template->show('agent_config');
     }
- 
+    
+    
+    
+    
     public function further() {
+        $this->org = new organisation();
+        $this->org->getby(__SUBDOMAIN, "Subdomain");
+        $this->registry->template->companyname = $this->org->OrgName;
+        $this->registry->template->logourl = howlate_util::logoURL(__SUBDOMAIN);
+
         $this->registry->template->controller = $this;
-        $this->registry->template->show('bps_agent_further');
+        $this->registry->template->show('agent_further');
     }
 
     public function exe() {
+        $this->org = new organisation();
+        $this->org->getby(__SUBDOMAIN, "Subdomain");
 
         // this will initiate a download of HowLateAgent.exe
         $this->registry->template->controller = $this;
-        $this->registry->template->show('bps_agent_exe');
+        $this->registry->template->show('agent_exe');
+    }
+
+    public function update_DeleteMe() {
+
+        // this will initiate a download of HowLateAgent.exe.config
+        if (!isset($_SESSION["USER"])) {
+            trigger_error("User session variable not defined.", E_USER_ERROR);
+        }
+        if (!isset($_SESSION["ORGID"])) {
+            trigger_error("Org ID variable not defined.", E_USER_ERROR);
+        }
+
+        $userid = $_SESSION["USER"];
+        $orgid = $_SESSION["ORGID"];
+        
+
+        
+        $this->registry->template->subdomain = __SUBDOMAIN;
+        $this->registry->template->clinic = $_POST["Clinic"];
+        $this->registry->template->instance = $_POST["Instance"];
+        $this->registry->template->database = $_POST["Database"];
+        $this->registry->template->uid = $_POST["UID"];
+        $this->registry->template->pwd = $_POST["PWD"];
+        $this->registry->template->interval = $_POST["interval"];
+        $this->registry->template->url = "https://" . __SUBDOMAIN . __DOMAIN  . "/api?ver=post";
+        
+        $db = new howlate_db();
+        $res = $db->get_user_data($userid, $orgid);
+        $this->registry->template->credentials = $userid . "." . $res->XPassword;
+
+        $this->registry->template->controller = $this;
+        $this->registry->template->show('agent_config');
+        
     }
 
     public function install() {
-        $this->registry->template->show('bps_agent_install');
+        $this->registry->template->show('agent_install');
     }
+    
 
     public function get_clinic_options() {
         $i = 0;
@@ -106,15 +158,6 @@ Class bluechip_agentController Extends baseController {
         }
     }
 
-    /*
-     * Shows the second level of menu options below the integration menu option
-     * 
-     * 
-     */
-    public function get_subheader() {
-        $this->registry->template->show('subheader_view');
-    }
-    
 }
 
 ?>
