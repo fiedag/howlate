@@ -102,7 +102,7 @@ class howlate_site {
         $this->OrgID = organisation::getNextOrgID();
         $this->mylog("Using new OrgId = $this->OrgID <br>");
         
-        $this->org = organisation::createOrg($this->OrgID, $this->CompanyName, $this->CompanyName, $this->Subdomain, $this->Subdomain . "." . __DOMAIN);
+        $this->org = organisation::createOrg($this->OrgID, $this->CompanyName, $this->CompanyName, $this->Subdomain, $this->Email, $this->Subdomain . "." . __DOMAIN);
         return $this;
     }
     

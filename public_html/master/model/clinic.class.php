@@ -49,10 +49,10 @@ class clinic extends howlate_basetable {
     }
 
     
-    public function updateClinicIntegration($instance, $database, $uid, $pwd, $interval, $hluserid) {
-        $q = "REPLACE INTO clinicintegration (Instance, DbName, UID, PWD, PollInterval, HLUserID, OrgID, ClinicID ) VALUES (?,?,?,?,?,?,?,?)";
+    public function updateClinicIntegration($instance, $database, $uid, $pwd, $interval, $hluserid, $processrecalls) {
+        $q = "REPLACE INTO clinicintegration (Instance, DbName, UID, PWD, PollInterval, HLUserID, OrgID, ClinicID, ProcessRecalls ) VALUES (?,?,?,?,?,?,?,?,?)";
         $stmt = maindb::getInstance()->prepare($q);
-        $stmt->bind_param('ssssissi', $instance, $database, $uid, $pwd, $interval, $hluserid, $this->OrgID, $this->ClinicID);
+        $stmt->bind_param('ssssissis', $instance, $database, $uid, $pwd, $interval, $hluserid, $this->OrgID, $this->ClinicID, $processrecalls);
         $stmt->execute();
         if($stmt->affected_rows == 0)
         {

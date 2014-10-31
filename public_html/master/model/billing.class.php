@@ -11,6 +11,37 @@ class billing {
         }
     }
     
+    function mylog($msg) {
+        echo date("Y-m-d H:i:s ", time()) . ":" . $msg . "<br>";
+    }
+
+    public function prepareAllDueBills() {
+
+        $RightNow = new DateTime();
+
+        $orgs = $this->getDueOrgs();
+
+        foreach ($orgs as $key => $val) {
+            logging::stdout("$val->OrgName ($val->OrgID) is due for billing.  Period start: $val->LastBillingDay to now:" . $RightNow->format('Y-m-d H:i:sP'));
+            $clin_count = $this->getOrgClinicCount($val->OrgID);
+            logging::stdout("Free Clinics:" . $clin_count->FreeClinics);
+            logging::stdout("Small Clinics:" . $clin_count->SmallClinics);
+            logging::stdout("Large Clinics:" . $clin_count->LargeClinics);
+            logging::stdout("Superclinics:" . $clin_count->SuperClinics);
+
+            $num_sms_sent = $this->getOrgSMSCount($val->OrgID, $val->LastBillingDay, $RightNow->format('Y-m-d H:i:sP'));
+            logging::stdout("Organisation $val->OrgID sent $num_sms_sent SMSs in that billing period");
+
+            $invoicer = new invoicer();
+            try {
+                
+                $invoicer->createNewInvoice($val->OrgID, $val->LastBillingDay, $RightNow->format('Y-m-d H:i:sP'), $val->BillingContact,$clin_count->FreeClinics, $clin_count->SmallClinics, $clin_count->LargeClinics, $clin_count->SuperClinics, $num_sms_sent);
+            } catch (Exception $ex) {
+                logging::stdout("Unable to create invoice, error = " . $ex->getMessage() . ",program=" . $ex->getFile() . " (" . $ex->getLine() . ") " . $ex->getTraceAsString());
+            }
+        }
+    }
+
     function getNextBillingDate($orgID) {
         $q = "SELECT getNextBillingDate('" . $orgID . "') AS NextBillingDate";
         if ($result = $this->conn->query($q)) {
@@ -26,7 +57,7 @@ class billing {
     
     /// return all orgs where next billingDate is <= today
     function getDueOrgs() {
-        $q = "SELECT OrgID, NextBillingDay, LastBillingDay FROM vwOrgBillDue";
+        $q = "SELECT OrgID, OrgName, BillingContact, NextBillingDay, LastBillingDay FROM vwOrgBillDue WHERE BillingContact <> ''";
         $myArray = array();
         if ($result = $this->conn->query($q)) {
             while ($row = $result->fetch_object()) {
@@ -48,9 +79,9 @@ class billing {
         $q = "SELECT COUNT(Id) AS NumSMSSent FROM vwSentSMS WHERE OrgID = ? AND Timestamp > ? AND Timestamp <= ?";
         $stmt = $this->conn->prepare($q);
         $stmt->bind_param('sss',$orgID, $lastbill,$nextbill);
-        $stmt->execute() or trigger_error('# Query Error (' . $this->conn->errno . ') ' . $this->conn->error, E_USER_ERROR);
+        if (!$stmt->execute()) throw new Exception("getOrgSMSCount error = $stmt->error");
         if ($stmt->affected_rows == 0) {
-           trigger_error("error= " . $this->conn->error , E_USER_ERROR);
+           throw new Exception("error= " . $this->conn->error , E_USER_ERROR);
         }
         $stmt->bind_result($num_sms_sent);
         $stmt->fetch();

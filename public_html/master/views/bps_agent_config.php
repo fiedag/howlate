@@ -70,6 +70,10 @@ and a1.AppointmentTime &lt;= @AppointmentTime + @Horizon)
 )
 </value>
       </setting>
+      <setting name="ProcessRecalls" serializeAs="String">
+        <value><?php echo ($processrecalls)?"True":"False"; ?></value>
+      </setting>        
+
       <setting name="PMS" serializeAs="String">
         <value>BestPractice</value>
       </setting>

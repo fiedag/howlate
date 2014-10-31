@@ -10,6 +10,7 @@ class practitioner {
     public $Pin;
     public $PractitionerID;
     public $PractitionerName;
+    public $FullName;
     public $OrgName;
     public $FQDN;
     public $NotificationThreshold;
@@ -18,13 +19,17 @@ class practitioner {
 
     public static function getInstance($OrgID, $FieldValue, $FieldName = 'PractitionerID') {
 
-        $q = "SELECT OrgID, PractitionerID, Pin, PractitionerName, " .
+        $q = "SELECT OrgID, PractitionerID, Pin, PractitionerName, FullName, " .
                 "ClinicName, ClinicID, OrgName, FQDN, NotificationThreshold, LateToNearest, LatenessOffset " .
-                "FROM vwPractitioners WHERE OrgID = ? AND $FieldName = ?";
+                "FROM vwPractitioners WHERE OrgID = '$OrgID' AND $FieldName = ";
+        $q .= ($FieldName == "SurrogKey")?$FieldValue:"'$FieldValue'";
+        
         $sql = maindb::getInstance();
         $stmt = $sql->prepare($q);
-        $stmt->bind_param('ss',$OrgID, $FieldValue);
-        $stmt->execute();
+        
+        if (!$stmt->execute()) {
+            throw new Exception($stmt->error);
+        };
         if ($stmt->affected_rows == 0) {
             return null;
         }
@@ -33,7 +38,7 @@ class practitioner {
             self::$instance = new self();
         }
         $stmt->bind_result(self::$instance->OrgID, self::$instance->PractitionerID, 
-                self::$instance->Pin, self::$instance->PractitionerName, self::$instance->ClinicName, 
+                self::$instance->Pin, self::$instance->PractitionerName, self::$instance->FullName, self::$instance->ClinicName, 
                 self::$instance->ClinicID, self::$instance->OrgName, self::$instance->FQDN, 
                 self::$instance->NotificationThreshold, self::$instance->LateToNearest, self::$instance->LatenessOffset);
         $stmt->fetch();
@@ -49,7 +54,7 @@ class practitioner {
         $sql = maindb::getInstance();
         $stmt = $sql->prepare($q);
         $stmt->bind_param('ssii', $OrgID, $PractitionerID, $NewLate, $Sticky);
-        $stmt->execute() or trigger_error('# Query Error (' . $sql->errno . ') ' . $sql->error, E_USER_ERROR);
+        $stmt->execute() or trigger_error("# Query Error $OrgID, $PractitionerID, $NewLate, $Sticky ( $sql->errno ) "  . $sql->error, E_USER_ERROR);
         logging::trlog(TranType::LATE_UPD, "Lateness updated to $NewLate , Sticky = $Sticky.", $OrgID, null, $PractitionerID, null, $NewLate);
     }
 
@@ -63,21 +68,19 @@ class practitioner {
         logging::trlog(TranType::SESS_UPD, "$day Session updated to [$start,$end]", $org, null, $id, null);
     }
 
-    public function place($org, $id, $clinic) {
-        $q = "REPLACE INTO placements (OrgID, ID, ClinicID) VALUES (?,?,?)";
-        $stmt = maindb::getInstance()->query($q);
-        $stmt = $this->conn->prepare($q);
-        $stmt->bind_param('sss', $org, $id, $clinic);
-        $stmt->execute();
-    }
-
     public function place2($org, $surrogkey, $clinic) {
         $q = "REPLACE INTO placements (OrgID, ID, ClinicID) SELECT OrgID, ID, '$clinic' FROM practitioners WHERE OrgID = ? AND SurrogKey = ?";
         $stmt = maindb::getInstance()->prepare($q);
         $stmt->bind_param('ss', $org, $surrogkey);
         $stmt->execute();
     }
-
+    public function place($org, $id, $clinic) {
+        $q = "REPLACE INTO placements (OrgID, ID, ClinicID) SELECT OrgID, ID, '$clinic' FROM practitioners WHERE OrgID = ? AND ID = ?";
+        $stmt = maindb::getInstance()->prepare($q);
+        $stmt->bind_param('ss', $org, $id);
+        $stmt->execute();
+    }
+    
     public function displace($org, $id, $clinic) {
         $q = "DELETE FROM placements WHERE OrgID = ? AND ID = ? AND ClinicID = ?";
         $stmt = maindb::getInstance()->prepare($q);
@@ -103,7 +106,7 @@ class practitioner {
         
         $lateness = $this->getCurrentLateness();
 
-        if ($lateness == "On time") 
+        if (strtolower($lateness) == "on time" or strtolower($lateness) == "off duty") 
             return;
         
         $url = "http://secure." . $domain . "/late/view&udid=$MobilePhone";
@@ -128,6 +131,8 @@ class practitioner {
         $result->close(); 
         return null;
     }
+    
+  
 }
 
 ?>

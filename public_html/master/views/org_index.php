@@ -34,13 +34,12 @@
             <input type="text" class="controls" id="Country" name="Country" size="25" value="<?php echo $controller->org->Country;?>"></input>
         </div>
         <div class="control-group">
-            <label class="control-label">Timezone:</label>
+            <label class="control-label">Time zone:</label>
             <select name="Timezone" id="Timezone" class="timezone-dropdown" value="<?php echo $controller->org->Timezone; ?>" >
                 <?php $controller->get_tz_options(); ?>
             </select>
 
         </div>
-        
         <input type="hidden" readonly="readonly" class="controls" id="OrgID" name="OrgID" value="<?php echo $controller->org->OrgID;?>"><br>
         <input type="hidden" readonly="readonly" class="controls" id="Subdomain" name="Subdomain" value="<?php echo $controller->org->Subdomain;?>"><br>
         <input type="hidden" readonly="readonly" class="controls" id="FQDN" name="FQDN" value="<?php echo $controller->org->FQDN;?>"><br>

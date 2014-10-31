@@ -45,6 +45,10 @@
             <label class="control-label" for="HLUserID">How Late UserID:</label>
             <input type="text" class="controls" id="HLUserID" name="HLUserID" size="10" value="<?php echo $hluserid;?>"></input>
         </div>  
+        <div class="control-group">
+            <label class="control-label" for="ProcessRecalls">Process Recalls:</label>
+            <input type="checkbox" class="controls" id="ProcessRecalls" name="ProcessRecalls" value="True" <?php echo ($processrecalls)?"checked":"";?>></input>
+        </div>  
     <h3>3. Download the config file and place in the same folder as the exe</h3>
         <div>
             <button type="submit" class="xcrud-button xcrud-cyan ">Download HowLateAgent.exe.config</button>

@@ -1,0 +1,104 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 19/10/2014, 6:07:19 PM
+    Author     : Alex
+*/
+
+body {
+  border-width: 0;
+  margin:0;
+  content: "";
+  background: #999999;
+  font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+  position: relative;
+  overflow: auto;
+}
+
+div.late-header-box {
+    width:100%;
+    color: #999999;
+    background-color: white;
+    background-image: url('/images/grip.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: left center;
+    font-size: 8vh;
+    text-align: center;
+    
+}
+
+div.clinic-box {
+    font-size: 7vw;
+    color:white;
+    width:100%;
+    padding-top: 5%;
+    padding-bottom:5%;
+    padding-left: 5%;
+}
+
+div.darker {
+    background-color: #333333;
+}
+div.lighter {
+    background-color: #555555;
+}
+
+.clinic-box-header {
+    width:100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.clinic-name {
+    text-align:left;
+    margin-left: 13%;
+}
+
+
+div.latenesses {
+    font-size: 4.5vw;
+    margin-left: 2%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    text-indent: 8%;
+    background-size: 3% auto;
+    background-repeat: no-repeat;
+    background-position: left center;
+}
+
+.greendot {
+    background-image: url('/images/greendot.png');
+}
+.yellowdot {
+    background-image: url('/images/yellowdot.png');
+}
+.orangedot {
+    background-image: url('/images/orangedot.png');
+}
+.reddot {
+    background-image: url('/images/reddot.png');
+}
+.greydot {
+    background-image: url('/images/greydot.png');
+    color: darkgray;
+}
+
+.fading {
+   -moz-box-shadow:    0 0 5px #ffffff inset;
+   -webkit-box-shadow: 0 0 5px #ffffff inset;
+   box-shadow:         0 0 5px #ffffff inset;
+}
+
+.refresh {
+    position: fixed;
+    bottom: 0;
+}
+
+
+.diagnostics {
+    color:black;
+    background-color:white;
+}

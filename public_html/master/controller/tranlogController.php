@@ -2,15 +2,30 @@
 
 Class tranlogController Extends baseController {
 
-    public $org;
-
     public function index() {
-	$this->org = organisation::getInstance(__SUBDOMAIN);
 	$this->registry->template->controller = $this;
+        
+        $this->get_header();
+        $this->registry->template->subheadings = array ("translog"=>"Trans Log","smslog"=>"SMS Log");
+        $this->registry->template->view_name = "translog";
+        $this->registry->template->show('subhead_view');
+        $this->registry->template->xcrud_content = $this->getWeeksLog();
         $this->registry->template->show('tranlog_index');
     }
     
-    public function getXcrudTable() {
+    public function smslog() {
+	$this->registry->template->controller = $this;
+        
+        $this->get_header();
+        $this->registry->template->subheadings = array ("translog"=>"Trans Log","smslog"=>"SMS Log");
+        $this->registry->template->view_name = "smslog";
+        $this->registry->template->show('subhead_view');
+        $this->registry->template->xcrud_content = $this->getSMSLog();
+        $this->registry->template->show('tranlog_index');
+    }
+    
+    
+    public function getWeeksLog() {
         include('includes/xcrud/xcrud.php');
         $xcrud = Xcrud::get_instance();
         $xcrud->connection(howlate_util::mysqlUser(),howlate_util::mysqlPassword(),howlate_util::mysqlDb());
@@ -20,7 +35,20 @@ Class tranlogController Extends baseController {
         $xcrud->pass_default('OrgID', $this->org->OrgID);
         //$xcrud->hide_button('view');
         $xcrud->unset_numbers(true)->unset_print(true)->unset_limitlist(true)->hide_button('save_and_edit')->hide_button('save_and_new');     
-        echo $xcrud->render();
+        return $xcrud->render();
+    }
+    public function getSMSLog() {
+        include('includes/xcrud/xcrud.php');
+        $xcrud = Xcrud::get_instance();
+        $xcrud->connection(howlate_util::mysqlUser(),howlate_util::mysqlPassword(),howlate_util::mysqlDb());
+        $xcrud->table('sentsms')->table_name('SMS Log',"The SMS messages in latest first order.  See CSV export button at end.")->where('OrgID =', $this->org->OrgID)->limit(50);
+        $xcrud->order_by('Created','desc');        
+        $xcrud->unset_edit()->unset_remove()->unset_add();
+        $xcrud->columns(array('API','OrgID','MessageID','SessionID'),true);
+        
+
+        $xcrud->unset_numbers(true)->unset_print(true)->unset_limitlist(true)->hide_button('save_and_edit')->hide_button('save_and_new');     
+        return $xcrud->render();
     }
 
 }

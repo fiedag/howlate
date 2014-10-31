@@ -14,6 +14,6 @@ RewriteRule ^(.*)$ index.php?rt=$1 [L,QSA]
 
 
 # disable to prevent caching of the lateness page
-ExpiresActive on
-ExpiresDefault "access plus 1 year"
+#ExpiresActive on
+#ExpiresDefault "access plus 1 year"
 

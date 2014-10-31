@@ -8,9 +8,10 @@
 <![endif]-->
 
 <script>
-  function gotoAssign(orgid,surrogKey) {
+  function gotoAssign(orgid,surrogKey, practID) {
       document.getElementById('assignorgid').value = orgid;
       document.getElementById('assignsurrogkey').value = surrogKey;
+      document.getElementById('assignpractid').value = practID;
      
       window.location.href = "#modal-show";
   }
@@ -37,9 +38,10 @@
         </header>
 
         <div class="modal-content">
-            <form name="assign" action="/pract/assign" method='POST'>
+            <form class="" name="assign" action="/pract/assign" method='POST'>
                 <input type="hidden" id="assignorgid" name="assignorgid" readonly='readonly'>
                 <input type="hidden" id="assignsurrogkey" name="assignsurrogkey" readonly='readonly'>
+                <input type="hidden" id="assignpractid" name="assignpractid" readonly='readonly'>
                 <select name="selectedclinic" id="selectedclinic" class="dropdown" >
                     <?php $controller->get_clinic_options(); ?>
                 </select>

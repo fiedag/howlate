@@ -23,10 +23,8 @@ Class apiController Extends baseController {
         $ConsultationTime = $this->lookfor(array('ConsultationTime'));
         $NewLate = $this->lookfor(array('NewLate'));
         if (!$NewLate) {
-            $NewLate = ($ConsultationTime - $AppointmentTime) / 60;
+            $NewLate = round(($ConsultationTime - $AppointmentTime) / 60,0,PHP_ROUND_HALF_UP);
         }
-        
-
         $this->registry->template->result = api::updateLateness($this->org->OrgID, $NewLate, $PractitionerName);
         $this->registry->template->show('api_index');
     }
@@ -42,7 +40,7 @@ Class apiController Extends baseController {
         $this->registry->template->show('api_index');
     }
     
-    public function notifyBulk() {
+    public function notify_bulk() {
         $this->checkCredentials();
 
         $notif_array = $_POST["notify_bulk"];
@@ -111,8 +109,9 @@ Class apiController Extends baseController {
             throw new Exception("Credentials must be supplied.");
         }
         list($UserID, $PasswordHash) = explode(".", $credentials);
-        if(!api::areCredentialsValid($this->org->OrgID, $UserID, $PasswordHash))
+        if(!api::areCredentialsValid($this->org->OrgID, $UserID, $PasswordHash)) {
             throw new Exception($this->org->OrgID . " Credentials $credentials are not valid.");
+        }
     }
     
     

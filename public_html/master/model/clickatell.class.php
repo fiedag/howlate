@@ -23,7 +23,7 @@ class clickatell {
 			$send = explode(":",$ret[0]);
 
 			if ($send[0] == "ID") {
-                                logging::smslog($orgid, $this->api_id, $sess_id, $send[1], $message);  
+                                logging::smslog($orgid, $this->api_id, $to, $sess_id, $send[1], $message);  
                                 
 			} else {
 				error_log("send message failed, " . print_r($ret));

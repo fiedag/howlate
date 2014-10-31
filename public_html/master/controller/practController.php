@@ -52,10 +52,18 @@ Class practController Extends baseController {
     public function assign() {
         
         $orgid = $_POST['assignorgid'];
-        $surrogkey = $_POST['assignsurrogkey'];
+        $practid = $_POST['assignpractid'];
         $clinicID = $_POST['selectedclinic'];
 
-        practitioner::getInstance($orgid, $surrogkey, 'SurrogKey')->place2($orgid, $surrogkey, $clinicID);
+        if(!$orgid) {
+            throw new Exception("Org id not assigned");
+        }
+        if(!$practid) {
+            throw new Exception("Practitioner ID not assigned");
+        }
+
+        $pract = practitioner::getInstance($orgid, $practid);
+        $pract->place($orgid, $practid, $clinicID);
 
         $this->org = organisation::getInstance(__SUBDOMAIN);
         $this->org->getRelated();
@@ -65,7 +73,7 @@ Class practController Extends baseController {
     }
 
     private function assignSpan() {
-        $span = "<span class='xcrud-button' title='Click to assign to a different clinic or to unassign for the time being...' onClick=\"gotoAssign('{OrgID}','{SurrogKey}');\">Reassign</span>";
+        $span = "<span class='xcrud-button' title='Click to assign to a different clinic or to unassign for the time being...' onClick=\"gotoAssign('{OrgID}','{SurrogKey}','{ID}');\">Reassign</span>";
         return $span;
     }
 

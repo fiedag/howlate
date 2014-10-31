@@ -28,7 +28,7 @@
                     <div class="logo-container">
                         <img alt="" id="sysLogo" class="system-logo" 
                              title="<?php if (isset($usercookie)) {echo "User cookie $usercookie .";} if (isset($orgidcookie)) {echo "  OrgID cookie $orgidcookie";} ?>" 
-                             src="<?php echo $controller->org->LogoURL; ?>" height="100" width="100">
+                             src="<?php echo howlate_util::logoURL(__SUBDOMAIN); ?>" height="100" width="100">
                         <a href="#" class="logo-upload-button inverse" id="nav-upload-logo" style="display: none;">Upload your logo</a>
                     </div>
 					<div class="orgname">

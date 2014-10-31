@@ -2,11 +2,11 @@
 
 class logging {
     
-    public static function smslog($orgid, $api, $session, $messageid, $message)
+    public static function smslog($orgid, $api, $destination, $session, $messageid, $message)
     {
-        $q = "INSERT INTO sentsms (OrgID, API, SessionID, MessageID, MessageText) VALUES (?,?,?,?,?)";
+        $q = "INSERT INTO sentsms (OrgID, API, SessionID, MessageID, MessageText, Destination) VALUES (?,?,?,?,?,?)";
         $stmt = maindb::getInstance()->prepare($q);
-        $stmt->bind_param('sssss',$orgid, $api,$session,$messageid,$message);
+        $stmt->bind_param('ssssss',$orgid, $api,$session,$messageid,$message, $destination);
         $stmt->execute();
         if ($stmt->affected_rows == 0) {
            trigger_error("The row was not inserted into the sentsms table, error= " . $this->conn->error , E_USER_ERROR);
@@ -20,7 +20,7 @@ class logging {
         }
         $q = "INSERT INTO transactionlog (TransType, OrgID, ClinicID, PractitionerID, Details, UDID, IPv4, Late) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = maindb::getInstance()->prepare($q);
-        $tz = date_default_timezone_get();
+        //$tz = date_default_timezone_get();
         $stmt->bind_param('ssissssi', $TranType, $OrgID, $ClinicID, $PractitionerID, $Details, $UDID, $IPAddress, $Late);
         $stmt->execute();  
         if ($stmt->affected_rows == 0) {
@@ -33,5 +33,10 @@ class logging {
         $stmt = maindb::getInstance()->prepare($q);
         $stmt->bind_param('ssssss', $errno, $errtype, $errfile, $errline, $errstr, $ipaddress);
         $stmt->execute();
+    }
+    
+    public static function stdout($msg) {
+        echo $msg . "<br>";
+        
     }
 }

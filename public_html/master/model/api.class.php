@@ -9,17 +9,19 @@
  */
 class api {
     public static function updateLateness($OrgID, $NewLate, $PractitionerName) {
-        $pract = practitioner::getInstance($OrgID,$PractitionerName,'PractitionerName');
+        $pract = practitioner::getInstance($OrgID,$PractitionerName,'FullName');
         if(!$pract)
         {
             $pract = practitioner::createDefaultPractitioner($OrgID,$PractitionerName);
         }
-        
+        if ($NewLate < 0) {
+            $NewLate = 0;
+        }
         return practitioner::updateLateness($OrgID,$pract->PractitionerID,$NewLate, 0);
     }
 
     public static function updateSessions($OrgID, $PractitionerName, $Day, $StartTime, $EndTime) {
-        $pract = practitioner::getInstance($OrgID,$PractitionerName,'PractitionerName');
+        $pract = practitioner::getInstance($OrgID,$PractitionerName,'FullName');
         if(!$pract)
         {
             $pract = practitioner::createDefaultPractitioner($OrgID,$PractitionerName);
@@ -34,7 +36,9 @@ class api {
     
     
     public static function notify($OrgID, $PractitionerName, $MobilePhone, $Domain = 'how-late.com') {
-        if(!$pract = practitioner::getInstance($OrgID,$PractitionerName, 'PractitionerName'))
+        
+        logging::trlog(TranType::MISC_MISC,"API:notify for practitioner=$PractitionerName, notify = $MobilePhone");
+        if(!$pract = practitioner::getInstance($OrgID,$PractitionerName, 'FullName'))
         {
             $pract = practitioner::createDefaultPractitioner($OrgID,$PractitionerName);
         }

@@ -16,7 +16,6 @@ class organisation {
     public $TaxID;
     public $Subdomain;
     public $FQDN;
-    public $BillingRef;
     public $Address1;
     public $Address2;
     public $City;
@@ -188,13 +187,13 @@ class organisation {
     }
 
     
-    public static function createOrg($orgid, $orgname, $shortname, $subdomain, $fqdn) {
-        $q = "INSERT INTO orgs (OrgID, OrgName, OrgShortName, Subdomain, FQDN, UpdIndic) VALUES (?, ?, ?, ?, ?, 1)";
+    public static function createOrg($orgid, $orgname, $shortname, $subdomain, $billingcontact, $fqdn) {
+        $q = "INSERT INTO orgs (OrgID, OrgName, OrgShortName, Subdomain, BillingContact, FQDN, UpdIndic) VALUES (?, ?, ?, ?, ?, ?, 1)";
         $sql = maindb::getInstance();
         $stmt = $sql->query($q);
         $stmt = $this->conn->prepare($q);
 
-        $stmt->bind_param('sssss', $orgid, $orgname, $shortname, $subdomain, $fqdn);
+        $stmt->bind_param('ssssss', $orgid, $orgname, $shortname, $subdomain, $billingcontact, $fqdn);
         $stmt->execute();
         if ($stmt->affected_rows == 0) {
             trigger_error("The orgs record was not created, error= " . $this->conn->error, E_USER_ERROR);

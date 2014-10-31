@@ -369,7 +369,7 @@ html {
   -webkit-transition: all 0.4s;
   -o-transition: all 0.4s;
   transition: all 0.4s;
-  background: white;
+  background: lightgrey;
   opacity: 0;
 }
 .modal--plainscreen .modal-close:after {
@@ -696,7 +696,7 @@ html {
 }
 .modal--gallery .modal-inner, .modal--fade .modal-inner, .modal--plainscreen .modal-inner, .modal--zoomin .modal-inner, .modal--zoomout .modal-inner, .modal--slidefromtop .modal-inner, .modal--bouncefromtop .modal-inner, .modal--bouncefromtopshaky .modal-inner, .modal--show .modal-inner {
   border-radius: 2px;
-  background: white;
+  background: lightgrey;
   -webkit-box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
   max-width: 100%;
@@ -728,7 +728,7 @@ html {
 }
 .modal--gallery .modal-close:after, .modal--fade .modal-close:after, .modal--plainscreen .modal-close:after, .modal--zoomin .modal-close:after, .modal--zoomout .modal-close:after, .modal--slidefromtop .modal-close:after, .modal--bouncefromtop .modal-close:after, .modal--bouncefromtopshaky .modal-close:after, .modal--show .modal-close:after {
   content: '\00d7';
-  background: white;
+  background: lightgrey;
   border-radius: 2px;
   padding: 2px 8px;
   font-size: 1.2em;
@@ -770,7 +770,7 @@ html {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
 }
 .modal--plainscreen .modal-close:before {
-  background: white;
+  background: lightgrey;
 }
 .modal--plainscreen .modal-close:after {
   -webkit-box-shadow: 0px -4px 8px -1px rgba(0, 0, 0, 0.25);

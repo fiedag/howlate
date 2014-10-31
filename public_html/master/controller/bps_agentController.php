@@ -42,6 +42,8 @@ Class bps_agentController Extends baseController {
         $this->registry->template->pwd = $result->PWD;
         $this->registry->template->interval = $result->PollInterval;        
         $this->registry->template->hluserid = $result->HLUserID;
+        $this->registry->template->processrecalls = $result->ProcessRecalls;
+
         
         $this->registry->template->show('bps_agent_index');       
     }
@@ -58,8 +60,9 @@ Class bps_agentController Extends baseController {
         $pwd = filter_input(INPUT_POST, "PWD");
         $interval = filter_input(INPUT_POST, "Interval");  
         $hluserid = filter_input(INPUT_POST, "HLUserID");  
+        $processrecalls = (filter_input(INPUT_POST, "ProcessRecalls") == "True");  
 
-        clinic::getInstance($orgid,$clinic)->updateClinicIntegration($instance, $database, $uid, $pwd, $interval, $hluserid);
+        clinic::getInstance($orgid,$clinic)->updateClinicIntegration($instance, $database, $uid, $pwd, $interval, $hluserid, $processrecalls);
         
         $this->registry->template->subdomain = __SUBDOMAIN;
         $this->registry->template->clinic = $clinic;
@@ -68,6 +71,8 @@ Class bps_agentController Extends baseController {
         $this->registry->template->uid = $uid;
         $this->registry->template->pwd = $pwd;
         $this->registry->template->interval = $interval;
+        
+        $this->registry->template->processrecalls = $processrecalls;
         
         $url = "https://" . __SUBDOMAIN . "." . __DOMAIN . "/api";
         $this->registry->template->url = $url;

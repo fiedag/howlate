@@ -36,10 +36,24 @@ class device {
         return null;
     }
 
+    public static function getLatenessesAjax($udid) {
+        $q = "SELECT CONCAT(OrgID ,'.',ID) As Pin, MinutesLateMsg FROM vwMyLates WHERE UDID = '" . $udid . "'";
+        $sql = maindb::getInstance();
+        $myArray = array();
+        if ($result = $sql->query($q)) {
+            while ($row = $result->fetch_object()) {
+                $myArray[$row->Pin] = $row->MinutesLateMsg;
+            }
+            return $myArray;
+        }
+
+    }
+
+    
     public static function invite($org, $id, $udid, $domain) {
         $prac = practitioner::getInstance($org,$id);
 
-       $message = "Current delays for $prac->PractitionerName at $prac->ClinicName  can be checked at " .
+       $message = "Current delays for $prac->PractitionerName at $prac->ClinicName can be checked at " .
        "http://secure.$domain/late/view&udid=$udid";
 
        $clickatell = new clickatell();
