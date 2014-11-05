@@ -30,7 +30,7 @@ Class apiController Extends baseController {
     }
 
     public function notify() {
-        $this->checkCredentials();
+        //$this->checkCredentials();
         $PractitionerName = $this->lookfor(array('Practitioner', 'Provider'));
         $MobilePhone = $this->lookfor(array('MobilePhone','CellPhone'));
         
