@@ -59,6 +59,18 @@ class howlate_util {
         return (__DOMAIN == self::$testdomain) ? "qC7MK1JnAh" : "Kh6z9z6y6c";
     }
 
+    public static function chargeoverUsername() {
+        return 'IfCopeybjKkJOwBsgdqHSRat8lh5X6zv'; 
+    }
+    
+    public static function chargeoverPassword() {
+        return 'rNjiGRbW6EfA7LC5mgo218MdHSwz4yP3';
+    }
+
+    public static function chargeoverApiUrl() {
+        return 'https://how-late.chargeover.com/api/v3';
+    }
+    
     public static function tobase10($base26) {
         $base10 = 0;
         $len = strlen($base26);

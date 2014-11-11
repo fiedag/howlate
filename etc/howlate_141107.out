@@ -1,0 +1,414 @@
+Fri Nov 7 00:00:01 AEDT 2014 Inside howlate_cron
+
+
+
+2014-11-07 00:00:01 Australia/Melbourne:**************** zeroing out old lateness records ******************
+Fri Nov 7 00:15:01 AEDT 2014 Inside howlate_cron
+
+
+
+2014-11-07 00:15:01 Australia/Melbourne:**************** zeroing out old lateness records ******************
+Fri Nov 7 00:30:01 AEDT 2014 Inside howlate_cron
+
+
+
+2014-11-07 00:30:02 Australia/Melbourne:**************** zeroing out old lateness records ******************
+Fri Nov 7 00:45:01 AEDT 2014 Inside howlate_cron
+
+
+
+2014-11-07 00:45:02 Australia/Melbourne:**************** zeroing out old lateness records ******************
+Fri Nov 7 01:00:01 AEDT 2014 Inside howlate_cron
+
+
+
+2014-11-07 01:00:01 Australia/Melbourne:**************** zeroing out old lateness records ******************
+Fri Nov 7 01:15:02 AEDT 2014 Inside howlate_cron
+
+
+
+2014-11-07 01:15:02 Australia/Melbourne:**************** zeroing out old lateness records ******************
+Fri Nov 7 01:30:01 AEDT 2014 Inside howlate_cron
+
+
+
+2014-11-07 01:30:02 Australia/Melbourne:**************** zeroing out old lateness records ******************
+Fri Nov 7 01:45:01 AEDT 2014 Inside howlate_cron
+
+
+
+2014-11-07 01:45:02 Australia/Melbourne:**************** zeroing out old lateness records ******************
+Fri Nov 7 02:00:02 AEDT 2014 Inside howlate_cron
+
+
+
+2014-11-07 02:00:02 Australia/Melbourne:**************** zeroing out old lateness records ******************
+Fri Nov 7 02:15:01 AEDT 2014 Inside howlate_cron
+
+
+
+2014-11-07 02:15:02 Australia/Melbourne:**************** zeroing out old lateness records ******************
+Fri Nov 7 02:30:01 AEDT 2014 Inside howlate_cron
+
+
+
+2014-11-07 02:30:01 Australia/Melbourne:**************** zeroing out old lateness records ******************
+Fri Nov 7 02:45:02 AEDT 2014 Inside howlate_cron
+
+
+
+2014-11-07 02:45:02 Australia/Melbourne:**************** zeroing out old lateness records ******************
+Fri Nov 7 03:00:01 AEDT 2014 Inside howlate_cron
+
+
+
+2014-11-07 03:00:02 Australia/Melbourne:**************** zeroing out old lateness records ******************
+Fri Nov 7 03:15:02 AEDT 2014 Inside howlate_cron
+
+
+
+2014-11-07 03:15:02 Australia/Melbourne:**************** zeroing out old lateness records ******************
+Fri Nov 7 03:30:01 AEDT 2014 Inside howlate_cron
+
+
+
+2014-11-07 03:30:01 Australia/Melbourne:**************** zeroing out old lateness records ******************
+Fri Nov 7 03:45:02 AEDT 2014 Inside howlate_cron
+
+
+
+2014-11-07 03:45:02 Australia/Melbourne:**************** zeroing out old lateness records ******************
+Fri Nov 7 04:00:01 AEDT 2014 Inside howlate_cron
+
+
+
+2014-11-07 04:00:01 Australia/Melbourne:**************** zeroing out old lateness records ******************
+Fri Nov 7 04:15:01 AEDT 2014 Inside howlate_cron
+
+
+
+2014-11-07 04:15:02 Australia/Melbourne:**************** zeroing out old lateness records ******************
+Fri Nov 7 04:30:02 AEDT 2014 Inside howlate_cron
+
+
+
+2014-11-07 04:30:02 Australia/Melbourne:**************** zeroing out old lateness records ******************
+Fri Nov 7 04:45:01 AEDT 2014 Inside howlate_cron
+
+
+
+2014-11-07 04:45:01 Australia/Melbourne:**************** zeroing out old lateness records ******************
+Fri Nov 7 05:00:01 AEDT 2014 Inside howlate_cron
+
+
+
+2014-11-07 05:00:02 Australia/Melbourne:**************** zeroing out old lateness records ******************
+Fri Nov 7 05:15:02 AEDT 2014 Inside howlate_cron
+
+
+
+2014-11-07 05:15:02 Australia/Melbourne:**************** zeroing out old lateness records ******************
+Fri Nov 7 05:30:01 AEDT 2014 Inside howlate_cron
+
+
+
+2014-11-07 05:30:02 Australia/Melbourne:**************** zeroing out old lateness records ******************
+Fri Nov 7 05:45:01 AEDT 2014 Inside howlate_cron
+
+
+
+2014-11-07 05:45:01 Australia/Melbourne:**************** zeroing out old lateness records ******************
+Fri Nov 7 06:00:01 AEDT 2014 Inside howlate_cron
+
+
+
+2014-11-07 06:00:01 Australia/Melbourne:**************** zeroing out old lateness records ******************
+Fri Nov 7 06:15:01 AEDT 2014 Inside howlate_cron
+
+
+
+2014-11-07 06:15:01 Australia/Melbourne:**************** zeroing out old lateness records ******************
+Fri Nov 7 06:30:02 AEDT 2014 Inside howlate_cron
+
+
+
+2014-11-07 06:30:02 Australia/Melbourne:**************** zeroing out old lateness records ******************
+Fri Nov 7 06:45:01 AEDT 2014 Inside howlate_cron
+
+
+
+2014-11-07 06:45:01 Australia/Melbourne:**************** zeroing out old lateness records ******************
+2014-11-07 06:45:01 Australia/Melbourne:++++++zeroing lateness ++++++++++++++++++ Processing timezone = Australia/NSW +++++++++++++++++
+2014-11-07 06:45:01 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [122548 , AAAHH, A, 2014-11-07 06:43:10, 0, Australia/NSW, Friday    , 54000, 59400 ]
+2014-11-07 06:45:01 Australia/Melbourne:Time right now is 24301, session starts at 46800  so lateness can be deleted.
+<br />
+<b>Fatal error</b>:  Class 'TranType' not found in <b>/home/howlate/etc/scripts/zeroLateness.php</b> on line <b>69</b><br />
+Fri Nov 7 07:00:01 AEDT 2014 Inside howlate_cron
+
+
+
+2014-11-07 07:00:02 Australia/Melbourne:**************** zeroing out old lateness records ******************
+2014-11-07 07:00:02 Australia/Melbourne:++++++zeroing lateness ++++++++++++++++++ Processing timezone = Australia/NSW +++++++++++++++++
+2014-11-07 07:00:02 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [122556 , AAAHH, A, 2014-11-07 06:59:10, 0, Australia/NSW, Friday    , 54000, 59400 ]
+2014-11-07 07:00:02 Australia/Melbourne:Time right now is 25202, session starts at 46800  so lateness can be deleted.
+<br />
+<b>Fatal error</b>:  Class 'TranType' not found in <b>/home/howlate/etc/scripts/zeroLateness.php</b> on line <b>69</b><br />
+Fri Nov 7 07:15:02 AEDT 2014 Inside howlate_cron
+
+
+
+2014-11-07 07:15:02 Australia/Melbourne:**************** zeroing out old lateness records ******************
+2014-11-07 07:15:02 Australia/Melbourne:++++++zeroing lateness ++++++++++++++++++ Processing timezone = Australia/NSW +++++++++++++++++
+2014-11-07 07:15:02 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [122564 , AAAHH, A, 2014-11-07 07:13:10, 0, Australia/NSW, Friday    , 54000, 59400 ]
+2014-11-07 07:15:02 Australia/Melbourne:Time right now is 26102, session starts at 46800  so lateness can be deleted.
+<br />
+<b>Fatal error</b>:  Class 'TranType' not found in <b>/home/howlate/etc/scripts/zeroLateness.php</b> on line <b>69</b><br />
+Fri Nov 7 07:30:02 AEDT 2014 Inside howlate_cron
+
+
+
+2014-11-07 07:30:02 Australia/Melbourne:**************** zeroing out old lateness records ******************
+2014-11-07 07:30:02 Australia/Melbourne:++++++zeroing lateness ++++++++++++++++++ Processing timezone = Australia/NSW +++++++++++++++++
+2014-11-07 07:30:02 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [122580 , AAAHH, A, 2014-11-07 07:29:10, 0, Australia/NSW, Friday    , 54000, 59400 ]
+2014-11-07 07:30:02 Australia/Melbourne:Time right now is 27002, session starts at 46800  so lateness can be deleted.
+<br />
+<b>Fatal error</b>:  Class 'TranType' not found in <b>/home/howlate/etc/scripts/zeroLateness.php</b> on line <b>69</b><br />
+Fri Nov 7 07:45:01 AEDT 2014 Inside howlate_cron
+
+
+
+2014-11-07 07:45:01 Australia/Melbourne:**************** zeroing out old lateness records ******************
+2014-11-07 07:45:01 Australia/Melbourne:++++++zeroing lateness ++++++++++++++++++ Processing timezone = Australia/NSW +++++++++++++++++
+2014-11-07 07:45:02 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [122594 , AAAHH, C, 2014-11-07 07:43:10, 0, Australia/NSW, Friday    , 43200, 54000 ]
+2014-11-07 07:45:02 Australia/Melbourne:Time right now is 27901, session starts at 36000  so lateness can be deleted.
+<br />
+<b>Fatal error</b>:  Class 'TranType' not found in <b>/home/howlate/etc/scripts/zeroLateness.php</b> on line <b>69</b><br />
+Fri Nov 7 08:00:01 AEDT 2014 Inside howlate_cron
+
+
+
+2014-11-07 08:00:02 Australia/Melbourne:**************** zeroing out old lateness records ******************
+2014-11-07 08:00:02 Australia/Melbourne:++++++zeroing lateness ++++++++++++++++++ Processing timezone = Australia/NSW +++++++++++++++++
+2014-11-07 08:00:02 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [122610 , AAAHH, A, 2014-11-07 07:59:10, 0, Australia/NSW, Friday    , 54000, 59400 ]
+2014-11-07 08:00:02 Australia/Melbourne:Time right now is 28802, session starts at 46800  so lateness can be deleted.
+<br />
+<b>Fatal error</b>:  Class 'TranType' not found in <b>/home/howlate/etc/scripts/zeroLateness.php</b> on line <b>69</b><br />
+Fri Nov 7 08:15:02 AEDT 2014 Inside howlate_cron
+
+
+
+2014-11-07 08:15:02 Australia/Melbourne:**************** zeroing out old lateness records ******************
+2014-11-07 08:15:02 Australia/Melbourne:++++++zeroing lateness ++++++++++++++++++ Processing timezone = Australia/NSW +++++++++++++++++
+2014-11-07 08:15:02 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [122624 , AAAHH, A, 2014-11-07 08:13:10, 0, Australia/NSW, Friday    , 54000, 59400 ]
+2014-11-07 08:15:02 Australia/Melbourne:Time right now is 29702, session starts at 46800  so lateness can be deleted.
+<br />
+<b>Fatal error</b>:  Class 'TranType' not found in <b>/home/howlate/etc/scripts/zeroLateness.php</b> on line <b>69</b><br />
+Fri Nov 7 08:30:01 AEDT 2014 Inside howlate_cron
+
+
+
+2014-11-07 08:30:01 Australia/Melbourne:**************** zeroing out old lateness records ******************
+2014-11-07 08:30:01 Australia/Melbourne:++++++zeroing lateness ++++++++++++++++++ Processing timezone = Australia/NSW +++++++++++++++++
+2014-11-07 08:30:01 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [122640 , AAAHH, A, 2014-11-07 08:29:10, 0, Australia/NSW, Friday    , 54000, 59400 ]
+2014-11-07 08:30:01 Australia/Melbourne:Time right now is 30601, session starts at 46800  so lateness can be deleted.
+<br />
+<b>Fatal error</b>:  Class 'TranType' not found in <b>/home/howlate/etc/scripts/zeroLateness.php</b> on line <b>69</b><br />
+Fri Nov 7 08:45:01 AEDT 2014 Inside howlate_cron
+
+
+
+2014-11-07 08:45:01 Australia/Melbourne:**************** zeroing out old lateness records ******************
+2014-11-07 08:45:01 Australia/Melbourne:++++++zeroing lateness ++++++++++++++++++ Processing timezone = Australia/NSW +++++++++++++++++
+2014-11-07 08:45:01 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [122654 , AAAHH, A, 2014-11-07 08:43:10, 0, Australia/NSW, Friday    , 54000, 59400 ]
+2014-11-07 08:45:01 Australia/Melbourne:Time right now is 31501, session starts at 46800  so lateness can be deleted.
+<br />
+<b>Fatal error</b>:  Class 'TranType' not found in <b>/home/howlate/etc/scripts/zeroLateness.php</b> on line <b>69</b><br />
+Fri Nov 7 09:00:01 AEDT 2014 Inside howlate_cron
+
+
+
+2014-11-07 09:00:02 Australia/Melbourne:**************** zeroing out old lateness records ******************
+2014-11-07 09:00:02 Australia/Melbourne:++++++zeroing lateness ++++++++++++++++++ Processing timezone = Australia/NSW +++++++++++++++++
+2014-11-07 09:00:02 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [122673 , AAAHH, D, 2014-11-07 08:59:10, 0, Australia/NSW, Friday    , 48600, 52200 ]
+2014-11-07 09:00:02 Australia/Melbourne:Time right now is 32402, session starts at 41400  so lateness can be deleted.
+<br />
+<b>Fatal error</b>:  Class 'TranType' not found in <b>/home/howlate/etc/scripts/zeroLateness.php</b> on line <b>69</b><br />
+Fri Nov 7 09:15:01 AEDT 2014 Inside howlate_cron
+
+
+
+2014-11-07 09:15:01 Australia/Melbourne:**************** zeroing out old lateness records ******************
+2014-11-07 09:15:01 Australia/Melbourne:++++++zeroing lateness ++++++++++++++++++ Processing timezone = Australia/NSW +++++++++++++++++
+2014-11-07 09:15:01 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [122701 , AAAHH, D, 2014-11-07 09:13:10, 0, Australia/NSW, Friday    , 48600, 52200 ]
+2014-11-07 09:15:01 Australia/Melbourne:Time right now is 33301, session starts at 41400  so lateness can be deleted.
+<br />
+<b>Fatal error</b>:  Class 'TranType' not found in <b>/home/howlate/etc/scripts/zeroLateness.php</b> on line <b>69</b><br />
+Fri Nov 7 09:30:01 AEDT 2014 Inside howlate_cron
+
+
+
+2014-11-07 09:30:01 Australia/Melbourne:**************** zeroing out old lateness records ******************
+2014-11-07 09:30:01 Australia/Melbourne:++++++zeroing lateness ++++++++++++++++++ Processing timezone = Australia/NSW +++++++++++++++++
+2014-11-07 09:30:01 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [122732 , AAAHH, A, 2014-11-07 09:29:10, 0, Australia/NSW, Friday    , 54000, 59400 ]
+2014-11-07 09:30:01 Australia/Melbourne:Time right now is 34201, session starts at 46800  so lateness can be deleted.
+<br />
+<b>Fatal error</b>:  Class 'TranType' not found in <b>/home/howlate/etc/scripts/zeroLateness.php</b> on line <b>69</b><br />
+Fri Nov 7 09:45:01 AEDT 2014 Inside howlate_cron
+
+
+
+2014-11-07 09:45:01 Australia/Melbourne:**************** zeroing out old lateness records ******************
+2014-11-07 09:45:01 Australia/Melbourne:++++++zeroing lateness ++++++++++++++++++ Processing timezone = Australia/NSW +++++++++++++++++
+2014-11-07 09:45:01 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [122761 , AAAHH, D, 2014-11-07 09:43:10, 16, Australia/NSW, Friday    , 48600, 52200 ]
+2014-11-07 09:45:01 Australia/Melbourne:Time right now is 35101, session starts at 41400  so lateness can be deleted.
+<br />
+<b>Fatal error</b>:  Class 'TranType' not found in <b>/home/howlate/etc/scripts/zeroLateness.php</b> on line <b>69</b><br />
+Fri Nov 7 10:00:01 AEDT 2014 Inside howlate_cron
+
+
+
+2014-11-07 10:00:01 Australia/Melbourne:**************** zeroing out old lateness records ******************
+2014-11-07 10:00:01 Australia/Melbourne:++++++zeroing lateness ++++++++++++++++++ Processing timezone = Australia/NSW +++++++++++++++++
+2014-11-07 10:00:02 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [122793 , AAAHH, D, 2014-11-07 09:59:10, 9, Australia/NSW, Friday    , 48600, 52200 ]
+2014-11-07 10:00:02 Australia/Melbourne:Time right now is 36001, session starts at 41400  so lateness can be deleted.
+<br />
+<b>Fatal error</b>:  Class 'TranType' not found in <b>/home/howlate/etc/scripts/zeroLateness.php</b> on line <b>69</b><br />
+Fri Nov 7 10:15:01 AEDT 2014 Inside howlate_cron
+
+
+
+2014-11-07 10:15:02 Australia/Melbourne:**************** zeroing out old lateness records ******************
+2014-11-07 10:15:02 Australia/Melbourne:++++++zeroing lateness ++++++++++++++++++ Processing timezone = Australia/NSW +++++++++++++++++
+2014-11-07 10:15:02 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [122821 , AAAHH, D, 2014-11-07 10:13:10, 3, Australia/NSW, Friday    , 48600, 52200 ]
+2014-11-07 10:15:02 Australia/Melbourne:Time right now is 36902, session starts at 41400  so lateness can be deleted.
+<br />
+<b>Fatal error</b>:  Class 'TranType' not found in <b>/home/howlate/etc/scripts/zeroLateness.php</b> on line <b>69</b><br />
+Fri Nov 7 10:30:01 AEDT 2014 Inside howlate_cron
+
+
+
+2014-11-07 10:30:01 Australia/Melbourne:**************** zeroing out old lateness records ******************
+2014-11-07 10:30:01 Australia/Melbourne:++++++zeroing lateness ++++++++++++++++++ Processing timezone = Australia/NSW +++++++++++++++++
+2014-11-07 10:30:01 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [122853 , AAAHH, D, 2014-11-07 10:29:11, 3, Australia/NSW, Friday    , 48600, 52200 ]
+2014-11-07 10:30:01 Australia/Melbourne:Time right now is 37801, session starts at 41400  so lateness can be deleted.
+<br />
+<b>Fatal error</b>:  Class 'TranType' not found in <b>/home/howlate/etc/scripts/zeroLateness.php</b> on line <b>69</b><br />
+Fri Nov 7 10:45:01 AEDT 2014 Inside howlate_cron
+
+
+
+2014-11-07 10:45:01 Australia/Melbourne:**************** zeroing out old lateness records ******************
+2014-11-07 10:45:01 Australia/Melbourne:++++++zeroing lateness ++++++++++++++++++ Processing timezone = Australia/NSW +++++++++++++++++
+2014-11-07 10:45:01 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [122881 , AAAHH, D, 2014-11-07 10:43:11, 17, Australia/NSW, Friday    , 48600, 52200 ]
+2014-11-07 10:45:01 Australia/Melbourne:Time right now is 38701, session starts at 41400  so lateness can be deleted.
+<br />
+<b>Fatal error</b>:  Class 'TranType' not found in <b>/home/howlate/etc/scripts/zeroLateness.php</b> on line <b>69</b><br />
+Fri Nov 7 11:00:01 AEDT 2014 Inside howlate_cron
+
+
+
+2014-11-07 11:00:01 Australia/Melbourne:**************** zeroing out old lateness records ******************
+2014-11-07 11:00:01 Australia/Melbourne:++++++zeroing lateness ++++++++++++++++++ Processing timezone = Australia/NSW +++++++++++++++++
+2014-11-07 11:00:01 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [122913 , AAAHH, D, 2014-11-07 10:59:11, 23, Australia/NSW, Friday    , 48600, 52200 ]
+2014-11-07 11:00:01 Australia/Melbourne:Time right now is 39601, session starts at 41400  so lateness can be deleted.
+<br />
+<b>Fatal error</b>:  Class 'TranType' not found in <b>/home/howlate/etc/scripts/zeroLateness.php</b> on line <b>69</b><br />
+Fri Nov 7 11:15:01 AEDT 2014 Inside howlate_cron
+
+
+
+2014-11-07 11:15:01 Australia/Melbourne:**************** zeroing out old lateness records ******************
+2014-11-07 11:15:01 Australia/Melbourne:++++++zeroing lateness ++++++++++++++++++ Processing timezone = Australia/NSW +++++++++++++++++
+2014-11-07 11:15:01 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [122941 , AAAHH, D, 2014-11-07 11:13:11, 25, Australia/NSW, Friday    , 48600, 52200 ]
+2014-11-07 11:15:01 Australia/Melbourne:Time right now is 40501, session starts at 41400  so lateness can be deleted.
+<br />
+<b>Fatal error</b>:  Class 'TranType' not found in <b>/home/howlate/etc/scripts/zeroLateness.php</b> on line <b>69</b><br />
+Fri Nov 7 11:30:02 AEDT 2014 Inside howlate_cron
+
+
+
+2014-11-07 11:30:02 Australia/Melbourne:**************** zeroing out old lateness records ******************
+2014-11-07 11:30:02 Australia/Melbourne:++++++zeroing lateness ++++++++++++++++++ Processing timezone = Australia/NSW +++++++++++++++++
+2014-11-07 11:30:02 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [122973 , AAAHH, D, 2014-11-07 11:29:11, 13, Australia/NSW, Friday    , 48600, 52200 ]
+2014-11-07 11:30:02 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [122974 , AAAHH, A, 2014-11-07 11:29:11, 0, Australia/NSW, Friday    , 54000, 59400 ]
+2014-11-07 11:30:02 Australia/Melbourne:Time right now is 41402, session starts at 46800  so lateness can be deleted.
+<br />
+<b>Fatal error</b>:  Class 'TranType' not found in <b>/home/howlate/etc/scripts/zeroLateness.php</b> on line <b>69</b><br />
+Fri Nov 7 11:45:01 AEDT 2014 Inside howlate_cron
+
+
+
+2014-11-07 11:45:02 Australia/Melbourne:**************** zeroing out old lateness records ******************
+2014-11-07 11:45:02 Australia/Melbourne:++++++zeroing lateness ++++++++++++++++++ Processing timezone = Australia/NSW +++++++++++++++++
+2014-11-07 11:45:02 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [123001 , AAAHH, D, 2014-11-07 11:43:11, 9, Australia/NSW, Friday    , 48600, 52200 ]
+2014-11-07 11:45:02 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [123002 , AAAHH, A, 2014-11-07 11:43:11, 0, Australia/NSW, Friday    , 54000, 59400 ]
+2014-11-07 11:45:02 Australia/Melbourne:Time right now is 42302, session starts at 46800  so lateness can be deleted.
+<br />
+<b>Fatal error</b>:  Class 'TranType' not found in <b>/home/howlate/etc/scripts/zeroLateness.php</b> on line <b>69</b><br />
+Fri Nov 7 12:00:01 AEDT 2014 Inside howlate_cron
+
+
+
+2014-11-07 12:00:01 Australia/Melbourne:**************** zeroing out old lateness records ******************
+2014-11-07 12:00:01 Australia/Melbourne:++++++zeroing lateness ++++++++++++++++++ Processing timezone = Australia/NSW +++++++++++++++++
+2014-11-07 12:00:02 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [123032 , AAAHH, C, 2014-11-07 11:59:10, 0, Australia/NSW, Friday    , 43200, 54000 ]
+2014-11-07 12:00:02 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [123034 , AAAHH, D, 2014-11-07 11:59:11, 14, Australia/NSW, Friday    , 48600, 52200 ]
+2014-11-07 12:00:02 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [123035 , AAAHH, A, 2014-11-07 11:59:11, 0, Australia/NSW, Friday    , 54000, 59400 ]
+2014-11-07 12:00:02 Australia/Melbourne:Time right now is 43201, session starts at 46800  so lateness can be deleted.
+<br />
+<b>Fatal error</b>:  Class 'TranType' not found in <b>/home/howlate/etc/scripts/zeroLateness.php</b> on line <b>69</b><br />
+Fri Nov 7 12:15:01 AEDT 2014 Inside howlate_cron
+
+
+
+2014-11-07 12:15:02 Australia/Melbourne:**************** zeroing out old lateness records ******************
+2014-11-07 12:15:02 Australia/Melbourne:++++++zeroing lateness ++++++++++++++++++ Processing timezone = Australia/NSW +++++++++++++++++
+2014-11-07 12:15:02 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [123060 , AAAHH, C, 2014-11-07 12:13:10, 0, Australia/NSW, Friday    , 43200, 54000 ]
+2014-11-07 12:15:02 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [123062 , AAAHH, D, 2014-11-07 12:13:11, 14, Australia/NSW, Friday    , 48600, 52200 ]
+2014-11-07 12:15:02 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [123063 , AAAHH, A, 2014-11-07 12:13:11, 0, Australia/NSW, Friday    , 54000, 59400 ]
+2014-11-07 12:15:02 Australia/Melbourne:Time right now is 44102, session starts at 46800  so lateness can be deleted.
+<br />
+<b>Fatal error</b>:  Class 'TranType' not found in <b>/home/howlate/etc/scripts/zeroLateness.php</b> on line <b>69</b><br />
+Fri Nov 7 12:30:02 AEDT 2014 Inside howlate_cron
+
+
+
+2014-11-07 12:30:02 Australia/Melbourne:**************** zeroing out old lateness records ******************
+2014-11-07 12:30:02 Australia/Melbourne:++++++zeroing lateness ++++++++++++++++++ Processing timezone = Australia/NSW +++++++++++++++++
+2014-11-07 12:30:02 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [123092 , AAAHH, C, 2014-11-07 12:29:10, 0, Australia/NSW, Friday    , 43200, 54000 ]
+2014-11-07 12:30:02 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [123094 , AAAHH, D, 2014-11-07 12:29:11, 17, Australia/NSW, Friday    , 48600, 52200 ]
+2014-11-07 12:30:02 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [123095 , AAAHH, A, 2014-11-07 12:29:11, 0, Australia/NSW, Friday    , 54000, 59400 ]
+2014-11-07 12:30:02 Australia/Melbourne:Time right now is 45002, session starts at 46800  so lateness can be deleted.
+<br />
+<b>Fatal error</b>:  Class 'TranType' not found in <b>/home/howlate/etc/scripts/zeroLateness.php</b> on line <b>69</b><br />
+Fri Nov 7 12:45:01 AEDT 2014 Inside howlate_cron
+
+
+
+2014-11-07 12:45:01 Australia/Melbourne:**************** zeroing out old lateness records ******************
+2014-11-07 12:45:01 Australia/Melbourne:++++++zeroing lateness ++++++++++++++++++ Processing timezone = Australia/NSW +++++++++++++++++
+2014-11-07 12:45:01 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [123121 , AAAHH, D, 2014-11-07 12:43:11, 17, Australia/NSW, Friday    , 48600, 52200 ]
+2014-11-07 12:45:01 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [123122 , AAAHH, C, 2014-11-07 12:43:11, 0, Australia/NSW, Friday    , 43200, 54000 ]
+2014-11-07 12:45:01 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [123123 , AAAHH, A, 2014-11-07 12:43:12, 0, Australia/NSW, Friday    , 54000, 59400 ]
+2014-11-07 12:45:01 Australia/Melbourne:Time right now is 45901, session starts at 46800  so lateness can be deleted.
+<br />
+<b>Fatal error</b>:  Class 'TranType' not found in <b>/home/howlate/etc/scripts/zeroLateness.php</b> on line <b>69</b><br />
+Fri Nov 7 13:00:01 AEDT 2014 Inside howlate_cron
+
+
+
+2014-11-07 13:00:01 Australia/Melbourne:**************** zeroing out old lateness records ******************
+2014-11-07 13:00:01 Australia/Melbourne:++++++zeroing lateness ++++++++++++++++++ Processing timezone = Australia/NSW +++++++++++++++++
+2014-11-07 13:00:02 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [123153 , AAAHH, D, 2014-11-07 12:59:11, 17, Australia/NSW, Friday    , 48600, 52200 ]
+2014-11-07 13:00:02 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [123154 , AAAHH, A, 2014-11-07 12:59:11, 0, Australia/NSW, Friday    , 54000, 59400 ]
+2014-11-07 13:00:02 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [123155 , AAAHH, C, 2014-11-07 12:59:11, 30, Australia/NSW, Friday    , 43200, 54000 ]
+Fri Nov 7 13:15:01 AEDT 2014 Inside howlate_cron
+
+
+
+2014-11-07 13:15:01 Australia/Melbourne:**************** zeroing out old lateness records ******************
+2014-11-07 13:15:01 Australia/Melbourne:++++++zeroing lateness ++++++++++++++++++ Processing timezone = Australia/NSW +++++++++++++++++
+2014-11-07 13:15:01 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [123193 , AAAHH, O, 2014-11-07 13:13:11, 0, Australia/NSW, Friday    , 48600, 57600 ]
+2014-11-07 13:15:01 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [123195 , AAAHH, D, 2014-11-07 13:13:12, 17, Australia/NSW, Friday    , 48600, 52200 ]
+2014-11-07 13:15:01 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [123196 , AAAHH, C, 2014-11-07 13:13:12, 16, Australia/NSW, Friday    , 43200, 54000 ]
+2014-11-07 13:15:01 Australia/Melbourne:[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [123197 , AAAHH, A, 2014-11-07 13:13:12, 0, Australia/NSW, Friday    , 54000, 59400 ]

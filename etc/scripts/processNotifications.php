@@ -34,6 +34,7 @@ mylog("**************** Processing Queued notifications ******************");
 $new_notif = howlate_util::getQueuedNotifications();
 
 foreach ($new_notif as $key => $val) {
+
     echo "New queued notification to send: $val->MobilePhone , $val->Message \r\n";
     try {
         if ($val->TestMobile == '') {

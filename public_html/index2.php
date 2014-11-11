@@ -87,7 +87,6 @@
                                     </div>
                                     <div class="reserve-thank-you fade">
                                             <h1>Thank you!</h1>
-                                            <p>Due to overwhelming demand we have implemented a batched ordering system. Within the next few weeks we will send you a unique link to complete your order.</p>
                                             <p>A copy of this message has been sent to you.  Please check your inbox to ensure that your email address was submitted correctly. </p>
                                             <p>Click below to share on Twitter or Facebook</p>
                                             <span id="confirmation_number"></span>
@@ -177,11 +176,11 @@
             </a>
             <ul class="nav nav-normal" style="margin-left:-65px;">
                 <li class="active mobile-disable"><a id="features_nav" href="/#featurelink" title="Features" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">FEATURES</a></li>
-<li class=""><a id="faq_nav" title="FAQ" href="/faq.html" title="Frequently Asked Questions" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">FAQ</a></li>
-<li class=""><a id="jobs_nav" title="JOBS" href="/jobs.html" title="Jobs at How Late" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">JOBS</a></li>
-<li class=""><a id="press_nav" title="Press" href="/press.html" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">PRESS</a></li>
-<li class=""><a id="press_nav" title="Press" href="http://blog.how-late.com" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">BLOG</a></li>
-<li class=""><a id="support_nav" title="Support" href="http://support.how-late.com" style="padding-left:0px; padding-right:0px;" data-gtm-event="navigation" data-gtm-info="Header">SUPPORT</a></li>
+<li class=""><a id="faq_nav" title="FAQ" href="#" title="Frequently Asked Questions" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">FAQ</a></li>
+<li class=""><a id="jobs_nav" title="JOBS" href="#" title="Jobs at How Late" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">JOBS</a></li>
+<li class=""><a id="press_nav" title="Press" href="#" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">PRESS</a></li>
+<li class=""><a id="press_nav" title="Press" href="#" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">BLOG</a></li>
+<li class=""><a id="support_nav" title="Support" href="#" style="padding-left:0px; padding-right:0px;" data-gtm-event="navigation" data-gtm-info="Header">SUPPORT</a></li>
             </ul>
             <ul class="nav nav-dropdown">
                 <li class="dropdown">

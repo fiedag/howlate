@@ -15,77 +15,117 @@ class billing {
         echo date("Y-m-d H:i:s ", time()) . ":" . $msg . "<br>";
     }
 
-    public function prepareAllDueBills() {
-
-        $RightNow = new DateTime();
-
-        $orgs = $this->getDueOrgs();
-
-        foreach ($orgs as $key => $val) {
-            logging::stdout("$val->OrgName ($val->OrgID) is due for billing.  Period start: $val->LastBillingDay to now:" . $RightNow->format('Y-m-d H:i:sP'));
-            $clin_count = $this->getOrgClinicCount($val->OrgID);
-            logging::stdout("Free Clinics:" . $clin_count->FreeClinics);
-            logging::stdout("Small Clinics:" . $clin_count->SmallClinics);
-            logging::stdout("Large Clinics:" . $clin_count->LargeClinics);
-            logging::stdout("Superclinics:" . $clin_count->SuperClinics);
-
-            $num_sms_sent = $this->getOrgSMSCount($val->OrgID, $val->LastBillingDay, $RightNow->format('Y-m-d H:i:sP'));
-            logging::stdout("Organisation $val->OrgID sent $num_sms_sent SMSs in that billing period");
-
-            $invoicer = new invoicer();
-            try {
-                
-                $invoicer->createNewInvoice($val->OrgID, $val->LastBillingDay, $RightNow->format('Y-m-d H:i:sP'), $val->BillingContact,$clin_count->FreeClinics, $clin_count->SmallClinics, $clin_count->LargeClinics, $clin_count->SuperClinics, $num_sms_sent);
-            } catch (Exception $ex) {
-                logging::stdout("Unable to create invoice, error = " . $ex->getMessage() . ",program=" . $ex->getFile() . " (" . $ex->getLine() . ") " . $ex->getTraceAsString());
-            }
-        }
-    }
-
-    function getNextBillingDate($orgID) {
-        $q = "SELECT getNextBillingDate('" . $orgID . "') AS NextBillingDate";
+    public function recordAllUsage() {
+        echo "Recording all useage for all organisations\r\n";
+        $q = "SELECT OrgID, OrgName FROM vwCustomers";
         if ($result = $this->conn->query($q)) {
-            $row = $result->fetch_object();
-        }
-        if (count($row) != 1) {
-            throw new Exception("Error returning next billing date");
-        }
-
-        return $row->NextBillingDate;        
-    
-    }
-    
-    /// return all orgs where next billingDate is <= today
-    function getDueOrgs() {
-        $q = "SELECT OrgID, OrgName, BillingContact, NextBillingDay, LastBillingDay FROM vwOrgBillDue WHERE BillingContact <> ''";
-        $myArray = array();
-        if ($result = $this->conn->query($q)) {
+            $chargeover = new chargeover();
             while ($row = $result->fetch_object()) {
-                $myArray[] = $row;
+                echo "Recording Usage for $row->OrgName \r\n";
+                try {
+                    $this->recordUsage($chargeover, $row->OrgID);
+                } catch(Exception $ex) {
+                    echo $ex->getMessage() . " TRACE: " . $ex->getTraceAsString();
+                }
             }
-            return $myArray;
-        }
-        $result->close();
-    }
-    
-    function getOrgClinicCount($orgID) {
-        $q = "SELECT FreeClinics, SmallClinics, LargeClinics, SuperClinics FROM vwOrgClinicCount WHERE OrgID = '$orgID'";
-        if ($result = $this->conn->query($q)) {
-            return $result->fetch_object();
         }
     }
     
-    function getOrgSMSCount($orgID, $lastbill,$nextbill) {
-        $q = "SELECT COUNT(Id) AS NumSMSSent FROM vwSentSMS WHERE OrgID = ? AND Timestamp > ? AND Timestamp <= ?";
+    public function recordUsage($chargeover, $OrgID) {
+        $cust = $chargeover->getCustomer($OrgID);
+        if(!$cust) {
+            throw new Exception("Chargeover customer does not exist.");
+        }
+        $package = $chargeover->getCurrentActivePackage($cust->customer_id);
+        if(!$package) {
+            throw new Exception("Package does not exist.");
+        }
+        $line_items = $chargeover->getPackageLineItems($package);
+        if (count($line_items) <= 0) {
+            throw new Exception("Package Line item does not exist.");
+        }
+        $item = $line_items[0];
+        // all good now look up usage
+        $last_billed = $this->getLastBilledSMS($OrgID);
+        $last_unbilled = $this->getLastUnbilledSMS($OrgID);
+        if ($last_unbilled <= 0) {
+            return;  // no new SMS messages!
+        }
+        $usage = $this->getUnbilledSMSUsage($OrgID, $last_billed, $last_unbilled);
+        if($usage <= 0) {
+            return;
+        }
+        $chargeover->createUsage($item->line_item_id, $usage);
+        $this->updateSnapshot($OrgID, $last_unbilled);
+    }
+    
+    // the ID of the last sentsms table record used to update
+    // usage in the billing system
+    function getLastBilledSMS($OrgID) {
+        $q = "SELECT getLastBilledSMS(?)";
         $stmt = $this->conn->prepare($q);
-        $stmt->bind_param('sss',$orgID, $lastbill,$nextbill);
-        if (!$stmt->execute()) throw new Exception("getOrgSMSCount error = $stmt->error");
+        $stmt->bind_param('s', $OrgID);
+        if (!$stmt->execute()) throw new Exception("getLastBilledSMS error = $stmt->error");
         if ($stmt->affected_rows == 0) {
            throw new Exception("error= " . $this->conn->error , E_USER_ERROR);
         }
-        $stmt->bind_result($num_sms_sent);
+        $stmt->bind_result($id);
         $stmt->fetch();
-        return $num_sms_sent;
+        return $id;
     }
+
+    // the ID of the latest sentsms record for this organisation
+    function getLastUnbilledSMS($OrgID) {
+        $q = "SELECT getLastUnbilledSMS(?)";
+        $stmt = $this->conn->prepare($q);
+        $stmt->bind_param('s', $OrgID);
+        if (!$stmt->execute()) throw new Exception("getLastUnbilledSMS error = $stmt->error");
+        if ($stmt->affected_rows == 0) {
+           throw new Exception("error= " . $this->conn->error , E_USER_ERROR);
+        }
+        $stmt->bind_result($id);
+        $stmt->fetch();
+        return $id;
+    }
+    
+    function getUnbilledSMSUsage($OrgID, $LastBilledID, $LastUnbilledID) {
+        $q = "SELECT getUnbilledSMSUsage(?,?,?)";
+        $stmt = $this->conn->prepare($q);
+        $stmt->bind_param('sii', $OrgID, $LastBilledID, $LastUnbilledID);
+        if (!$stmt->execute()) throw new Exception("getUnbilledSMSUsage error = $stmt->error");
+        if ($stmt->affected_rows == 0) {
+           throw new Exception("error= " . $this->conn->error , E_USER_ERROR);
+        }
+        $stmt->bind_result($num);
+        $stmt->fetch();
+        return $num;
+    }
+    
+    function updateSnapshot($OrgID, $LastBilledID) {
+        $q = "REPLACE INTO snapshot (OrgID, LastBilledSMS) VALUES (?,?)";
+        $stmt = $this->conn->prepare($q);
+        $stmt->bind_param('si', $OrgID, $LastBilledID);
+        if (!$stmt->execute()) throw new Exception("updateSnapshot error = $stmt->error");
+        if ($stmt->affected_rows == 0) {
+           throw new Exception("error= " . $this->conn->error , E_USER_ERROR);
+        }
+    } 
+
+    
+    // all SMS messages sent since the last usage was transferred to billing system
+    function getUnrecordedSMS($orgID) {
+        $q = "SELECT getUnbilledSMSUsage2(?)";
+        $stmt = $this->conn->prepare($q);
+        $stmt->bind_param('s', $orgID);
+        if (!$stmt->execute()) throw new Exception("getUnbilledSMS error = $stmt->error");
+        if ($stmt->affected_rows == 0) {
+           throw new Exception("error= " . $this->conn->error , E_USER_ERROR);
+        }
+        $stmt->bind_result($num_sms);
+        $stmt->fetch();
+        return $num_sms;
+    }
+ 
+    
     
 }    

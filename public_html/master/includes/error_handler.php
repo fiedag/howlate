@@ -60,7 +60,7 @@ function customErrorHandler($errno, $errstr, $errfile, $errline)
 			break;
 	
 		default:
-                        logging::write_error($errno, $errtype, $errstr, $errfile, $errline);
+                        //logging::write_error($errno, $errtype, $errstr, $errfile, $errline);
 			echo "Unknown error type: [$errno] $errstr <br>";
 			echo "File $errfile , line $errline " . "<br>";
 			echo "PHP " . PHP_VERSION . " (" . PHP_OS . ")<br>";

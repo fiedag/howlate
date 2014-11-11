@@ -21,22 +21,24 @@ function mylog($msg) {
 
 mylog("**************** zeroing out old lateness records ******************");
 
-include("/home/howlate/public_html/master/model/logging.class.php");
+include("/home/howlate/public_html/master/model/trantype.class.php");
+include("/home/howlate/public_html/master/model/howlate_db.class.php");
 include("/home/howlate/public_html/master/model/howlate_util.class.php");
 
-mylog("Delete lates older than 8 hours, even sticky ones");
-howlate_util::deleteOldLates();
+$db = new howlate_db();
+// simply delete those older than 8 hours, even sticky ones
+$db->deleteOldLates();
 
-$result = howlate_util::getLateTimezones();
+$result = $db->getLateTimezones();
 foreach ($result as $key => $TZval) {
-    mylog("++++++zeroLateness.php ++++++++++++++++++ Processing Timezone " . $TZval->Timezone . " +++++++++++++++++");
+    mylog("++++++zeroing lateness ++++++++++++++++++ Processing timezone = " . $TZval->Timezone . " +++++++++++++++++");
 
     $tolerance = 7200;  // two hours
 
     $day = howlate_util::dayName("now", $TZval->Timezone);
     $time = howlate_util::secondsSinceMidnight("now", $TZval->Timezone);
 
-    $toprocess = howlate_util::getLatesAndSessions($TZval->Timezone, $day, $time);
+    $toprocess = $db->getLatesAndSessions($TZval->Timezone, $day, $time);
     foreach ($toprocess as $key => $val) {
 
         mylog("[UKey,Org,ID,Upd,Minutes,TZ,Day,Start,End] = [$val->UKey , $val->OrgID, $val->ID, $val->Updated, $val->Minutes, $val->Timezone, $val->Day, $val->StartTime, $val->EndTime ]");
@@ -64,8 +66,8 @@ foreach ($result as $key => $TZval) {
                 }
                 $msg .= " so lateness can be deleted.";
                 mylog($msg);
-                organisation::deleteLateByKey($val->UKey);
-                logging::trlog(TranType::LATE_RESET,"Lateness deleted because session ended", $val->OrgID, null, $val->ID, null);
+                $db->deleteLateByKey($val->UKey);
+                $db->trlog(TranType::LATE_RESET,"Lateness deleted because session ended", $val->OrgID, null, $val->ID, null);
                 mylog("    Deleted lateness.UKey = $val->UKey");
             }
         }

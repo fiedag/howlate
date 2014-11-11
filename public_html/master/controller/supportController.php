@@ -11,13 +11,7 @@ Class supportController Extends baseController {
         $this->registry->template->show('support_upgrade');
     }
 
-    public function pricing() {
-        $this->getOrg();
-        $this->registry->template->controller = $this;
-        $billing = new billing();
-        $this->registry->template->billing_day = $billing->getNextBillingDate($this->org->OrgID);
-        $this->registry->template->show('support_pricing');
-    }
+    
     public function pricingbare() {
         $this->getOrg();
         $this->registry->template->controller = $this;
