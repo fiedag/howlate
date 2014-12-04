@@ -19,6 +19,7 @@ class organisation {
     public $Address1;
     public $Address2;
     public $City;
+    public $State;
     public $Zip;
     public $Country;
     public $Timezone;
@@ -45,7 +46,7 @@ class organisation {
                 self::$instance->$key = $val;
             }
             
-            self::$instance->LogoURL = self::$instance->logoURL(self::$instance->Subdomain);
+            self::$instance->LogoURL = howlate_util::logoURL(self::$instance->Subdomain);
             
             return self::$instance;
         } else
@@ -182,24 +183,40 @@ class organisation {
         $stmt->bind_param('si', $values["OrgID"], $values["UpdIndic"]);
         $stmt->execute();
         if ($stmt->affected_rows == 0) {
-            trigger_error("The orgs record was not updated, error= " . $this->conn->error, E_USER_ERROR);
+            trigger_error("The orgs record was not updated, error= " . $stmt->error, E_USER_ERROR);
         }
     }
 
+
+    // The userid is used to create a default user for this billing system customer portal
+    public function update_billing($default_user) {
+        $chargeover = new chargeover();
+        $cust = $chargeover->getCustomer($this->OrgID);
+     
+        if (!$cust) {
+            $chargeover->createCustomer($this->OrgID, $this->OrgName, $this->Address1, 
+                    $this->Address2, '', 
+                    $this->City, $this->State, $this->Zip, $this->Country, $default_user->FullName, 
+                    $default_user->UserID, $default_user->EmailAddress);
+        }
+        else {
+            $chargeover->updateCustomer($this->OrgID, $this->OrgName, $this->Address1, 
+                    $this->Address2, '', 
+                    $this->City, $this->State, $this->Zip, $this->Country);
+        }
+    }
     
     public static function createOrg($orgid, $orgname, $shortname, $subdomain, $billingcontact, $fqdn) {
-        $q = "INSERT INTO orgs (OrgID, OrgName, OrgShortName, Subdomain, BillingContact, FQDN, UpdIndic) VALUES (?, ?, ?, ?, ?, ?, 1)";
+        $q = "INSERT INTO orgs (OrgID, OrgName, OrgShortName, Subdomain, BillingContact, FQDN) VALUES (?, ?, ?, ?, ?, ?)";
         $sql = maindb::getInstance();
-        $stmt = $sql->query($q);
-        $stmt = $this->conn->prepare($q);
-
+        $stmt = $sql->prepare($q);
         $stmt->bind_param('ssssss', $orgid, $orgname, $shortname, $subdomain, $billingcontact, $fqdn);
         $stmt->execute();
         if ($stmt->affected_rows == 0) {
             trigger_error("The orgs record was not created, error= " . $this->conn->error, E_USER_ERROR);
         }
         
-        return self::getInstance($org,'OrgID');  // make fluid
+        return self::getInstance($orgid,'OrgID');  // make fluid
     }
     
     
@@ -217,15 +234,7 @@ class organisation {
             return $new_high . $checkdigit;
         }
     }
-    
-    private function logoURL($subd) {
-        if (file_exists("pri/$subd/logo.png")) {
-            return "/pri/$subd/logo.png";
-        } else {
-            return "/images/logos/logo.png";
-        }
-    }
-    
+        
     // Pin is of form AAABB.A
     // udid is the unique device id
     public function register($orgid, $id, $udid) {
@@ -274,7 +283,8 @@ class organisation {
         }
         
         $toName = $users[0]->FullName;
-        $from = $users[0]->EmailAddress;
+        //$from = $users[0]->EmailAddress;
+        $from = "noreply@" . __DOMAIN;
         $fromName = $this->OrgName;
         
         foreach ($users as $user) {

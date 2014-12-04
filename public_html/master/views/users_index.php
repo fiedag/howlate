@@ -1,8 +1,6 @@
 <?php $controller->get_header(); ?>
 
 
-<link rel="stylesheet" href="/styles/modal.css">
-
 <!--[if lt IE 9]>
     <script src="/js/html5shiv.js"></script>
     <script src="/js/bean.js"></script>

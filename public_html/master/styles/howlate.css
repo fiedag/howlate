@@ -50,6 +50,11 @@ table.pricing {
     border-color: black;
 }
 
+
+.fading-message {
+    color: green;
+}
+
 span {
     inline:block;
 }
@@ -589,7 +594,8 @@ td.clinrow {
 }
 
 .dropdown {
-    width:200px;
+    width:50%;
+    font-size: 2vh;
 }
 
 .draggable { background-color: grey}
@@ -709,13 +715,18 @@ div.span-1,div.span-2,div.span-3,div.span-4,div.span-5,div.span-6,div.span-7,div
 
 .relative-box{position:relative}
 
+img.system-logo {
+    display: block;
+}
 
-.logo-exists .logo-upload-button{display:none}
+span.logo-upload-button{
+    font-size:12px;
+    line-height:29px;
+    font-weight:normal;
+    color:#d3d3d3;
+}
 
-
-a.logo-upload-button{background:url(/cache/images/application.v1395769518.png) 0 -304px no-repeat;width:117px;height:29px;padding:0 0 0 15px;font-size:12px;line-height:29px;font-weight:normal;color:#d3d3d3;display:inline-block;position:relative;margin-left:5px}
-a.logo-upload-button.inverse{color:#888}
-
+span.logo-upload-button.inverse{color:#888}
 
 
 .notification-page{-o-border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;margin:15px auto 10px;min-height:47px;padding:12px 15px 18px 80px;width:385px}

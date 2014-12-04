@@ -151,7 +151,7 @@ body {
   border-width: 0;
   margin:0;
   content: "";
-  background: #ffffff;
+  background: white;
   font-family: ProximaNova-Regular, helvetica, arial, sans-serif;
   position: relative;
   overflow: auto;
@@ -159,7 +159,7 @@ body {
 
 div.late-header-box {
     width:100%;
-    color: #999999;
+    color: #000;
     background-color: white;
     //background-image: url('/images/grip.png');
     background-size: contain;
@@ -167,23 +167,15 @@ div.late-header-box {
     background-position: left top;
     font-size: 6vh;
     text-align: center;
-    
 }
 
 div.clinic-box {
-    font-size: 9vw;
-    //color:white;
+    font-size: 7vw;
+    background-color: #FFB700;
     width:100%;
     padding-top: 5%;
     padding-bottom:5%;
-    padding-left: 3%;
-}
-
-div.darker {
-    background-color: #ededed;
-}
-div.lighter {
-    background-color: #ffffff;
+    padding-left: 2%;
 }
 
 .clinic-box-header {
@@ -193,7 +185,7 @@ div.lighter {
 }
 .clinic-name {
     text-align:left;
-    margin-left: 20%;
+    margin-left: 15%;
 }
 
 
@@ -203,9 +195,9 @@ div.latenesses {
     margin-top: 5%;
     margin-bottom: 5%;
     text-indent: 7%;
-    background-size: 7% auto;
+    background-size: 3% auto;
     background-repeat: no-repeat;
-    background-position: left top;
+    background-position: left center;
 }
 
 .greendot {

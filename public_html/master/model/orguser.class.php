@@ -1,6 +1,6 @@
 <?php 
 
-class orguser extends howlate_basetable {
+class orguser  {
     protected static $instance;
     
     public $UserID;

@@ -9,6 +9,7 @@
  */
 class api {
     public static function updateLateness($OrgID, $NewLate, $PractitionerName) {
+
         $pract = practitioner::getInstance($OrgID,$PractitionerName,'FullName');
         if(!$pract)
         {

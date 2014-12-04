@@ -89,7 +89,7 @@
             foreach ($lates as $clinic => $latepract) {
                 $clin_num++;
                 ?>
-                <div class="clinic-box <?php echo ($clin_num % 2 == 0)?"darker":"darker";?> fading">
+                <div class="clinic-box fading">
             
 
                 <?php

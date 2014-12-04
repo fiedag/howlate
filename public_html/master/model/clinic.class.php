@@ -71,4 +71,30 @@ class clinic extends howlate_basetable {
         }
     }
     
+    public function getPractitioners() {
+        $q = "SELECT * FROM practitioners WHERE OrgID = '$this->OrgID' AND ClinicID = '$this->ClinicID'";
+        $sql = maindb::getInstance();
+
+        $practArray = array();
+        $clinArray = array();
+        if ($result = $sql->query($q)) {
+            $tempArray = array();
+            while ($row = $result->fetch_object()) {
+                $tempArray[] = $row;
+                if (array_key_exists($row->ClinicName, $clinArray)) {
+                    $clinArray[$row->ClinicName] = $tempArray;
+                } else {
+                    unset($tempArray);
+                    $tempArray = array();
+                    $tempArray[] = $row;
+                    $clinArray[$row->ClinicName] = $tempArray;
+                }
+            }
+            return $clinArray;
+        }
+        return null;
+    }
+
+    
+    
 }

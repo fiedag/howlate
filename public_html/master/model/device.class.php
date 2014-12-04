@@ -12,8 +12,8 @@ class device {
 
     public $registrations;  // array of registrations for this
     
-    public static function getLatenesses($udid) {
-        $q = "SELECT ClinicID, ClinicName, AbbrevName, MinutesLate, MinutesLateMsg, OrgID, ID, Subdomain FROM vwMyLates WHERE UDID = '" . $udid . "'";
+    public static function getLatenesses($fieldval, $fieldname = 'UDID') {
+        $q = "SELECT ClinicID, ClinicName, AbbrevName, MinutesLate, MinutesLateMsg, OrgID, ID, Subdomain FROM vwMyLates WHERE $fieldname = '" . $fieldval . "'";
         $sql = maindb::getInstance();
 
         $practArray = array();
@@ -46,7 +46,6 @@ class device {
             }
             return $myArray;
         }
-
     }
 
     

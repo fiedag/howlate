@@ -47,7 +47,21 @@
                                                 </div>
                                             </div>
 
-                                        <?php } ?>                            
+                                        <?php } 
+                                            if (isset($sentok) and $sentok == 1) { ?>
+
+                                            <div class="notification-page notification-error">
+                                                <div class="notifyBox_oneline">
+                                                    We've sent the email to the address you provided (<strong><?php echo $email; ?></strong>).
+				Please check your email and follow the link to reset your password.
+                                                </div>
+                                            </div>
+
+                                        <?php 
+                                              }
+                                        ?> 
+                                        
+                                        
                                         <div class="login-forms">
 
                                             <form method="POST" id="form_forgot" style="display: none;" action="/login/forgot">
@@ -160,11 +174,12 @@
             }
 
             function forgot() {
+                
                 $('#forgotten').val('1');
                 $('#openid').val('');
 
-                guiders.hideAll();
-
+                //guiders.hideAll();
+                    
                 var form = $('#form_forgot').is(':visible') ? $('#form_forgot') : $('#form_login');
 
                 switchForms(form, $('#form_forgot'), document.getElementById('email'));

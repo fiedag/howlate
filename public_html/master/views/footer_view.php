@@ -1,6 +1,7 @@
 <footer>
     <div class="footer">
         <div class="container">
+            <div id="fading-message" class="fading-message"><?php if (isset($fadingmessage)) { echo $fadingmessage; } ?></div>
             <div id="footer-magic"><img src="/images/spacer.gif" /></div>
             <div class="footer-border">
                 <div class="span-10 append-1">
@@ -36,6 +37,11 @@
 
 </footer>
 
+<script>
+
+$( document ).ready(function () {  $("#fading-message").fadeOut(5000)})
+
+</script>
 
 </body>
 </html>

@@ -22,10 +22,15 @@ Class apiController Extends baseController {
         $ArrivalTime = $this->lookfor(array('ArrivalTime'));
         $ConsultationTime = $this->lookfor(array('ConsultationTime'));
         $NewLate = $this->lookfor(array('NewLate'));
+
         if (!$NewLate) {
             $NewLate = round(($ConsultationTime - $AppointmentTime) / 60,0,PHP_ROUND_HALF_UP);
         }
-        $this->registry->template->result = api::updateLateness($this->org->OrgID, $NewLate, $PractitionerName);
+        
+        logging::trlog(TranType::MISC_MISC, "calling api::updateLateness", $this->org->OrgID);
+        $res = api::updateLateness($this->org->OrgID, $NewLate, $PractitionerName);
+        
+        $this->registry->template->result = $res;
         $this->registry->template->show('api_index');
     }
 
@@ -71,6 +76,21 @@ Class apiController Extends baseController {
         logging::trlog(TranType::AGT_INFO, $message);
     }
 
+    public function agent_start() {
+        $event = 'start';
+        $message = 'agent_start';
+        $assemblyversion = filter_input(INPUT_POST,"assemblyversion");
+        logging::trlog(TranType::AGT_INFO, $message);
+    }
+    public function agent_stop() {
+        $event = 'stop';
+        $message = 'agent_stop';
+        $assemblyversion = filter_input(INPUT_POST,"assemblyversion");
+        logging::trlog(TranType::AGT_INFO, $message);
+    }
+
+    
+    
     // overrides the one in base controller classe
     public function handle_exception($exception) {
         $this->registry->template->result = "Exception: " . $exception->getMessage();
@@ -81,7 +101,9 @@ Class apiController Extends baseController {
     // does not have a method, report this as an error
     public function index() {
         $met = filter_input(INPUT_GET,'met');
-        
+        if(!$met) {
+            throw new Exception("GET parameter met must be given");
+        }
         $this->$met();
         
         //$rt = filter_input(INPUT_GET,'rt');

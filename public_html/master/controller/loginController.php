@@ -2,7 +2,7 @@
 
 Class loginController Extends baseController {
 
-    public $org;
+    //public $org;
 
     public function index() { 
         if (isset($_COOKIE["USER"])){ 
@@ -26,7 +26,6 @@ Class loginController Extends baseController {
             }
         }
         define("__DIAG",1);
-        
         
         $this->org = organisation::getInstance(__SUBDOMAIN);
         $this->registry->template->companyname = $this->org->OrgName;
@@ -70,7 +69,10 @@ Class loginController Extends baseController {
         $this->org = organisation::getInstance(__SUBDOMAIN);
         $this->org->getRelated();
         $this->org->sendResetEmails($email);
-        header("location: http://" . __SUBDOMAIN . "." . __DOMAIN . "/login?sent=ok");
+        $this->registry->template->email = $email;
+        
+        $this->registry->template->sentok = 1;
+        $this->index();
     }
 
 }

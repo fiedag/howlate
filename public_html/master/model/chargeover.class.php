@@ -46,9 +46,40 @@ class chargeover {
         
         if ($this->API->isError($resp))
         {
-            throw new Exception('Error saving Chargeover customer via API' . $this->API->lastResponse());
+            throw new Exception('Error creating Chargeover customer via API' . $this->API->lastResponse());
         }
     }
+
+    function updateCustomer($OrgID, $OrgName, $Address1, $Address2, $Address3, $City, $State, $Postcode, $Country ) {
+        $cust = $this->getCustomer($OrgID);
+        $customer_id = $cust->customer_id;
+        $Customer = new ChargeOverAPI_Object_Customer(array(
+
+	// Main customer data
+	'company' => $OrgName,
+	
+	'bill_addr1' => $Address1,
+	'bill_addr2' => $Address2,
+	'bill_addr3' => $Address3,
+	'bill_city' => $City,
+	'bill_state' => $State,
+	'bill_postcode' => $Postcode,
+	'bill_country' => $Country,
+
+	'external_key' => $OrgID, 		// The external key is used to reference objects in external applications
+
+
+	));
+
+        $resp = $this->API->modify($customer_id, $Customer);
+        
+        if ($this->API->isError($resp))
+        {
+            throw new Exception('Error modifying Chargeover customer via API' . $this->API->lastResponse());
+        }
+    }
+    
+    
     
     function createPackage($customer_id, $ServicePlan, $Descrip) {
         $Package = new ChargeOverAPI_Object_Package();

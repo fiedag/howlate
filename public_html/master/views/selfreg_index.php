@@ -10,9 +10,6 @@
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <link rel="apple-touch-icon-precomposed" href="/images/icon_calendar.png" />
 
-        <script type="text/javascript" src="/js/bookmark_bubble.js"></script>
-        <script type="text/javascript" src="/js/bookmark_bubble_example.js"></script>
-
     </head>
     <body>
 
@@ -21,20 +18,6 @@
         <form name="selfreg" id="selfreg" action="/selfreg/register" method="post">
             <input id="invitepin" name="invitepin" value="<?php echo $invitepin; ?>">
             
-            <input id="device" name="device" value="Enter mobile number">
-            
-            <button type="submit" name="submit" value="reg"
-               class="button medium green signup-form-button transition">
-               <span class="signup-button-text transition">
-                        Get lateness updates
-                    </span>
-            </button>
-            <button type="submit" name="submit" value="unreg"
-               class="button medium green signup-form-button transition">
-               <span class="signup-button-text transition">
-                        Cancel lateness updates
-                    </span>
-            </button>
 
         </form>
 

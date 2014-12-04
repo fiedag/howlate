@@ -21,7 +21,7 @@ class billing {
         if ($result = $this->conn->query($q)) {
             $chargeover = new chargeover();
             while ($row = $result->fetch_object()) {
-                echo "Recording Usage for $row->OrgName \r\n";
+                echo "Processing any Usage for $row->OrgName \r\n";
                 try {
                     $this->recordUsage($chargeover, $row->OrgID);
                 } catch(Exception $ex) {
@@ -48,13 +48,17 @@ class billing {
         // all good now look up usage
         $last_billed = $this->getLastBilledSMS($OrgID);
         $last_unbilled = $this->getLastUnbilledSMS($OrgID);
+
+        
         if ($last_unbilled <= 0) {
+            echo "$OrgID no new SMS messages, Last Billed = $last_billed, Last unbilled = $last_unbilled\r\n";
             return;  // no new SMS messages!
         }
         $usage = $this->getUnbilledSMSUsage($OrgID, $last_billed, $last_unbilled);
         if($usage <= 0) {
             return;
         }
+        echo "$OrgID recording usage, Last Billed = $last_billed, Last unbilled = $last_unbilled, Usage = $usage\r\n";
         $chargeover->createUsage($item->line_item_id, $usage);
         $this->updateSnapshot($OrgID, $last_unbilled);
     }

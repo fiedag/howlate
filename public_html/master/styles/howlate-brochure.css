@@ -158,6 +158,14 @@ body {
 .yellow {
     background: #FFB700;
 }
+.green {
+    background: #8ec348;
+    
+}
+
+.howlate-teal {
+    background: #175f82;
+}
 
 #arial{
     font-family: arial;
@@ -265,7 +273,7 @@ header .row, header .span12 {
 }
 
 .footer {
-    background: #ffB700;
+    background: #8ec348;
     text-align: center;
 }
 
@@ -295,8 +303,8 @@ footer a[data-pin-log=button_follow] i {
 }
 
 div.logo, div.mobile-logo {
-    background: url(/master/images/logos/logo150x47.png) no-repeat center center;
-    width: 200px;
+    background: url(http://how-late.com/master/images/logos/logo150x47.png) no-repeat;
+    width: 150px;
     height: 50px;
 }
 
@@ -315,12 +323,12 @@ div.hand {
 
 .simple-image {
     background: url(/master/images/simpleimage.jpg) no-repeat center center;
-    width: 953px;
-    height: 800px;
+    width: 940px;
+    height: 830px;
 }
 
 .social-image {
-	background: url(/master/images/socialimage.jpg) no-repeat center center;
+	background: url(/master/images/youngdad.jpg) no-repeat center center;
 	width: 1141px;
 	height: 800px;
 }
@@ -439,7 +447,8 @@ nav.navbar .navbar-inner .nav {
 
 .intro {
     margin-top: 40px;
-	margin-left: 10px;
+    margin-left: 10px;
+    color: black;
 }
 
 .intro h1 {
@@ -482,7 +491,7 @@ section#welcome {
 }
 
 section#welcome .container-fluid {
-    background: url(/master/images/hero.jpg) #000;
+    background: url(/master/images/youngdoc.jpg) #ffffff;
     background-position: top center;
     background-repeat: no-repeat;
     width: 100%;
@@ -568,11 +577,12 @@ section#simple .door-wrapper {
 
 section#simple .simple-image {
 	position: absolute;
-	right: -123px;
+	// right: -123px;
+        right: 0px;
 }
 
 section#simple {
-    background:#ff8c00;
+    background:#8ec348;
     min-height:800px;
     color: #000;
 }
@@ -614,7 +624,7 @@ section#social p {
 }
 
 section#social {
-    background:#00A2B8;
+    background:#175f82;
     min-height: 800px;
 }
 
@@ -660,7 +670,7 @@ section#features h1 {
 
 section#features h1,
 section#features h5 {
-    color: #14BA3e;
+    color: #8ec348;
 }
 
 
@@ -787,6 +797,7 @@ section#gallery .carousel {
     height: 100%;
 }
 
+
 div.hand, div.simple-image, div.social-image {
     margin-left: 125px;
 }
@@ -837,7 +848,7 @@ div.hand, div.simple-image, div.social-image {
 	}
 	
     div.simple-image, div.social-image {
-        margin-left: 90px;
+         margin-left: 90px;
     }
     
     .intro p {
@@ -1397,3 +1408,116 @@ div.hand, div.simple-image, div.social-image {
 .postingTitle {
     cursor: pointer;
 }
+
+
+section#faq_content {
+  background: #353634;
+  color: #fff;
+  padding-top:120px;
+  padding-bottom: 140px;
+}
+
+section#faq_content h1 {
+  color: #fff;
+  font-size: 62px;
+  margin: 0px;
+  line-height: 60px;
+}
+
+section#faq_content h2 {
+  color: #14BA3e;
+  font-size: 29px;
+  line-height: 40px;
+  margin-top: 7px;
+  margin-bottom: 4px;
+}
+
+section#faq_content p {
+  line-height: 20px;
+  margin-top: 7px;
+  margin-bottom: 4px;
+}
+
+section#faq_content a,
+section#faq_content a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+section#faq_content .container {
+  margin: auto;
+}
+
+.faq-wrapper, .faq-header-wrapper {
+  margin: 15px 30px;
+}
+
+section#pricing_content {
+  background: #353634;
+  color: #fff;
+  padding-top:120px;
+  padding-bottom: 140px;
+}
+
+section#privacy_content {
+  background: #353634;
+  color: #fff;
+  padding-top:120px;
+  padding-bottom: 140px;
+}
+
+section#privacy_content h2 {
+  color: #14BA3e;
+  font-size: 29px;
+  line-height: 40px;
+  margin-top: 7px;
+  margin-bottom: 4px;
+}
+
+
+.pricingTable{border-collapse:separate}
+.pricingTable{width:760px;font-size:12px;line-height:18px;margin:0 auto}
+.pricingTable a:link,.pricingTable a:active,.pricingTable a:visited{text-decoration:none;color:#000}
+.pricingTable a:hover{background-color:transparent;color:#000}
+.pricingTable .pricingLeft a:link,.pricingTable .pricingLeft a:active,.pricingTable .pricingLeft a:visited{text-decoration:underline;color:#00f}
+.pricingTable .pricingLeft a:hover{background-color:transparent;text-decoration:none}
+.pricingTable th{background-color:#175f82;border-color:#175f82;border:0;border-right:1px solid #60a1d3;color:#fff;padding:10px 0;text-align:center;vertical-align:top}
+.pricingTable th h2{color:#fff;margin-bottom:10px}
+.pricingTable th .partner-savings{margin-bottom:9px}
+.pricingTable th .partner-savings strong{position:relative}
+.pricingTable th .price-discount-underline{position:absolute;bottom:-4px;left:-1px;width:100%;height:6px;background:url('/cache/images/discount-sprite.v1416945439.png') 0 0 no-repeat}
+.pricingTable th .price-container{padding-top:9px}.pricingTable th .original-price-container{padding-top:6px;padding-bottom:3px;position:relative}
+.pricingTable th .original-price-container .strike{position:absolute;left:36px;top:5px;width:63px;height:27px;background-image:url('/cache/images/discount-sprite.v1416945439.png');background-position:0 -6px}
+.pricingTable th .large-price{font-size:42px;line-height:42px}
+.pricingTable th .dollar-sign,.pricingTable th .cents{font-size:24px;line-height:32px;vertical-align:top}
+.pricingTable th .permonth{display:block;margin-top:-4px;margin-left:60px;margin-bottom:18px}
+.pricingTable th.pricingSelect{
+    -o-border-radius:5px 0 0 0;
+    -webkit-border-radius:5px 0 0 0;
+    -moz-border-radius:5px 0 0 0;
+    border-radius:5px 0 0 0;
+    color:#fff;
+    padding:10px 10px 0 20px;
+    text-align:left;
+    width:250px;
+}
+.pricingTable th.column_1{-o-border-radius:0 5px 0 0;-webkit-border-radius:0 5px 0 0;-moz-border-radius:0 5px 0 0;border-radius:0 5px 0 0;border-right-color:#175f82}
+.pricingTable td{border-right:1px solid #175f82;border-bottom:1px solid #175f82;padding:5px 0;text-align:center;vertical-align:middle}
+.pricingTable td.pricingLeft{border-left:1px solid #175f82;padding:8px 20px;text-align:left}
+.pricingTable td .row-tiny{display:block;font-size:11px;color:#888}
+.pricingTable tr.last-row td{margin-bottom:2px}
+.pricingTable tr.last-row .button{margin-top:10px;margin-bottom:10px}
+.pricingTable tr.last-row td.pricingLeft{-o-border-radius:0 0 0 5px;-webkit-border-radius:0 0 0 5px;-moz-border-radius:0 0 0 5px;border-radius:0 0 0 5px}
+.pricingTable tr.last-row td.column_1{-o-border-radius:0 0 5px 0;-webkit-border-radius:0 0 5px 0;-moz-border-radius:0 0 5px 0;border-radius:0 0 5px 0}
+.pricingTable th:first-child,.pricingTable td:first-child{width:160px}
+.pricingTable .over_package{background-color:#f7fbff}
+.pricingTable td.selected_package{background-color:#ecf7ff}
+.pricingTable.staff-split th.column_4 .permonth{margin-left:-30px}
+.pricingTable.staff-split th.column_5 .permonth{margin-left:-3px}
+.pricingTable.staff-split .button{margin-left:10px}#subscribe{display:none;padding:0;border:0;margin:0 20px 0}
+.credit-cards{margin:20px 40px;text-align:right;font-size:12px}
+.credit-cards p{display:block;float:left;margin:5px 0 0 160px;text-align:right}
+.create{float:left;padding:25px 0 30px 155px}
+.pricing-footnotes{font-size:12px;padding:5px 0 0 40px}
+
+.pricingTable th h2{color:#000}

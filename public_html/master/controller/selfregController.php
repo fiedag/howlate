@@ -7,38 +7,16 @@
 
 Class selfregController Extends baseController {
     
-    private $org;
-
     private $invitepin;
-    
+
+    // should display all doctors from subdomain as links
     public function index() {
-        $this->invitepin = filter_input(INPUT_GET, "invitepin");
-        if (!isset($this->invitepin)) {
-            trigger_error("Program called with incorrect parameters", E_USER_ERROR);
-        }
 
-        $org = howlate_util::orgFromPin($this->invitepin);
-        $id = howlate_util::idFromPin($this->invitepin);
-
-        howlate_util::validatePin($this->invitepin);
-        
-        $this->org = organisation::getInstance($org,'OrgID');
-
-        
+        $this->org->getRelated();
         $found = false;
-        foreach($this->org->Practitioners as $key => $val) {
-            if ($val->ID == $id) 
-                $found = true;
-        }
-        if (!$found)
-            trigger_error("This is not a valid practitioner for this organisation", E_USER_ERROR);
 
-        $this->registry->template->companyname = $this->org->OrgName;
-        $this->registry->template->logourl = $this->org->LogoURL;
-
-        $this->registry->template->invitepin = $this->invitepin;
+        $this->registry->template->icon_url = howlate_util::logoURL();
         $this->registry->template->show('selfreg_index');
-
     }
 
     

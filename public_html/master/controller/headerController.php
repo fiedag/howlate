@@ -1,7 +1,7 @@
 <?php
 
 Class headerController Extends baseController {
-    public $org;
+    //public $org;
     
     public function index() {
         $this->view();

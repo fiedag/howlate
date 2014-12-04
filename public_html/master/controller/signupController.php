@@ -1,11 +1,18 @@
 <?php
+/* 
+ * Because this is always called from secure.how-late.com
+ * the organisation $this->org is undefined
+ * 
+ * 
+ * 
+ */
+
+// debugging with Kint
+require("includes/kint/Kint.class.php");
 
 Class signupController Extends baseController {
-
-    public $org;
-
+    
     public function index() {
-
         $this->registry->template->controller = $this;
         $this->registry->template->logourl = howlate_util::logoURL();
         $this->registry->template->signup_result = "";
@@ -32,13 +39,19 @@ Class signupController Extends baseController {
         $this->registry->template->logourl = howlate_util::logoURL();
         $howlate_site = new howlate_site($company,$email);
         
-        $howlate_site->reduceName()->checkForDupe()->createPrivateArea()->createCPanelSubdomain()->installSSL();
-        
-        $howlate_site->createOrgRecord()->createDefaultClinic()->createDefaultPractitioner()->createDefaultUser();
-        
-        $howlate_site->sendWelcomeEmail();
-        
+        try {
+            $howlate_site->reduceName()->checkForDupe()->createPrivateArea()->createCPanelSubdomain()->installSSL();
+
+            $howlate_site->createOrgRecord()->createDefaultClinic()->createDefaultPractitioner()->createDefaultUser();
+
+            $howlate_site->sendWelcomeEmail();
+        } catch (Exception $ex) {
+            d($ex);
+        }
+
         $this->registry->template->signup_result = $howlate_site->Result;
+        
+        d($this);
         $this->registry->template->show('signup_view');
 
     }

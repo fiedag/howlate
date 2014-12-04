@@ -95,6 +95,36 @@ Class lateController Extends baseController {
             }
         }
     }
+
+    public function selfreg() {
+        $this->registry->template->controller = $this;
+        $this->registry->template->refresh = 3000;  // milliseconds
+        $this->registry->template->when_refreshed = 'Updated ' . date('h:i A');
+        $this->registry->template->bookmark_title = "How late";
+        $this->registry->template->bookmark_url = $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"];
+        $this->registry->template->icon_url = howlate_util::logoURL(__SUBDOMAIN);
+        $this->registry->template->apple_icon_url = howlate_util::logoWhiteBG();
+
+        
+        $pin = filter_input(INPUT_GET, 'pin');
+        if (!$pin) {
+            throw new Exception("Requires pin parameter");
+        }
+
+        howlate_util::validatePin($pin);
+        $org = howlate_util::orgFromPin($pin);
+        $clinic = howlate_util::idFromPin($pin);
+        
+        $lates = device::getLatenesses($clinic, "ClinicID"); // a two-dimensional array ["clinic name"][array]
+            
+            if (!empty($lates)) {
+                $this->registry->template->lates = $lates;
+                $this->registry->template->show('late_view');
+            }
+        
+    }
+    
+    
     
 }
 

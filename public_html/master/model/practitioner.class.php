@@ -54,8 +54,11 @@ class practitioner {
         $sql = maindb::getInstance();
         $stmt = $sql->prepare($q);
         $stmt->bind_param('ssii', $OrgID, $PractitionerID, $NewLate, $Sticky);
-        $stmt->execute() or trigger_error("# Query Error $OrgID, $PractitionerID, $NewLate, $Sticky ( $sql->errno ) "  . $sql->error, E_USER_ERROR);
+        if (!$stmt->execute()) {
+            throw new Exception("# Query Error $OrgID, $PractitionerID, $NewLate, $Sticky ( $sql->errno ) "  . $sql->error);
+        }
         logging::trlog(TranType::LATE_UPD, "Lateness updated to $NewLate , Sticky = $Sticky.", $OrgID, null, $PractitionerID, null, $NewLate);
+        return "lateness updated ok";
     }
 
 
@@ -64,7 +67,7 @@ class practitioner {
         $sql = maindb::getInstance();
         $stmt = $sql->prepare($q);
         $stmt->bind_param('sssii', $org, $id, $day, $start, $end);
-        $stmt->execute() or trigger_error('# Query Error (' . $this->conn->errno . ') ' . $this->conn->error, E_USER_ERROR);
+        $stmt->execute() or trigger_error('# Query Error (' . $sql->errno . ') ' . $sql->error, E_USER_ERROR);
         logging::trlog(TranType::SESS_UPD, "$day Session updated to [$start,$end]", $org, null, $id, null);
     }
 
@@ -92,7 +95,9 @@ class practitioner {
         $q = "CALL sp_CreatePractitioner (?, ?, ?)";
         $stmt = maindb::getInstance()->prepare($q);
         $stmt->bind_param('sss', $org, $name, $outID);
-        $stmt->execute();
+        if (!$stmt->execute()) {
+            throw new Exception($stmt->error);
+        }
         if ($stmt->affected_rows == 0) {
             trigger_error("The default practitioner was not created, error= " . $this->conn->error, E_USER_ERROR);
         }
