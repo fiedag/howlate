@@ -92,9 +92,9 @@ class practitioner {
     }
 
     public static function createDefaultPractitioner($orgid, $name) {
-        $q = "CALL sp_CreatePractitioner (?, ?, ?)";
+        $q = "CALL sp_CreatePractitioner (?, ?)";
         $stmt = maindb::getInstance()->prepare($q);
-        $stmt->bind_param('sss', $org, $name, $outID);
+        $stmt->bind_param('ss', $orgid, $name);
         if (!$stmt->execute()) {
             throw new Exception($stmt->error);
         }

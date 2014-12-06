@@ -198,11 +198,6 @@ var adroll_pix_id = "IZR7HAJIINEJHETKC43M2Z";
       $('#installation .frame1').fadeIn();
     });
 
-    // Gallery
-    $('#august_carousel').carousel({ interval: 10000 });
-    $('#august_carousel').carousel('cycle');
-    $('#august_carousel a.prev').on('click', function(evt) {evt.preventDefault();$('#august_carousel').carousel('prev');});
-    $('#august_carousel a.next').on('click', function(evt) {evt.preventDefault();$('#august_carousel').carousel('next');});
     
     // 'Safe' App Screens
     $('.safer-features a').on('mouseover click', function(evt) {
@@ -255,7 +250,7 @@ var adroll_pix_id = "IZR7HAJIINEJHETKC43M2Z";
     // Twitter
     $('.social-tweet').on('click.share', function(evt) {
       evt.preventDefault();
-      var tweet = "Just%20pre-ordered%20my%20%40AugustSmartLock.%20%20Get%20yours%20at%20www.august.com%20%23easyaccess";
+      var tweet = "Just%20signup%20up%20to%20How-Late.Com%20";
       window.open('http://twitter.com/share?url=&text=' + tweet, 'twitterwindow', 'height=420, width=550, top='+($(window).height()/2 - 225) +', left='+$(window).width()/2 +', toolbar=0, location=0, menubar=0, directories=0, scrollbars=0');
     });
     
@@ -264,18 +259,16 @@ var adroll_pix_id = "IZR7HAJIINEJHETKC43M2Z";
       evt.preventDefault();
       var obj = {
         method: 'feed',
-        link: 'http://www.august.com',
-        picture: 'http://b07c808b4f87861d08f4-c25c9b1f7d08dbed4c1fbe0d005a91e3.r43.cf1.rackcdn.com/facebook-image.jpg',
-        name: 'August Smart Lock',
-        caption: "Just pre-ordered my August Smart Lock.  Get yours at august.com.",
-        description: "August Smart Lock"
+        link: 'http://how-late.com',
+        picture: '',
+        name: 'How-Late Cloud',
+        caption: "Just joined up with How-Late.com",
+        description: "How-Late Cloud"
       };
 
       FB.ui(obj);
     });
     
-    // Pinterest
-    refreshPinterestButton('Just pre-ordered my August Smart Lock. Get yours at august.com.');
     
     //modals
     $('a[data-toggle=modal]').on('click', function() {
@@ -356,6 +349,8 @@ var adroll_pix_id = "IZR7HAJIINEJHETKC43M2Z";
   
   function dismissDialog() {
     reserve_mode = false;
+    $("#signup_link").show();
+    $("#loader_container").hide();
     $('.error, #confirmation_number').text('');
     $('#email_input, #email_input_mobile').val('');
     $(".reserve-cancel").css('display', 'none');
@@ -389,28 +384,13 @@ var adroll_pix_id = "IZR7HAJIINEJHETKC43M2Z";
       $('body').append($backdrop);
       $('.reserve-thank-you').css('display', 'none');
       $('#submit_link, .reserve-welcome, .confirmation-copy').removeClass('hide');
-      $(".reserve-window").animate({ height: navVisible ? '475px' : '800px'}, { duration: 240, easing: 'easeOutQuad', queue: false });
+      $(".reserve-window").animate({ height: navVisible ? '575px' : '800px'}, { duration: 240, easing: 'easeOutQuad', queue: false });
       $(".reserve-window-hide-on-open").hide();
       setTimeout(function() {$(".reserve-cancel").css('display', 'block');}, 300);
       if (isIE) $(".reserve-cancel").css('display', 'block');
     }, delay);
   }
   
-  function refreshPinterestButton(description) {
-    var js, href, html, pinJs;
-    $pin_it = $('div.pin-it');
-    url = escape($pin_it.attr('pin-url'));
-    media = escape($pin_it.attr('pin-media'));
-    description = escape(description);
-    href = 'http://pinterest.com/pin/create/button/?url=' + url + '&media=' + media + '&description=' + description;
-    html = '<a data-pin-do="buttonPin" data-pin-config="none" href="'+href+'"></a>';
-    $('div.pin-it').html(html);
 
-    //add pinterest js
-    js = document.createElement('script');
-    js.src = "http://assets.pinterest.com/js/pinit.js";
-    js.type = 'text/javascript';
-    document.body.appendChild(js);
-  }
 
 })(jQuery);

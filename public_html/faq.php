@@ -17,7 +17,7 @@
             <meta name="ogut:title" content="How-Late Software">
             <meta name="og:type" content="website">
             <meta name="og:image" content="/master/images/gallery2.jpg" itemprop="red lock 991x660">
-            <meta name="og:url" content="http://www.how-late.com/index2.php">
+            <meta name="og:url" content="http://www.how-late.com/index.php">
             <meta name="og:description" content="Arrive late, but in good time.">
             <meta charset="utf-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -286,7 +286,7 @@
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
-        <script src="http://84b34d2d1b96eb0f32a0-a5459daa99194527536811f2e1ef3b41.r21.cf1.rackcdn.com/main.js"></script>
+        <script src="/master/js/main.js"></script>
 
         </body>
     </html>

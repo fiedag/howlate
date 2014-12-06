@@ -17,7 +17,7 @@
             <meta name="ogut:title" content="How-Late Software">
             <meta name="og:type" content="website">
             <meta name="og:image" content="/master/images/gallery2.jpg" itemprop="red lock 991x660">
-            <meta name="og:url" content="http://www.how-late.com/index2.php">
+            <meta name="og:url" content="http://www.how-late.com/index.php">
             <meta name="og:description" content="Arrive late, but in good time.">
             <meta charset="utf-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0">

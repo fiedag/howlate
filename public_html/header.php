@@ -27,30 +27,37 @@
                             <div class="span7 offset1">
                                 <div class="reserve-welcome fade in">
                                     <hgroup>
-                                        <h1>Sign up for a </h1>
-                                        <h1>no-obligation 30 day trial of</h1>
+                                        <h1>Sign up for a free</h1>
+                                        <h1>30 day trial of</h1>
                                         <h1>How Late Cloud.</h1>
                                     </hgroup>
-                                    <div style="margin-top: 30px;" class="visible-phone visible-tablet">
-                                        <input id="email_input_mobile" type="email" class="input-block-level" required placeholder="email" />
-                                        <br>
-                                        <span class="form-label">
-                                            &nbsp;
-                                            <a href="#" id="submit_link_mobile" title="Submit" onclick="dataLayer.push({'event': 'emailSubmit', 'emailValid': true, 'emailAddress': $('#email_input_mobile').val()})">Submit</a><p class="error"></p>
-                                        </span>
-                                    </div>
+<div id="signup_area">
+                                    <span id="signupForm" class="signup-form" name="signupForm" >
+                                        <input id="domain_input" name="company" placeholder="Your Company Name"
+                                               type="text" size="25" maxlength="50" class="input-company signupfield" required />
+                                        <div class="error-company hide">
+                                            <div class="error"
+                                                 data-error-no-company="Your company name is required">
+                                            </div>
+                                            <div class="error-tail">
+                                            </div>
+                                        </div>
 
-                                    <p class="reserve-welcome-info">Enter your preferred domain and email address to begin.</p>
-
-                                    <div class="hidden-phone hidden-tablet">
-                                        <input id="domain_input" type="text" class="input-block-level" required placeholder="e.g. xyzclinic.how-late.com" />
-                                        <input id="email_input" type="email" class="input-block-level" required placeholder="email" />
-                                        &nbsp;&nbsp;
-                                        <span class="form-label">
-                                            &nbsp;
-                                            <a href="#" id="submit_link" title="Submit" onclick="dataLayer.push({'event': 'emailSubmit', 'emailValid': true, 'emailAddress': $('#email_input').val()})">Submit</a>
-                                        </span><p class="error"></p>
-                                    </div>
+                                        <input id="email_input" name="email" placeholder="Your Email Address"
+                                               type="email" size="25" maxlength="50" class="input-email signupfield" required />
+                                        <div class="error-email hide">
+                                            <div class="error"
+                                                 data-error-no-email="Your email address is required"
+                                                 data-error-email-typo="Your email is mistyped">
+                                            </div>
+                                            <div class="error-tail">
+                                            </div>
+                                        </div>
+                                        <button id="signup-button" class="button large green login" onclick="signupFunction();return false;">
+                                            Get Started for Free
+                                        </button>
+                                    </span>
+</div>
                                 </div>
                                 <div class="reserve-thank-you fade">
                                     <h1>Thank you!</h1>
@@ -104,4 +111,7 @@
         </div>
     </div>
 </header>
+
+
+
 <!-- End Header / Reserve Flow -->

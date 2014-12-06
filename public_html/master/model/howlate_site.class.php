@@ -108,17 +108,19 @@ class howlate_site {
     
     public function createDefaultClinic() {
         clinic::createDefaultClinic($this->OrgID);
-        $this->mylog("Created default clinic <br>");
+        $this->mylog("Created default clinic for $this->OrgID <br>");
         return $this;
     }
     
     public function createDefaultPractitioner() {
+        $this->mylog("Creating default practitioner for $this->OrgID, and email $this->Email<br>");
         practitioner::createDefaultPractitioner($this->OrgID, $this->Email);
         $this->mylog("Created default practitioner <br>");        
         return $this;
     }
     
     public function createDefaultUser() {
+        $this->mylog("Creating default user for $this->OrgID, and email $this->Email<br>");
         $this->DefaultUser = orguser::createUser($this->OrgID, $this->Email, $this->Email);
         $this->mylog("Created default user <b>$this->DefaultUser</b>");
         return $this;

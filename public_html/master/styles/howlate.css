@@ -1081,6 +1081,15 @@ button {
     font-size:15px;
 }
 
+#signup-message {
+    font-size: 18px;
+    color:black;
+
+}
+.signup-error {
+    color: red;
+}
+
 .notification-page {
     
     font-size:15px;
