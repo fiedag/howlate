@@ -1614,3 +1614,17 @@ section#privacy_content h2 {
 }
 
 
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    width: 35%;
+}
+
+.footnote {
+    
+    font-size: smaller;
+}
+.footnote h5 {
+    
+    color: #8ec348;
+}

@@ -112,7 +112,7 @@ class practitioner {
         $lateness = $this->getCurrentLateness();
 
         if (strtolower($lateness) == "on time" or strtolower($lateness) == "off duty") 
-            return;
+            return "Informational: Already on time, not enqueued";
         
         $url = "http://secure." . $domain . "/late/view&udid=$MobilePhone";
         $msg = $this->PractitionerName . " is running " . $lateness . ". For updates,click " . $url;

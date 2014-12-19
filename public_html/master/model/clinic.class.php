@@ -15,6 +15,8 @@ class clinic extends howlate_basetable {
     public $Phone;
     public $State;
 
+
+    
     public static function getInstance($OrgID, $ClinicID) {
         $q = "SELECT * FROM clinics WHERE OrgID = '$OrgID' AND ClinicID = $ClinicID";
 
@@ -34,7 +36,7 @@ class clinic extends howlate_basetable {
 
     
     public function getClinicIntegration() {
-        $q = "SELECT * FROM clinicintegration WHERE OrgID = '$this->OrgID' AND ClinicID = $this->ClinicID";
+        $q = "SELECT * FROM vwClinicIntegration WHERE OrgID = '$this->OrgID' AND ClinicID = $this->ClinicID";
         if ($result = maindb::getInstance()->query($q)) {
             return $result->fetch_object();
         }
@@ -60,14 +62,25 @@ class clinic extends howlate_basetable {
         }
 
     }    
+
+    public function updateClinicIntegration2($interval, $hluserid, $processrecalls, $pmsystem, $connectiontype, $connectionstring) {
+        $q = "REPLACE INTO clinicintegration (OrgID, ClinicID, PollInterval, HLUserID, ProcessRecalls, PMSystem, ConnectionType, ConnectionString ) VALUES (?,?,?,?,?,?,?,?)";
+        $stmt = maindb::getInstance()->prepare($q);
+        $stmt->bind_param('siisisss', $this->OrgID, $this->ClinicID,  $interval, $hluserid, $processrecalls, $pmsystem, $connectiontype, $connectionstring);
+        $stmt->execute();
+        if($stmt->affected_rows <= 0)
+        {
+            throw new Exception(__FUNCTION__ . " Clinic Integration was not updated. Error=" . $stmt->error);
+        }
+    }
     
     public static function createDefaultClinic($orgid) {
         $q = "INSERT INTO clinics (OrgID, ClinicName) SELECT OrgID, OrgName FROM orgs WHERE OrgID = ?";
         $stmt = maindb::getInstance()->prepare($q);
         $stmt->bind_param('s', $orgid);
         $stmt->execute();
-        if ($stmt->affected_rows == 0) {
-            trigger_error("The default clinic record was not created, error= " . $this->conn->error, E_USER_ERROR);
+        if ($stmt->affected_rows != 1) {
+            trigger_error("The default clinic record was not created, error= " . $stmt->error, E_USER_ERROR);
         }
     }
     

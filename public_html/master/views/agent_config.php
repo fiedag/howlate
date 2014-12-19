@@ -10,68 +10,41 @@ echo '<?xml version="1.0" encoding="utf-8" ?>';
   </configSections>
   <applicationSettings>
     <com.howlate.Properties.Settings>
-      <setting name="Subdomain" serializeAs="String">
-        <value><?php echo $subdomain;?></value>
+      <setting name="OrgID" serializeAs="String">
+        <value><?php echo $record->OrgID;?></value>
       </setting>
-      <setting name="Clinic" serializeAs="String">
-        <value><?php echo $clinic;?></value>
-      </setting>
-      <setting name="Instance" serializeAs="String">
-        <value><?php echo $instance;?></value>
-      </setting>
-      <setting name="Database" serializeAs="String">
-        <value><?php echo $database;?></value>
-      </setting>
-      <setting name="UID" serializeAs="String">
-        <value><?php echo $uid;?></value>
-      </setting>
-      <setting name="PWD" serializeAs="String">
-        <value><?php echo $pwd;?></value>
+      <setting name="ClinicID" serializeAs="String">
+        <value><?php echo $record->ClinicID;?></value>
       </setting>
       <setting name="URL" serializeAs="String">
-        <value><?php echo $url;?></value>
+        <value><?php echo $URL;?></value>
       </setting>
       <setting name="Credentials" serializeAs="String">
-        <value><?php echo $credentials;?></value>
+        <value><?php echo $Credentials;?></value>
+      </setting>
+      <setting name="ConnectionType" serializeAs="String">
+        <value><?php echo $record->ConnectionType;?></value>
+      </setting>
+      <setting name="ConnectionString" serializeAs="String">
+        <value><?php echo $record->ConnectionString;?></value>
       </setting>
       <setting name="PollIntervalSeconds" serializeAs="String">
-        <value><?php echo $interval;?></value>
+        <value><?php echo $record->PollInterval;?></value>
       </setting>
-      <setting name="SelectBPS" serializeAs="String">
-          <value>select a1.Provider, a1.Status, a1.ArrivalTime, a1.AppointmentDate, a1.AppointmentTime, a1.ConsultationTime, 7200 As Horizon 
-from BPS_Appointments a1, BPS_Sessions b1 
-where a1.AppointmentDate = DATEADD(dd, 0, DATEDIFF(dd, 0, GETDATE()))
-and a1.ConsultationTime = 
-(SELECT MAX(a2.ConsultationTime) FROM BPS_Appointments a2 
-WHERE a2.AppointmentDate = a1.AppointmentDate and a2.Provider 
-= a1.Provider and a2.ConsultationTime != 0)
-and a1.Provider = b1.Provider
-and b1.Day = datename(dw,getdate())
-and b1.EndTime + 7200 &gt; DATEDIFF(s, 0,DATEADD(Day, 0 - DATEDIFF(Day, 0, getdate()), getdate()))
-          
-</value>
+      <setting name="SelectLates" serializeAs="String">
+          <value><?php echo str_replace(">","&gt;",str_replace("<","&lt;", $record->SelectLates));?></value>
       </setting>
       <setting name="SelectSessions" serializeAs="String">
-        <value>select * from BPS_Sessions where Provider &lt;&gt; ''</value>
+          <value><?php echo str_replace(">","&gt;",str_replace("<","&lt;", $record->SelectSessions));?></value>
       </setting>        
       <setting name="SelectToNotify" serializeAs="String">
-        <value>select a1.Patient, a1.InternalID, a1.AppointmentDate, a1.AppointmentTime, a1.Provider, p.MobilePhone from BPS_Appointments a1
-inner join BPS_Patients p on p.InternalID = a1.InternalID
-inner join PATIENTS ON PATIENTS.INTERNALID = p.InternalID
-where a1.ArrivalTime = 0 and a1.Provider = @Provider and p.MobilePhone &lt;&gt; '' and PATIENTS.CONSENTSMSREMINDER = 1
-and (
- (a1.AppointmentDate = @AppointmentDate
-and a1.AppointmentTime &gt; @AppointmentTime
-and a1.AppointmentTime &lt;= @AppointmentTime + @Horizon)
- or
- (@AppointmentTime &gt; (84600 - @Horizon) and a1.AppointmentDate = DATEADD(day,1,@AppointmentDate) 
-  and a1.AppointmentTime &lt; @AppointmentTime - 86400 + @Horizon
- )
-)
-</value>
+          <value><?php echo str_replace(">","&gt;",str_replace("<","&lt;", $record->SelectToNotify));?></value>
       </setting>
+      <setting name="ProcessRecalls" serializeAs="String">
+        <value><?php echo $record->ProcessRecalls;?></value>
+      </setting>
+        
     </com.howlate.Properties.Settings>
 
   </applicationSettings>
 </configuration>
-

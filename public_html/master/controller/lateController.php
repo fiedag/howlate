@@ -46,31 +46,6 @@ Class lateController Extends baseController {
     }
 
     
-    public function view_old() {
-        $this->registry->template->controller = $this;
-        $this->registry->template->refresh = 3000;  // milliseconds
-        $this->registry->template->when_refreshed = 'Updated ' . date('h:i A');
-        $this->registry->template->bookmark_title = "How late";
-        $this->registry->template->bookmark_url = $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"];
-        $this->registry->template->icon_url = howlate_util::logoURL(__SUBDOMAIN);
-        $this->registry->template->refresh_url = "http://secure." . __DOMAIN . "/late/pins?pins=";
-        $this->registry->template->apple_icon_url = howlate_util::logoWhiteBG();
-        
-        if (isset($_GET['udid'])) {
-            $udid = filter_input(INPUT_GET, 'udid');
-            $this->registry->template->UDID = $udid;
-            
-            $lates = device::getLatenesses($udid); // a two-dimensional array ["clinic name"][array]
-            
-            if (!empty($lates)) {
-                $this->registry->template->lates = $lates;
-                $this->registry->template->show('late_view');
-            } else {
-                $this->registry->template->show('late_none');
-            }
-        }
-    }
-    
     public function view() {
         $this->registry->template->controller = $this;
         $this->registry->template->refresh = 3000;  // milliseconds
@@ -96,6 +71,33 @@ Class lateController Extends baseController {
         }
     }
 
+    
+    public function view2() {
+        $this->registry->template->controller = $this;
+        $this->registry->template->refresh = 3000;  // milliseconds
+        $this->registry->template->when_refreshed = 'Updated ' . date('h:i A');
+        $this->registry->template->bookmark_title = "How late";
+        $this->registry->template->bookmark_url = $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"];
+        $this->registry->template->icon_url = howlate_util::logoURL(__SUBDOMAIN);
+        $this->registry->template->apple_icon_url = howlate_util::logoWhiteBG();
+        
+        if (isset($_GET['udid'])) {
+            $udid = filter_input(INPUT_GET, 'udid');
+            $this->registry->template->UDID = $udid;
+            $this->registry->template->refresh_url = "http://secure." . __DOMAIN . "/late/ajax?udid=$udid";
+            
+            $lates = device::getLatenesses($udid); // a two-dimensional array ["clinic name"][array]
+            
+            if (!empty($lates)) {
+                $this->registry->template->lates = $lates;
+                $this->registry->template->show('late_view2');
+            } else {
+                $this->registry->template->show('late_none');
+            }
+        }
+    }
+    
+    
     public function selfreg() {
         $this->registry->template->controller = $this;
         $this->registry->template->refresh = 3000;  // milliseconds
@@ -121,11 +123,8 @@ Class lateController Extends baseController {
                 $this->registry->template->lates = $lates;
                 $this->registry->template->show('late_view');
             }
-        
-    }
-    
-    
-    
+   
+    } 
 }
 
 ?>

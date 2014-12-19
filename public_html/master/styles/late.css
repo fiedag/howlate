@@ -200,6 +200,13 @@ div.latenesses {
     background-position: left center;
 }
 
+.late-message {
+    font-size: 4vw;
+    
+}
+
+
+
 .greendot {
     background-image: url('/images/greendot.png');
 }

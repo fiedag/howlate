@@ -6,9 +6,9 @@ Class tranlogController Extends baseController {
 	$this->registry->template->controller = $this;
         
         $this->get_header();
-        $this->registry->template->subheadings = array ("translog"=>"Trans Log","smslog"=>"SMS Log");
+        $this->registry->template->submenu = array ("translog"=>"Trans Log","smslog"=>"SMS Log");
         $this->registry->template->view_name = "translog";
-        $this->registry->template->show('subhead_view');
+        $this->registry->template->show('submenu_view');
         $this->registry->template->xcrud_content = $this->getWeeksLog();
         $this->registry->template->show('tranlog_index');
     }
@@ -17,9 +17,9 @@ Class tranlogController Extends baseController {
 	$this->registry->template->controller = $this;
         
         $this->get_header();
-        $this->registry->template->subheadings = array ("translog"=>"Trans Log","smslog"=>"SMS Log");
+        $this->registry->template->submenu = array ("translog"=>"Trans Log","smslog"=>"SMS Log");
         $this->registry->template->view_name = "smslog";
-        $this->registry->template->show('subhead_view');
+        $this->registry->template->show('submenu_view');
         $this->registry->template->xcrud_content = $this->getSMSLog();
         $this->registry->template->show('tranlog_index');
     }

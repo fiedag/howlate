@@ -27,7 +27,6 @@ Class apiController Extends baseController {
             $NewLate = round(($ConsultationTime - $AppointmentTime) / 60,0,PHP_ROUND_HALF_UP);
         }
         
-        logging::trlog(TranType::MISC_MISC, "calling api::updateLateness", $this->org->OrgID);
         $res = api::updateLateness($this->org->OrgID, $NewLate, $PractitionerName);
         
         $this->registry->template->result = $res;
@@ -35,12 +34,11 @@ Class apiController Extends baseController {
     }
 
     public function notify() {
-        //$this->checkCredentials();
+        $this->checkCredentials();
         $PractitionerName = $this->lookfor(array('Practitioner', 'Provider'));
         $MobilePhone = $this->lookfor(array('MobilePhone','CellPhone'));
-        
+
         $result = api::notify($this->org->OrgID, $PractitionerName, $MobilePhone);
-        
         $this->registry->template->result = $result;
         $this->registry->template->show('api_index');
     }
@@ -77,19 +75,25 @@ Class apiController Extends baseController {
     }
 
     public function agent_start() {
+        $this->checkCredentials();
+        $OrgID = $this->lookfor(array('OrgID'));
+        $ClinicID = $this->lookfor(array('ClinicID','Clinic'));
         $event = 'start';
         $message = 'agent_start';
         $assemblyversion = filter_input(INPUT_POST,"assemblyversion");
-        logging::trlog(TranType::AGT_INFO, $message);
+        logging::trlog(TranType::AGT_INFO, $message, $OrgID, $ClinicID);
+        echo "Agent Start logged on server.";
     }
     public function agent_stop() {
+        $this->checkCredentials();
+        $OrgID = $this->lookfor(array('OrgID'));
+        $ClinicID = $this->lookfor(array('ClinicID','Clinic'));
         $event = 'stop';
         $message = 'agent_stop';
         $assemblyversion = filter_input(INPUT_POST,"assemblyversion");
-        logging::trlog(TranType::AGT_INFO, $message);
+        logging::trlog(TranType::AGT_INFO, $message, $OrgID, $ClinicID);
+        echo "Agent Stop logged on server.";
     }
-
-    
     
     // overrides the one in base controller classe
     public function handle_exception($exception) {

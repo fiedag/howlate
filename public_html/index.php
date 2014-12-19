@@ -3,6 +3,7 @@
 <!--[if (gt IE 8)|!(IE)]><!--><html lang="en"><!--<![endif]-->
     <head>
         <title>HOW-LATE Cloud Software</title>
+        <meta name="google-site-verification" content="84C-kFLmCZgIPgtYPCa-wbW5Mcb2XIZaqlvtK6fkBq0" />
         <meta name="twitter:card" content="photo">
         <meta name="twitter:image" content="/master/images/twitter-image.jpg">
         <meta name="twitter:title" content="How-Late Software">
@@ -60,7 +61,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <div id="signup_div" class="row">
                                         <div class="span3 offset1">
                                             <div class="reserve-welcome fade in">
                                                 
@@ -110,7 +111,7 @@
                                     </div>
                                     <div class="row">
                                         <div style="padding: 10px;" class="span1 mobile-disable">
-                                            <div class="fb-like" data-href="http://www.how-late.com" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true" data-font="arial" data-colorscheme="dark"></div>
+                                            <div class="fb-like" data-href="http://how-late.com" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true" data-font="arial" data-colorscheme="dark"></div>
                                         </div>
 
                                     </div>
@@ -165,7 +166,8 @@
                             <li class="active mobile-disable"><a id="features_nav" href="#featurelink" title="Features" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">FEATURES</a></li>
                             <li class=""><a id="faq_nav" title="FAQ" href="/faq.php" title="Frequently Asked Questions" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">FAQ</a></li>
                             <li class=""><a id="pricing_nav" title="PRICING" href="/pricing.php" title="How Late Pricing Plans" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">PRICING</a></li>
-                            <li class=""><a id="press_nav" title="Press" href="#" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">PRESS</a></li>
+                            <li class=""><a id="press_nav" title="Press" href="/press.php" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">PRESS</a></li>
+                            <li class=""><a id="privacy_nav" title="Privacy" href="/privacy.php" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">PRIVACY</a></li>
                         </ul>
                         <ul class="nav nav-dropdown">
                             <li class="dropdown">
@@ -177,11 +179,12 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- links -->
-                                    <li class="active mobile-disable"><a id="features_nav" href="#featurelink" title="Features" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">FEATURES</a></li>
-                                    <li class=""><a id="faq_nav" title="FAQ" href="/faq.php" title="Frequently Asked Questions" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">FAQ</a></li>
-                                    <li class=""><a id="jobs_nav" title="JOBS" href="/jobs.html" title="Jobs at How Late" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">JOBS</a></li>
-                                    <li class=""><a id="press_nav" title="Press" href="/press.html" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">PRESS</a></li>
-                                    <li class=""><a id="support_nav" title="Support" href="http://support.how-late.com" style="padding-left:0px; padding-right:0px;" data-gtm-event="navigation" data-gtm-info="Header">SUPPORT</a></li>
+                            <li class="active mobile-disable"><a id="features_nav" href="#featurelink" title="Features" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">FEATURES</a></li>
+                            <li class=""><a id="faq_nav" title="FAQ" href="/faq.php" title="Frequently Asked Questions" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">FAQ</a></li>
+                            <li class=""><a id="pricing_nav" title="PRICING" href="/pricing.php" title="How Late Pricing Plans" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">PRICING</a></li>
+                            <li class=""><a id="press_nav" title="Press" href="/press.php" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">PRESS</a></li>
+                            <li class=""><a id="privacy_nav" title="Privacy" href="/privacy.php" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">PRIVACY</a></li>
+                                    
                                 </ul>
                             </li>
                         </ul>
@@ -364,6 +367,18 @@
             <div class="modal-cancel" data-dismiss="modal"></div>
             <div class="modal-body"></div>
         </div>
+        
+        <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55071264-1', 'auto');
+  ga('require', 'displayfeatures');
+  ga('send', 'pageview');
+
+</script>
         <!-- Google Tag Manager -->
         <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-WLZ9QD"
                           height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -404,43 +419,10 @@
 
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+        <script src="/master/js/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+        
         <script src="/master/js/main.js"></script>
-
-
-        <script>
-
-            function signupFunction()
-            {
-                
-                $("#signup_link").hide();
-                $("#start_trial").html("Please wait.  This may take about 1 minute");
-                $("#loader_container").css("display","block");
-                $("#loader").css("display","block");
-                company = $("#domain_input").val();
-                email = $("#email_input").val();
-                $("#start_trial").html("Creating domain for " + company + ".  Please wait.");
-
-                url_get = "https://secure.how-late.com/signup/create?company=" + company + "&email=" + email;
-                post_data = "";
-                $("#start_trial").html("Calling " + url_get);
-                debugger;
-                $.get(url_get, function(data) {
-                    resultFunction(data);
-                });
-
-            }
-            function resultFunction(html) {
-                $("#start_trial").html(html);
-            }
-            
-            function validationFunction() {
-                
-                
-                
-            }
-
-        </script>
 
 
     </body>

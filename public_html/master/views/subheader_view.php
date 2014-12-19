@@ -18,7 +18,7 @@
             </li> 
             <li>
                 <span>
-                    <a class="custom-background-fixed-lightness-95<?php echo (get_class($controller) == "bluechip_agentController")?'':'-hover';?> custom-font-on-white" href="/bluechip_agent" id="nav-sub-genie"><span>Blue Chip</span></a>
+                    <a class="custom-background-fixed-lightness-95<?php echo (get_class($controller) == "agentController")?'':'-hover';?> custom-font-on-white" href="/agent" id="nav-sub-genie"><span>Generic</span></a>
                 </span>
             </li> 
 

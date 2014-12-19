@@ -118,7 +118,10 @@ class chargeover {
     function getCustomer($orgID) {
 	$resp = $this->API->find('customer', array('external_key:EQUALS:' . $orgID));
         $Customer = $resp->response;
-        return $Customer[0];
+        if($Customer) {
+            return $Customer[0];
+        } else
+            return null;
     }
     function getCurrentActivePackage($customer_id) {
 	$resp = $this->API->find('package', array('customer_id:EQUALS:' . $customer_id, 

@@ -37,8 +37,8 @@ echo '<?xml version="1.0" encoding="utf-8" ?>';
       <setting name="PollIntervalSeconds" serializeAs="String">
         <value><?php echo $interval;?></value>
       </setting>
-      <setting name="SelectBPS" serializeAs="String">
-          <value>select a1.Provider, a1.Status, a1.ArrivalTime, a1.AppointmentDate, a1.AppointmentTime, a1.ConsultationTime, 7200 As Horizon 
+      <setting name="SelectLates" serializeAs="String">
+          <value>select a1.InternalID, a1.Status, a1.ArrivalTime, a1.AppointmentDate, a1.AppointmentTime, a1.ConsultationTime, 7200 As Horizon 
 from BPS_Appointments a1, BPS_Sessions b1 
 where a1.AppointmentDate = DATEADD(dd, 0, DATEDIFF(dd, 0, GETDATE()))
 and a1.ConsultationTime = 

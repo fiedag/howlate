@@ -47,7 +47,7 @@ Class signupController Extends baseController {
         $this->registry->template->signup_result = "Your signup was successful.  Please check your email for a link to the login page.";
         
         try {
-            $howlate_site->reduceName()->checkForDupe()->createPrivateArea()->createCPanelSubdomain()->installSSL();
+            $howlate_site->reduceName()->checkForDupe()->createCPanelSubdomain()->installSSL();
 
             $howlate_site->createOrgRecord()->createDefaultClinic()->createDefaultPractitioner()->createDefaultUser();
 
@@ -59,7 +59,7 @@ Class signupController Extends baseController {
             $this->registry->template->signup_error = $howlate_site->Result;
             $this->registry->template->signup_result = "Your signup was not successful.  We have logged the error and will contact you shortly.  There is no need to repeat the signup process.";
             $ip = $_SERVER["REMOTE_ADDR"];
-            logging::write_error(0, 1, $exception->getMessage(), $exception->getFile(), $exception->getLine(), $ip);
+            logging::write_error(0, 1, $exception->getMessage(), $exception->getFile(), $exception->getLine(), $ip, $exception->getTraceAsString());
                     
         }
 

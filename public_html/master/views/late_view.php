@@ -104,7 +104,7 @@
             <?php
         }
         ?>
-               <div class="latenesses" id="latenesses"><?php echo $r->AbbrevName; ?> is <span id="<?php echo "$r->OrgID.$r->ID"; ?>"><?php echo $r->MinutesLateMsg; ?></span></div>
+                <div class="latenesses" id="latenesses"><?php echo $r->AbbrevName; ?> is <span id="<?php echo "$r->OrgID.$r->ID"; ?>"><?php echo $r->MinutesLateMsg; ?></span></div>
 
 
                 <?php

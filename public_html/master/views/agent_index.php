@@ -1,9 +1,9 @@
 
 <?php $controller->get_header(); ?>
-
+<?php $controller->get_subheader(); ?>
 
 <div class='container primary-content'>
-    <h3>1. Download the executable and place in e.g. C:\Program Files\HowLateAgent\ folder of your Best Practice Server.</h3>
+    <h3>1. Download the executable and place in e.g. C:\Program Files\HowLate\ folder of your EHR <i>Database</i> Server.</h3>
     <div class="xcrud-nav">
         <a href="/agent/exe"><button class="xcrud-button xcrud-cyan">Download HowLateAgent.exe</button></a>
     </div>
@@ -11,47 +11,48 @@
 
     <form id="clinicselect" name="clinicselect" method="post" action="/agent/clinicselect">
         <div class="control-group">
-            <label class="control-label" for="Clinic">Clinic:</label>
-            <select class="clinic-dropdown" name="Clinic" id="Clinic" class="dropdown" onchange="this.form.submit();"><?php $controller->get_clinic_options(); ?>
+            <label class="control-label" for="ClinicID">Clinic:</label>
+            <select class="clinic-dropdown" name="ClinicID" id="ClinicID" class="dropdown" onchange="this.form.submit();"><?php $controller->get_clinic_options($ClinicID); ?>
             </select>
         </div>
-        
+
     </form>
 
+    
     <form id="org" name="org" method="post" action="/agent/update">
         <div class="control-group">
-            <label class="control-label" for="City">Instance:</label>
-            <input type="text" class="controls" id="Instance" name="Instance" size="25" value="<?php echo $instance;?>"></input>
+            <label class="control-label" for="PMSystem">System:</label>
+            <select class="clinic-dropdown" name="PMSystem" id="PMSystem" class="dropdown" ><?php $controller->get_system_options($PMSystem); ?>
+            </select>
         </div>
         <div class="control-group">
-            <label class="control-label" for="Database">Database:</label>
-            <input type="text" class="controls" id="Database" name="Database" size="7" value="<?php echo $database;?>"></input>
-        </div>
+            <label class="control-label" for="ConnectionType">Connection Type:</label>
+            <select class="clinic-dropdown" name="ConnectionType" id="ConnectionType" class="dropdown" >
+                <?php $controller->get_connection_options($ConnectionType); ?>
+            </select>
+        </div> 
         <div class="control-group">
-            <label class="control-label" for="UID">UserID:</label>
-            <input type="text" class="controls" id="UID" name="UID" size="25" value="<?php echo $uid;?>"></input>
-        </div>
+            <label class="control-label" for="ConnectionString">Connection String:</label>
+            <textarea class="controls" id="ConnectionString" name="ConnectionString" rows="4" cols="80" form="org"><?php echo $ConnectionString;?></textarea>
+            <label class="control-label" for="ConnectionStringExample">Example:</label>
+            <textarea class="controls" id="ConnectionStringExample" name="ConnectionStringExample" rows="4" cols="80" readonly></textarea>
+        </div> 
         <div class="control-group">
-            <label class="control-label" for="PWD">Password:</label>
-            <input type="text" class="controls" id="PWD" name="PWD" size="25" value="<?php echo $pwd;?>"></input>
-        </div>
-        <div class="control-group">
-            <label class="control-label" for="PWD">Poll Interval (seconds):</label>
-            <input type="text" class="controls" id="Interval" name="Interval" size="10" value="<?php echo $interval;?>"></input>
+            <label class="control-label" for="PollInterval">Poll Interval (seconds):</label>
+            <input type="text" class="controls" id="Interval" name="PollInterval" size="10" value="<?php echo $PollInterval;?>"></input>
         </div>  
         <div class="control-group">
             <label class="control-label" for="HLUserID">How Late UserID:</label>
-            <input type="text" class="controls" id="HLUserID" name="HLUserID" size="10" value="<?php echo $hluserid;?>"></input>
+            <select class="clinic-dropdown" name="HLUserID" id="HLUserID" class="dropdown" ><?php $controller->get_user_options($HLUserID); ?>
+            </select>
         </div>  
     <h3>3. Download the config file and place in the same folder as the exe</h3>
         <div>
-            <button type="submit" class="xcrud-button xcrud-cyan ">Download HowLateAgent.exe.config</button>
+            <button type="submit" class="xcrud-button xcrud-cyan ">(SAVE) Download HowLateAgent.exe.config</button>
         </div>
         <input type="hidden" readonly="readonly" class="controls" id="OrgID" name="OrgID" value="<?php echo $controller->org->OrgID;?>"><br>
         <input type="hidden" readonly="readonly" class="controls" id="ClinicID" name="ClinicID" value="<?php echo $controller->currentClinic;?>"><br>
         <input type="hidden" readonly="readonly" class="controls" id="Subdomain" name="Subdomain" value="<?php echo $controller->org->Subdomain;?>"><br>
-        <input type="hidden" readonly="readonly" class="controls" id="FQDN" name="FQDN" value="<?php echo $controller->org->FQDN;?>"><br>
-        <input type="hidden" readonly="readonly" class="controls" id="UpdIndic" name="UpdIndic" value="<?php echo $controller->org->UpdIndic;?>"><br>
     </form>
 
 
@@ -67,6 +68,30 @@
     
 </div>
 
+<script>
+
+$( document ).ready(function() {
+    $("#ConnectionStringExample").html(exampleConnStr($("#ConnectionType").val()));
+});
+
+
+$("#ConnectionType").change(
+        function() {
+                $("#ConnectionStringExample").html(exampleConnStr($(this).val()));
+        }
+);
+
+function exampleConnStr($connType) {
+    if ($connType == "ODBC DSN") {
+        return "DSN=systemdsn_here;UID=userid_here;PWD=passwordhere";
+    }
+    else
+        return "Server=hostname_here\\instancename_here;Database=dbname_here;UID=username_here;PWD=password_here";
+}
+
+
+</script>
+    
 
 <?php $controller->get_footer(); ?>
 

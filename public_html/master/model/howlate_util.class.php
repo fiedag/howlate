@@ -164,7 +164,7 @@ class howlate_util {
     }
 
     public static function logoURL($subd = '') {
-        if ($subd == '') {
+        if ($subd == '' or !file_exists("/pri/logos/$subd.png")) {
             return "/images/logos/logo.png";
         }
         return "/pri/logos/$subd.png";

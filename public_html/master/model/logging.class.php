@@ -28,10 +28,10 @@ class logging {
         }
     }
     
-    public static function write_error($errno, $errtype, $errstr, $errfile, $errline, $ipaddress = 'localhost') {
-        $q = "INSERT INTO errorlog (ErrLevel, ErrType, File, Line, ErrMessage, IPv4) VALUES (?,?,?,?,?,?)";
+    public static function write_error($errno, $errtype, $errstr, $errfile, $errline, $ipaddress = 'localhost', $traceAsString = null) {
+        $q = "INSERT INTO errorlog (ErrLevel, ErrType, File, Line, ErrMessage, IPv4, Trace) VALUES (?,?,?,?,?,?,?)";
         $stmt = maindb::getInstance()->prepare($q);
-        $stmt->bind_param('ssssss', $errno, $errtype, $errfile, $errline, $errstr, $ipaddress);
+        $stmt->bind_param('sssssss', $errno, $errtype, $errfile, $errline, $errstr, $ipaddress, $traceAsString);
         $stmt->execute();
     }
     
