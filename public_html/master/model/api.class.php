@@ -13,6 +13,7 @@ class api {
         $pract = practitioner::getInstance($OrgID,$PractitionerName,'FullName');
         if(!$pract)
         {
+            
             $pract = practitioner::createDefaultPractitioner($OrgID,$PractitionerName);
         }
         if ($NewLate < 0) {
@@ -22,6 +23,7 @@ class api {
     }
 
     public static function updateSessions($OrgID, $PractitionerName, $Day, $StartTime, $EndTime) {
+
         $pract = practitioner::getInstance($OrgID,$PractitionerName,'FullName');
         if(!$pract)
         {

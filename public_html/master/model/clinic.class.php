@@ -34,13 +34,12 @@ class clinic extends howlate_basetable {
             return null;
     }
 
-    
     public function getClinicIntegration() {
         $q = "SELECT * FROM vwClinicIntegration WHERE OrgID = '$this->OrgID' AND ClinicID = $this->ClinicID";
         if ($result = maindb::getInstance()->query($q)) {
             return $result->fetch_object();
         }
-        
+
     }
     
     // creates all the clinic integration records.  one for each clinic of the organisation

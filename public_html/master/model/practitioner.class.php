@@ -23,14 +23,40 @@ class practitioner {
                 "ClinicName, ClinicID, OrgName, FQDN, NotificationThreshold, LateToNearest, LatenessOffset " .
                 "FROM vwPractitioners WHERE OrgID = '$OrgID' AND $FieldName = ";
         $q .= ($FieldName == "SurrogKey")?$FieldValue:"'$FieldValue'";
+
+        $sql = maindb::getInstance();
         
+        if ($result = $sql->query($q)->fetch_object()) {
+            if (!self::$instance) {
+                self::$instance = new self();
+            }
+            foreach ($result as $key => $val) {
+                self::$instance->$key = $val;
+            }
+            
+            return self::$instance;
+        }
+        else {
+            return null;
+        }
+        
+    }
+
+    public static function getInstance2($OrgID, $FieldValue, $FieldName = 'PractitionerID') {
+
+        $q = "SELECT OrgID, PractitionerID, Pin, PractitionerName, FullName, " .
+                "ClinicName, ClinicID, OrgName, FQDN, NotificationThreshold, LateToNearest, LatenessOffset " .
+                "FROM vwPractitioners WHERE OrgID = '$OrgID' AND $FieldName = ";
+        $q .= ($FieldName == "SurrogKey")?$FieldValue:"'$FieldValue'";
+
         $sql = maindb::getInstance();
         $stmt = $sql->prepare($q);
         
         if (!$stmt->execute()) {
             throw new Exception($stmt->error);
         };
-        if ($stmt->affected_rows == 0) {
+        
+        if ($stmt->num_rows < 1) {
             return null;
         }
 
@@ -44,7 +70,10 @@ class practitioner {
         $stmt->fetch();
         return self::$instance;
     }
-
+    
+    
+    
+    
     public function logoURL() {
         return howlate_util::logoURL($this->Subdomain);
     }
@@ -98,12 +127,12 @@ class practitioner {
         if (!$stmt->execute()) {
             throw new Exception($stmt->error);
         }
-        if ($stmt->affected_rows == 0) {
-            trigger_error("The default practitioner was not created, error= " . $this->conn->error, E_USER_ERROR);
+        if ($stmt->affected_rows != 1) {
+            throw new Exception("The default practitioner was not created, error= " . $stmt->error, E_USER_ERROR);
         }
+        logging::trlog(TranType::MISC_MISC,"Default Practitioner $name created",$orgid);
         return self::getInstance($orgid, $name, 'FullName');
     }
-    
     
     public function enqueueNotification($MobilePhone, $domain = 'how-late.com') {
         $MobilePhone = trim($MobilePhone);
@@ -126,6 +155,7 @@ class practitioner {
         return "SMS message to $MobilePhone queued.";
     }
     
+    
     public function getCurrentLateness() {
         $q = "SELECT MinutesLateMsg FROM vwLateness WHERE OrgID = '$this->OrgID' AND ID = '$this->PractitionerID'";
         // always guaranteed to get one row
@@ -136,8 +166,5 @@ class practitioner {
         $result->close(); 
         return null;
     }
-    
-  
 }
-
 ?>

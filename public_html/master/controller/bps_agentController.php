@@ -8,7 +8,7 @@ Class bps_agentController Extends baseController {
         if (isset($_SESSION["CLINIC"]) ) {
            $this->currentClinic = $_SESSION['CLINIC'];
         } else {
-            $this->currentClinic = $this->org->Clinics[0]->ClinicID;        
+            $this->currentClinic = $this->org->Clinics[0]->ClinicID;
         }
         $this->registry->template->controller = $this;
         $this->clinicselect($this->currentClinic); 
@@ -27,8 +27,11 @@ Class bps_agentController Extends baseController {
             $this->currentClinic = $clinicID;
         }
 
-        $result = clinic::getInstance($this->org->OrgID,$this->currentClinic)->getClinicIntegration();
+        $clin = clinic::getInstance($this->org->OrgID,$this->currentClinic);
+        $result = $clin->getClinicIntegration();
+        
         if (is_null($result)) {
+            echo "result null";
             clinic::getInstance($this->org->OrgID,$this->currentClinic)->createClinicIntegration();
             $result = clinic::getInstance($this->org->OrgID,$this->currentClinic)->getClinicIntegration();
 
@@ -36,7 +39,9 @@ Class bps_agentController Extends baseController {
         
         $this->registry->template->subdomain = __SUBDOMAIN;
         $this->registry->template->clinic = $this->currentClinic;
+        
         $this->registry->template->instance = $result->Instance;
+        
         $this->registry->template->database = $result->DbName;
         $this->registry->template->uid = $result->UID;
         $this->registry->template->pwd = $result->PWD;

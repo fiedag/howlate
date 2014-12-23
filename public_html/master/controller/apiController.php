@@ -14,6 +14,16 @@ Class apiController Extends baseController {
         parent::__construct($registry);
     }
     
+    public function test2() {
+        $PractitionerName = 'Dr Anthony Alvano';
+        $Day = 'Friday';
+        $StartTime = 4000;
+        $EndTime = 5000;
+        $org = organisation::getInstance(__SUBDOMAIN);
+        $this->registry->template->result = api::updateSessions($org->OrgID, $PractitionerName, $Day, $StartTime, $EndTime);
+        $this->registry->template->show('api_index');
+    }
+    
     public function upd() {
         $this->checkCredentials();
 
