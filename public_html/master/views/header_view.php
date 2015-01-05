@@ -65,7 +65,7 @@
                             <li class="<?php if (get_class($controller) == "agentController") {
                             echo 'active';
                         } ?> custom-background-dark-hover">
-                                <span><a id="nav-agent" title="Setup parameters for Agents which integrate with your Practice Management system." class="<?php echo (get_class($controller) == "agentController") ? 'custom-font-on-white' : 'font-on-custom-background'; ?>" href="https://<?php echo __FQDN; ?>/bps_agent">Integration</a></span>
+                                <span><a id="nav-agent" title="Setup parameters for Agents which integrate with your Practice Management system." class="<?php echo (get_class($controller) == "agentController") ? 'custom-font-on-white' : 'font-on-custom-background'; ?>" href="https://<?php echo __FQDN; ?>/agent">Integration</a></span>
                             </li>                            
                             <li class="<?php if (get_class($controller) == "tranlogController") {
                             echo 'active';

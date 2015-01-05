@@ -18,7 +18,7 @@ Class pmsystemsController Extends baseController {
         $xcrud->connection(howlate_util::mysqlUser(),howlate_util::mysqlPassword(),howlate_util::mysqlDb());
         $xcrud->table('pmsystems')->table_name('Practice Management Systems',"See CSV export button at end.")->limit(10);
         $xcrud->order_by('Priority','desc');        
-        $xcrud->change_type('SelectLates,SelectToNotify,SelectSessions', 'texteditor');
+        $xcrud->change_type('SelectLates,SelectToNotify,SelectSessions', 'textarea');
         return $xcrud->render();
     }   
     

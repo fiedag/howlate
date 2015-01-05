@@ -2,7 +2,7 @@
 <!--[if lt IE 9 ]><html lang="en" class="ie8"><![endif]-->
 <!--[if (gt IE 8)|!(IE)]><!--><html lang="en"><!--<![endif]-->
     <head>
-        <title>HOW-LATE Cloud Software</title>
+        <title>Doctor Running Late App</title>
         <meta name="google-site-verification" content="84C-kFLmCZgIPgtYPCa-wbW5Mcb2XIZaqlvtK6fkBq0" />
         <meta name="twitter:card" content="photo">
         <meta name="twitter:image" content="/master/images/twitter-image.jpg">
@@ -21,8 +21,8 @@
         <meta name="og:description" content="Arrive late, but in good time.">
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="How-Late Software allows doctors to inform their patients how late they are running.">
-        <meta name="keywords" content="how late, medical practitioner, patient, appointment, booking, cloud, software">
+        <meta name="description" content="How-Late Software allows doctors to tell their patients if their appointment is running late.  Allows patients to see if their doctors appointment is running late.">
+        <meta name="keywords" content="doctor running late app, how late, medical practitioner, patient, appointment, booking, cloud, software">
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
         <link rel="apple-touch-icon-precomposed" href="master/images/apple-touch-icon.png" />
         <link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/css/bootstrap.min.css" rel="stylesheet" />

@@ -15,7 +15,7 @@
                 <div class="span-8 append-1">
                     <h4>Community</h4>
                     <ul>
-                        <li><a target="_blank" href="http://<?php echo __DOMAIN;?>/welcome/blog/">Blog</a></li>
+                        <li><a target="_blank" href="http://<?php echo __DOMAIN;?>/forum/index.php">Forum</a></li>
                         <li><a target="_blank" href="http://<?php echo __DOMAIN;?>/faq.php">FAQ</a></li>
                     </ul>
                 </div>
