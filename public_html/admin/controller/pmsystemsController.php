@@ -19,6 +19,8 @@ Class pmsystemsController Extends baseController {
         $xcrud->table('pmsystems')->table_name('Practice Management Systems',"See CSV export button at end.")->limit(10);
         $xcrud->order_by('Priority','desc');        
         $xcrud->change_type('SelectLates,SelectToNotify,SelectSessions', 'textarea');
+        $xcrud->auto_xss_filtering = false; // disable all xcrud's POST and GET data filtering for this page
+
         return $xcrud->render();
     }   
     

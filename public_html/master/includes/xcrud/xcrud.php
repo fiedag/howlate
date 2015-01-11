@@ -2530,6 +2530,8 @@ class Xcrud
         {
             self::error('$postdata array is empty');
         }
+        
+
         $res = false;
         $set = array();
         $db = Xcrud_db::get_instance($this->connection);
@@ -2605,10 +2607,12 @@ class Xcrud
                     $set[] = '`' . $fields[$key]['table'] . '`.`' . $fields[$key]['field'] . '` = Point(' . $db->escape($val, true, 'point',
                         $this->field_null[$key], isset($this->bit_field[$key])) . ')';
                 }
-                else
-                    $set[] = '`' . $fields[$key]['table'] . '`.`' . $fields[$key]['field'] . '` = ' . ((isset($this->no_quotes[$key]) &&
+                else {
+                    $xyz = '`' . $fields[$key]['table'] . '`.`' . $fields[$key]['field'] . '` = ' . ((isset($this->no_quotes[$key]) &&
                         isset($this->pass_var['edit'][$key])) ? $db->escape($val, true) : $db->escape(trim($val), false, $this->field_type[$key],
                         $this->field_null[$key], isset($this->bit_field[$key])));
+                    $set[] = $xyz;
+                }
             }
         }
         if (!$set)
@@ -2620,7 +2624,6 @@ class Xcrud
             if (!$this->demo_mode) {
                 $q = "UPDATE `{$this->table}` SET " . implode(",\r\n", $set) . " WHERE `{$this->primary_key}` = " . $db->
                     escape($primary) . " LIMIT 1";
-                
                 $res = $db->query($q);
             }
         }
@@ -2636,7 +2639,6 @@ class Xcrud
             if (!$this->demo_mode) {
                 $q = "UPDATE `{$this->table}` AS `{$this->table}` " . implode(' ', $joins) . " SET " . implode(",\r\n", $set) .
                         " WHERE `{$this->table}`.`{$this->primary_key}` = " . $db->escape($primary);
-
                 $res = $db->query($q);
             }
         }
@@ -2831,6 +2833,7 @@ class Xcrud
     protected function _save()
     {
         $postdata = $this->_post('postdata');
+        
         if (!$postdata)
         {
             self::error('No data to save!');

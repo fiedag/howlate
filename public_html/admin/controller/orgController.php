@@ -23,7 +23,6 @@ Class orgController Extends baseController {
         return $xcrud->render();
     }   
     
-    
 }
 
 ?>

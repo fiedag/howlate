@@ -39,7 +39,6 @@ class practitioner {
         else {
             return null;
         }
-        
     }
 
     public static function getInstance2($OrgID, $FieldValue, $FieldName = 'PractitionerID') {
@@ -50,28 +49,22 @@ class practitioner {
         $q .= ($FieldName == "SurrogKey")?$FieldValue:"'$FieldValue'";
 
         $sql = maindb::getInstance();
-        $stmt = $sql->prepare($q);
         
-        if (!$stmt->execute()) {
-            throw new Exception($stmt->error);
-        };
-        
-        if ($stmt->num_rows < 1) {
+        if ($result = $sql->query($q)->fetch_object()) {
+            if (!self::$instance) {
+                self::$instance = new self();
+            }
+            foreach ($result as $key => $val) {
+                self::$instance->$key = $val;
+            }
+            
+            return self::$instance;
+        }
+        else {
             return null;
         }
-
-        if (!self::$instance) {
-            self::$instance = new self();
-        }
-        $stmt->bind_result(self::$instance->OrgID, self::$instance->PractitionerID, 
-                self::$instance->Pin, self::$instance->PractitionerName, self::$instance->FullName, self::$instance->ClinicName, 
-                self::$instance->ClinicID, self::$instance->OrgName, self::$instance->FQDN, 
-                self::$instance->NotificationThreshold, self::$instance->LateToNearest, self::$instance->LatenessOffset);
-        $stmt->fetch();
-        return self::$instance;
+        
     }
-    
-    
     
     
     public function logoURL() {

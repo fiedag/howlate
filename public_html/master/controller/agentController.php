@@ -5,6 +5,9 @@ Class agentController Extends baseController {
     public $currentClinic;
     public $currentSystem;
     public $currentUserID;
+
+    private $submenu = array ("agent"=>"Agent","sessions"=>"Sessions");
+        
     
     public function index() {
         if (isset($_SESSION["CLINIC"]) ) {
@@ -187,6 +190,15 @@ Class agentController Extends baseController {
     public function get_subheader() {
         $this->registry->template->show('subheader_view');
     }
+
+    public function get_submenu() {
+        
+        $this->registry->template->submenu = $this->submenu;
+        $this->registry->template->view_name = "agent";
+        $this->registry->template->show('submenu_view');
+    }
+    
+    
     
 }
 

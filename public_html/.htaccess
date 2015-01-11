@@ -8,10 +8,14 @@ Options -Indexes
 
 #AuthName "how-late root"
 #Order deny,allow
-##Deny from all
-##Allow from 203.122.224.228 203.122.212.28
+#Deny from all
+#Allow from 203.122.224.228 203.122.212.28
 #Satisfy any
 #Options -Indexes
 #AuthUserFile "/home/howlate/.htpasswds/public_html/passwd"
 
 
+
+# BEGIN WordPress
+
+# END WordPress

@@ -20,7 +20,7 @@ Class practController Extends baseController {
         $xcrud->table('practitioners')->where('OrgID =', $this->org->OrgID)->limit(10);
         $xcrud->join("SurrogKey","vwAssigned","SurrogKey");
 
-        $xcrud->columns('FullName,AbbrevName,DateCreated,vwAssigned.Assigned,SurrogKey', false);
+        $xcrud->columns('ID,FullName,AbbrevName,DateCreated,vwAssigned.Assigned,SurrogKey', false);
         
         $xcrud->readonly('OrgID,ID,SurrogKey,DateCreated,vwAssigned.Assigned');  //  for create/update/delete
         $xcrud->fields('vwAssigned.OrgID,vwAssigned.ID,vwAssigned.ClinicID,DateCreated',true);
@@ -63,6 +63,7 @@ Class practController Extends baseController {
         }
 
         $pract = practitioner::getInstance($orgid, $practid);
+        
         $pract->place($orgid, $practid, $clinicID);
 
         $this->org = organisation::getInstance(__SUBDOMAIN);

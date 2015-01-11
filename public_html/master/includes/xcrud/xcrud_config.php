@@ -177,6 +177,6 @@ class Xcrud_config
     public static $demo_mode = false; // disables any changing data in database
     public static $performance_mode = false; // experimental, disables {field_tags} features
     public static $autoclean_timeout = 3; // in seconds. Do not change, if not sure. Xcrud clears old instances in session when you reload browser tab or open new tab with xcrud. In this case Xcrud can't work in two tabs in the same time. You can increase timeout on your risk.
-    public static $auto_xss_filtering = true; // enable all xcrud's POST and GET data filtering
+    public static $auto_xss_filtering = false; // enable all xcrud's POST and GET data filtering
 
 }

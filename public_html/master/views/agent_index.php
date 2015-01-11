@@ -1,6 +1,6 @@
 
 <?php $controller->get_header(); ?>
-<?php $controller->get_subheader(); ?>
+<?php $controller->get_submenu(); ?>
 
 <div class='container primary-content'>
     <h3>1. Download the executable and place in e.g. C:\Program Files\HowLate\ folder of your EHR <i>Database</i> Server.</h3>

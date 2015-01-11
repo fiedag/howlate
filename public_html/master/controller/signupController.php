@@ -42,16 +42,21 @@ Class signupController Extends baseController {
         $this->registry->template->logourl = howlate_util::logoURL();
         $howlate_site = new howlate_site($company,$email);
 
+
+        $clickatell = new clickatell();        
         
         $this->registry->template->signup_error = "";
         $this->registry->template->signup_result = "Your signup was successful.  Please check your email for a link to the login page.";
         
         try {
             $howlate_site->reduceName()->checkForDupe()->createCPanelSubdomain()->installSSL();
-
             $howlate_site->createOrgRecord()->createDefaultClinic()->createDefaultPractitioner()->createDefaultUser();
-
             $howlate_site->sendWelcomeEmail();
+            
+
+            $administrator = "61403569377";
+            $smstext = "New Signup : " . $company . ", email = " . $email;
+            $clickatell->httpSend( $administrator, $smstext, $howlate_site->OrgID);
         } catch (Exception $exception) {
             require_once("includes/kint/Kint.class.php");
 
@@ -62,7 +67,7 @@ Class signupController Extends baseController {
             logging::write_error(0, 1, $exception->getMessage(), $exception->getFile(), $exception->getLine(), $ip, $exception->getTraceAsString());
                     
         }
-
+        logging::trlog(TranType::MISC_MISC, $howlate_site->Result);
         $this->registry->template->show('signup_done');
 
     }

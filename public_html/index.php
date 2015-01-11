@@ -62,23 +62,20 @@
                                         </div>
                                     </div>
                                     <div id="signup_div" class="row">
-                                        <div class="span3 offset1">
+                                        <div class="span5 offset1">
                                             <div class="reserve-welcome fade in">
                                                 
                                                 <hgroup>
                                                     <h1>Sign up for</h1>
-                                                    <h1>How Late Cloud.</h1>
+                                                    <h1>How Late.</h1>
                                                 </hgroup>
                                                 <p id="start_trial" class="start-trial">Start your free trial.  Enter your preferred domain and email address to begin.</p>
                                                 <div class="" style="display:inline-box-align">
                                                     <input id="domain_input" type="text" class="input-block-level" required placeholder="e.g. xyzclinic" />
                                                     <span class='form-label'><b>&nbsp;.how&#8209;late.com</b></span>
                                                     <br><input id="email_input" type="email" class="input-block-level" required placeholder="email" />
-                                                    &nbsp;&nbsp;
-                                                    <span class="form-label">
-                                                        &nbsp;
-                                                        <span id="signup_link" title="Submit" onclick="signupFunction();">Try it free for 30 days</span>
-                                                    </span><p class="error"></p>
+                                                        <br><br><span id="signup_link" title="Submit" onclick="signupFunction();">Try it free for 30 days.</span>
+                                                    <p class="error"></p>
 
                                                 </div>
                                             </div>
@@ -420,7 +417,8 @@
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
         <script src="/master/js/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-
+        <script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
+        <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
         
         <script src="/master/js/main.js"></script>
 

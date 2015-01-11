@@ -145,7 +145,7 @@ class howlate_site {
         foreach ($users as $user) {
             $body .= "Username: " . $user->UserID . "\r\n";
             $body .= "Please sign in by following this link:\r\n";
-            $token = $this->db->save_reset_token($user->UserID, $this->Email, $user->OrgID);
+            $token = organisation::saveResetToken($user->OrgID, $user->UserID, $this->Email);
             $link = "http://" . $user->FQDN . "/reset?token=$token" . "\r\n";
             $body .= $link . "\r\n";
             $this->mylog("Password reset link generated: $link");
@@ -184,20 +184,19 @@ class howlate_site {
         $this->mylog($result);
     } 
     
-      public function deleteCPanelSubdomain($subd) 
-    {
+    public function deleteCPanelSubdomain($subd) {
         $xmlapi = new xmlapi('localhost');
         $xmlapi->password_auth(howlate_util::cpanelUser(), howlate_util::cpanelPassword());
         $xmlapi->set_output("xml");
         $xmlapi->set_protocol("http");
         $xmlapi->set_debug(1);
-        
+
         $this->mylog("Deleting subdomain for $subd");
-        $result = $xmlapi->api2_query('howlate', "SubDomain","delsubdomain", array('domain'=>$subd, 'dir'=>"/public_html/master", 'rootdomain'=>__DOMAIN));
+        $result = $xmlapi->api2_query('howlate', "SubDomain", "delsubdomain", array('domain' => $subd, 'dir' => "/public_html/master", 'rootdomain' => __DOMAIN));
         $this->mylog($result);
         return $this;
     }
-    
+
     
 //    public function deldomain()
 //    {

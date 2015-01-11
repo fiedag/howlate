@@ -6,7 +6,6 @@ RewriteCond %{HTTP_HOST} !^secure\.how-late\.com$ [NC]
 RewriteCond %{HTTP_HOST} !^secure\.fiedlerconsulting\.com\.au$ [NC]
 RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [NC,R=301,L]
 
-
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 # rewrites a fileuri of controller/action into index.php?rt=controller/action

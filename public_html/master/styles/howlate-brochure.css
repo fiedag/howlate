@@ -727,6 +727,7 @@ section#features h5 {
 	margin-top/*\**/: 100px\9 !important;
 }
 
+
 .reserve-welcome h1,
 .reserve-thank-you h1,
 .reserve-sorry h1,
@@ -1172,7 +1173,8 @@ div.hand, div.simple-image, div.social-image {
     .reserve-welcome, .reserve-thank-you, .reserve-sorry {
         color: #757575;
         max-width: 310px;
-		margin-top: 80px;
+	margin-top: 80px;
+        margin-left: 40px;
     }
     
     .reserve-welcome input {

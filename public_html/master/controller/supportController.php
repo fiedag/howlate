@@ -66,7 +66,6 @@ Class supportController Extends baseController {
         $smstext = "User " .  $_SESSION["USER"] . " from " . $this->org->OrgName . " has sent you a note.  Check admin@how-late.com";
         howlate_sms::httpSend($this->org->OrgID, $administrator, $smstext);
         
-        
         $mailer = new howlate_mailer();
         $mailer->send(howlate_util::admin_email(),'Administrator', 'A note has been received', $note, 'admin@how-late.com', 'Administrator');
           
