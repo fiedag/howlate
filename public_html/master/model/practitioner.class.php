@@ -118,7 +118,7 @@ class practitioner {
         $stmt = maindb::getInstance()->prepare($q);
         $stmt->bind_param('ss', $orgid, $name);
         if (!$stmt->execute()) {
-            throw new Exception($stmt->error);
+            throw new Exception("sp_CreatePractitioner($orgid, $name)" . $stmt->error);
         }
         if ($stmt->affected_rows != 1) {
             throw new Exception("The default practitioner was not created, error= " . $stmt->error, E_USER_ERROR);
@@ -136,7 +136,7 @@ class practitioner {
         if (strtolower($lateness) == "on time" or strtolower($lateness) == "off duty") 
             return "Informational: Already on time, not enqueued";
         
-        $url = "http://secure." . $domain . "/late/view&udid=$MobilePhone";
+        $url = "http://m." . $domain . "/late/view&udid=$MobilePhone";
         $msg = $this->PractitionerName . " is running " . $lateness . ". For updates,click " . $url;
 
         // this takes care of duplicates

@@ -18,7 +18,7 @@ function signupFunction()
     $("#loader").css("display", "block");
     $("#start_trial").html("Creating domain for " + company + ".  Please wait.");
 
-    url_get = "https://secure.how-late.com/signup/create?company=" + company + "&email=" + email;
+    url_get = "https://m.how-late.com/signup/create?company=" + company + "&email=" + email;
     post_data = "";
     //$("#start_trial").html("Calling " + url_get);
     debugger;

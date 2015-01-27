@@ -9,7 +9,6 @@
                     <ul>
                         <li><a target="_blank" href="http://<?php echo __DOMAIN; ?>/pricing.php" id="footer-feature">Billing</a></li>
                         <li><a href="http://<?php echo __FQDN; ?>/help" id="footer-feature">Help</a></li>
-                        <!-- li><a target="_blank" href="http://<?php echo __FQDN; ?>/support/newfeatures">New Features</a></li -->
                     </ul>
                 </div>
                 <div class="span-8 append-1">
@@ -31,7 +30,6 @@
             <div class="clearb"></div>
         </div>
     </div>
-
 
 <!-- This is a comment in the footer view -->
 

@@ -58,7 +58,7 @@ Class lateController Extends baseController {
         if (isset($_GET['udid'])) {
             $udid = filter_input(INPUT_GET, 'udid');
             $this->registry->template->UDID = $udid;
-            $this->registry->template->refresh_url = "http://secure." . __DOMAIN . "/late/ajax?udid=$udid";
+            $this->registry->template->refresh_url = "http://m." . __DOMAIN . "/late/ajax?udid=$udid";
             
             $lates = device::getLatenesses($udid); // a two-dimensional array ["clinic name"][array]
             
@@ -84,7 +84,7 @@ Class lateController Extends baseController {
         if (isset($_GET['udid'])) {
             $udid = filter_input(INPUT_GET, 'udid');
             $this->registry->template->UDID = $udid;
-            $this->registry->template->refresh_url = "http://secure." . __DOMAIN . "/late/ajax?udid=$udid";
+            $this->registry->template->refresh_url = "http://m." . __DOMAIN . "/late/ajax?udid=$udid";
             
             $lates = device::getLatenesses($udid); // a two-dimensional array ["clinic name"][array]
             

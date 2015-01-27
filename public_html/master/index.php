@@ -4,7 +4,7 @@
 // Entry point for MVC for how-late admin website.
 // subdomain.how-late.com redirects to public_html/master/index.php
 //
-$host = $_SERVER["SERVER_NAME"];  // e.g. secure.how-late.com
+$host = $_SERVER["SERVER_NAME"];  // e.g. m.how-late.com
 $firstdot = strpos($host, '.');
 
 define("__DOMAIN", substr($host, $firstdot + 1));

@@ -11,14 +11,10 @@
         <link rel="stylesheet" href="/styles/guiders.css" type="text/css" />
         <link media="screen" href="/includes/xcrud/themes/default/xcrud.css" type="text/css" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-        <script type="text/javascript" src="js/guiders.js"></script>
-
+        <script type="text/javascript" src="/js/guiders.js"></script>
     </head>
     <body>
-
-
         <div id="navmain" class="fresh-header">
-
             <div class="container  relative-box">
                 <!-- top links -->
                 <ul class="nav-toplinks">
@@ -26,7 +22,6 @@
                     <li><a id="nav-log-out" href="https://<?php echo __FQDN; ?>/logout">Log out</a></li>
                 </ul>
                 <!-- end top links -->
-
                 <div class="logo-exists">
                     <div id="logo-container" class="logo-container">
                         <img alt="" id="sysLogo" class="system-logo" 
@@ -91,14 +86,17 @@
                                     echo 'active';
                                 }
                                 ?> custom-background-dark-hover">
-                                    <span><a id="nav-agent" title="Review, search or download one week's activity log." class="<?php echo (get_class($controller) == "tranlogController") ? 'custom-font-on-white' : 'font-on-custom-background'; ?>" href="https://<?php echo __FQDN; ?>/tranlog">Activity Log</a></span>
+                                    <span><a id="nav-activity" title="Review, search or download one week's activity log." class="<?php echo (get_class($controller) == "tranlogController") ? 'custom-font-on-white' : 'font-on-custom-background'; ?>" href="https://<?php echo __FQDN; ?>/tranlog">Activity Log</a></span>
                                 </li>
-
                         </ul>
                     </div>
                     <div class="clearb"></div>
                 </div>
             </div>
         </div>
+        
+<?php include_once('views/header_guiders.php'); ?>
+        
 
-
+        
+        

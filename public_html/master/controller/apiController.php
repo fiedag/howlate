@@ -31,7 +31,7 @@ Class apiController Extends baseController {
         $AppointmentTime = $this->lookfor(array('AppointmentTime'));
         $ArrivalTime = $this->lookfor(array('ArrivalTime'));
         $ConsultationTime = $this->lookfor(array('ConsultationTime'));
-        $NewLate = $this->lookfor(array('NewLate'));
+        $NewLate = $this->lookfor(array('NewLate'));  // in units of minutes
 
         if (!$NewLate) {
             $NewLate = round(($ConsultationTime - $AppointmentTime) / 60,0,PHP_ROUND_HALF_UP);
@@ -65,7 +65,9 @@ Class apiController Extends baseController {
     public function sess() {
         $this->checkCredentials();
         $PractitionerName = $this->lookfor(array('Practitioner', 'Provider'));
-        
+        if (!$PractitionerName) {
+            throw new Exception("Practitioner or Provider not given.");
+        }
         $Day = $this->lookfor(array('Day'));
         $StartTime = $this->lookfor(array('StartTime'));
         $EndTime = $this->lookfor(array('EndTime'));
@@ -139,6 +141,7 @@ Class apiController Extends baseController {
         }
         return null;
     }
+    
     private function checkCredentials() {
         $credentials = $this->lookfor(array('credentials'));
         if(!$credentials) {

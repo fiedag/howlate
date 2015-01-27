@@ -249,7 +249,7 @@ class organisation {
 
         $message = 'Click for lateness updates from ' . $prac->PractitionerName . ' at ' . $prac->ClinicName;
         $message .= ': ';
-        $message .= "http://secure." . __DOMAIN . "/late/view&udid=$udid";
+        $message .= "http://m." . __DOMAIN . "/late/view&udid=$udid";
         howlate_sms::httpSend($org, $udid, $message);
     }
 

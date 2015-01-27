@@ -53,7 +53,7 @@ class device {
         $prac = practitioner::getInstance($org,$id);
 
        $message = "Current delays for $prac->PractitionerName at $prac->ClinicName can be checked at " .
-       "http://secure.$domain/late/view&udid=$udid";
+       "http://m.$domain/late/view&udid=$udid";
 
        $clickatell = new clickatell();
        $clickatell->httpSend( $udid, $message, $org);

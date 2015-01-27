@@ -1,7 +1,7 @@
 <?php
 
 /* 
- * Because this is always called from secure.how-late.com
+ * Because this is always called from m.how-late.com
  * the organisation $this->org is undefined
  * 
  * 

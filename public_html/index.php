@@ -128,13 +128,15 @@
                                     <div class="span6">
                                         <div class="intro">
                                             <hgroup>
-                                                <h1>Come on in.</h1>
-                                                <h3>The smart way to keep patients informed of appointment start times.</h3>
+                                                <h1>Wait happy!</h1>
+                                                <h3>The smart way to keep your patients informed.</h3>
                                             </hgroup>
                                             <br>
                                             <hgroup>
                                                 <h3><img src="master/images/checkmark-green.png" />  Increase efficiency of reception staff.</h3>
-                                                <h3><img src="master/images/checkmark-green.png" />  Loved by patients!</h3>
+                                                <h3><img src="master/images/checkmark-green.png" />  Loved by patients.</h3>
+                                                <h3><img src="master/images/checkmark-green.png" />  Set and forget.</h3>
+                                                <h3><img src="master/images/checkmark-green.png" />  Free trial.</h3>
                                                 <br>
                                             </hgroup>
 
@@ -201,18 +203,18 @@
                                     <h1>A new take on being punctual.</h1>
                                     <ul class="safer-features">
                                         <li class="newlevel-item active">
+                                            <a title="Text Alerts" href="#" app-feature="2">
+                                                <h3>Text Alerts</h3><p>Send SMS messages to the next two<sup>*</sup> hours' scheduled appointments advising them of your situation.</p>
+                                            </a>
+                                        </li>
+                                        <li class="newlevel-item">
                                             <a title="Quick" href="#" app-feature="0">
-                                                <h3>Quick</h3><p>How-late's lateness lookup is faster than making a phone call.  Like five seconds instead of five minutes!</p>
+                                                <h3>Quick</h3><p>Check for updates any time with our custom screen showing just your doctor!</p>
                                             </a>
                                         </li>
                                         <li class="newlevel-item">
                                             <a title="Comprehensive" href="#" app-feature="1">
                                                 <h3>Comprehensive</h3><p>As many doctors or practitioners as you like can appear on the same screen.</p>
-                                            </a>
-                                        </li>
-                                        <li class="newlevel-item">
-                                            <a title="Text Alerts" href="#" app-feature="2">
-                                                <h3>Text Alerts</h3><p>Send SMS messages to the next two<sup>*</sup> hours' scheduled appointments advising them of your situation.</p>
                                             </a>
                                         </li>
                                     </ul>
@@ -221,13 +223,13 @@
                                     <div class="app-features-wrapper">
                                         <div id="app_features" class="app-features carousel">
                                             <div class="carousel-inner">
-                                                <div class="item active">
+                                                <div class="item">
                                                     <img src="/master/images/lateview1.png">
                                                 </div>
                                                 <div class="item">
                                                     <img src="/master/images/lateview2.png">
                                                 </div>
-                                                <div class="item">
+                                                <div class="item active">
                                                     <img src="/master/images/lateview3.png">
                                                 </div>
                                                 <div class="item">
@@ -264,7 +266,7 @@
                                                 <ul class="simple-features">
                                                     <li>
                                                         <h3>Auto-Update</h3>
-                                                        <p>With Auto-Update your reception staff do <i>exactly nothing</i>.  An agent program reads the information from your existing appointment book and updates the server.</p>
+                                                        <p>With Auto-Update your reception staff do <i>exactly nothing</i>.  A set-and-forget agent program reads the information from your existing appointment book and updates the server.</p>
                                                     </li>
                                                     <li>
                                                         <h3>Manual Update</h3>
@@ -337,7 +339,7 @@
                                     </div>
                                     <div class="universal span3">
                                         <h5>UNIVERSAL</h5>
-                                        <p>Because it is so simple, the app screen is built with HTML5. This means no compatibility issues and it will display beautifully on iPhones, Android phones and PCs.</p>
+                                        <p>One system, unlimited subscribers.  We integrate with all popular EHR/EMR appointment systems*, meaning your patients can see any of their (potentially unrelated) doctors on the one screen.</p>
                                     </div>
                                     <div class="nocost span3">
                                         <h5>NO COST UP-FRONT</h5>
