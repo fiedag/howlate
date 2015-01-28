@@ -27,11 +27,11 @@ Class apiController Extends baseController {
     public function upd() {
         $this->checkCredentials();
 
-        $PractitionerName = $this->lookfor(array('Practitioner', 'Provider'));
-        $AppointmentTime = $this->lookfor(array('AppointmentTime'));
-        $ArrivalTime = $this->lookfor(array('ArrivalTime'));
-        $ConsultationTime = $this->lookfor(array('ConsultationTime'));
-        $NewLate = $this->lookfor(array('NewLate'));  // in units of minutes
+        $PractitionerName = $this->lookfor(array('Practitioner', 'Provider','PRACTITIONER','PROVIDER'));
+        $AppointmentTime = $this->lookfor(array('AppointmentTime','APPOINTMENTTIME'));
+        $ArrivalTime = $this->lookfor(array('ArrivalTime','ARRIVALTIME'));
+        $ConsultationTime = $this->lookfor(array('ConsultationTime','CONSULTATIONTIME'));
+        $NewLate = $this->lookfor(array('NewLate','NEWLATE'));  // in units of minutes
 
         if (!$NewLate) {
             $NewLate = round(($ConsultationTime - $AppointmentTime) / 60,0,PHP_ROUND_HALF_UP);
@@ -45,8 +45,8 @@ Class apiController Extends baseController {
 
     public function notify() {
         $this->checkCredentials();
-        $PractitionerName = $this->lookfor(array('Practitioner', 'Provider'));
-        $MobilePhone = $this->lookfor(array('MobilePhone','CellPhone'));
+        $PractitionerName = $this->lookfor(array('Practitioner', 'Provider','PRACTITIONER','PROVIDER'));
+        $MobilePhone = $this->lookfor(array('MobilePhone','CellPhone','MOBILEPHONE','CELLPHONE'));
 
         $result = api::notify($this->org->OrgID, $PractitionerName, $MobilePhone);
         $this->registry->template->result = $result;

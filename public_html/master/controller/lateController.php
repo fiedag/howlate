@@ -20,8 +20,7 @@ Class lateController Extends baseController {
         $this->registry->template->lates = $late_arr;
         $this->registry->template->show('late_json');
     }
-    
-    
+ 
     ///
     /// pins is a list of pins delimited by commas
     ///

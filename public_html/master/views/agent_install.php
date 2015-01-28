@@ -6,8 +6,8 @@ REM The encoding of this file should be ASCII not unicode
 REM Created: Alex Fiedler 21 July 2014
 REM 
 pushd %cd%
-sc create HowLateAgent start= auto  error= normal binpath= "%CD%\HowLateAgent.exe" displayname= "How-Late Agent for BestPractice"
-sc description HowLateAgent "Update Lateness information based on local BestPractice database"
+sc create HowLateAgent start= auto  error= normal binpath= "%CD%\HowLateAgent.exe" displayname= "How-Late Agent for <?php echo $interface; ?>"
+sc description HowLateAgent "Update Lateness information based on local <?php echo $interface; ?> database"
 net start HowLateAgent
 popd
 

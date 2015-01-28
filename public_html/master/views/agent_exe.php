@@ -1,6 +1,6 @@
 <?php
 
-$file = 'includes/downloads/HowLateAgent.exe';
+$file = "downloads/$platform/HowLateAgent.exe";
 
 if (file_exists($file)) {
     header('Content-Description: File Transfer');

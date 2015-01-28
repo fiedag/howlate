@@ -129,7 +129,7 @@
                                         <div class="intro">
                                             <hgroup>
                                                 <h1>Wait happy!</h1>
-                                                <h3>The smart way to keep your patients informed.</h3>
+                                                <h3>The smart way to keep your patients informed of appointment start times.</h3>
                                             </hgroup>
                                             <br>
                                             <hgroup>

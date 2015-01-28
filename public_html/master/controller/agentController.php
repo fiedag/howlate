@@ -94,14 +94,35 @@ Class agentController Extends baseController {
     }
 
     public function exe() {
-        $this->org = organisation::getInstance(__SUBDOMAIN);
-
         // this will initiate a download of HowLateAgent.exe
+        $this->org = organisation::getInstance(__SUBDOMAIN);
+        if (isset($_SESSION["CLINIC"]) ) {
+           $this->currentClinic = $_SESSION['CLINIC'];
+        } else {
+            $this->currentClinic = $this->org->Clinics[0]->ClinicID;        
+        }
+        $result = clinic::getInstance($this->org->OrgID,$this->currentClinic)->getClinicIntegration();
+
+        if ($result->Agent32Bit == true) {
+            $this->registry->template->platform = "x86";
+        } else {
+            $this->registry->template->platform = "x64";
+        }
+        
         $this->registry->template->controller = $this;
         $this->registry->template->show('agent_exe');
     }
 
     public function install() {
+        $this->org = organisation::getInstance(__SUBDOMAIN);
+        if (isset($_SESSION["CLINIC"]) ) {
+           $this->currentClinic = $_SESSION['CLINIC'];
+        } else {
+            $this->currentClinic = $this->org->Clinics[0]->ClinicID;        
+        }
+        $result = clinic::getInstance($this->org->OrgID,$this->currentClinic)->getClinicIntegration();
+        
+        $this->registry->template->interface = $result->Name;
         $this->registry->template->show('agent_install');
     }
 

@@ -39,8 +39,11 @@ class api {
     
     
     public static function notify($OrgID, $PractitionerName, $MobilePhone, $Domain = 'how-late.com') {
+        logging::trlog(TranType::QUE_NOTIF, "api class enqueue notification", $OrgID);
+        
         if(!$pract = practitioner::getInstance($OrgID,$PractitionerName, 'FullName'))
         {
+            logging::trlog(TranType::QUE_NOTIF, "api class enqueue notification, creating default practitioner: $PractitionerName", $OrgID);
             $pract = practitioner::createDefaultPractitioner($OrgID,$PractitionerName);
         }
         return $pract->enqueueNotification($MobilePhone, $Domain);
