@@ -36,13 +36,16 @@ class billing {
         if(!$cust) {
             throw new Exception("Chargeover customer does not exist.");
         }
+        echo "getCustomer returned customer ID = $cust->customer_id <br>";
         $package = $chargeover->getCurrentActivePackage($cust->customer_id);
         if(!$package) {
-            throw new Exception("Package does not exist.");
+            throw new Exception("Package does not exist.<br>");
         }
+        echo "Current Active Package Exists! <br>";
+        
         $line_items = $chargeover->getPackageLineItems($package);
         if (count($line_items) <= 0) {
-            throw new Exception("Package Line item does not exist.");
+            throw new Exception("Package Line item does not exist.<br>");
         }
         $item = $line_items[0];
         // all good now look up usage

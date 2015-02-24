@@ -2,7 +2,7 @@
 
 Class tranlogController Extends baseController {
 
-    private $submenu = array ("translog"=>"Trans Log","smslog"=>"SMS Log","errorlog"=>"Errors","notifqueue"=>"Notif Queue");
+    private $submenu = array ("translog"=>"Trans Log","speciallog"=>"Special Log","smslog"=>"SMS Log","errorlog"=>"Errors","notifqueue"=>"Notif Queue");
     
     public function index() {
 	$this->registry->template->controller = $this;
@@ -14,6 +14,19 @@ Class tranlogController Extends baseController {
         $this->registry->template->xcrud_content = $this->getWeeksLog();
         $this->registry->template->show('tranlog_index');
     }
+    
+    public function speciallog() {
+	$this->registry->template->controller = $this;
+        
+        $this->get_header();
+        $this->registry->template->submenu = $this->submenu;
+        $this->registry->template->view_name = __FUNCTION__;
+        $this->registry->template->show('submenu_view');
+        $this->registry->template->xcrud_content = $this->getWeeksLogSpecial();
+        $this->registry->template->show('tranlog_index');
+    }
+    
+    
     
     public function smslog() {
 	$this->registry->template->controller = $this;
@@ -59,6 +72,18 @@ Class tranlogController Extends baseController {
         $xcrud->order_by('Id','desc');        
         return $xcrud->render();
     }
+    
+    public function getWeeksLogSpecial() {
+        include('includes/xcrud/xcrud.php');
+        $xcrud = Xcrud::get_instance();
+        $xcrud->connection(howlate_util::mysqlUser(),howlate_util::mysqlPassword(),howlate_util::mysqlDb());
+        $xcrud->table('transactionlog')->where("TransType !",array('LATE_RESET','LATE_UPD','LATE_GET','MISC_MISC','SESS_UPD'))->table_name('Transaction Log',"This week's log shown in latest first order.  See CSV export button at end.")->limit(50);
+        $xcrud->order_by('Id','desc');        
+        return $xcrud->render();
+    }
+    
+    
+    
     public function getSMSLog() {
         include('includes/xcrud/xcrud.php');
         $xcrud = Xcrud::get_instance();

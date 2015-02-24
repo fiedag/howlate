@@ -95,6 +95,7 @@ Class mainController Extends baseController {
                 echo "<input type='hidden' name='oldsticky[$pin]' value='$value->Sticky' >";
                 echo "<input type='hidden' id='threshold[$pin]' name='threshold[$pin]' value='$value->NotificationThreshold' >";
                 echo "<input type='hidden' id='tonearest[$pin]' name='tonearest[$pin]' value='$value->LateToNearest' >";
+                echo "<input type='hidden' id='latemsg[$pin]' name='latemsg[$pin]' value='$value->MinutesLateMsg' >";
                 echo "<input type='hidden' id='offset[$pin]' name='offset[$pin]' value='$value->LatenessOffset' >";
                 echo "</td>";
                 echo "<td>";

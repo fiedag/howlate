@@ -123,12 +123,22 @@ class chargeover {
         } else
             return null;
     }
+    
+    
     function getCurrentActivePackage($customer_id) {
+        
 	$resp = $this->API->find('package', array('customer_id:EQUALS:' . $customer_id, 
-                                            'package_status_str:EQUALS:active-current'));
+                                            'package_status_state:EQUALS:a'));
+        
+        echo "getCurrentActive Package for customer $customer_id, response= <br>";
+
 	$Package = $resp->response;
+        
+        var_dump($Package);
+        echo "<br>";
         return $Package[0];
     }
+    
     function getPackageLineItems($package) {
 	$resp = $this->API->findById('package', $package->package_id);
 	$Package = $resp->response;

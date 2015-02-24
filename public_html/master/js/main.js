@@ -364,7 +364,7 @@ var adroll_pix_id = "IZR7HAJIINEJHETKC43M2Z";
                     $fixedWrapper.find('nav').addClass('fixed');
                 }, 0);
 
-                $circleWrapper.children('.header-circle-inner').animate({marginTop: '-70px'}, {duration: 500, easing: 'easeOutQuad', queue: false});
+                $circleWrapper.children('.header-circle-inner').animate({marginTop: '-90px'}, {duration: 500, easing: 'easeOutQuad', queue: false});
 
                 $('#reserve_link').animate({top: '90px'}, {duration: 500, easing: 'easeOutQuad', queue: false});
                 $('#welcome').addClass('fade');

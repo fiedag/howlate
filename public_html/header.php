@@ -66,7 +66,7 @@
                                         <div class="span3 offset6">
                                             <div class="header-circle">
                                                 <div class="header-circle-inner">
-                                                    <a href="#" id="reserve_link" title="Sign up Now" data-gtm-event="orderNow" data-gtm-info="Open">SIGN UP<span class="mobile-disable-small">&nbsp;NOW</span></a>
+                                                    <a>Phone 0403 569 377</a>
                                                 </div>
                                             </div>
                                         </div>

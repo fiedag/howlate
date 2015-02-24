@@ -19,7 +19,8 @@ Class devicesController Extends baseController {
         $xcrud->connection(howlate_util::mysqlUser(),howlate_util::mysqlPassword(),howlate_util::mysqlDb());
         
         $xcrud->table('devicereg')->table_name('Registered phone devices','You can add or delete registered mobile phones here')->where('OrgID =', $this->org->OrgID)->limit(30);
-        
+
+        $xcrud->column_pattern('OrgID', $this->assignSpan());  // display the assignment button
        
         $xcrud->pass_default('OrgID', $this->org->OrgID);
         $xcrud->hide_button('view');
@@ -28,5 +29,12 @@ Class devicesController Extends baseController {
         echo $xcrud->render();
     }
 
+    private function assignSpan() {
+        $span = "<span class='xcrud-button' title='Click to view what this device sees...' onClick=\"showScreen('{UDID}');\">View</span>";
+        return $span;
+    }
+    
+    
+    
 }
 ?>

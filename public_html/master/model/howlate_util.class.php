@@ -71,15 +71,20 @@ class howlate_util {
         return 'https://how-late.chargeover.com/api/v3';
     }
     
+    
+    ///
+    /// base 26 numbering system, whereby A = 0, B = 1, up to Z = 25, BA = 26 etc. 
+    ///
+    ///
     public static function tobase10($base26) {
         $base10 = 0;
         $len = strlen($base26);
         for ($x = 0; $x < $len; $x++) {
             $char = substr($base26, $len - $x - 1, 1);
-            if ($char == 'Z') {
+            if ($char == 'A') {
                 $dig = 0;
             } else {
-                $dig = ord($char) - 64;
+                $dig = ord($char) - 65;
             }
             //echo "Digit (from right): " . $dig . "<br>";
             $base10 = $base10 + $dig * pow(26, $x);
@@ -89,13 +94,13 @@ class howlate_util {
 
     public static function tobase26($base10) {
         if ($base10 == 0) {
-            return 'Z';
+            return 'A';
         } else {
             $rem = $base10 % 26;
             if ($rem == 0) {
-                $res = 'Z';
+                $res = 'A';
             } else {
-                $res = chr($rem + 64);
+                $res = chr($rem + 65);
             }
             $intval = intval($base10 / 26);
             return (($intval == 0) ? '' : self::tobase26($intval)) . $res;
@@ -164,7 +169,7 @@ class howlate_util {
     }
 
     public static function logoURL($subd = '') {
-        if ($subd == '' or !file_exists("/pri/logos/$subd.png")) {
+        if ($subd == '' or !file_exists("pri/logos/$subd.png")) {
             return "/images/logos/logo.png";
         }
         return "/pri/logos/$subd.png";
@@ -362,7 +367,32 @@ EOD;
         $stmt->execute() or trigger_error('# Query Error (' . $this->conn->errno . ') ' . $this->conn->error, E_USER_ERROR);
     }
     
-    
+
+    public static function to_xudid($udid) {
+       $len = strlen($udid);
+       
+       for($i=0;$i<$len;$i++) {
+           if ($i % 2 == 0) 
+               $even .= $udid[$i];
+           else
+               $odd .= $udid[$i]; 
+       }
+       return $even . $odd;
+    }
+
+    public static function to_udid($xudid) {
+       $len = strlen($xudid);
+       $half = round($len / 2, 0, PHP_ROUND_HALF_UP) ;
+     
+       $even = substr($xudid, 0, $half);
+       $odd = substr($xudid, $half);
+       $res = "";
+       
+       for($i=0;$i<$half;$i++) {
+           $res .= $even[$i] . $odd[$i];
+       }
+       return $res;
+    }
     
 }
 

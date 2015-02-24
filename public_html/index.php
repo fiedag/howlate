@@ -1,39 +1,10 @@
 <!doctype html>
 <!--[if lt IE 9 ]><html lang="en" class="ie8"><![endif]-->
 <!--[if (gt IE 8)|!(IE)]><!--><html lang="en"><!--<![endif]-->
-    <head>
-        <title>Doctor Running Late App</title>
-        <meta name="google-site-verification" content="84C-kFLmCZgIPgtYPCa-wbW5Mcb2XIZaqlvtK6fkBq0" />
-        <meta name="twitter:card" content="photo">
-        <meta name="twitter:image" content="/master/images/twitter-image.jpg">
-        <meta name="twitter:title" content="How-Late Software">
-        <meta name="twitter:domain" content="how-late.com">
-        <meta name="twitter:site" content="@HowLateIsMyAppt">
-        <meta name="twitter:creator" content="@HowLateIsMyAppt">
-        <meta name="twitter:image:width" content="475">
-        <meta name="twitter:image:height" content="323">
-        <meta name="fb:admins" content="HowLateIsMyAppointment">
-        <meta name="fb:app_id" content="466443880106725">
-        <meta name="og:title" content="How-Late Software">
-        <meta name="og:type" content="website">
-        <meta name="og:image" content="/master/images/gallery2.jpg" itemprop="red lock 991x660">
-        <meta name="og:url" content="http://www.how-late.com/index.php">
-        <meta name="og:description" content="Arrive late, but in good time.">
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="How-Late Software allows doctors to tell their patients if their appointment is running late.  Allows patients to see if their doctors appointment is running late.">
-        <meta name="keywords" content="doctor running late app, how late, medical practitioner, patient, appointment, booking, cloud, software">
-        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-        <link rel="apple-touch-icon-precomposed" href="master/images/apple-touch-icon.png" />
-        <link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/css/bootstrap.min.css" rel="stylesheet" />
-        <link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/css/bootstrap-responsive.min.css" rel="stylesheet">
-        <link href="master/styles/howlate-brochure.css" rel="stylesheet" />
-        <!-- test -->
-        <!--[if lt IE 9]>
-        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/css3pie/1.0.0/PIE.js"></script>
-        <![endif]-->
-    </head>
+
+    <?php include("head.php"); ?>
+
+
     <body>
         <div id="site-container">
             <!-- Begin Header / Reserve Flow -->
@@ -66,15 +37,14 @@
                                             <div class="reserve-welcome fade in">
                                                 
                                                 <hgroup>
-                                                    <h1>Sign up for</h1>
+                                                    <h1>Get in touch with</h1>
                                                     <h1>How Late.</h1>
                                                 </hgroup>
-                                                <p id="start_trial" class="start-trial">Start your free trial.  Enter your preferred domain and email address to begin.</p>
+                                                <p id="start_trial" class="start-trial">Get in touch with us full privacy assured.</p>
                                                 <div class="" style="display:inline-box-align">
-                                                    <input id="domain_input" type="text" class="input-block-level" required placeholder="e.g. xyzclinic" />
-                                                    <span class='form-label'><b>&nbsp;.how&#8209;late.com</b></span>
-                                                    <br><input id="email_input" type="email" class="input-block-level" required placeholder="email" />
-                                                        <br><br><span id="signup_link" title="Submit" onclick="signupFunction();">Try it free for 30 days.</span>
+                                                    <input id="name_input" type="text" class="input-block-level" required placeholder='Your Name'/>
+                                                    <br><input id="email_input" type="email" class="input-block-level" required placeholder="Your email" />
+                                                        <br><br><span id="signup_link" title="Submit" onclick="signupFunction();">Contact me</span>
                                                     <p class="error"></p>
 
                                                 </div>
@@ -101,7 +71,7 @@
                                         <div class="span3 offset6">
                                             <div class="header-circle">
                                                 <div class="header-circle-inner">
-                                                    <a href="#" id="reserve_link" title="Sign up Now" data-gtm-event="orderNow" data-gtm-info="Open">SIGN UP<span class="mobile-disable-small">&nbsp;NOW</span></a>
+                                                    <a>Phone 0403 569 377</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -110,7 +80,6 @@
                                         <div style="padding: 10px;" class="span1 mobile-disable">
                                             <div class="fb-like" data-href="http://how-late.com" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true" data-font="arial" data-colorscheme="dark"></div>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
@@ -128,15 +97,14 @@
                                     <div class="span6">
                                         <div class="intro">
                                             <hgroup>
-                                                <h1>Wait happy!</h1>
-                                                <h3>The smart way to keep your patients informed of appointment start times.</h3>
+                                                <h1>Happier Patients!</h1>
+                                                <h3>Your time is valuable.  Your patients' time is valuable too!  Here is a tool to let them know what's happening.</h3>
                                             </hgroup>
                                             <br>
                                             <hgroup>
-                                                <h3><img src="master/images/checkmark-green.png" />  Increase efficiency of reception staff.</h3>
-                                                <h3><img src="master/images/checkmark-green.png" />  Loved by patients.</h3>
-                                                <h3><img src="master/images/checkmark-green.png" />  Set and forget.</h3>
-                                                <h3><img src="master/images/checkmark-green.png" />  Free trial.</h3>
+                                                <h3><img src="master/images/checkmark-green.png" />  Increased patient happiness</h3>
+                                                <h3><img src="master/images/checkmark-green.png" />  Set and forget</h3>
+                                                <h3><img src="master/images/checkmark-green.png" />  Inexpensive</h3>
                                                 <br>
                                             </hgroup>
 
@@ -144,7 +112,7 @@
                                                 href="http://www.youtube.com/embed/cf9DRZLEVTM_hide?rel=0&autoplay=1&enablejsapi=1" class="video-link">
                                                 <div class="video-player"></div>
                                             </a -->
-
+                                            <a href="#safe" data-gtm-event="navigation" data-gtm-info="Discover"><img src="master/images/discover.png"></a>
                                         </div>
                                     </div>
                                 </div>
@@ -200,16 +168,17 @@
                             <div class="row">
                                 <div class="span4 offset1">
                                     <div class="mobile-phone"><img src="master/images/logonphone.png" itemprop="393x800 white bg"/></div>
-                                    <h1>A new take on being punctual.</h1>
+                                    <h1>Informed and happy</h1>
+                                    <h3>Informed patients are happier patients and that means there is less stress all round.</h3>
                                     <ul class="safer-features">
                                         <li class="newlevel-item active">
-                                            <a title="Text Alerts" href="#" app-feature="2">
-                                                <h3>Text Alerts</h3><p>Send SMS messages to the next two<sup>*</sup> hours' scheduled appointments advising them of your situation.</p>
+                                            <a title="Quick" href="#" app-feature="0">
+                                                <h3>Quick</h3><p>Check for updates any time with our custom screen showing just your doctor!</p>
                                             </a>
                                         </li>
                                         <li class="newlevel-item">
-                                            <a title="Quick" href="#" app-feature="0">
-                                                <h3>Quick</h3><p>Check for updates any time with our custom screen showing just your doctor!</p>
+                                            <a title="Text Alerts" href="#" app-feature="2">
+                                                <h3>Text Alerts</h3><p>Send text messages to the next two<sup>*</sup> hours' scheduled appointments advising them of your situation.</p>
                                             </a>
                                         </li>
                                         <li class="newlevel-item">
@@ -223,13 +192,13 @@
                                     <div class="app-features-wrapper">
                                         <div id="app_features" class="app-features carousel">
                                             <div class="carousel-inner">
-                                                <div class="item">
+                                                <div class="item active">
                                                     <img src="/master/images/lateview1.png">
                                                 </div>
                                                 <div class="item">
                                                     <img src="/master/images/lateview2.png">
                                                 </div>
-                                                <div class="item active">
+                                                <div class="item">
                                                     <img src="/master/images/lateview3.png">
                                                 </div>
                                                 <div class="item">
@@ -258,23 +227,23 @@
                                     <div class="simple-column">
                                         <div class="row">
                                             <div class="span12">
-                                                <h1>Simple for Receptionists.</h1>
+                                                <h1>Simple to Install</h1>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="span8">
                                                 <ul class="simple-features">
                                                     <li>
-                                                        <h3>Auto-Update</h3>
-                                                        <p>With Auto-Update your reception staff do <i>exactly nothing</i>.  A set-and-forget agent program reads the information from your existing appointment book and updates the server.</p>
+                                                        <h3>Automatic</h3>
+                                                        <p>With Auto-Update your reception staff do <i>exactly nothing</i>.  A set-and-forget agent program reads the information from your existing appointment book and updates the server.  Or you can run manually.</p>
                                                     </li>
                                                     <li>
-                                                        <h3>Manual Update</h3>
-                                                        <p>You can override the lateness setting manually any time for a while or for the rest of the day.  Or run without agent integration entirely.</p>
+                                                        <h3>Free Install</h3>
+                                                        <p>All Installation is free.  If your appointment book system is unsupported, we will write a new adapter for free.</p>
                                                     </li>
                                                     <li>
-                                                        <h3>Configured Offset</h3>
-                                                        <p>You can configure the system so the lateness is under-reported by X minutes, giving you a safety margin.  This is useful so you can use short visits or cancellations to catch up.</p>
+                                                        <h3>Advanced Features</h3>
+                                                        <p>You can configure the system so the lateness is underreported by however many minutes, giving you a safety margin.  This is useful so you can use short visits or cancellations to catch up.</p>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -300,11 +269,11 @@
                                         <ul class="social-features">
                                             <li>
                                                 <h3>Quick Invites</h3>
-                                                <p>Patients are invited to use the app by a simple SMS which contains a link.</p>
+                                                <p>Patients are invited to use the screen by a simple SMS which contains a link.</p>
                                             </li>
                                             <li>
                                                 <h3>Extra Invites</h3>
-                                                <p>Often patients are being treated by more than one practitioner.  Receptionists can add practitioners to a patient's app quickly and easily.</p>
+                                                <p>Often patients are being treated by more than one practitioner.  Receptionists can add practitioners to a patient's screen quickly and easily.</p>
                                             </li>
                                             <li>
                                                 <h3>Complete Control</h3>
@@ -339,7 +308,7 @@
                                     </div>
                                     <div class="universal span3">
                                         <h5>UNIVERSAL</h5>
-                                        <p>One system, unlimited subscribers.  We integrate with all popular EHR/EMR appointment systems*, meaning your patients can see any of their (potentially unrelated) doctors on the one screen.</p>
+                                        <p>One system, unlimited subscribers.  We integrate with most popular medical appointment systems, meaning your patients can see any of their (potentially unrelated) doctors on the one screen.</p>
                                     </div>
                                     <div class="nocost span3">
                                         <h5>NO COST UP-FRONT</h5>

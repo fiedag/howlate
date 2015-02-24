@@ -35,7 +35,10 @@
         </div>
         <div class="control-group">
             <label class="control-label" for="Country">Country:</label>
-            <input type="text" class="controls" id="Country" name="Country" size="25" value="<?php echo $controller->org->Country; ?>"></input>
+            <select name="Country" id="Country" class="timezone-dropdown" value="<?php echo $controller->org->Country; ?>" >
+                <?php $controller->get_country_options(); ?>
+            </select>
+
         </div>
         <div class="control-group">
             <label class="control-label">Time zone:</label>

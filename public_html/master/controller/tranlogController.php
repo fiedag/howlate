@@ -33,7 +33,7 @@ Class tranlogController Extends baseController {
         $xcrud->order_by('Id','desc');        
         $xcrud->columns('OrgID', true);
         $xcrud->pass_default('OrgID', $this->org->OrgID);
-        //$xcrud->hide_button('view');
+        $xcrud->unset_edit()->unset_remove()->unset_add();
         $xcrud->unset_numbers(true)->unset_print(true)->unset_limitlist(true)->hide_button('save_and_edit')->hide_button('save_and_new');     
         return $xcrud->render();
     }

@@ -16,11 +16,12 @@ class practitioner {
     public $NotificationThreshold;
     public $LateToNearest;
     public $LatenessOffset;
+    public $LatenesscEILING;
 
     public static function getInstance($OrgID, $FieldValue, $FieldName = 'PractitionerID') {
 
         $q = "SELECT OrgID, PractitionerID, Pin, PractitionerName, FullName, " .
-                "ClinicName, ClinicID, OrgName, FQDN, NotificationThreshold, LateToNearest, LatenessOffset " .
+                "ClinicName, ClinicID, OrgName, FQDN, NotificationThreshold, LateToNearest, LatenessOffset, LatenessCeiling " .
                 "FROM vwPractitioners WHERE OrgID = '$OrgID' AND $FieldName = ";
         $q .= ($FieldName == "SurrogKey")?$FieldValue:"'$FieldValue'";
 
@@ -44,7 +45,7 @@ class practitioner {
     public static function getInstance2($OrgID, $FieldValue, $FieldName = 'PractitionerID') {
 
         $q = "SELECT OrgID, PractitionerID, Pin, PractitionerName, FullName, " .
-                "ClinicName, ClinicID, OrgName, FQDN, NotificationThreshold, LateToNearest, LatenessOffset " .
+                "ClinicName, ClinicID, OrgName, FQDN, NotificationThreshold, LateToNearest, LatenessOffset, LatenessCeiling " .
                 "FROM vwPractitioners WHERE OrgID = '$OrgID' AND $FieldName = ";
         $q .= ($FieldName == "SurrogKey")?$FieldValue:"'$FieldValue'";
 
@@ -71,7 +72,7 @@ class practitioner {
         return howlate_util::logoURL($this->Subdomain);
     }
 
-    public static function updateLateness($OrgID, $PractitionerID, $NewLate, $Sticky = 0) {
+    public static function updateLateness($OrgID, $PractitionerID, $NewLate, $ConsultationTime, $Sticky = 0) {
         $q = "CALL sp_LateUpd(?, ?, ?, ?)";
         $sql = maindb::getInstance();
         $stmt = $sql->prepare($q);
@@ -128,13 +129,25 @@ class practitioner {
     }
     
     public function enqueueNotification($MobilePhone, $domain = 'how-late.com') {
+        
         $MobilePhone = trim($MobilePhone);
+        $MobilePhone = preg_replace("/[^0-9]/", "", $MobilePhone);
         device::register($this->OrgID, $this->PractitionerID, $MobilePhone);
         
         $lateness = $this->getCurrentLateness();
-
+        if(!$lateness) {
+            return "Practitioner is not assigned to clinic, not enqueued.";
+        }
+        
         if (strtolower($lateness) == "on time" or strtolower($lateness) == "off duty") 
-            return "Informational: Already on time, not enqueued";
+            return "Practitioner $this->PractitionerName ($this->PractitionerID) is $lateness, not enqueued";
+
+        
+        $q = "SELECT COUNT(0) As AlreadyDone FROM notifqueue WHERE OrgID = '$this->OrgID' AND PractitionerID = '$this->PractitionerID' AND ClinicID = $this->ClinicID AND MobilePhone = '$MobilePhone' AND Created >= CURDATE()";
+        $row = maindb::getInstance()->query($q)->fetch_object();
+        if ($row->AlreadyDone == "1") {
+            return "Patient $MobilePhone already notified today.  Not enqueued.";
+        }
         
         $url = "http://m." . $domain . "/late/view&udid=$MobilePhone";
         $msg = $this->PractitionerName . " is running " . $lateness . ". For updates,click " . $url;
@@ -154,6 +167,9 @@ class practitioner {
         // always guaranteed to get one row
         if ($result = maindb::getInstance()->query($q)) {
             $row = $result->fetch_object();
+            if (!$row) {
+                return null;
+            }
             return $row->MinutesLateMsg;
         }
         $result->close(); 

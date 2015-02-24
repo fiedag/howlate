@@ -39,4 +39,11 @@ class logging {
         echo $msg . "<br>";
         
     }
+    
+    public static function deleteOld($retain_days = 50) {
+        $q = "DELETE FROM transactionlog WHERE TransType IN ('LATE_UPD','MISC_MISC','LATE_GET') AND Timestamp < DATE_SUB(CURRENT_DATE, $retain_days DAY)";
+        $stmt = maindb::getInstance()->prepare($q);
+        $stmt->execute();
+    }
+    
 }

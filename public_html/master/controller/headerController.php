@@ -1,5 +1,4 @@
 <?php
-
 Class headerController Extends baseController {
     //public $org;
     
@@ -21,7 +20,5 @@ Class headerController Extends baseController {
         
         $this->registry->template->show('header_view');
     }
-    
 }
-
 ?>

@@ -12,10 +12,17 @@
 <script>
 
     function lateHelper(pin) {
+        
+        msg = document.getElementById('latemsg[' + pin + ']').value;
+        document.getElementById('lateness[' + pin + ']').title = "This will be displayed as '" + msg + "'"; 
+    }
+
+    function lateHelperOld(pin) {
         curtime = document.getElementById('lateness[' + pin + ']').value;
         tonearest = document.getElementById('tonearest[' + pin + ']').value;
         threshold = document.getElementById('threshold[' + pin + ']').value;
         offset = document.getElementById('offset[' + pin + ']').value;
+        ceiling = document.getElementById('ceiling[' + pin + ']').value;
         if (tonearest == 0) { tonearest = 1; }
         rounded = tonearest * Math.round(curtime / tonearest);
         if (rounded < threshold) { 

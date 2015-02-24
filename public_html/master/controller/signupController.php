@@ -88,5 +88,44 @@ Class signupController Extends baseController {
         $this->registry->template->show('signup_done');
     }
     
+    
+    public function newsletter() {
+        
+        $email = filter_input(INPUT_POST,"email");
+        $name = filter_input(INPUT_POST,"name");
+        $mobile = filter_input(INPUT_POST,"mobile");
+        
+        $this->registry->template->controller = $this;
+        $administrator = "61403569377";
+        $smstext = "Contact request: $name, $email, $mobile";
+        
+        $orgid = "CCCTV";
+        $clickatell = new clickatell();
+        //$clickatell->httpSend($administrator, $smstext, $orgid);
+        
+        $note = "Someone has requested contact.  Name = $name, Mobile = $mobile, Email = $email";
+        $mailer = new howlate_mailer();
+        $mailer->send(howlate_util::admin_email(),'Administrator', 'A contact request has been received', $note, 'admin@how-late.com', 'Administrator');
+ 
+        
+        if(!$name) {
+            $name = $email;
+        }
+
+        $this->registry->template->logourl = howlate_util::logoURL();
+        $this->registry->template->url = "https://how-late.com/master";
+        
+        ob_start();
+        $this->registry->template->show('signup_thanks');
+        $body = ob_get_contents();
+        ob_end_clean();
+        
+        $mailer->sendHtml($email, $name, 'Thank you', $body, 'info@how-late.com','How-late.com');
+       
+        header("location: http://how-late.com");
+        
+    }        
+    
+    
 }
 ?>

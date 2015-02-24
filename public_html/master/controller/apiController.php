@@ -14,15 +14,15 @@ Class apiController Extends baseController {
         parent::__construct($registry);
     }
     
-    public function test2() {
-        $PractitionerName = 'Dr Anthony Alvano';
-        $Day = 'Friday';
-        $StartTime = 4000;
-        $EndTime = 5000;
-        $org = organisation::getInstance(__SUBDOMAIN);
-        $this->registry->template->result = api::updateSessions($org->OrgID, $PractitionerName, $Day, $StartTime, $EndTime);
-        $this->registry->template->show('api_index');
-    }
+//    public function test2() {
+//        $PractitionerName = 'Dr Anthony Alvano';
+//        $Day = 'Friday';
+//        $StartTime = 4000;
+//        $EndTime = 5000;
+//        $org = organisation::getInstance(__SUBDOMAIN);
+//        $this->registry->template->result = api::updateSessions($org->OrgID, $PractitionerName, $Day, $StartTime, $EndTime);
+//        $this->registry->template->show('api_index');
+//    }
     
     public function upd() {
         $this->checkCredentials();
@@ -37,7 +37,7 @@ Class apiController Extends baseController {
             $NewLate = round(($ConsultationTime - $AppointmentTime) / 60,0,PHP_ROUND_HALF_UP);
         }
         
-        $res = api::updateLateness($this->org->OrgID, $NewLate, $PractitionerName);
+        $res = api::updateLateness($this->org->OrgID, $NewLate, $PractitionerName, $ConsultationTime);
         
         $this->registry->template->result = $res;
         $this->registry->template->show('api_index');
@@ -47,30 +47,29 @@ Class apiController Extends baseController {
         $this->checkCredentials();
         $PractitionerName = $this->lookfor(array('Practitioner', 'Provider','PRACTITIONER','PROVIDER'));
         $MobilePhone = $this->lookfor(array('MobilePhone','CellPhone','MOBILEPHONE','CELLPHONE'));
-
-        $result = api::notify($this->org->OrgID, $PractitionerName, $MobilePhone);
+        $ClinicID = $this->lookfor(array('ClinicID','Clinic','CLINICID'));
+        $result = api::notify($this->org->OrgID, $PractitionerName, $MobilePhone, $ClinicID);
         $this->registry->template->result = $result;
         $this->registry->template->show('api_index');
     }
     
     public function notify_bulk() {
         $this->checkCredentials();
-
         $notif_array = $_POST["notify_bulk"];
         foreach($notif_array as $key=>$val) {
-            api::notify($this->org->OrgID, $val['Provider'], $val['MobilePhone'], __DOMAIN);
+            api::notify($this->org->OrgID, $val['Provider'], $val['MobilePhone'], $val['ClinicID'], __DOMAIN);
         }
     }
 
     public function sess() {
         $this->checkCredentials();
-        $PractitionerName = $this->lookfor(array('Practitioner', 'Provider'));
+        $PractitionerName = $this->lookfor(array('Practitioner', 'Provider','PRACTITIONER','PROVIDER'));
         if (!$PractitionerName) {
             throw new Exception("Practitioner or Provider not given.");
         }
-        $Day = $this->lookfor(array('Day'));
-        $StartTime = $this->lookfor(array('StartTime'));
-        $EndTime = $this->lookfor(array('EndTime'));
+        $Day = $this->lookfor(array('Day','DAY'));
+        $StartTime = $this->lookfor(array('StartTime','STARTTIME'));
+        $EndTime = $this->lookfor(array('EndTime','ENDTIME'));
         $org = organisation::getInstance(__SUBDOMAIN);
         $this->registry->template->result = api::updateSessions($org->OrgID, $PractitionerName, $Day, $StartTime, $EndTime);
     }
@@ -91,8 +90,8 @@ Class apiController Extends baseController {
         $OrgID = $this->lookfor(array('OrgID'));
         $ClinicID = $this->lookfor(array('ClinicID','Clinic'));
         $event = 'start';
-        $message = 'agent_start';
         $assemblyversion = filter_input(INPUT_POST,"assemblyversion");
+        $message = 'agent_start:' . $assemblyversion;
         logging::trlog(TranType::AGT_INFO, $message, $OrgID, $ClinicID);
         echo "Agent Start logged on server.";
     }
@@ -101,8 +100,8 @@ Class apiController Extends baseController {
         $OrgID = $this->lookfor(array('OrgID'));
         $ClinicID = $this->lookfor(array('ClinicID','Clinic'));
         $event = 'stop';
-        $message = 'agent_stop';
         $assemblyversion = filter_input(INPUT_POST,"assemblyversion");
+        $message = 'agent_stop:' . $assemblyversion;
         logging::trlog(TranType::AGT_INFO, $message, $OrgID, $ClinicID);
         echo "Agent Stop logged on server.";
     }

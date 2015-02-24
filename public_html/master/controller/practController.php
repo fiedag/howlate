@@ -25,7 +25,7 @@ Class practController Extends baseController {
         $xcrud->readonly('OrgID,ID,SurrogKey,DateCreated,vwAssigned.Assigned');  //  for create/update/delete
         $xcrud->fields('vwAssigned.OrgID,vwAssigned.ID,vwAssigned.ClinicID,DateCreated',true);
         $xcrud->hide_button('view');
-        $xcrud->label(array('FullName' => 'Full Name', 'AbbrevName' => 'Abbrev Name', 'DateCreated' => 'Created', 'SurrogKey' => 'Reassign', 'LateToNearest' => 'Late To Nearest', 'LatenessOffset' => "Lateness Offset", 'NotificationThreshold' => 'Notification Threshold'));
+        $xcrud->label(array('FullName' => 'Full Name', 'AbbrevName' => 'Abbrev Name', 'DateCreated' => 'Created', 'SurrogKey' => 'Reassign', 'LateToNearest' => 'Late To Nearest', 'LatenessOffset' => "Lateness Offset", 'NotificationThreshold' => 'Notification Threshold', 'LatenessCeiling' => 'Lateness Ceiling'));
         
         $xcrud->unset_csv(true)->unset_numbers(true)->unset_print(true)->unset_limitlist(true)->hide_button('save_and_edit')->hide_button('save_and_new');
 
@@ -39,6 +39,7 @@ Class practController Extends baseController {
         $xcrud->field_tooltip('NotificationThreshold','Lateness less than this (minutes) is shown as On Time');
         $xcrud->field_tooltip('LateToNearest','Round to nearest number of minutes');
         $xcrud->field_tooltip('LatenessOffset','Finally, subtract this number of minutes');
+        $xcrud->field_tooltip('LatenessCeiling','Maximum reported lateness.  All later times are reported as this. Zero = no ceiling.');
         echo $xcrud->render();
     }
 

@@ -44,6 +44,18 @@ Class orgController Extends baseController {
         }
     }
     
+    public function get_country_options() {
+        $c = $this->org->getCountries();
+        foreach ($c as $val) {
+            echo "<option value='" . $val . "'";
+            
+            if ($val == $this->org->Country) {
+                echo "selected";
+            }
+            echo ">$val</option>";
+        }
+    }
+    
     
     public function upload_logo() {
 
@@ -76,6 +88,7 @@ Class orgController Extends baseController {
             $ret .= "Sorry, your file was not uploaded:" . $ret;
         } else {
             if ($imageFileType == "png") {
+                $ret .= "moving uploaded file $filename to $target_file .";
                 $result = move_uploaded_file($filename, $target_file);
             }
             else {

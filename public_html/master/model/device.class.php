@@ -10,12 +10,15 @@ class device {
 
     public $udid; // unique device id
 
+    public $canonical_udid;
+    
     public $registrations;  // array of registrations for this
     
     public static function getLatenesses($fieldval, $fieldname = 'UDID') {
-        $q = "SELECT ClinicID, ClinicName, AbbrevName, MinutesLate, MinutesLateMsg, OrgID, ID, Subdomain FROM vwMyLates WHERE $fieldname = '" . $fieldval . "'";
+        $q = "SELECT ClinicID, ClinicName, AbbrevName, MinutesLate, MinutesLateMsg, OrgID, ID, Subdomain FROM vwMyLates WHERE $fieldname = '" . $fieldval . "' ORDER BY ClinicName";
         $sql = maindb::getInstance();
 
+        
         $practArray = array();
         $clinArray = array();
         if ($result = $sql->query($q)) {
@@ -35,7 +38,7 @@ class device {
         }
         return null;
     }
-
+    
     public static function getLatenessesAjax($udid) {
         $q = "SELECT CONCAT(OrgID ,'.',ID) As Pin, MinutesLateMsg FROM vwMyLates WHERE UDID = '" . $udid . "'";
         $sql = maindb::getInstance();

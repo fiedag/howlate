@@ -168,7 +168,6 @@ var guiders = (function($) {
   };
   
   guiders._attach = function(myGuider) {
-    debugger;
     if (typeof myGuider !== 'object') {
       return;
     }

@@ -254,6 +254,8 @@
             <!-- Begin Footer -->
             <footer class="footer">
                 <div class="container">
+
+                    
                     <div class="row social-links">
                         <div class="span1 offset4">
                             <a href="mailto:support@how-late.com" title="Mail"><img src="/master/images/mail-white.png"/></a>

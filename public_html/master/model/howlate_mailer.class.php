@@ -42,7 +42,7 @@ class howlate_mailer {
         $this->mail->send();
     }
 
-    public function send2($toEmail, $toName, $subject, $body, $from, $fromName) {
+    public function sendHtml($toEmail, $toName, $subject, $body, $from, $fromName) {
         $this->mail = new PHPMailer(true);
         $this->mail->CharSet = 'utf-8';
 
@@ -50,8 +50,8 @@ class howlate_mailer {
             throw new phpmailerAppException("Email address " . $toEmail . " is invalid -- aborting!");
         }
         $this->mail->isSMTP();
-        $this->mail->isHTML(false);
-        $this->mail->SMTPDebug = true;
+        $this->mail->isHTML(true);
+        //$this->mail->SMTPDebug = true;
 
         $this->mail->Host = $this->Host;
         $this->mail->Port = "25";
@@ -68,8 +68,10 @@ class howlate_mailer {
 
         $this->mail->WordWrap = 80;
         $this->mail->Body = $body;
+        
         $this->mail->send();
     }
+
 
 }
 

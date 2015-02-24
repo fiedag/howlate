@@ -8,7 +8,7 @@
  * 
  */
 class api {
-    public static function updateLateness($OrgID, $NewLate, $PractitionerName) {
+    public static function updateLateness($OrgID, $NewLate, $PractitionerName, $ConsultationTime) {
 
         $pract = practitioner::getInstance($OrgID,$PractitionerName,'FullName');
         if(!$pract)
@@ -19,7 +19,8 @@ class api {
         if ($NewLate < 0) {
             $NewLate = 0;
         }
-        return practitioner::updateLateness($OrgID,$pract->PractitionerID,$NewLate, 0);
+        
+        return practitioner::updateLateness($OrgID,$pract->PractitionerID, $NewLate, $ConsultationTime, 0);
     }
 
     public static function updateSessions($OrgID, $PractitionerName, $Day, $StartTime, $EndTime) {
@@ -38,15 +39,16 @@ class api {
     }
     
     
-    public static function notify($OrgID, $PractitionerName, $MobilePhone, $Domain = 'how-late.com') {
-        logging::trlog(TranType::QUE_NOTIF, "api class enqueue notification", $OrgID);
+    public static function notify($OrgID, $PractitionerName, $MobilePhone, $ClinicID, $Domain = 'how-late.com') {
         
         if(!$pract = practitioner::getInstance($OrgID,$PractitionerName, 'FullName'))
         {
             logging::trlog(TranType::QUE_NOTIF, "api class enqueue notification, creating default practitioner: $PractitionerName", $OrgID);
             $pract = practitioner::createDefaultPractitioner($OrgID,$PractitionerName);
         }
-        return $pract->enqueueNotification($MobilePhone, $Domain);
+        $result = $pract->enqueueNotification($MobilePhone, $Domain);
+        logging::trlog(TranType::QUE_NOTIF, "Enqueue result= $result", $OrgID, $ClinicID, $pract->PractitionerID, $MobilePhone);
+        return $result;
     }
     
 }

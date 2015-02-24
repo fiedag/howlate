@@ -550,7 +550,7 @@ td.clinrow {
 
 .orgname {
     font-size:24px;
-    background: linear-gradient(to right, white, rgba(0, 0, 0, 0.12));
+    background: linear-gradient(to right, white, rgba(0, 0, 0, 0.09));
     padding-top:50px;
     padding-bottom:50px;
     padding-left:150px;
@@ -636,7 +636,7 @@ td.clinrow {
 #facebox .close-button-blue:hover{background-position:-78px -19px}
 
 
-.container{text-align:left;width:760px;margin:0 auto;padding:0 40px}
+.container{text-align:left;width:80%;margin:0 auto;padding:0 40px}
 .container.g960{width:960px;padding:0}
 
 

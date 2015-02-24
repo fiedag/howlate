@@ -29,7 +29,7 @@ Class loginController Extends baseController {
         
         $this->org = organisation::getInstance(__SUBDOMAIN);
         $this->registry->template->companyname = $this->org->OrgName;
-        $this->registry->template->logourl = $this->org->LogoURL;
+        $this->registry->template->logourl = howlate_util::logoURL(__SUBDOMAIN);
         $this->registry->template->show('login_index');
     }
 

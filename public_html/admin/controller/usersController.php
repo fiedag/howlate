@@ -29,7 +29,7 @@ Class usersController Extends baseController {
         $xcrud = Xcrud::get_instance();
         $xcrud->connection(howlate_util::mysqlUser(),howlate_util::mysqlPassword(),howlate_util::mysqlDb());
         
-        $xcrud->table('orgusers')->table_name('Users Table','You can add or delete as many users as you want');
+        $xcrud->table('orgusers')->table_name('Users Table','You can add or delete as many users as you want')->limit(50);
         $xcrud->columns('SecretQuestion1,SecretAnswer1', true);
         
         $xcrud->label(array('UserID' => 'User ID', 'EmailAddress' => 'Email', 'FullName' => 'Name', 'XPassword'=>'Reset Password'));

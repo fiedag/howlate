@@ -134,7 +134,7 @@ class organisation {
 
     
     public function getLatenesses($clinic) {
-        $q = "SELECT ClinicID, ClinicName, ID, AbbrevName, FullName, MinutesLate, MinutesLateMsg, OrgID, Subdomain, Sticky, NotificationThreshold, LateToNearest, LatenessOffset FROM vwLateness WHERE OrgID = '" . $this->OrgID . "' AND ClinicID = '" . $clinic . "'";
+        $q = "SELECT ClinicID, ClinicName, ID, AbbrevName, FullName, MinutesLate, MinutesLateMsg, OrgID, Subdomain, Sticky, NotificationThreshold, LateToNearest, LatenessOffset, LatenessCeiling FROM vwLateness WHERE OrgID = '" . $this->OrgID . "' AND ClinicID = '" . $clinic . "'";
         $practArray = array();
         $clinArray = array();
         if ($result = maindb::getInstance()->query($q)) {
@@ -166,7 +166,20 @@ class organisation {
         $result->close();
     }
 
+    public function getCountries() {
+        $q = "SELECT Name, MobilePrefix FROM country";
+        $myArray = array();
+        if ($result = maindb::getInstance()->query($q)) {
+            while ($row = $result->fetch_object()) {
+                $myArray[] = $row->Name;
+            }
+            return $myArray;
+        }
+        $result->close();
+    }
 
+    
+    
     public function update_org($values) {
         // $org is the organisation object
         // $values is the array of new values
@@ -219,7 +232,7 @@ class organisation {
         return self::getInstance($orgid,'OrgID');  // make fluid
     }
     
-    
+
     public static function getNextOrgID() {
         $q = "SELECT IFNULL(MAX(OrgID),'AAAAA') As last FROM orgs";
         $sql = maindb::getInstance();
@@ -234,6 +247,10 @@ class organisation {
             return $new_high . $checkdigit;
         }
     }
+
+    
+    
+
         
     // Pin is of form AAABB.A
     // udid is the unique device id

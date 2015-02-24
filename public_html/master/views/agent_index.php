@@ -7,7 +7,7 @@
     <div class="xcrud-nav">
         <a href="/agent/exe"><button class="xcrud-button xcrud-cyan">Download HowLateAgent.exe</button></a>
     </div>
-    <h3>2. Please supply the connection information to be written to the config file</h3>
+    <h3>2. Please supply the connection information to be written to the config file.  If your system does not appear in the list, contact us to have it added!</h3>
 
     <form id="clinicselect" name="clinicselect" method="post" action="/agent/clinicselect">
         <div class="control-group">
@@ -33,13 +33,16 @@
         </div> 
         <div class="control-group">
             <label class="control-label" for="ConnectionString">Connection String:</label>
-            <textarea class="controls" id="ConnectionString" name="ConnectionString" rows="4" cols="80" form="org"><?php echo $ConnectionString;?></textarea>
-            <label class="control-label" for="ConnectionStringExample">Example:</label>
-            <textarea class="controls" id="ConnectionStringExample" name="ConnectionStringExample" rows="4" cols="80" readonly></textarea>
+            <textarea class="controls" id="ConnectionString" name="ConnectionString" rows="4" cols="150" form="org"><?php echo $ConnectionString;?></textarea>
+        </div> 
+        <div class="control-group">
+            <label class="control-label" for="ConnectionStringExample"><i>Example:</i></label>
+            <textarea class="controls" id="ConnectionStringExample" name="ConnectionStringExample" rows="4" cols="150" readonly></textarea>
+
         </div> 
         <div class="control-group">
             <label class="control-label" for="PollInterval">Poll Interval (seconds):</label>
-            <input type="text" class="controls" id="Interval" name="PollInterval" size="10" value="<?php echo $PollInterval;?>"></input>
+            <input type="number" class="controls" id="Interval" name="PollInterval" size="5" min="60" max="600" value="<?php echo $PollInterval;?>"></input>
         </div>  
         <div class="control-group">
             <label class="control-label" for="HLUserID">How Late UserID:</label>
@@ -71,7 +74,7 @@
 <script>
 
 $( document ).ready(function() {
-    $("#ConnectionStringExample").html(exampleConnStr($("#ConnectionType").val()));
+    $("#ConnectionStringExample").html(exampleConnStr($("#ConnectionType").val())).css("background-color","#fafafa");
 });
 
 

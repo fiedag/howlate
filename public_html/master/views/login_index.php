@@ -32,9 +32,7 @@
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
                             <tr>
                                 <td width="275" class="login-table">
-                                    <?php if (isset($logourl)) { ?> 
-                                        <img class="photo" alt="" title="" width="150" src="<?php echo $logourl; ?>" />
-                                    <?php } ?>
+                                    <img class="photo" alt="" title="" width="150" src="<?php echo howlate_util::logoURL(__SUBDOMAIN); ?>" />
                                 </td>
                                 <td> 
                                     <div class="login-right-container">
