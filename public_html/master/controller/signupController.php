@@ -89,7 +89,7 @@ Class signupController Extends baseController {
     }
     
     
-    public function newsletter() {
+    public function contact() {
         
         $email = filter_input(INPUT_POST,"email");
         $name = filter_input(INPUT_POST,"name");

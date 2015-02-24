@@ -78,7 +78,7 @@
                                     </div>
                                     <div class="row">
                                         <div style="padding: 10px;" class="span1 mobile-disable">
-                                            <div class="fb-like" data-href="http://how-late.com" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true" data-font="arial" data-colorscheme="dark"></div>
+                                            <div class="fb-like" data-href="https://how-late.com" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true" data-font="arial" data-colorscheme="dark"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -328,6 +328,8 @@
             <!-- Begin Footer -->
 
             <?php include("footer.php"); ?>
+
+
             <!-- End Footer -->
         </div> <!-- here -->
         <div id="fb-root"></div>
@@ -385,14 +387,13 @@
         </script>
 
 
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
         <script src="/master/js/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-        <script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
-        <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
+        <script src="https://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
+        <script src="https://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
         
         <script src="/master/js/main.js"></script>
-
 
     </body>
 </html>

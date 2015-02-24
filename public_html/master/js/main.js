@@ -114,19 +114,21 @@ var adroll_pix_id = "IZR7HAJIINEJHETKC43M2Z";
         // Smooth Scrolling
         if (!isIE) {
             $('body').on('click.anchor', 'a[href^="#"]', function(evt) {
+                
                 var anchor = $(this).attr('href');
                 if (anchor.length < 2)
                     return;
                 evt.preventDefault();
-                $(document.body).animate({'scrollTop': $(anchor).offset().top}, 500);
+                $('body,html').animate({'scrollTop': $(anchor).offset().top}, 500);
+                
             });
 
             //only on main page
             var page = getBaseURL()[3];
-            if (page == '/' || page == '/index.html') {
+            if (page == '/' || page == '/index.php') {
                 $('.brand').on('click.anchor', function(evt) {
                     evt.preventDefault();
-                    $(document.body).animate({'scrollTop': 0}, 500);
+                    $('body,html').animate({'scrollTop': 0}, 500);
                 });
             }
         }
