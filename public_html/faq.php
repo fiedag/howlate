@@ -3,6 +3,7 @@
     <!--[if lt IE 9 ]><html lang="en" class="ie8"><![endif]-->
     <!--[if (gt IE 8)|!(IE)]><!--><html lang="en"><!--<![endif]-->
         <head>
+            <meta charset="utf-8" />
             <title>HOW-LATE Cloud Software</title>
             <meta name="google-site-verification" content="84C-kFLmCZgIPgtYPCa-wbW5Mcb2XIZaqlvtK6fkBq0" />
             <meta name="twitter:card" content="photo">
@@ -20,7 +21,6 @@
             <meta name="og:image" content="/master/images/gallery2.jpg" itemprop="red lock 991x660">
             <meta name="og:url" content="http://www.how-late.com/index.php">
             <meta name="og:description" content="Arrive late, but in good time.">
-            <meta charset="utf-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <meta name="description" content="How-Late Software allows doctors to inform their patients how late they are running.">
             <meta name="keywords" content="how late, medical practitioner, patient, appointment, booking, cloud, software">

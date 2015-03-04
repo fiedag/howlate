@@ -1,93 +1,15 @@
 <!doctype html>
-<!--[if lt IE 9 ]><html lang="en" class="ie8"><![endif]-->
-<!--[if (gt IE 8)|!(IE)]><!--><html lang="en"><!--<![endif]-->
+    <html lang="en">
+    <!--[if lt IE 9 ]><html lang="en" class="ie8"><![endif]-->
+    <!--[if (gt IE 8)|!(IE)]><!--><html lang="en"><!--<![endif]-->
 
     <?php include("head.php"); ?>
 
-
     <body>
         <div id="site-container">
-            <!-- Begin Header / Reserve Flow -->
 
-            <header class="navbar navbar-fixed-top">
-                <div class="navbar-inner">
-                    <div class="reserve-window">
-                        <div class="container-fluid">
-                            <div class="row-fluid">
-                                <div class="span12">
-                                    <div class="container">
-                                        <div class="row">
+            <?php include("header.php"); ?>
 
-                                            <div class="span5">
-                                                <div class="logo"></div>
-                                            </div>
-                                            <div class="span3 offset3">
-                                                <div class="reserve-circle">
-                                                    <div class="reserve-circle-inner circle">
-                                                        <p>Sign Up<span class="mobile-disable-small">&nbsp;NOW</span></p>
-                                                        <div class="reserve-cancel" data-gtm-event="orderNow" data-gtm-info="Close"></div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div id="signup_div" class="row">
-                                        <div class="span5 offset1">
-                                            <div class="reserve-welcome fade in">
-                                                
-                                                <hgroup>
-                                                    <h1>Get in touch with</h1>
-                                                    <h1>How Late.</h1>
-                                                </hgroup>
-                                                <p id="start_trial" class="start-trial">Get in touch with us full privacy assured.</p>
-                                                <div class="" style="display:inline-box-align">
-                                                    <input id="name_input" type="text" class="input-block-level" required placeholder='Your Name'/>
-                                                    <br><input id="email_input" type="email" class="input-block-level" required placeholder="Your email" />
-                                                        <br><br><span id="signup_link" title="Submit" onclick="signupFunction();">Contact me</span>
-                                                    <p class="error"></p>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                      <div class="span3" style="width:400px;height:400px;">
-                                        <div id="loader_container" class="load-container" style="display:none;">
-                                            <div id="loader" class="loader"></div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="container-fluid reserve-window-hide-on-open">
-                        <div class="row-fluid">
-                            <div class="span12">
-                                <div id="outercontainer" class="container">
-                                    <div id="hereitis" class="row">
-                                        <div class="span2 brand-wrapper">
-                                            <a class="brand" title="how late" href="/"><div id="logo-howlate" class="logo"></div></a>
-                                        </div>
-                                        <div class="span3 offset6">
-                                            <div class="header-circle">
-                                                <div class="header-circle-inner">
-                                                    <a>Phone 0403 569 377</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div style="padding: 10px;" class="span1 mobile-disable">
-                                            <div class="fb-like" data-href="https://how-late.com" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true" data-font="arial" data-colorscheme="dark"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </header>
-            <!-- End Header / Reserve Flow -->
             <section id="welcome">
                 <div class="container-fluid">
                     <div class="row-fluid">
@@ -98,7 +20,7 @@
                                         <div class="intro">
                                             <hgroup>
                                                 <h1>Happier Patients!</h1>
-                                                <h3>Your time is valuable.  Your patients' time is valuable too!  Here is a tool to let them know what's happening.</h3>
+                                                <h3>The new How-Late app simply links with your practice management software to keep patients informed whether their doctor is running on time or late.</h3>
                                             </hgroup>
                                             <br>
                                             <hgroup>
@@ -109,7 +31,7 @@
                                             </hgroup>
 
                                             <!-- a 
-                                                href="http://www.youtube.com/embed/cf9DRZLEVTM_hide?rel=0&autoplay=1&enablejsapi=1" class="video-link">
+                                                href="http://www.youtube.com/embed/_hide?rel=0&autoplay=1&enablejsapi=1" class="video-link">
                                                 <div class="video-player"></div>
                                             </a -->
                                             <a href="#safe" data-gtm-event="navigation" data-gtm-info="Discover"><img src="master/images/discover.png"></a>

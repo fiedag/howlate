@@ -29,6 +29,7 @@
                     </div>
                     <div class="orgname">
                         <?php echo $controller->org->OrgName; ?>
+                        
                     </div>
                     <div class="nav-mainlinks-container  font-on-custom-background">
                         <ul class="nav-mainlinks custom-background" id="nav-mainlinks">

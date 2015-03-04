@@ -30,7 +30,7 @@ Class devicesController Extends baseController {
     }
 
     private function assignSpan() {
-        $span = "<span class='xcrud-button' title='Click to view what this device sees...' onClick=\"showScreen('{UDID}');\">View</span>";
+        $span = "<span class='xcrud-button' title='Click to view what this device sees...' onClick=\"openView('{UDID}');\">View</span>";
         return $span;
     }
     

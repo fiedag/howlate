@@ -1,5 +1,3 @@
-
-
     <head>
         <title>Doctor Running Late</title>
         <meta charset="utf-8" />

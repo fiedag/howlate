@@ -1,4 +1,4 @@
-`<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
     <!--[if lt IE 9 ]><html lang="en" class="ie8"><![endif]-->
     <!--[if (gt IE 8)|!(IE)]><!--><html lang="en"><!--<![endif]-->
@@ -63,60 +63,69 @@
                             </div>
                         </th>
                         <th width="180" class=" column_4" rel="160">
-                            Sole Practitioner
+                            No up-front
                         <div class="price-container">
                             <span class="large-price"><span class="dollar-sign">$</span>0</span> <span class="permonth light-blue-text">/ mth</span>
                         </div>
                         </th>
                         <th width="180" class=" column_3" rel="161">
-                            Single Clinic
+                            Regular
                         <div class="price-container">
-                            <span class="large-price"><span class="dollar-sign">$</span>39<span class="cents">95</span></span> <span class="permonth light-blue-text">/ mth</span>
+                            <span class="large-price"><span class="dollar-sign">$</span>49<span class="cents">95</span></span> <span class="permonth light-blue-text">/ mth</span>
                         </div>
                         </th>
                         <th width="180" class=" column_2" rel="162">
-                            Group
+                            Multi-Clinic
                         <div class="price-container">
-                            <span class="large-price"><span class="dollar-sign">$</span>49<span class="cents">95</span></span> <span class="permonth light-blue-text">/ clinic / mth</span>
+                            <span class="large-price"><span class="dollar-sign">$</span>39<span class="cents">95</span></span> <span class="permonth light-blue-text">/ clinic / mth</span>
                         </div>
                         </th>
                         </tr>
+
                         <tr>
-                            <td class="pricingLeft"># Clinics</td>
+                            <td class="pricingLeft"># Practitioners included</td>
+                            <td class="" rel="160">
+                                1
+                            </td>
+                            <td class="" rel="161">
+                                8
+                            </td>
+                            <td class="" rel="162">
+                                30
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="pricingLeft">Additional practitioners</td>
                             <td class="" rel="160">
                                 <span >
-                                    1
+                                    $11.95 / mth
                                 </span>
                             </td>
                             <td class="" rel="161">
                                 <span >
-                                    1
+                                    $8.95 / mth
                                 </span>
                             </td>
                             <td class="" rel="162">
                                 <span class="bold">
-                                    Unlimited
+                                    $5.95 / mth
                                 </span>
                             </td>
                         </tr>
-                        <tr>
-                            <td class="pricingLeft"># of Practitioners you can have</td>
-                            <td class="fs-14 package_160 " rel="160">
-                                <strong>
-                                    1
-                                </strong>
+                       <tr>
+                            <td class="pricingLeft"># Clinics</td>
+                            <td class="package_160 " rel="160">
+                                1
                             </td>
-                            <td class="fs-14 package_161 " rel="161">
-                                <strong>
-                                    Up to 15
-                                </strong>
+                            <td class="package_161 " rel="161">
+                                1
                             </td>
-                            <td class="fs-14 package_162 " rel="162">
-                                <strong>
-                                    Unlimited
-                                </strong>
+                            <td class="package_162 " rel="162">
+                                2 or more
                             </td>
                         </tr>
+ 
                         <tr>
                             <td class="pricingLeft"># Patients</td>
                             <td class="package_160 " rel="160">
@@ -130,27 +139,15 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="pricingLeft"># SMS messages included per month</td>
+                            <td class="pricingLeft">SMS Messages</td>
                             <td class="" rel="160">
-                                0
+                                AUD 0.31 ea
                             </td>
                             <td class="" rel="161">
-                                100
-                            </td>
-                            <td class="" rel="162">
-                                200 /clinic
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="pricingLeft">Excess SMS Messages</td>
-                            <td class="" rel="160">
                                 AUD 0.19 ea
                             </td>
-                            <td class="" rel="161">
-                                AUD 0.18 ea
-                            </td>
                             <td class="" rel="162">
-                                AUD 0.17 ea
+                                AUD 0.15 ea
                             </td>
                         </tr>
                         <tr>
@@ -177,20 +174,8 @@
                                 <img src="master/images/checkmark-green.png" width="16" height="16" border="0" alt="Yes" />
                             </td>
                         </tr>
-                        <tr>
-                            <td class="pricingLeft">Agent Integration</td>
-                            <td class="package_160 " rel="160">
-                                <img src="master/images/checkmark-green.png" width="16" height="16" border="0" alt="Yes" />
-                            </td>
-                            <td class="package_161 " rel="161">
-                                <img src="master/images/checkmark-green.png" width="16" height="16" border="0" alt="Yes" />
-                            </td>
-                            <td class="package_162 " rel="162">
-                                <img src="master/images/checkmark-green.png" width="16" height="16" border="0" alt="Yes" />
-                            </td>
-                        </tr>
                         <tr class="last-row">
-                            <td class="pricingLeft">Agent Source Code</td>
+                            <td class="pricingLeft">Agent Integration</td>
                             <td class="package_160 " rel="160">
                                 <img src="master/images/checkmark-green.png" width="16" height="16" border="0" alt="Yes" />
                             </td>
