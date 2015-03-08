@@ -40,7 +40,6 @@ class api {
     
     
     public static function notify($OrgID, $PractitionerName, $MobilePhone, $ClinicID, $Domain = 'how-late.com') {
-        
         if(!$pract = practitioner::getInstance($OrgID,$PractitionerName, 'FullName'))
         {
             logging::trlog(TranType::QUE_NOTIF, "api class enqueue notification, creating default practitioner: $PractitionerName", $OrgID);
@@ -51,4 +50,34 @@ class api {
         return $result;
     }
     
+    
+    public static function agent_version($orgID) {
+        $version = file_get_contents('downloads/x64/version', true);
+        return $version;
+    }
+    
+    public static function get_exe($OrgID, $ClinicID) {
+        $result = clinic::getInstance($OrgID, $ClinicID)->getClinicIntegration();
+        if ($result->Agent32Bit == true) {
+            $platform = "x86";
+        } else {
+            $platform = "x64";
+        }
+        $file = "downloads/$platform/HowLateAgent.exe";
+
+        if (file_exists($file)) {
+            header('Content-Description: File Transfer');
+            header('Content-Type: application/octet-stream');
+            header('Content-Disposition: attachment; filename=' . basename($file));
+            header('Expires: 0');
+            header('Cache-Control: must-revalidate');
+            header('Pragma: public');
+            header('Content-Length: ' . filesize($file));
+            readfile($file);
+            exit;
+        } else {
+            trigger_error("File $file does not exist.", E_USER_ERROR);
+        }
+    }
+
 }

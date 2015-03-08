@@ -71,12 +71,12 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <!-- div class="row">
                                         <div style="padding: 10px;" class="span1 mobile-disable">
                                             <div class="fb-like" data-href="http://how-late.com" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true" data-font="arial" data-colorscheme="dark"></div>
                                         </div>
 
-                                    </div>
+                                    </div -->
                                 </div>
                             </div>
                         </div>

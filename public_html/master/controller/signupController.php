@@ -111,7 +111,10 @@ Class signupController Extends baseController {
         if(!$name) {
             $name = $email;
         }
-
+        $note = '{ "item_type": "person", "name": "' . $name . '", "email": "' . $email . '", "visible_to": "1", "owner": "alex@fiedlerconsulting.com.au" }';
+        $mailer->send('1.362238@dropbox.pipedrive.com','Administrator', 'A contact request has been received', $note, 'admin@how-late.com', 'Administrator');
+        
+        
         $this->registry->template->logourl = howlate_util::logoURL();
         $this->registry->template->url = "https://how-late.com/master";
         

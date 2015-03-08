@@ -93,7 +93,7 @@ Class agentController Extends baseController {
         $this->registry->template->show('agent_further');
     }
 
-    public function exe() {
+    private function exe_info() {
         // this will initiate a download of HowLateAgent.exe
         $this->org = organisation::getInstance(__SUBDOMAIN);
         if (isset($_SESSION["CLINIC"]) ) {
@@ -103,6 +103,15 @@ Class agentController Extends baseController {
         }
         $result = clinic::getInstance($this->org->OrgID,$this->currentClinic)->getClinicIntegration();
 
+        
+        return $result;
+        
+    }
+    
+    
+    public function exe() {
+        $result = $this->exe_info();
+        
         if ($result->Agent32Bit == true) {
             $this->registry->template->platform = "x86";
         } else {
@@ -113,6 +122,7 @@ Class agentController Extends baseController {
         $this->registry->template->show('agent_exe');
     }
 
+    
     public function install() {
         $this->org = organisation::getInstance(__SUBDOMAIN);
         if (isset($_SESSION["CLINIC"]) ) {
@@ -201,6 +211,7 @@ Class agentController Extends baseController {
         
         $this->registry->template->show('agent_index');       
     }
+    
     
     
     /*

@@ -144,7 +144,6 @@ class chargeover {
 	$Package = $resp->response;
 	return $Package->getLineItems();
     }
-    
 }
 
 ?>

@@ -26,19 +26,18 @@ Class apiController Extends baseController {
     
     public function upd() {
         $this->checkCredentials();
-
-        $PractitionerName = $this->lookfor(array('Practitioner', 'Provider','PRACTITIONER','PROVIDER'));
-        $AppointmentTime = $this->lookfor(array('AppointmentTime','APPOINTMENTTIME'));
-        $ArrivalTime = $this->lookfor(array('ArrivalTime','ARRIVALTIME'));
-        $ConsultationTime = $this->lookfor(array('ConsultationTime','CONSULTATIONTIME'));
-        $NewLate = $this->lookfor(array('NewLate','NEWLATE'));  // in units of minutes
+        $this->checkVersion();
+        $PractitionerName = $this->lookfor(array('Practitioner', 'Provider', 'PRACTITIONER', 'PROVIDER'));
+        $AppointmentTime = $this->lookfor(array('AppointmentTime', 'APPOINTMENTTIME'));
+        $ArrivalTime = $this->lookfor(array('ArrivalTime', 'ARRIVALTIME'));
+        $ConsultationTime = $this->lookfor(array('ConsultationTime', 'CONSULTATIONTIME'));
+        $NewLate = $this->lookfor(array('NewLate', 'NEWLATE'));  // in units of minutes
 
         if (!$NewLate) {
-            $NewLate = round(($ConsultationTime - $AppointmentTime) / 60,0,PHP_ROUND_HALF_UP);
+            $NewLate = round(($ConsultationTime - $AppointmentTime) / 60, 0, PHP_ROUND_HALF_UP);
         }
-        
         $res = api::updateLateness($this->org->OrgID, $NewLate, $PractitionerName, $ConsultationTime);
-        
+
         $this->registry->template->result = $res;
         $this->registry->template->show('api_index');
     }
@@ -63,6 +62,7 @@ Class apiController Extends baseController {
 
     public function sess() {
         $this->checkCredentials();
+        $this->checkVersion();
         $PractitionerName = $this->lookfor(array('Practitioner', 'Provider','PRACTITIONER','PROVIDER'));
         if (!$PractitionerName) {
             throw new Exception("Practitioner or Provider not given.");
@@ -127,6 +127,75 @@ Class apiController Extends baseController {
     }
 
     
+    public function get_updater() {
+
+        $file = "downloads/x64/HowLateAgentUpdater.exe";
+
+        if (file_exists($file)) {
+            header('Content-Description: File Transfer');
+            header('Content-Type: application/octet-stream');
+            header('Content-Disposition: attachment; filename=' . basename($file));
+            header('Expires: 0');
+            header('Cache-Control: must-revalidate');
+            header('Pragma: public');
+            header('Content-Length: ' . filesize($file));
+            readfile($file);
+            exit;
+        } else {
+            trigger_error("File $file does not exist.", E_USER_ERROR);
+        }
+    }
+    
+    public function get_exe() {
+        $org = organisation::getInstance(__SUBDOMAIN);
+        $ClinicID = filter_input(INPUT_GET,"clin");
+        if (!$ClinicID) {
+            throw new Exception("clin GET parameter must be supplied");
+        }
+
+        api::get_exe($org->OrgID, $ClinicID);
+        
+    }
+    
+    public function get_agent_displayname() {
+        $org = organisation::getInstance(__SUBDOMAIN);
+        $ClinicID = filter_input(INPUT_GET,"clin");
+        if (!$ClinicID) {
+            throw new Exception("clin GET parameter must be supplied");
+        }
+
+        $clin = clinic::getInstance($org->OrgID, $ClinicID);
+        // this will initiate a download of HowLateAgent.exe.config
+        $result = $clin->getClinicIntegration();
+
+        $this->registry->template->result = "HowLateAgent for " . $result->Name;
+        $this->registry->template->show('api_index'); 
+    }
+
+    public function get_exe_config() {
+        $org = organisation::getInstance(__SUBDOMAIN);
+        $ClinicID = filter_input(INPUT_GET,"clin");
+        if (!$ClinicID) {
+            throw new Exception("clin GET parameter must be supplied");
+        }
+
+        $clin = clinic::getInstance($org->OrgID, $ClinicID);
+        // this will initiate a download of HowLateAgent.exe.config
+        $result = $clin->getClinicIntegration();
+
+        //require_once("includes/kint/Kint.class.php");
+        //d($result);        
+        
+        $this->registry->template->record = $result;
+        $this->registry->template->URL = "https://" . __FQDN . "/api";
+        $this->registry->template->Credentials = $result->HLUserID . "." . $result->XPassword;
+        
+        $this->registry->template->show('agent_config'); 
+    }
+
+
+    
+    
     /*
      * 
      * Function to look in post parameters for alternatives
@@ -152,9 +221,20 @@ Class apiController Extends baseController {
         }
     }
     
-    
-    
-    
+    private function checkVersion() {
+        $AssemblyVersion = $this->lookfor(array('assemblyversion'));
+        if(!$AssemblyVersion) {
+            return;  // not being passed, nothing to check
+        }
+        $AgentVersion = api::agent_version($this->org->OrgID);
+        
+        /* Just defeat the version checking for the time being */
+        $AssemblyVersion = $AgentVersion;
+        
+        if ($AssemblyVersion != $AgentVersion) {
+            throw new Exception("Upgrade required (from " . $AssemblyVersion . " to " . $AgentVersion . ")");
+        }
+    }    
     
 }
 
