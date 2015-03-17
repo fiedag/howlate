@@ -46,7 +46,7 @@ Class apiController Extends baseController {
         $this->checkCredentials();
         $PractitionerName = $this->lookfor(array('Practitioner', 'Provider','PRACTITIONER','PROVIDER'));
         $MobilePhone = $this->lookfor(array('MobilePhone','CellPhone','MOBILEPHONE','CELLPHONE'));
-        $ClinicID = $this->lookfor(array('ClinicID','Clinic','CLINICID'));
+        $ClinicID = $this->lookfor(array('ClinicID','Clinic','CLINICID','clinic'));
         $result = api::notify($this->org->OrgID, $PractitionerName, $MobilePhone, $ClinicID);
         $this->registry->template->result = $result;
         $this->registry->template->show('api_index');
@@ -54,10 +54,13 @@ Class apiController Extends baseController {
     
     public function notify_bulk() {
         $this->checkCredentials();
+        $this->checkVersion();
+        $ClinicID = $this->lookfor(array('ClinicID','Clinic','CLINICID','clinic'));
+        
         $notif_array = $_POST["notify_bulk"];
-        foreach($notif_array as $key=>$val) {
-            api::notify($this->org->OrgID, $val['Provider'], $val['MobilePhone'], $val['ClinicID'], __DOMAIN);
-        }
+        
+        api::notifybulk($this->org->OrgID, $ClinicID, $notif_array);
+        
     }
 
     public function sess() {
@@ -145,6 +148,18 @@ Class apiController Extends baseController {
             trigger_error("File $file does not exist.", E_USER_ERROR);
         }
     }
+ 
+    
+    public function get_exe2() {
+        $org = organisation::getInstance(__SUBDOMAIN);
+        $ClinicID = filter_input(INPUT_GET,"clin");
+        if (!$ClinicID) {
+            throw new Exception("clin GET parameter must be supplied");
+        }
+
+        api::get_exe2($org->OrgID, $ClinicID);
+    }    
+    
     
     public function get_exe() {
         $org = organisation::getInstance(__SUBDOMAIN);
@@ -229,7 +244,7 @@ Class apiController Extends baseController {
         $AgentVersion = api::agent_version($this->org->OrgID);
         
         /* Just defeat the version checking for the time being */
-        $AssemblyVersion = $AgentVersion;
+        //$AssemblyVersion = $AgentVersion;
         
         if ($AssemblyVersion != $AgentVersion) {
             throw new Exception("Upgrade required (from " . $AssemblyVersion . " to " . $AgentVersion . ")");

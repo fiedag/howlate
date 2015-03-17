@@ -149,9 +149,13 @@ class practitioner {
             return "Patient $MobilePhone already notified today.  Not enqueued.";
         }
         
+        
         $url = "http://m." . $domain . "/late/view&udid=$MobilePhone";
-        $msg = $this->PractitionerName . " is running " . $lateness . ". For updates,click " . $url;
+        
+        //$msg = $this->PractitionerName . " is running " . $lateness . ". For updates,click " . $url;
 
+        $msg = notification::getMessage($this, $lateness, $MobilePhone, $domain);
+        
         // this takes care of duplicates
         $q = "CALL sp_EnqueueNotification(?,?,?,?,?)";
         $stmt = maindb::getInstance()->prepare($q);

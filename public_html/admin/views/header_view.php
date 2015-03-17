@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <!-- Mobile Specific Meta -->
-        <title>How Late</title>
+        <title>How Late Admin Panel</title>
         <meta name='description' content='How Late is my appointment.'>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=1">
         <link media="screen" href="/styles/howlate_admin.css" type="text/css" rel="stylesheet">

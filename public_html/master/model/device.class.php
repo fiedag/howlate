@@ -15,7 +15,7 @@ class device {
     public $registrations;  // array of registrations for this
     
     public static function getLatenesses($fieldval, $fieldname = 'UDID') {
-        $q = "SELECT ClinicID, ClinicName, AbbrevName, MinutesLate, MinutesLateMsg, OrgID, ID, Subdomain FROM vwMyLates WHERE $fieldname = '" . $fieldval . "' ORDER BY ClinicName";
+        $q = "SELECT ClinicID, ClinicName, AbbrevName, MinutesLate, MinutesLateMsg, OrgID, ID, Subdomain, AllowMessage FROM vwMyLates WHERE $fieldname = '" . $fieldval . "' ORDER BY ClinicName";
         $sql = maindb::getInstance();
 
         

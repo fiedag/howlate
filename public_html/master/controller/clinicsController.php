@@ -18,11 +18,11 @@ Class clinicsController Extends baseController {
         $xcrud->connection(howlate_util::mysqlUser(),howlate_util::mysqlPassword(),howlate_util::mysqlDb());
                
         $xcrud->table('clinics')->where('OrgID =', $this->org->OrgID)->limit(10);
-        $xcrud->columns('OrgID, Country, Location, Zip, Timezone', true);
+        $xcrud->columns('OrgID, Country, Location, Zip, Timezone, PatientReply, ReplyRecip', true);
         $xcrud->readonly('OrgID');
         
         $xcrud->hide_button('view');
-        $xcrud->label(array('ClinicName' => 'Clinic', 'Address1' => 'Address', 'Address2' => 'Address', 'Timezone' => 'Time Zone'));
+        $xcrud->label(array('ClinicName' => 'Clinic', 'Address1' => 'Address', 'Address2' => 'Address', 'Timezone' => 'Time Zone', 'PatientReply' => 'Allow Patient to reply', 'ReplyRecip' => 'Reply Recipient Email'));
 
         $xcrud->pass_default('OrgID',$this->org->OrgID);
         $tz = $this->org->getTimezones();
@@ -36,6 +36,9 @@ Class clinicsController Extends baseController {
         $xcrud->pass_default('Timezone',$tz);
         $xcrud->unset_csv(true)->unset_numbers(true)->unset_print(true)->unset_limitlist(true)->hide_button('save_and_edit')->hide_button('save_and_new');     
         $xcrud->after_remove("clinic_deleted");
+        
+        $xcrud->field_tooltip('PatientReply','Whether Lateness view permits patients to reply to the clinic');
+        $xcrud->field_tooltip('ReplyRecip','Recipient email address if replies are permitted.');
         
         echo $xcrud->render();
     }

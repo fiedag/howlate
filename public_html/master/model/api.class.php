@@ -7,13 +7,14 @@
  * 
  * 
  */
+
+
 class api {
     public static function updateLateness($OrgID, $NewLate, $PractitionerName, $ConsultationTime) {
 
         $pract = practitioner::getInstance($OrgID,$PractitionerName,'FullName');
         if(!$pract)
         {
-            
             $pract = practitioner::createDefaultPractitioner($OrgID,$PractitionerName);
         }
         if ($NewLate < 0) {
@@ -55,7 +56,19 @@ class api {
         $version = file_get_contents('downloads/x64/version', true);
         return $version;
     }
+
+    public static function get_exe2($OrgID, $ClinicID) {
+        $result = clinic::getInstance($OrgID, $ClinicID)->getClinicIntegration();
+        if ($result->Agent32Bit == true) {
+            $platform = "x86";
+        } else {
+            $platform = "x64";
+        }
+        echo $platform;
+    }
     
+    // TODO: Theoretically this method violates the 
+    // convention of everything being environment agnostic (see header)
     public static function get_exe($OrgID, $ClinicID) {
         $result = clinic::getInstance($OrgID, $ClinicID)->getClinicIntegration();
         if ($result->Agent32Bit == true) {
@@ -79,5 +92,11 @@ class api {
             trigger_error("File $file does not exist.", E_USER_ERROR);
         }
     }
+    
+    public static function notifybulk($OrgID, $ClinicID, $notif_array) {
+        notification::notify_bulk($OrgID, $ClinicID, $notif_array);
+    }
+        
+
 
 }

@@ -24,9 +24,10 @@
                                             </hgroup>
                                             <br>
                                             <hgroup>
-                                                <h3><img src="master/images/checkmark-green.png" />  Increased patient happiness</h3>
-                                                <h3><img src="master/images/checkmark-green.png" />  Set and forget</h3>
-                                                <h3><img src="master/images/checkmark-green.png" />  Inexpensive</h3>
+                                                <h3><img src="master/images/checkmark-green.png" /> Inexpensive.</h3>
+                                                <h3><img src="master/images/checkmark-green.png" /> Set and Forget.</h3>
+                                                <h3><img src="master/images/checkmark-green.png" /> MedicalDirector, BestPractice + many more.</h3>
+                                                <h3><img src="master/images/checkmark-green.png" /> SMS Alert and/or App Screen</h3>
                                                 <br>
                                             </hgroup>
 
@@ -95,17 +96,17 @@
                                     <ul class="safer-features">
                                         <li class="newlevel-item active">
                                             <a title="Quick" href="#" app-feature="0">
-                                                <h3>Quick</h3><p>Check for updates any time with our custom screen showing just your doctor!</p>
+                                                <h3>Quick</h3><p>Check for updates any time with our custom screen showing just the relevant doctor(s)!</p>
                                             </a>
                                         </li>
                                         <li class="newlevel-item">
                                             <a title="Text Alerts" href="#" app-feature="2">
-                                                <h3>Text Alerts</h3><p>Send text messages to the next two<sup>*</sup> hours' scheduled appointments advising them of your situation.</p>
+                                                <h3>Text Alerts</h3><p>Send SMS advisory to the next two<sup>*</sup> hours scheduled appointments.</p>
                                             </a>
                                         </li>
                                         <li class="newlevel-item">
                                             <a title="Comprehensive" href="#" app-feature="1">
-                                                <h3>Comprehensive</h3><p>As many doctors or practitioners as you like can appear on the same screen.</p>
+                                                <h3>Multi-platform</h3><p>As many doctors or practitioners as you like can appear on the same screen.  We support all the major systems and others are being added all the time.</p>
                                             </a>
                                         </li>
                                     </ul>
@@ -160,8 +161,8 @@
                                                         <p>With Auto-Update your reception staff do <i>exactly nothing</i>.  A set-and-forget agent program reads the information from your existing appointment book and updates the server.  Or you can run manually.</p>
                                                     </li>
                                                     <li>
-                                                        <h3>Free Install</h3>
-                                                        <p>All Installation is free.  If your appointment book system is unsupported, we will write a new adapter for free.</p>
+                                                        <h3>Any system</h3>
+                                                        <p>Let us know if you have a rare appointment book system.  We can usually create a new agent adapter quickly.  At no cost to you.</p>
                                                     </li>
                                                     <li>
                                                         <h3>Advanced Features</h3>
@@ -234,11 +235,11 @@
                                     </div>
                                     <div class="nocost span3">
                                         <h5>NO COST UP-FRONT</h5>
-                                        <p>For patients there is never a cost.  For doctors there is a monthly subscription billed in arrears which includes a generous allowance for SMS messages.</p>
+                                        <p>For patients there is never a cost.  For doctors there is a monthly subscription billed in arrears, after your free 30 day trial.</p>
                                     </div>
                                     <div class="freemium span3">
                                         <h5>FREEMIUM</h5>
-                                        <p>For sole practitioners, subscription is free and always will be.</p>
+                                        <p>Subscription is free if you are running a single doctor in standalone (i.e. no agent) mode.</p>
                                     </div>
                                 </div>
                             </div>

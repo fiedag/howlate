@@ -14,8 +14,8 @@ class clinic extends howlate_basetable {
     public $Country;
     public $Phone;
     public $State;
-
-
+    public $AllowMessage;
+    public $MsgRecip;
     
     public static function getInstance($OrgID, $ClinicID) {
         $q = "SELECT * FROM clinics WHERE OrgID = '$OrgID' AND ClinicID = $ClinicID";
@@ -107,6 +107,20 @@ class clinic extends howlate_basetable {
         return null;
     }
 
-    
+    public function cancelAppointmentMessage($OrgID, $PractitionerID, $PractitionerName, $UDID) {
+        $mail = new howlate_mailer();
+
+        $toEmail = $this->MsgRecip;
+        $toName = $this->ClinicName;
+        $subject = "HOW-LATE Cancellation Advisory $UDID";
+        $body = "$UDID has advised that they will not be able to keep their appointment with $PractitionerName";
+        $from = howlate_util::admin_email();
+        $fromName = "How-Late Admin";
+        
+        
+        $mail->send($toEmail, $toName, $subject, $body, $from, $fromName);
+        
+        
+    }
     
 }

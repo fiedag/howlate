@@ -91,7 +91,7 @@
                                 8
                             </td>
                             <td class="" rel="162">
-                                30
+                                30 / clinic
                             </td>
                         </tr>
 
@@ -177,7 +177,7 @@
                         <tr class="last-row">
                             <td class="pricingLeft">Agent Integration</td>
                             <td class="package_160 " rel="160">
-                                <img src="master/images/checkmark-green.png" width="16" height="16" border="0" alt="Yes" />
+                                <img src="master/images/xmark-red.png" width="16" height="16" border="0" alt="Yes" />
                             </td>
                             <td class="package_161 " rel="161">
                                 <img src="master/images/checkmark-green.png" width="16" height="16" border="0" alt="Yes" />
@@ -198,7 +198,7 @@
                                             <h5>Trialling the system</h5>
                                             <p>
 If you are a multi-doctor clinic and just want to trial the system, create a single practitioner and away you go.  You only pay for the SMS messages you use.  
-And we will give you 100 SMS credits to start you off.  When you are ready, simply add extra practitioners.  It is that easy.
+When you are ready, simply add extra practitioners.  It is that easy.
 </p>
                                         
                                     </div>
