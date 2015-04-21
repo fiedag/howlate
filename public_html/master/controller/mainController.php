@@ -9,22 +9,38 @@ Class mainController Extends baseController {
     public $currentClinicName;
     public $currentClinicTimezone;
 
-
+    public $UTC;
+    
     public function index() {
+        $is_found = false;
         
         $this->org->getRelated();
 
         //if (isset($_SESSION["CLINIC"]) and in_array($_SESSION["CLINIC"],$this->org->ActiveClinics)) {
-        if (isset($_SESSION["CLINIC"]) ) {
-
-            $this->currentClinic = $_SESSION['CLINIC'];
+        if (isset($_SESSION["CLINIC"]) && isset($this->org->ActiveClinics)) {
+            foreach ($this->org->ActiveClinics as $value) {
+                if ($value->ClinicID == $this->currentClinic) {
+                    $is_found = true;
+                }
+            }
+        }
+        if ($is_found) {
+            $this->currentClinic = $_SESSION["CLINIC"];
             $this->currentClinicName = $_SESSION['CLINICNAME'];
             $this->currentClinicTimezone = $_SESSION['CLINICTZ'];
-        } else {
+        }
+        else {
 
-            $this->currentClinic = $this->org->Clinics[0]->ClinicID;
-            $this->currentClinicName = $this->org->Clinics[0]->ClinicName;
-            $this->currentClinicTimezone = $this->org->Clinics[0]->Timezone;
+            if(isset($this->org->ActiveClinics)) {
+                $this->currentClinic = $this->org->ActiveClinics[0]->ClinicID;
+                $this->currentClinicName = $this->org->ActiveClinics[0]->ClinicName;
+                $this->currentClinicTimezone = $this->org->ActiveClinics[0]->Timezone;
+            }
+            else {
+                $this->currentClinic = $this->org->Clinics[0]->ClinicID;
+                $this->currentClinicName = $this->org->Clinics[0]->ClinicName;
+                $this->currentClinicTimezone = $this->org->Clinics[0]->Timezone;
+            }
 
             $_SESSION["CLINIC"] = $this->currentClinic;
             $_SESSION['CLINICNAME'] = $this->currentClinicName;
@@ -33,11 +49,14 @@ Class mainController Extends baseController {
 
         date_default_timezone_set($this->currentClinicTimezone);
 
+        $time = time();
+        $check = $time - date("Z", $time);
+        $this->UTC = strftime("%H:%M:%S UTC", $check);
+
         $this->registry->template->saved_ok = (isset($_GET["ok"]) and $_GET["ok"] == 'yes');
 
         $this->registry->template->controller = $this;
         $this->registry->template->show('main_index');
-
     }
 
     public function save() {
@@ -48,14 +67,16 @@ Class mainController Extends baseController {
             if ($newlate == 'On time') {
                 $newlate = 0;
             }
-            
+            $clinic = (isset($_POST['clinic'][$pin]));
             $sticky = (isset($_POST['sticky'][$pin]));
             
             $elems = explode('.', $pin);
             $org = $elems[0];
             $id = $elems[1];
             
-            practitioner::updateLateness($org, $id, $newlate, $sticky);
+            
+            practitioner::updateLateness($org, $id, $clinic, $newlate, 0, $sticky);
+            
         }
         header("location: http://" . __FQDN . "/main?ok=yes");
     }
@@ -97,6 +118,7 @@ Class mainController Extends baseController {
                 echo "<input type='hidden' id='tonearest[$pin]' name='tonearest[$pin]' value='$value->LateToNearest' >";
                 echo "<input type='hidden' id='latemsg[$pin]' name='latemsg[$pin]' value='$value->MinutesLateMsg' >";
                 echo "<input type='hidden' id='offset[$pin]' name='offset[$pin]' value='$value->LatenessOffset' >";
+                echo "<input type='hidden' id='clinic[$pin]' name='clinic[$pin]' value='$value->ClinicID' >";
                 echo "</td>";
                 echo "<td>";
                 echo "<input type='checkbox' id='sticky[$pin]' name='sticky[$pin]' " . (($value->Sticky == 1)?"checked":"") . "/>";
@@ -182,7 +204,12 @@ EOT;
         }
         //echo "NEw clinic = $this->currentClinicName<br> ";
         date_default_timezone_set($this->currentClinicTimezone);
-              
+
+        $time = time();
+        $check = $time - date("Z",$time);
+        $this->UTC = strftime("%H:%M:%S UTC", $check);        
+        
+        
         $_SESSION["CLINIC"] = $this->currentClinic;
         $_SESSION["CLINICNAME"] = $this->currentClinicName;
         $_SESSION["CLINICTZ"] = $this->currentClinicTimezone;

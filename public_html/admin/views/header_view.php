@@ -37,6 +37,13 @@
                         } ?> custom-background-dark-hover">
                                 <span><a id="nav-main" title="Check on organisations." class="<?php echo (get_class($controller) == "orgController") ? 'custom-font-on-white' : 'font-on-custom-background'; ?>" href="https://<?php echo __FQDN; ?>/org">Orgs</a></span>
                             </li>
+
+                            <li class="first <?php if (get_class($controller) == "clinController") {
+                            echo 'active';
+                        } ?> custom-background-dark-hover">
+                                <span><a id="nav-clinics" title="Check on clinics." class="<?php echo (get_class($controller) == "clinController") ? 'custom-font-on-white' : 'font-on-custom-background'; ?>" href="https://<?php echo __FQDN; ?>/clin">Clinics</a></span>
+                            </li>
+
                             <li class="<?php if (get_class($controller) == "devicesController") {
                             echo 'active';
                         } ?> custom-background-dark-hover">

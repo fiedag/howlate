@@ -77,7 +77,7 @@ Class tranlogController Extends baseController {
         include('includes/xcrud/xcrud.php');
         $xcrud = Xcrud::get_instance();
         $xcrud->connection(howlate_util::mysqlUser(),howlate_util::mysqlPassword(),howlate_util::mysqlDb());
-        $xcrud->table('transactionlog')->where("TransType !",array('LATE_RESET','LATE_UPD','LATE_GET','MISC_MISC','SESS_UPD'))->table_name('Transaction Log',"This week's log shown in latest first order.  See CSV export button at end.")->limit(50);
+        $xcrud->table('transactionlog')->where("TransType !",array('LATE_RESET','LATE_UPD','LATE_GET','MISC_MISC','SESS_UPD'))->table_name('Selected transactions',"This week's log of uncommon transactions.")->limit(50);
         $xcrud->order_by('Id','desc');        
         return $xcrud->render();
     }

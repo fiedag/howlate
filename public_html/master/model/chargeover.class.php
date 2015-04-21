@@ -144,6 +144,19 @@ class chargeover {
 	$Package = $resp->response;
 	return $Package->getLineItems();
     }
+    
+    function getUsageLineItems($package) {
+        $resp = $this->API->findById('package', $package->package_id);
+	$Package = $resp->response;
+	return array_filter($Package->getLineItems(), array($this, 'usage_line'));
+        
+        
+    }
+    
+    private function usage_line($element) {
+        return ($element->item_units == 'text message');
+
+    }
 }
 
 ?>

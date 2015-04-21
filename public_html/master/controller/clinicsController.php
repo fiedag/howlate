@@ -18,11 +18,12 @@ Class clinicsController Extends baseController {
         $xcrud->connection(howlate_util::mysqlUser(),howlate_util::mysqlPassword(),howlate_util::mysqlDb());
                
         $xcrud->table('clinics')->where('OrgID =', $this->org->OrgID)->limit(10);
-        $xcrud->columns('OrgID, Country, Location, Zip, Timezone, PatientReply, ReplyRecip', true);
+        $xcrud->columns('OrgID, Country, Location, Zip, Timezone, PatientReply, ReplyRecip,SuppressNotifications', true);
+        $xcrud->fields('PatientReply,ReplyRecip',true);
         $xcrud->readonly('OrgID');
         
         $xcrud->hide_button('view');
-        $xcrud->label(array('ClinicName' => 'Clinic', 'Address1' => 'Address', 'Address2' => 'Address', 'Timezone' => 'Time Zone', 'PatientReply' => 'Allow Patient to reply', 'ReplyRecip' => 'Reply Recipient Email'));
+        $xcrud->label(array('ClinicName' => 'Clinic', 'Address1' => 'Address', 'Address2' => 'Address', 'Timezone' => 'Time Zone', 'PatientReply' => 'Allow Patient to reply', 'ReplyRecip' => 'Reply Recipient Email', 'SuppressNotifications' =>'Suppress Notifications'));
 
         $xcrud->pass_default('OrgID',$this->org->OrgID);
         $tz = $this->org->getTimezones();

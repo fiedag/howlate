@@ -86,6 +86,7 @@ class router {
         
         if ($this->controller != "login" 
                 and $this->controller != "late" 
+                and $this->controller != "l" 
                 and $this->controller != "signup" 
                 and $this->controller != "api"
                 and $this->controller != "clinicinfo"

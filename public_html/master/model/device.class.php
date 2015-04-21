@@ -50,19 +50,23 @@ class device {
             return $myArray;
         }
     }
-
     
     public static function invite($org, $id, $udid, $domain) {
-        $prac = practitioner::getInstance($org,$id);
+       $prac = practitioner::getInstance($org,$id);
+       //$url = "http://m.$domain/late/view&xudid=" . howlate_util::to_xudid($udid);
 
-       $message = "Current delays for $prac->PractitionerName at $prac->ClinicName can be checked at " .
-       "http://m.$domain/late/view&udid=$udid";
+       $url = "http://m.$domain/late/view&udid=" . $udid;
+
+       $message = "Current delays for $prac->PractitionerName at $prac->ClinicName can be checked at " . $url;
 
        $clickatell = new clickatell();
        $clickatell->httpSend( $udid, $message, $org);
        
        logging::trlog(TranType::DEV_SMS, $message, $prac->OrgID, $prac->ClinicID, $prac->PractitionerID, $udid);
     }
+    
+    
+    
     
     public static function register($OrgID, $PractitionerID, $UDID) {
         $q = "REPLACE INTO devicereg (ID, OrgID, UDID, Expires) VALUES (?,?,?, CURDATE() + INTERVAL 12 MONTH )";

@@ -10,7 +10,6 @@ Class lateController Extends baseController {
         $this->view();
     }
 
-
     public function ajax() {
         $udid = filter_input(INPUT_GET,"udid");
         if (!$udid) {
@@ -90,7 +89,6 @@ Class lateController Extends baseController {
         $this->registry->template->icon_url = howlate_util::logoURL(__SUBDOMAIN);
         $this->registry->template->apple_icon_url = howlate_util::logoWhiteBG();
 
-        
         $udid = filter_input(INPUT_GET, 'udid');
         if (!$udid) {
             $xudid = filter_input(INPUT_GET, 'xudid');
@@ -105,7 +103,7 @@ Class lateController Extends baseController {
             
             if (!empty($lates)) {
                 $this->registry->template->lates = $lates;
-                $this->registry->template->show('late_view2');
+                $this->registry->template->show('late_view');
             } else {
                 $this->registry->template->show('late_none');
             }

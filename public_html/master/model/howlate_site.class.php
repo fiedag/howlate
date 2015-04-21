@@ -114,7 +114,7 @@ class howlate_site {
     
     public function createDefaultPractitioner() {
         $this->mylog("Creating default practitioner for $this->OrgID, and email $this->Email<br>");
-        practitioner::createDefaultPractitioner($this->OrgID, $this->Email);
+        practitioner::createDefaultPractitioner($this->OrgID, 0, $this->Email);
         $this->mylog("Created default practitioner <br>");        
         return $this;
     }

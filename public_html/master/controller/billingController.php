@@ -2,6 +2,37 @@
 
 Class billingController Extends baseController {
 
+    // used in array_filter call below
+    private function usage_line($element) {
+        return ($element->item_units == 'text message');
+    }
+    
+    
+    public function test() {
+
+        $co = new chargeover();
+
+        $customer = $co->getCustomer($this->org->OrgID);
+        $package = $co->getCurrentActivePackage($customer->customer_id);
+        $lines = $co->getPackageLineItems($package);
+        $this->registry->template->lines = $lines;
+        
+        $this->registry->template->just_sms = array_filter($lines,  array($this, 'usage_line'));
+        
+        $this->registry->template->show('billing_test');
+    }
+    
+    public function test2() {
+        //echo howlate_util::to_udid(howlate_util::to_xudid('0403569377')) . "<br";
+        //echo howlate_util::to_udid(howlate_util::to_xudid('0405149704')) . "<br";
+        //echo howlate_util::to_xudid('61405149704') . "<br";
+        $m = '61405149705';
+        $x = howlate_util::to_xudid($m);
+        $m2 = howlate_util::to_udid($x);
+        echo " $m converts to $x  and back to $m2<br>";
+    }
+
+    
     public function index() {
         
         $billing = new billing();

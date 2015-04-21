@@ -16,7 +16,7 @@ class practitioner {
     public $NotificationThreshold;
     public $LateToNearest;
     public $LatenessOffset;
-    public $LatenesscEILING;
+    public $LatenessCeiling;
 
     public static function getInstance($OrgID, $FieldValue, $FieldName = 'PractitionerID') {
 
@@ -72,7 +72,7 @@ class practitioner {
         return howlate_util::logoURL($this->Subdomain);
     }
 
-    public static function updateLateness($OrgID, $PractitionerID, $NewLate, $ConsultationTime, $Sticky = 0) {
+    public static function updateLateness($OrgID, $PractitionerID, $ClinicID, $NewLate, $ConsultationTime, $Sticky = 0) {
         $q = "CALL sp_LateUpd(?, ?, ?, ?)";
         $sql = maindb::getInstance();
         $stmt = $sql->prepare($q);
@@ -80,7 +80,7 @@ class practitioner {
         if (!$stmt->execute()) {
             throw new Exception("# Query Error $OrgID, $PractitionerID, $NewLate, $Sticky ( $sql->errno ) "  . $sql->error);
         }
-        logging::trlog(TranType::LATE_UPD, "Lateness updated to $NewLate , Sticky = $Sticky.", $OrgID, null, $PractitionerID, null, $NewLate);
+        logging::trlog(TranType::LATE_UPD, "Lateness now $NewLate , Sticky = $Sticky.", $OrgID, $ClinicID, $PractitionerID, null, $NewLate);
         return "lateness updated ok";
     }
 
@@ -114,12 +114,12 @@ class practitioner {
         $stmt->execute();
     }
 
-    public static function createDefaultPractitioner($orgid, $name) {
-        $q = "CALL sp_CreatePractitioner (?, ?)";
+    public static function createDefaultPractitioner($orgid, $clinic, $name) {
+        $q = "CALL sp_CreatePractitioner (?, ?, ?)";
         $stmt = maindb::getInstance()->prepare($q);
-        $stmt->bind_param('ss', $orgid, $name);
+        $stmt->bind_param('sis', $orgid, $clinic, $name);
         if (!$stmt->execute()) {
-            throw new Exception("sp_CreatePractitioner($orgid, $name)" . $stmt->error);
+            throw new Exception("sp_CreatePractitioner($orgid, $clinic, $name)" . $stmt->error);
         }
         if ($stmt->affected_rows != 1) {
             throw new Exception("The default practitioner was not created, error= " . $stmt->error, E_USER_ERROR);

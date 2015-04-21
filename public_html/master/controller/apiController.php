@@ -27,27 +27,38 @@ Class apiController Extends baseController {
     public function upd() {
         $this->checkCredentials();
         $this->checkVersion();
+
+        $Clinic = filter_input(INPUT_GET,"clinic");
+
         $PractitionerName = $this->lookfor(array('Practitioner', 'Provider', 'PRACTITIONER', 'PROVIDER'));
         $AppointmentTime = $this->lookfor(array('AppointmentTime', 'APPOINTMENTTIME'));
         $ArrivalTime = $this->lookfor(array('ArrivalTime', 'ARRIVALTIME'));
         $ConsultationTime = $this->lookfor(array('ConsultationTime', 'CONSULTATIONTIME'));
+        $ConsultationTimeUTC = $this->lookfor(array('ConsultationTimeUTC','CONSULTATIONTIMEUTC'));  // seconds since midnight
         $NewLate = $this->lookfor(array('NewLate', 'NEWLATE'));  // in units of minutes
+
+        if (!$ConsultationTime) {
+            $clin = clinic::getInstance($this->org->OrgID, $Clinic);
+            $ConsultationTime = $clin->toLocalTime($ConsultationTimeUTC);
+        }
 
         if (!$NewLate) {
             $NewLate = round(($ConsultationTime - $AppointmentTime) / 60, 0, PHP_ROUND_HALF_UP);
         }
-        $res = api::updateLateness($this->org->OrgID, $NewLate, $PractitionerName, $ConsultationTime);
+        
+        $res = api::updateLateness($this->org->OrgID, $Clinic, $NewLate, $PractitionerName, $ConsultationTime);
 
+        $res .= ",COnsultationTime = $ConsultationTime";
         $this->registry->template->result = $res;
         $this->registry->template->show('api_index');
     }
 
     public function notify() {
         $this->checkCredentials();
-        $PractitionerName = $this->lookfor(array('Practitioner', 'Provider','PRACTITIONER','PROVIDER'));
+        $PractitionerName = $this->lookfor(array('Practitioner', 'Provider','PRACTITIONER','PROVIDER','ProviderName','PROVIDERNAME'));
         $MobilePhone = $this->lookfor(array('MobilePhone','CellPhone','MOBILEPHONE','CELLPHONE'));
         $ClinicID = $this->lookfor(array('ClinicID','Clinic','CLINICID','clinic'));
-        $result = api::notify($this->org->OrgID, $PractitionerName, $MobilePhone, $ClinicID);
+        $result = api::notify($this->org->OrgID, $ClinicID, $PractitionerName, $MobilePhone, $ClinicID);
         $this->registry->template->result = $result;
         $this->registry->template->show('api_index');
     }
@@ -56,11 +67,14 @@ Class apiController Extends baseController {
         $this->checkCredentials();
         $this->checkVersion();
         $ClinicID = $this->lookfor(array('ClinicID','Clinic','CLINICID','clinic'));
+        $Provider = $this->lookfor(array('Provider','PROVIDER'));
+        $AppointmentTime = $this->lookfor(array('AppointmentTime','APPOINTMENTTIME'));
+        $ConsultationTime = $this->lookfor(array('ConsultationTime','CONSULTATIONTIME'));
+        $AppointmentLength = $this->lookfor(array('AppointmentLength','APPOINTMENTLENGTH'));
+
+        $notify_array = $_POST["notify_bulk"];
         
-        $notif_array = $_POST["notify_bulk"];
-        
-        api::notifybulk($this->org->OrgID, $ClinicID, $notif_array);
-        
+        api::notifybulk($this->org->OrgID, $ClinicID, $Provider, $AppointmentTime, $ConsultationTime, $AppointmentLength, $notify_array);
     }
 
     public function sess() {

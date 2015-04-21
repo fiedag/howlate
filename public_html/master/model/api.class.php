@@ -10,18 +10,18 @@
 
 
 class api {
-    public static function updateLateness($OrgID, $NewLate, $PractitionerName, $ConsultationTime) {
+    public static function updateLateness($OrgID, $Clinic, $NewLate, $PractitionerName, $ConsultationTime) {
 
         $pract = practitioner::getInstance($OrgID,$PractitionerName,'FullName');
         if(!$pract)
         {
-            $pract = practitioner::createDefaultPractitioner($OrgID,$PractitionerName);
+            $pract = practitioner::createDefaultPractitioner($OrgID, $Clinic, $PractitionerName);
         }
         if ($NewLate < 0) {
             $NewLate = 0;
         }
         
-        return practitioner::updateLateness($OrgID,$pract->PractitionerID, $NewLate, $ConsultationTime, 0);
+        return practitioner::updateLateness($OrgID,$pract->PractitionerID, $Clinic, $NewLate, $ConsultationTime, 0);
     }
 
     public static function updateSessions($OrgID, $PractitionerName, $Day, $StartTime, $EndTime) {
@@ -29,7 +29,7 @@ class api {
         $pract = practitioner::getInstance($OrgID,$PractitionerName,'FullName');
         if(!$pract)
         {
-            $pract = practitioner::createDefaultPractitioner($OrgID,$PractitionerName);
+            $pract = practitioner::createDefaultPractitioner($OrgID, $Clinic, $PractitionerName);
         }
         practitioner::updateSessions($OrgID, $pract->PractitionerID, $Day, $StartTime, $EndTime);
         return "Session Updated for $PractitionerName";
@@ -40,11 +40,11 @@ class api {
     }
     
     
-    public static function notify($OrgID, $PractitionerName, $MobilePhone, $ClinicID, $Domain = 'how-late.com') {
+    public static function notify($OrgID, $Clinic, $PractitionerName, $MobilePhone, $ClinicID, $Domain = 'how-late.com') {
         if(!$pract = practitioner::getInstance($OrgID,$PractitionerName, 'FullName'))
         {
             logging::trlog(TranType::QUE_NOTIF, "api class enqueue notification, creating default practitioner: $PractitionerName", $OrgID);
-            $pract = practitioner::createDefaultPractitioner($OrgID,$PractitionerName);
+            $pract = practitioner::createDefaultPractitioner($OrgID, $Clinic, $PractitionerName);
         }
         $result = $pract->enqueueNotification($MobilePhone, $Domain);
         logging::trlog(TranType::QUE_NOTIF, "Enqueue result= $result", $OrgID, $ClinicID, $pract->PractitionerID, $MobilePhone);
@@ -93,10 +93,10 @@ class api {
         }
     }
     
-    public static function notifybulk($OrgID, $ClinicID, $notif_array) {
-        notification::notify_bulk($OrgID, $ClinicID, $notif_array);
-    }
+    public static function notifybulk($OrgID, $ClinicID, $Provider, $AppointmentTime, $ConsultationTime, $AppointmentLength, $notify_array) {
+        $pract = practitioner::getInstance($OrgID, $Provider, "FullName");
         
-
+        notification::notify_bulk($pract, $AppointmentTime, $ConsultationTime, $AppointmentLength, $notify_array);
+    }
 
 }

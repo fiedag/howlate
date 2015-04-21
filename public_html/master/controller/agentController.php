@@ -138,7 +138,7 @@ Class agentController Extends baseController {
 
     public function get_clinic_options($clinicid) {
         $i = 0;
-        foreach ($this->org->ActiveClinics as $value) {
+        foreach ($this->org->Clinics as $value) {
             echo "<option value='" . $value->ClinicID . "' ";
             if ($value->ClinicID == $clinicid) {
                 echo "selected";

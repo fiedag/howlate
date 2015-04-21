@@ -7,8 +7,6 @@
     <script src="/js/bean.js"></script>
 <![endif]-->
 
-
-
 <script>
 
     function lateHelper(pin) {
@@ -83,7 +81,7 @@
             <select name="selectedclinic" id="selectedclinic" class="dropdown" onchange="this.form.submit();" value="<?echo $controller->currentClinicName; ?>" >
 <?php $controller->get_clinic_options(); ?>
             </select>
-            <span ><?php echo date('h:i:s A') . " (" . $controller->currentClinicTimezone . ")"; ?> </span>
+            <span ><?php echo date('h:i:s A') . " (" . $controller->currentClinicTimezone . ") (" . $controller->UTC . ")"; ?> </span>
         </form>
 
     </div>

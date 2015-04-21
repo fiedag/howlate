@@ -370,7 +370,8 @@ EOD;
 
     public static function to_xudid($udid) {
        $len = strlen($udid);
-       
+       $even="";
+       $odd="";
        for($i=0;$i<$len;$i++) {
            if ($i % 2 == 0) 
                $even .= $udid[$i];
@@ -380,16 +381,21 @@ EOD;
        return $even . $odd;
     }
 
+    
     public static function to_udid($xudid) {
+       echo "xudid=$xudid";
+       
        $len = strlen($xudid);
        $half = round($len / 2, 0, PHP_ROUND_HALF_UP) ;
-     
+       
+       
        $even = substr($xudid, 0, $half);
        $odd = substr($xudid, $half);
+
        $res = "";
        
        for($i=0;$i<$half;$i++) {
-           $res .= $even[$i] . $odd[$i];
+           $res .= ($i < strlen($even) - 1)?$even[$i]:"" . ($i < strlen($odd) - 1)?$odd[$i]:"";
        }
        return $res;
     }

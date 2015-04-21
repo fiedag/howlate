@@ -30,6 +30,7 @@ class billing {
             }
         }
     }
+
     
     public function recordUsage($chargeover, $OrgID) {
         $cust = $chargeover->getCustomer($OrgID);
@@ -43,10 +44,11 @@ class billing {
         }
         echo "Current Active Package Exists! <br>";
         
-        $line_items = $chargeover->getPackageLineItems($package);
+        $line_items = $chargeover->getUsageLineItems($package);
         if (count($line_items) <= 0) {
             throw new Exception("Package Line item does not exist.<br>");
         }
+        
         $item = $line_items[0];
         // all good now look up usage
         $last_billed = $this->getLastBilledSMS($OrgID);
@@ -132,7 +134,6 @@ class billing {
         $stmt->fetch();
         return $num_sms;
     }
- 
     
     
 }    
