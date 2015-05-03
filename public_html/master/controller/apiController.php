@@ -30,7 +30,7 @@ Class apiController Extends baseController {
 
         $Clinic = filter_input(INPUT_GET,"clinic");
 
-        $PractitionerName = $this->lookfor(array('Practitioner', 'Provider', 'PRACTITIONER', 'PROVIDER'));
+        $PractitionerName = $this->lookfor(array('Practitioner', 'Provider','Provider\0' ,'PRACTITIONER', 'PROVIDER'));
         $AppointmentTime = $this->lookfor(array('AppointmentTime', 'APPOINTMENTTIME'));
         $ArrivalTime = $this->lookfor(array('ArrivalTime', 'ARRIVALTIME'));
         $ConsultationTime = $this->lookfor(array('ConsultationTime', 'CONSULTATIONTIME'));
@@ -48,7 +48,7 @@ Class apiController Extends baseController {
         
         $res = api::updateLateness($this->org->OrgID, $Clinic, $NewLate, $PractitionerName, $ConsultationTime);
 
-        $res .= ",COnsultationTime = $ConsultationTime";
+        $res .= ",ConsultationTime = $ConsultationTime";
         $this->registry->template->result = $res;
         $this->registry->template->show('api_index');
     }
@@ -70,8 +70,11 @@ Class apiController Extends baseController {
         $Provider = $this->lookfor(array('Provider','PROVIDER'));
         $AppointmentTime = $this->lookfor(array('AppointmentTime','APPOINTMENTTIME'));
         $ConsultationTime = $this->lookfor(array('ConsultationTime','CONSULTATIONTIME'));
+        $ConsultationTimeUTC = $this->lookfor(array('ConsultationTimeUTC','CONSULTATIONTIMEUTC'));
+        if(isset($ConsultationTimeUTC) && !isset($ConsultationTime)) {
+            $ConsultationTime = clinic::getInstance($this->org->OrgID,$ClinicID)->toLocalTime($ConsultationTimeUTC);
+        }
         $AppointmentLength = $this->lookfor(array('AppointmentLength','APPOINTMENTLENGTH'));
-
         $notify_array = $_POST["notify_bulk"];
         
         api::notifybulk($this->org->OrgID, $ClinicID, $Provider, $AppointmentTime, $ConsultationTime, $AppointmentLength, $notify_array);
@@ -80,6 +83,9 @@ Class apiController Extends baseController {
     public function sess() {
         $this->checkCredentials();
         $this->checkVersion();
+        
+        $Clinic = filter_input(INPUT_GET,"clinic");
+
         $PractitionerName = $this->lookfor(array('Practitioner', 'Provider','PRACTITIONER','PROVIDER'));
         if (!$PractitionerName) {
             throw new Exception("Practitioner or Provider not given.");
@@ -88,7 +94,7 @@ Class apiController Extends baseController {
         $StartTime = $this->lookfor(array('StartTime','STARTTIME'));
         $EndTime = $this->lookfor(array('EndTime','ENDTIME'));
         $org = organisation::getInstance(__SUBDOMAIN);
-        $this->registry->template->result = api::updateSessions($org->OrgID, $PractitionerName, $Day, $StartTime, $EndTime);
+        $this->registry->template->result = api::updateSessions($org->OrgID, $Clinic, $PractitionerName, $Day, $StartTime, $EndTime);
     }
 
     ///
@@ -104,6 +110,8 @@ Class apiController Extends baseController {
 
     public function agent_start() {
         $this->checkCredentials();
+        $this->checkVersion();
+        
         $OrgID = $this->lookfor(array('OrgID'));
         $ClinicID = $this->lookfor(array('ClinicID','Clinic'));
         $event = 'start';
@@ -222,7 +230,13 @@ Class apiController Extends baseController {
         $this->registry->template->show('agent_config'); 
     }
 
-
+    public function clin() {
+        $OrgID = filter_input(INPUT_GET,'org');
+        $ClinicID = filter_input(INPUT_GET,'clin');
+        
+        $this->registry->template->result = clinic::getInstance($OrgID, $ClinicID);
+        $this->registry->template->show('api_index');
+    }
     
     
     /*

@@ -13,14 +13,40 @@
 
         <link rel="stylesheet" href="/styles/modal.css">
 
+    <style>
+      #map-canvas {
+        height:20em;
+        background-color: #CCC;
+      }
+    </style>
+        
         <script type="text/javascript" src="/js/bookmark_bubble.js"></script>
         <script type="text/javascript" src="/js/bookmark_bubble_example.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js"></script>
+
         <script>
             /* use JQuery to assemble a GET parameter comprising comma-separated pins we need to refresh
              * then we make an AJAX call to get these latenesses which is returned as a JSON string
              * This JSON string is used to update the spans with the corresponding ID
              */
+
+            function googleMap(lat,lng,markerText) {
+                var mapCanvas = document.getElementById('map-canvas');
+                var clinPos = new google.maps.LatLng(lat, lng);
+                var mapOptions = {
+                    center: clinPos,
+                    zoom: 16,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                }
+                var map = new google.maps.Map(mapCanvas, mapOptions);
+                var marker = new google.maps.Marker({
+                     position: clinPos,
+                    map: map,
+                      title: markerText
+                  });
+            }
+
 
             (function($, refreshInMs, refreshUrl) {
 
@@ -64,19 +90,44 @@
 
             })($, '<?php echo $refresh; ?>', '<?php echo $refresh_url; ?>');
 
-            function showMessage(OrgID, ClinicID, PractitionerID, PractitionerName, UDID) {
-                $("#PractitionerName").text(PractitionerName);
-                $('input[name=ClinicID]').val(ClinicID);
-                $('input[name=OrgID]').val(OrgID);
-                $('input[name=PractitionerID]').val(PractitionerID);
-                $('input[name=PractitionerName2]').val(PractitionerName);
-                $('input[name=UDID]').val(UDID);
-                
+            function clinicModal(orgID, clinicID) {
+                var refreshUrl = "http://m.how-late.com/api/clin?org=" + orgID + "&clin=" + clinicID;
+                var clinicName = "";
+                $.getJSON(refreshUrl).then(function(result) {
+                            $.each(result, function(fieldName, fieldValue) {
+                                switch(fieldName) {
+                                    case "ClinicName":
+                                        $("#label-show").text(fieldValue);
+                                        clinicName = fieldValue;
+                                        break;
+                                    case "Phone":
+                                        $("#clin-phone").attr("href","tel:" + fieldValue);
+                                        $("#clin-phone2").attr("href","tel:" + fieldValue);
+                                        $("#clin-phone2").text(fieldValue);
+                                        break;
+                                    case "Address1":
+                                        $("#clin-address1").text(fieldValue);
+                                        break;
+                                    case "Address2":
+                                        $("#clin-address2").text(fieldValue);
+                                        break;
+                                    case "City":
+                                        $("#clin-city").text(fieldValue);
+                                        break;
+                                    case "LatLong":
+                                        var arrLatLong = fieldValue.split(",");
+                                        if (arrLatLong.length == 2) {
+                                            googleMap(arrLatLong[0],arrLatLong[1],clinicName);
+                                        }
+                                        else {
+                                            $("#map-canvas").html("");
+                                        }
+                                        break;
+                                }
+                            });
+                        });
                 window.location.href = "#modal-show";
             }
-
-
-
 
         </script>
     </head>
@@ -98,8 +149,8 @@
                 ?>
 
 
-                <div class="panel panel-default clinic">
-                    <div class="panel-heading" >
+                <div class="panel panel-default clinic" onclick="clinicModal(<?php echo "'" . $latepract[0]->OrgID . "','" . $latepract[0]->ClinicID . "'" ; ?>);">
+                    <div class="panel-heading" onclick="clinicModal(<?php echo "'" . $latepract[0]->OrgID . "','" . $latepract[0]->ClinicID . "'" ; ?>);">
                         <img src="<?php echo howlate_util::logoURL($latepract[0]->Subdomain); ?>" class="pull-right">
     <?php echo $clinic; ?>
                     </div>
@@ -119,10 +170,6 @@
                                         <div class="hand"></div>
                                     </div>
                                 <?php echo $r->AbbrevName; ?> is <span id="<?php echo "$r->OrgID.$r->ID"; ?>"><?php echo $r->MinutesLateMsg; ?></span>
-                                <?php if ($r->AllowMessage) { ?>
-                                <span onclick="showMessage(<?php echo "'$r->OrgID', '$r->ClinicID', '$r->ID', '$r->AbbrevName', '$UDID'"; ?> )">Cancel</span>
-                                
-                                <?php } ?>
                                 </li>
                                 <?php
                             }
@@ -134,42 +181,34 @@
             }
             ?>
         </div>
-    </body>
 
-    <!-- A modal with its content -->
-    <section class="modal--show" id="modal-show"
-             tabindex="-1" role="dialog" aria-labelledby="label-show" aria-hidden="true">
+        <!-- A modal with its content -->
+        <section class="modal--show" id="modal-show"
+                 tabindex="-1" role="dialog" aria-labelledby="label-show" aria-hidden="true">
 
-        <div class="modal-inner">
-            <header>
-                <h2 id="label-show">Let us know if you have to cancel!</h2>
-            </header>
+            <div class="modal-inner">
+                <header>
+                    <h2 id="label-show"></h2>
+                    
+                </header>
 
-            <div class="modal-content">
-                <div> 
-                    <h2>Sorry I can't make it to <span id="PractitionerName">Drs name goes here</span>'s appointment</h2>
-                    <form name="message" action="/late/cancel" method='POST'>
-                        <input type="hidden" id="UDID" name="UDID">
-                        <input type="hidden" id="OrgID" name="OrgID" >
-                        <input type="hidden" id="ClinicID" name="ClinicID" >
-                        <input type="hidden" id="PractitionerID" name="PractitionerID">
-                        <input type="hidden" id="PractitionerName2" name="PractitionerName2">
+                <div class="modal-content">
+                    <a id="clin-phone" href="jquery to supply">Click to speak to us and cancel or reschedule your appointment.</a>
+                    <br>
+                    <a id="clin-phone2" href="jquery to supply"></a><br>
+
+                    <div id="map-canvas">
                         
-                        <input type="submit" id="submit" name="submit" value="Cancel Appt">
-                    </form>
+                    </div>
                 </div>
             </div>
+
+            <footer>
+                <p>Footer</p>
+            </footer>
         </div>
+        <a href="#!" class="modal-close" title="Close this modal" data-dismiss="modal" data-close="Close">&times;</a>
+    </section>
 
-        <footer>
-            <p>Footer</p>
-        </footer>
-    </div>
-    <a href="#!" class="modal-close" title="Close this modal"
-       data-dismiss="modal" data-close="Close">&times;</a>
-
-</section>
-
-
-
+</body>
 </html>

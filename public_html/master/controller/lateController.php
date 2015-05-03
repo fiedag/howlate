@@ -7,6 +7,7 @@ Class lateController Extends baseController {
     }    
     
     public function index() {
+        
         $this->view();
     }
 
@@ -49,7 +50,7 @@ Class lateController Extends baseController {
     }
 
     
-    public function view() {
+    public function view2() {
         $this->registry->template->controller = $this;
         $this->registry->template->refresh = 3000;  // milliseconds
         $this->registry->template->when_refreshed = 'Updated ' . date('h:i A');
@@ -72,6 +73,7 @@ Class lateController Extends baseController {
             $lates = device::getLatenesses($udid); // a two-dimensional array ["clinic name"][array]
             
             if (!empty($lates)) {
+                logging::trlog(TranType::LATE_GET, 'Late Get', '', '', '', $udid, 0);
                 $this->registry->template->lates = $lates;
                 $this->registry->template->show('late_view');
             } else {
@@ -80,7 +82,7 @@ Class lateController Extends baseController {
         }
     }
 
-    public function view2() {
+    public function view() {
         $this->registry->template->controller = $this;
         $this->registry->template->refresh = 3000;  // milliseconds
         $this->registry->template->when_refreshed = 'Updated ' . date('h:i A');
@@ -89,10 +91,19 @@ Class lateController Extends baseController {
         $this->registry->template->icon_url = howlate_util::logoURL(__SUBDOMAIN);
         $this->registry->template->apple_icon_url = howlate_util::logoWhiteBG();
 
+        
         $udid = filter_input(INPUT_GET, 'udid');
         if (!$udid) {
             $xudid = filter_input(INPUT_GET, 'xudid');
-            $udid = howlate_util::to_udid($xudid);
+            if (!$xudid) {
+                if(isset($_COOKIE["UDID"]))
+                    $udid = $_COOKIE["UDID"];
+                else 
+                    $udid="notexists";
+            }
+            else {
+                $udid = howlate_util::to_udid($xudid);
+            }
         }
 
         if ($udid) {
@@ -102,6 +113,7 @@ Class lateController Extends baseController {
             $lates = device::getLatenesses($udid); // a two-dimensional array ["clinic name"][array]
             
             if (!empty($lates)) {
+                logging::trlog(TranType::LATE_GET, 'Late Get', '', '', '', $udid, 0);
                 $this->registry->template->lates = $lates;
                 $this->registry->template->show('late_view');
             } else {

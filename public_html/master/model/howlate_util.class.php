@@ -136,10 +136,10 @@ class howlate_util {
     public static function validatePin($pin) {
         $elem = explode(".", $pin);
         if (count($elem) != 2 or $elem[0] == '' or $elem[1] == '') {
-            die("Input Error: The PIN ($pin) is not formatted correctly.  It must be of form X.Y e.g. AAADD.R");
+            throw new Exception("Input Error: The PIN ($pin) is not formatted correctly.  It must be of form X.Y e.g. AAADD.R");
         }
         if (!$elem[1] == self::checkdigit($elem[0])) {
-            die("Input Error: The PIN ($pin) entered is not valid.  (elem0 = $elem[0] , elem1 = $elem[1]) . The check digit should be '" . self::checkdigit($elem[0]) . "'");
+            throw new Exception("Input Error: The PIN ($pin) entered is not valid.  (elem0 = $elem[0] , elem1 = $elem[1]) . The check digit should be '" . self::checkdigit($elem[0]) . "'");
         }
     }
 
@@ -317,7 +317,7 @@ EOD;
         // $time is in seconds since midnight
         $q = " SELECT v.*, s.Day, IFNULL(s.StartTime, -1) As StartTime, IFNULL(s.EndTime,-1) As EndTime " .
                 " FROM vwLateTZ v " .
-                " LEFT OUTER JOIN sessions s on s.OrgID = v.OrgID and s.ID = v.ID and Day = '$day' " .
+                " LEFT OUTER JOIN sessions s on s.OrgID = v.OrgID and s.ID = v.ID and (Day = '$day' or Day = 'All')" .
                 " WHERE v.Timezone = '$timezone'";
 
         $toprocess = array();

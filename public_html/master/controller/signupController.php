@@ -50,7 +50,7 @@ Class signupController Extends baseController {
         
         try {
             $howlate_site->reduceName()->checkForDupe()->createCPanelSubdomain()->installSSL();
-            $howlate_site->createOrgRecord()->createDefaultClinic()->createDefaultPractitioner()->createDefaultUser();
+            $howlate_site->createOrgRecord()->createDefaultClinic()->createDefaultUser();
             $howlate_site->sendWelcomeEmail();
             
 

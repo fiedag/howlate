@@ -248,27 +248,27 @@ class organisation {
         }
     }
 
-    
-    
-
         
     // Pin is of form AAABB.A
     // udid is the unique device id
-    public function register($orgid, $id, $udid) {
-        $q = "REPLACE INTO devicereg (ID, OrgID, UDID, Expires) VALUES (?,?,?, CURDATE() + INTERVAL 6 MONTH )";
-        $stmt = maindb::getInstance()->query($q);
-        $stmt = $this->conn->prepare($q);
-        $stmt->bind_param('sss', $id, $orgID, $udid);
-        $stmt->execute();
-        $db->trlog(TranType::DEV_REG, 'Device ' . $udid . 'registered.', $org, null, $id, $udid);
+//    public function register($orgid, $id, $udid) {
+//        $q = "REPLACE INTO devicereg (ID, OrgID, UDID, Expires) VALUES (?,?,?, CURDATE() + INTERVAL 6 MONTH )";
+//        
+//        echo $q;
+//        $stmt = maindb::getInstance()->query($q);
+//        $stmt = $this->conn->prepare($q);
+//        $stmt->bind_param('sss', $id, $orgID, $udid);
+//        $stmt->execute();
+//        echo "after execute...";
+//        $db->trlog(TranType::DEV_REG, 'Device ' . $udid . 'registered.', $org, null, $id, $udid);
 
-        $prac = practitioner::getInstance($org, $id);
-
-        $message = 'Click for lateness updates from ' . $prac->PractitionerName . ' at ' . $prac->ClinicName;
-        $message .= ': ';
-        $message .= "http://m." . __DOMAIN . "/late/view&udid=$udid";
-        howlate_sms::httpSend($org, $udid, $message);
-    }
+//        $prac = practitioner::getInstance($org, $id);
+//
+//        $message = 'Click for lateness updates from ' . $prac->PractitionerName . ' at ' . $prac->ClinicName;
+//        $message .= ': ';
+//        $message .= "http://m." . __DOMAIN . "/late/view&udid=$udid";
+//        howlate_sms::httpSend($org, $udid, $message);
+//    }
 
     public function unregister($orgid, $id, $udid) {
         $q = "DELETE FROM devicereg WHERE ID = ? AND OrgID = ? AND UDID = ?";

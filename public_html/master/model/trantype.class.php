@@ -11,4 +11,5 @@ abstract class TranType {
         const AGT_START = "AGT_START"; const AGT_STOP = "AGT_STOP"; const AGT_ERROR = "AGT_ERROR"; const AGT_INFO = "AGT_INFO";
 }
 
+
 ?>

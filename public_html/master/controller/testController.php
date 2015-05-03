@@ -65,7 +65,74 @@ Class testController Extends baseController {
         $this->registry->template->show('test_index');
     }
     
+    public function usage() {
+        $OrgID = filter_input(INPUT_POST,"OrgID");
+        $billing = new billing();
+        
+        $billing->recordOrgUsage($OrgID);
+        
+    }
     
+    public function package() {
+        $OrgID = filter_input(INPUT_POST,"OrgID");
+        $billing = new billing();
+        
+        $organisation = organisation::getInstance($OrgID, 'OrgID');
+        $billing->createPackage($organisation);
+    }
+
+    
+    
+    /*
+     * Need a test function to extract vwBillingClinPract
+     * which shows a line for every clinic which has practitioners
+     * assigned and how many.  It also shows whether the org is integrated
+     * i.e. has an agent running
+     * 
+     * We then need to be able to compare that with the active package
+     * If an active package does not exist, then create one
+     * If it does exist, then do a line by line comparison
+     * Using the external_key = ClinicID
+     * Amend Qty if required.
+     * and then also check whether an SMS line exists.  Create one if not.
+     * 
+     */
+    
+    public function check_package() {
+        require_once("includes/kint/Kint.class.php");
+        
+        $OrgID = filter_input(INPUT_POST,"OrgID");
+        $billing = new billing();
+        
+        $organisation = organisation::getInstance($OrgID, 'OrgID');
+        $res = $billing->getHowLateDetails($organisation->OrgID);
+
+        d($res);
+        
+        $package = $billing->getChargeoverDetails($organisation->OrgID);
+
+        d($package);
+        
+        $package_id = $package->package_id;
+        $line_items = $package->line_items;
+        $first_item = $line_items[0];
+        $line_item_id = $first_item->line_item_id;
+         
+        d($first_item);
+        $response = $billing->upgradePackageLine($package_id, $line_item_id, 8);
+        d($response);
+    }
+    
+    public function create_line() {
+        $package_id = filter_input(INPUT_POST,"package_id");
+        $line_item_id = filter_input(INPUT_POST,"line_item_id");
+        $external_key = filter_input(INPUT_POST,"external_key");
+        $descrip = filter_input(INPUT_POST, "descrip");
+        
+        $billing = new billing();
+        $response = $billing->upgradePackageLine($package_id, $line_item_id, $descrip, $external_key);
+        
+    }
     
 }
 

@@ -20,6 +20,8 @@ Abstract Class baseController {
      */
     abstract function index();
 
+
+    
     function get_header() {
         include 'controller/headerController.php';
         $header = new headerController($this->registry);

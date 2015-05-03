@@ -29,6 +29,8 @@ $db = new howlate_db();
 // simply delete those older than 8 hours, even sticky ones
 $db->deleteOldLates();
 
+
+// the unique list of timezones for which there are lateness records to consider
 $result = $db->getLateTimezones();
 foreach ($result as $key => $TZval) {
     mylog("++++++zeroing lateness ++++++++++++++++++ Processing timezone = " . $TZval->Timezone . " +++++++++++++++++");
@@ -45,7 +47,7 @@ foreach ($result as $key => $TZval) {
 
         // we are only going to delete entries where sessions exist at all for that day
         // if sessions do not exist, then StartTime and EndTime will return -1 and we will ignore
-        // and rely on manual updates
+        // and rely on manual updates (huh? what does that mean?)
         if ($val->StartTime >= 0 and $val->EndTime >= 0) {
             $start = $val->StartTime - $tolerance;
             $end = $val->EndTime + $tolerance;

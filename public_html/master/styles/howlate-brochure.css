@@ -320,6 +320,13 @@ div.hand {
     height: 750px;
 }
 
+div.hand-lg {
+    background: url(/master/images/emptyhand_1.png) no-repeat ;
+    width: 998px;
+    height: 966px;
+    z-index: 20;
+}
+
 .simple-image {
     background: url(/master/images/simpleimage.jpg) no-repeat center center;
     width: 1141px;
@@ -389,7 +396,7 @@ div.header-circle, div.reserve-circle {
     overflow: hidden;
     float: right;
     text-align: center;
-	z-index: 90001;
+    z-index: 90001;
 }
 
 div.reserve-circle {
@@ -1642,3 +1649,9 @@ section#safe h1 {
 section#safe h3 {
     color: black;
 }
+
+.green{color:#628e0e}
+
+.button{-webkit-box-shadow:0 1px 0 #a1a1a1 inset;-moz-box-shadow:0 1px 0 #a1a1a1 inset;box-shadow:0 1px 0 #a1a1a1 inset;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;-moz-user-select:none;-webkit-user-select:none;-ms-user-select:none;user-select:none;-o-border-radius:3px;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;background-color:#888;background-repeat:no-repeat;border:1px solid #666;color:#fff!important;cursor:pointer;display:block;float:left;font:bold 14px/28px Arial,Helvetica,sans-serif;height:30px;margin:0;min-width:75px;outline:0;padding:0 9px;text-align:center;text-decoration:none!important;white-space:nowrap}
+
+.margin2 {margin: 18px 5px 0px 5px;}

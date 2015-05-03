@@ -112,6 +112,7 @@ class howlate_site {
         return $this;
     }
     
+    
     public function createDefaultPractitioner() {
         $this->mylog("Creating default practitioner for $this->OrgID, and email $this->Email<br>");
         practitioner::createDefaultPractitioner($this->OrgID, 0, $this->Email);
@@ -149,8 +150,14 @@ class howlate_site {
             $link = "http://" . $user->FQDN . "/reset?token=$token" . "\r\n";
             $body .= $link . "\r\n";
             $this->mylog("Password reset link generated: $link");
+            $terms_url = "https://" . $user->FQDN . "/terms";
         }
 
+        
+        $body .= "You may not use the Service if you do not accept the terms.  By logging in with the enclosed link, you are ";
+        $body .= "indicating that you have read and accepted the Terms of Service at " . $terms_url;
+        $body .= "\r\n\r\n";
+        
         $body .= "If you did not send this request, you can safely ignore this email.\r\n";
 
         $headers = 'MIME-Version: 1.0' . "\n";

@@ -145,10 +145,9 @@ class practitioner {
         
         $q = "SELECT COUNT(0) As AlreadyDone FROM notifqueue WHERE OrgID = '$this->OrgID' AND PractitionerID = '$this->PractitionerID' AND ClinicID = $this->ClinicID AND MobilePhone = '$MobilePhone' AND Created >= CURDATE()";
         $row = maindb::getInstance()->query($q)->fetch_object();
-        if ($row->AlreadyDone == "1") {
+        if ($row->AlreadyDone >= 1) {
             return "Patient $MobilePhone already notified today.  Not enqueued.";
         }
-        
         
         $url = "http://m." . $domain . "/late/view&udid=$MobilePhone";
         

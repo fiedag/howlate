@@ -104,7 +104,9 @@ Class mainController Extends baseController {
                 //$title = "This will be advertised as " . $value->MinutesLateMsg;
                 
                 $pin = $this->org->OrgID . "." . $value->ID;
-                echo "<td class='col-80pct'>" . $value->AbbrevName;
+                
+                
+                echo "<td title='Registration code = $pin' class='col-80pct'>" . $value->AbbrevName;
                 echo "<span onmouseover=\"changeCursor(this,'arrow');\" onmouseout=\"changeCursor(this,'default');\" " . 
                      " title='Click to invite a mobile phone user to receive updates for $value->AbbrevName' class='invite' " . 
                      " onclick=\"gotoInvite('$pin','$value->AbbrevName')\">SMS Invite</span>";
@@ -217,5 +219,4 @@ EOT;
         
         $this->registry->template->show('main_index');
     }
-
 }

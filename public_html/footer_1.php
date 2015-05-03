@@ -30,8 +30,6 @@
                             <input id="fieldName" name="cm-name" type="text" />
                             <label for="fieldEmail">Email</label>
                             <input id="fieldEmail" name="cm-ihlliid-ihlliid" type="email" required />
-                            <label for="fieldiiskkj">Mobile</label>
-                            <input id="fieldiiskkj" name="cm-f-iiskkj" type="text" />
                             <button type="submit">Subscribe</button>
                     </form>
                 </div>

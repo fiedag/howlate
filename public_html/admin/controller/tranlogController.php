@@ -2,7 +2,13 @@
 
 Class tranlogController Extends baseController {
 
-    private $submenu = array ("translog"=>"Trans Log","speciallog"=>"Special Log","smslog"=>"SMS Log","errorlog"=>"Errors","notifqueue"=>"Notif Queue");
+    private $submenu = array ("translog"=>"Trans Log",
+        "speciallog"=>"Special Log",
+        "smslog"=>"SMS Log",
+        "errorlog"=>"Errors",
+        "notifqueue"=>"Notif Queue",
+        "late_gets"=>"Late Gets"
+     );
     
     public function index() {
 	$this->registry->template->controller = $this;
@@ -62,13 +68,24 @@ Class tranlogController Extends baseController {
         $this->registry->template->show('tranlog_index');
     }
 
+    public function late_gets() {
+	$this->registry->template->controller = $this;
+        
+        $this->get_header();
+        $this->registry->template->submenu = $this->submenu;
+        $this->registry->template->view_name = __FUNCTION__;
+        $this->registry->template->show('submenu_view');
+        $this->registry->template->xcrud_content = $this->getLateGets();
+        $this->registry->template->show('tranlog_index');
+    }
+
     
     
     public function getWeeksLog() {
         include('includes/xcrud/xcrud.php');
         $xcrud = Xcrud::get_instance();
         $xcrud->connection(howlate_util::mysqlUser(),howlate_util::mysqlPassword(),howlate_util::mysqlDb());
-        $xcrud->table('transactionlog')->table_name('Transaction Log',"This week's log shown in latest first order.  See CSV export button at end.")->limit(50);
+        $xcrud->table('vwWeeksLog')->table_name('Transaction Log',"This week's log shown in latest first order.  See CSV export button at end.")->limit(50);
         $xcrud->order_by('Id','desc');        
         return $xcrud->render();
     }
@@ -81,8 +98,16 @@ Class tranlogController Extends baseController {
         $xcrud->order_by('Id','desc');        
         return $xcrud->render();
     }
+
     
-    
+    public function getLateGets() {
+        include('includes/xcrud/xcrud.php');
+        $xcrud = Xcrud::get_instance();
+        $xcrud->connection(howlate_util::mysqlUser(),howlate_util::mysqlPassword(),howlate_util::mysqlDb());
+        $xcrud->table('transactionlog')->where("TransType = 'LATE_GET'")->table_name('Selected late_get transactions',"All late gets")->limit(100);
+        $xcrud->order_by('Id','desc');        
+        return $xcrud->render();
+    }
     
     public function getSMSLog() {
         include('includes/xcrud/xcrud.php');
@@ -92,8 +117,6 @@ Class tranlogController Extends baseController {
         $xcrud->order_by('Created','desc');        
         $xcrud->unset_edit()->unset_remove()->unset_add();
         $xcrud->columns(array('API','OrgID','MessageID','SessionID'),true);
-        
-
         $xcrud->unset_numbers(true)->unset_print(true)->unset_limitlist(true)->hide_button('save_and_edit')->hide_button('save_and_new');     
         return $xcrud->render();
     }

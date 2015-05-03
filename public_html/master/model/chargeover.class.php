@@ -1,12 +1,5 @@
 <?php
 
-abstract class ServicePlans {
-    const BETA_PARTNERS = 1;
-    const SOLE_PRACTITIONER = 4;
-    const SINGLE_CLINIC = 6;
-    const CORPORATE = 7;
-}
-
 class chargeover {
     
     private $API;
@@ -81,21 +74,27 @@ class chargeover {
     
     
     
-    function createPackage($customer_id, $ServicePlan, $Descrip) {
+    function createPackage($customer_id, $Subscription, $SMS) {
         $Package = new ChargeOverAPI_Object_Package();
         $Package->setCustomerId($customer_id);
 
         $LineItem = new ChargeOverAPI_Object_LineItem();
-        $LineItem->setItemId($ServicePlan);
-        $LineItem->setDescrip($Descrip);
+        $LineItem->setItemId($Subscription);
+        $LineItem->setDescrip('Monthly subscription');
             
         $Package->addLineItems($LineItem);
 
+        $LineItem = new ChargeOverAPI_Object_LineItem();
+        $LineItem->setItemId($SMS);
+        $LineItem->setDescrip('Usage charges');
+
+        $Package->addLineItems($LineItem);
+        
         $resp = $this->API->create($Package);
         
         if ($this->API->isError($resp))
         {
-            throw new Exception('Error aadding line item via API' . $API->lastResponse());
+            echo 'Error adding line item via API' . $this->API->lastResponse();
         }
         
     }
@@ -131,12 +130,18 @@ class chargeover {
                                             'package_status_state:EQUALS:a'));
         
         echo "getCurrentActive Package for customer $customer_id, response= <br>";
-
+        if (count($resp->response)==0) {
+            return null;
+        }
 	$Package = $resp->response;
-        
-        var_dump($Package);
-        echo "<br>";
         return $Package[0];
+    }
+    
+    
+    function getPackage($PackageID) {
+        $resp = $this->API->findById('package', $PackageID);
+	$Package = $resp->response;
+        return $Package;
     }
     
     function getPackageLineItems($package) {
@@ -153,10 +158,15 @@ class chargeover {
         
     }
     
-    private function usage_line($element) {
-        return ($element->item_units == 'text message');
-
+//    private function usage_line($element) {
+//        return ($element->item_units == 'text message');
+//
+//    }
+    
+    public function action($object, $package_id, $action, $data) {
+        return $this->API->action($object, $package_id, $action, $data);
     }
+    
 }
 
 ?>

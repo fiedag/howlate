@@ -24,7 +24,7 @@ class api {
         return practitioner::updateLateness($OrgID,$pract->PractitionerID, $Clinic, $NewLate, $ConsultationTime, 0);
     }
 
-    public static function updateSessions($OrgID, $PractitionerName, $Day, $StartTime, $EndTime) {
+    public static function updateSessions($OrgID, $Clinic, $PractitionerName,  $Day, $StartTime, $EndTime) {
 
         $pract = practitioner::getInstance($OrgID,$PractitionerName,'FullName');
         if(!$pract)
@@ -95,7 +95,10 @@ class api {
     
     public static function notifybulk($OrgID, $ClinicID, $Provider, $AppointmentTime, $ConsultationTime, $AppointmentLength, $notify_array) {
         $pract = practitioner::getInstance($OrgID, $Provider, "FullName");
-        
+        if (!isset($pract->ClinicID)) {
+            // only notify if practitioner is assigned to a clinic
+            return;
+        }
         notification::notify_bulk($pract, $AppointmentTime, $ConsultationTime, $AppointmentLength, $notify_array);
     }
 

@@ -9,4 +9,14 @@ Class termsController Extends baseController {
     }
 
 
+    // very simple banner only
+    function get_banner() {
+        include 'controller/bannerController.php';
+        $header = new bannerController($this->registry);
+        $header->view($this->org);
+    }
+
+        
+    
+    
 }

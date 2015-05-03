@@ -80,7 +80,7 @@ Abstract Class baseController {
 
 
         $callingURL = "http://" . $_SERVER['HTTP_HOST'] . "/" . $_GET['rt'];
-        setcookie("URL", $callingURL, time() + 3600);
+        setcookie("URL", $callingURL, time() + 7200);
     }
 
 }

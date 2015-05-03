@@ -58,6 +58,7 @@
                             <li class=""><a id="pricing_nav" title="PRICING" href="/pricing.php" title="How Late Pricing Plans" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">PRICING</a></li>
                             <li class=""><a id="press_nav" title="Press" href="/press.php" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">PRESS</a></li>
                             <li class=""><a id="privacy_nav" title="Privacy" href="/privacy.php" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">PRIVACY</a></li>
+                            <li class=""><a id="selfreg_nav" title="Patients" href="http://m.how-late.com/selfreg" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">PATIENTS</a></li>
                         </ul>
                         <ul class="nav nav-dropdown">
                             <li class="dropdown">
@@ -74,6 +75,7 @@
                             <li class=""><a id="pricing_nav" title="PRICING" href="/pricing.php" title="How Late Pricing Plans" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">PRICING</a></li>
                             <li class=""><a id="press_nav" title="Press" href="/press.php" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">PRESS</a></li>
                             <li class=""><a id="privacy_nav" title="Privacy" href="/privacy.php" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">PRIVACY</a></li>
+                            <li class=""><a id="selfreg_nav" title="Patients" href="http://m.how-late.com/selfreg" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">PATIENTS</a></li>
                                     
                                 </ul>
                             </li>
@@ -250,7 +252,7 @@
 
             <!-- Begin Footer -->
 
-            <?php include("footer_1.php"); ?>
+            <?php include("footer.php"); ?>
 
 
             <!-- End Footer -->

@@ -1,10 +1,10 @@
 <?php
 
-$controller->get_header(); 
+$controller->get_banner(); 
 
- include('terms_body.html');
+include('terms_body.html');
 
- $controller->get_footer(); 
+ $controller->get_simplefooter(); 
  
  ?>
 

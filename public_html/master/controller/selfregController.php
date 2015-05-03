@@ -11,35 +11,51 @@ Class selfregController Extends baseController {
 
     // should display all doctors from subdomain as links
     public function index() {
-
-        $this->org->getRelated();
-        $found = false;
-
+        
+        $this->registry->template->message = "";
         $this->registry->template->icon_url = howlate_util::logoURL();
         $this->registry->template->show('selfreg_index');
     }
-
     
     public function register() {
-        $this->invitepin = filter_input(INPUT_POST,"invitepin");
-        $org = howlate_util::orgFromPin($this->invitepin);
-        $id = howlate_util::idFromPin($this->invitepin);
+        
+        $this->invitepin = strtoupper(filter_input(INPUT_POST,"invitepin"));
+        howlate_util::validatePin($this->invitepin);
+        
+        $OrgID = howlate_util::orgFromPin($this->invitepin);
+        $PractitionerID = howlate_util::idFromPin($this->invitepin);
 
-        $device = filter_input(INPUT_POST,"device");
-        $submit = filter_input(INPUT_POST,"submit");
- 
-        $this->org = organisation::getInstance($orgID, 'OrgID');
-        
-        if ($submit == "reg") {
-           $this->org->register($org, $id, $device);
-           $this->registry->template->action = "registered";
+        $this->org = organisation::getInstance($OrgID,"OrgID");
+        if(!isset($this->org)) {
+            $this->registry->template->icon_url = howlate_util::logoURL();
+            $this->registry->template->message = "This is a bad code.  Please re-enter it.";
+            $this->registry->template->show('selfreg_index');
+            return;
         }
-        elseif ($submit == "unreg") {
-           $this->org->unregister($org, $id, $device);
-           $this->registry->template->action = "deregistered";
+        $pract = practitioner::getInstance2($OrgID, $PractitionerID);
+        if(!isset($pract)) {
+            $this->registry->template->icon_url = howlate_util::logoURL();
+            $this->registry->template->message = "This is a bad code.  Please re-enter it.";
+            $this->registry->template->show('selfreg_index');
+            return;
         }
         
-        $this->registry->template->show('selfreg_success');
+
+        $UDID = filter_input(INPUT_POST,"device");
+        
+        if(!isset($UDID) || $UDID == "") {
+            if(isset($_COOKIE["UDID"])) {
+                $UDID = $_COOKIE["UDID"];
+            } 
+            else {
+                $UDID = uniqid();
+                setcookie("UDID", $UDID, time() + (10 * 365 * 24 * 60 * 60),"/");
+            }
+        }
+        
+        device::register($OrgID, $PractitionerID, $UDID);
+        
+        header("location: http://m." . __DOMAIN . "/late/view?udid=" . $UDID);
     }
     
 }

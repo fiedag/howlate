@@ -17,12 +17,10 @@ Class clinicinfoController Extends baseController {
         $clinicid = $_GET["clinicid"];
         $orgid = $_GET["orgid"];
 
-        $org = new organisation();
-        $org->getby($orgid, "OrgID");
-
-        $this->registry->template->org = $org;
-
-        foreach ($org->Clinics as $clinic) {
+        $this->org = organisation::getInstance($orgid, 'OrgID');
+        $this->org->getRelated();
+        
+        foreach ($this->org->Clinics as $clinic) {
             if ($clinic->ClinicID == $clinicid) {
                 $clin = $clinic;
             }
@@ -31,7 +29,7 @@ Class clinicinfoController Extends baseController {
         $this->registry->template->clinic = $clin;
         $this->registry->template->formattedAddress = $this->formatAddress($clin);
         $this->registry->template->addressURL = $this->addressURL($clin);
-        $this->registry->template->subdomain = $org->Subdomain;
+        $this->registry->template->subdomain = $this->org->Subdomain;
         $this->registry->template->show('clinicinfo_index');
 
     }

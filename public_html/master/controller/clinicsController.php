@@ -38,6 +38,7 @@ Class clinicsController Extends baseController {
         $xcrud->unset_csv(true)->unset_numbers(true)->unset_print(true)->unset_limitlist(true)->hide_button('save_and_edit')->hide_button('save_and_new');     
         $xcrud->after_remove("clinic_deleted");
         
+
         $xcrud->field_tooltip('PatientReply','Whether Lateness view permits patients to reply to the clinic');
         $xcrud->field_tooltip('ReplyRecip','Recipient email address if replies are permitted.');
         

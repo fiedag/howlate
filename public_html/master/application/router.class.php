@@ -89,6 +89,9 @@ class router {
                 and $this->controller != "l" 
                 and $this->controller != "signup" 
                 and $this->controller != "api"
+                and $this->controller != "terms"
+                and $this->controller != "error404"
+                and $this->controller != "selfreg"
                 and $this->controller != "clinicinfo"
                 and $this->controller != "reset" ) {
             
