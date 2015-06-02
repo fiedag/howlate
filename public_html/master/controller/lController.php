@@ -1,13 +1,8 @@
 <?php
-
 include_once('controller/lateController.php');
 
-class lController extends lateController {
-    
-    public function v() {
+class LController extends LateController {
+    public function index() {
         $this->view();
-        
     }
-    
 }
-?>

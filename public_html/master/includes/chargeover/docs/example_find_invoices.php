@@ -14,8 +14,8 @@ $password = '9vCJbmdZKSieVchyrRItFQw8MBN4lOH3';
 
 $API = new ChargeOverAPI($url, $authmode, $username, $password);
 
-//Find a customer by the ChargeOver customer ID
-$resp = $API->find(ChargeOverAPI_Object::TYPE_INVOICE, array( 'customer_id:EQUALS:254' ), array('invoice_id:DESC'));
+// Find a customer by the ChargeOver customer ID
+$resp = $API->find(ChargeOverAPI_Object::TYPE_INVOICE, array( 'customer_id:EQUALS:68' ), array('invoice_id:DESC'));
 
 if (!$API->isError($resp))
 {
@@ -26,9 +26,16 @@ if (!$API->isError($resp))
 	{
 		print_r($Invoice);
 	}
+
+	
 }
 else
 {
 	print('There was an error looking up the invoice!' . "\n");
+
+	print('Error: ' . $API->lastError());
+	print('Request: ' . $API->lastRequest());
+	print('Response: ' . $API->lastResponse());
+	print('Info: ' . print_r($API->lastInfo(), true));
 }
 

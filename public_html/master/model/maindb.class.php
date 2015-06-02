@@ -1,6 +1,6 @@
 <?php
 
-class maindb extends mysqli
+class MainDb extends mysqli
 {
     protected static $instance;
     protected static $options = array();
@@ -12,7 +12,7 @@ class maindb extends mysqli
         mysqli_report(MYSQLI_REPORT_OFF);
 
         // connect to database
-        @parent::__construct('localhost', howlate_util::mysqlUser(), howlate_util::mysqlPassword(), howlate_util::mysqlDb());
+        @parent::__construct('localhost', HowLate_Util::mysqlUser(), HowLate_Util::mysqlPassword(), HowLate_Util::mysqlDb());
 
         // check if a connection established
         if( mysqli_connect_errno() ) {

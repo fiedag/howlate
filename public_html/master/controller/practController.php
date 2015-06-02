@@ -1,11 +1,9 @@
 <?php
 
-Class practController Extends baseController {
-
-    public $org;
+Class PractController Extends baseController {
 
     public function index() {
-        $this->org = organisation::getInstance(__SUBDOMAIN);
+        $this->org = Organisation::getInstance(__SUBDOMAIN);
         $this->org->getRelated();
         $this->registry->template->controller = $this;
         $this->registry->template->show('pract_index');
@@ -15,7 +13,7 @@ Class practController Extends baseController {
         
         include('includes/xcrud/xcrud.php');
         $xcrud = Xcrud::get_instance('Main');
-        $xcrud->connection(howlate_util::mysqlUser(),howlate_util::mysqlPassword(),howlate_util::mysqlDb());
+        $xcrud->connection(HowLate_Util::mysqlUser(),HowLate_Util::mysqlPassword(),HowLate_Util::mysqlDb());
         
         $xcrud->table('practitioners')->where('OrgID =', $this->org->OrgID)->limit(10);
         $xcrud->join("SurrogKey","vwAssigned","SurrogKey");
@@ -63,11 +61,11 @@ Class practController Extends baseController {
             throw new Exception("Practitioner ID not assigned");
         }
 
-        $pract = practitioner::getInstance($orgid, $practid);
+        $pract = Practitioner::getInstance($orgid, $practid);
         
         $pract->place($orgid, $practid, $clinicID);
 
-        $this->org = organisation::getInstance(__SUBDOMAIN);
+        $this->org = Organisation::getInstance(__SUBDOMAIN);
         $this->org->getRelated();
         $this->registry->template->controller = $this;
         $this->registry->template->show('pract_index');

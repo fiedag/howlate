@@ -1,0 +1,1012 @@
+[28-Aug-2014 07:25:01 UTC] PHP Warning:  include(/home/public_html/master/model/howlate_db.class.php): failed to open stream: No such file or directory in /home/howlate/etc/scripts/script1.php on line 3
+[28-Aug-2014 07:25:02 UTC] PHP Warning:  include(): Failed opening '/home/public_html/master/model/howlate_db.class.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/howlate/etc/scripts/script1.php on line 3
+[28-Aug-2014 07:26:01 UTC] PHP Warning:  include(/home/public_html/master/model/howlate_db.class.php): failed to open stream: No such file or directory in /home/howlate/etc/scripts/script1.php on line 3
+[28-Aug-2014 07:26:01 UTC] PHP Warning:  include(): Failed opening '/home/public_html/master/model/howlate_db.class.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/howlate/etc/scripts/script1.php on line 3
+[28-Aug-2014 07:26:01 UTC] PHP Fatal error:  Class 'howlate_db' not found in /home/howlate/etc/scripts/script1.php on line 5
+[28-Aug-2014 07:27:01 UTC] PHP Warning:  include(/home/public_html/master/model/howlate_db.class.php): failed to open stream: No such file or directory in /home/howlate/etc/scripts/script1.php on line 3
+[28-Aug-2014 07:27:01 UTC] PHP Warning:  include(): Failed opening '/home/public_html/master/model/howlate_db.class.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/howlate/etc/scripts/script1.php on line 3
+[28-Aug-2014 07:27:01 UTC] PHP Fatal error:  Class 'howlate_db' not found in /home/howlate/etc/scripts/script1.php on line 5
+[28-Aug-2014 07:28:01 UTC] PHP Warning:  include(/home/public_html/master/model/howlate_db.class.php): failed to open stream: No such file or directory in /home/howlate/etc/scripts/script1.php on line 3
+[28-Aug-2014 07:28:01 UTC] PHP Warning:  include(): Failed opening '/home/public_html/master/model/howlate_db.class.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/howlate/etc/scripts/script1.php on line 3
+[28-Aug-2014 07:28:01 UTC] PHP Fatal error:  Class 'howlate_db' not found in /home/howlate/etc/scripts/script1.php on line 5
+[31-Aug-2014 10:56:01 UTC] PHP Parse error:  syntax error, unexpected 'echo' (T_ECHO) in /home/howlate/public_html/master/model/howlate_db.class.php on line 564
+[31-Aug-2014 12:05:01 UTC] PHP Fatal error:  Cannot redeclare log() in /home/howlate/etc/scripts/zeroLateness.php on line 9
+[31-Aug-2014 13:05:01 UTC] PHP Fatal error:  Cannot redeclare log() in /home/howlate/etc/scripts/zeroLateness.php on line 9
+[01-Sep-2014 11:05:01 UTC] PHP Fatal error:  Cannot redeclare log() in /home/howlate/etc/scripts/zeroLateness.php on line 9
+[01-Sep-2014 12:05:01 UTC] PHP Fatal error:  Cannot redeclare log() in /home/howlate/etc/scripts/zeroLateness.php on line 9
+[01-Sep-2014 13:05:01 UTC] PHP Fatal error:  Cannot redeclare log() in /home/howlate/etc/scripts/zeroLateness.php on line 9
+[02-Sep-2014 11:05:01 UTC] PHP Fatal error:  Cannot redeclare log() in /home/howlate/etc/scripts/zeroLateness.php on line 9
+[02-Sep-2014 12:05:01 UTC] PHP Fatal error:  Cannot redeclare log() in /home/howlate/etc/scripts/zeroLateness.php on line 9
+[02-Sep-2014 13:05:01 UTC] PHP Fatal error:  Cannot redeclare log() in /home/howlate/etc/scripts/zeroLateness.php on line 9
+[03-Sep-2014 11:05:01 UTC] PHP Fatal error:  Cannot redeclare log() in /home/howlate/etc/scripts/zeroLateness.php on line 9
+[03-Sep-2014 12:05:01 UTC] PHP Fatal error:  Cannot redeclare log() in /home/howlate/etc/scripts/zeroLateness.php on line 9
+[03-Sep-2014 13:05:01 UTC] PHP Fatal error:  Cannot redeclare log() in /home/howlate/etc/scripts/zeroLateness.php on line 9
+[04-Sep-2014 11:05:01 UTC] PHP Fatal error:  Cannot redeclare log() in /home/howlate/etc/scripts/zeroLateness.php on line 9
+[04-Sep-2014 12:05:01 UTC] PHP Fatal error:  Cannot redeclare log() in /home/howlate/etc/scripts/zeroLateness.php on line 9
+[04-Sep-2014 13:05:01 UTC] PHP Fatal error:  Cannot redeclare log() in /home/howlate/etc/scripts/zeroLateness.php on line 9
+[09-Sep-2014 16:00:01 Australia/Melbourne] PHP Fatal error:  Class 'howlate_sms' not found in /home/howlate/etc/scripts/processNotifications.php on line 25
+[09-Sep-2014 21:59:03 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/public_html/master/model/howlate_sms.class.php on line 10
+[09-Sep-2014 22:00:03 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/public_html/master/model/howlate_sms.class.php on line 10
+[09-Sep-2014 22:01:03 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/public_html/master/model/howlate_sms.class.php on line 10
+[09-Sep-2014 22:02:03 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/public_html/master/model/howlate_sms.class.php on line 10
+[09-Sep-2014 22:03:03 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/public_html/master/model/howlate_sms.class.php on line 10
+[09-Sep-2014 22:07:01 Australia/Melbourne] PHP Fatal error:  Class 'howlate_db' not found in /home/howlate/etc/scripts/processNotifications.php on line 32
+[09-Sep-2014 22:08:01 Australia/Melbourne] PHP Fatal error:  Class 'howlate_db' not found in /home/howlate/etc/scripts/processNotifications.php on line 32
+[11-Sep-2014 22:06:19 Australia/Melbourne] PHP Warning:  mysqli::mysqli(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home/howlate/public_html/master/model/howlate_db.class.php on line 8
+[11-Sep-2014 22:06:19 Australia/Melbourne] PHP Warning:  mysqli::query(): Couldn't fetch mysqli in /home/howlate/public_html/master/model/howlate_db.class.php on line 653
+[11-Sep-2014 22:06:19 Australia/Melbourne] PHP Warning:  Invalid argument supplied for foreach() in /home/howlate/etc/scripts/processNotifications.php on line 35
+[11-Sep-2014 22:07:01 Australia/Melbourne] PHP Warning:  mysqli::mysqli(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home/howlate/public_html/master/model/howlate_db.class.php on line 8
+[11-Sep-2014 22:07:01 Australia/Melbourne] PHP Warning:  mysqli::query(): Couldn't fetch mysqli in /home/howlate/public_html/master/model/howlate_db.class.php on line 653
+[11-Sep-2014 22:07:01 Australia/Melbourne] PHP Warning:  Invalid argument supplied for foreach() in /home/howlate/etc/scripts/processNotifications.php on line 35
+[11-Sep-2014 23:45:16 Australia/Melbourne] PHP Warning:  mysqli::mysqli(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home/howlate/public_html/master/model/howlate_db.class.php on line 8
+[11-Sep-2014 23:45:16 Australia/Melbourne] PHP Warning:  mysqli::query(): Couldn't fetch mysqli in /home/howlate/public_html/master/model/howlate_db.class.php on line 653
+[11-Sep-2014 23:45:16 Australia/Melbourne] PHP Warning:  Invalid argument supplied for foreach() in /home/howlate/etc/scripts/processNotifications.php on line 35
+[11-Sep-2014 23:45:16 Australia/Melbourne] PHP Warning:  mysqli::mysqli(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home/howlate/public_html/master/model/howlate_db.class.php on line 8
+[11-Sep-2014 23:45:16 Australia/Melbourne] PHP Warning:  mysqli::prepare(): Couldn't fetch mysqli in /home/howlate/public_html/master/model/howlate_db.class.php on line 621
+[11-Sep-2014 23:45:16 Australia/Melbourne] PHP Fatal error:  Call to a member function execute() on a non-object in /home/howlate/public_html/master/model/howlate_db.class.php on line 622
+[11-Sep-2014 23:46:02 Australia/Melbourne] PHP Warning:  mysqli::mysqli(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home/howlate/public_html/master/model/howlate_db.class.php on line 8
+[11-Sep-2014 23:46:02 Australia/Melbourne] PHP Warning:  mysqli::query(): Couldn't fetch mysqli in /home/howlate/public_html/master/model/howlate_db.class.php on line 653
+[11-Sep-2014 23:46:02 Australia/Melbourne] PHP Warning:  Invalid argument supplied for foreach() in /home/howlate/etc/scripts/processNotifications.php on line 35
+[11-Sep-2014 23:54:16 Australia/Melbourne] PHP Warning:  mysqli::mysqli(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home/howlate/public_html/master/model/howlate_db.class.php on line 8
+[11-Sep-2014 23:54:16 Australia/Melbourne] PHP Warning:  mysqli::query(): Couldn't fetch mysqli in /home/howlate/public_html/master/model/howlate_db.class.php on line 653
+[11-Sep-2014 23:54:16 Australia/Melbourne] PHP Warning:  Invalid argument supplied for foreach() in /home/howlate/etc/scripts/processNotifications.php on line 35
+[11-Sep-2014 23:55:02 Australia/Melbourne] PHP Warning:  mysqli::mysqli(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home/howlate/public_html/master/model/howlate_db.class.php on line 8
+[11-Sep-2014 23:55:02 Australia/Melbourne] PHP Warning:  mysqli::query(): Couldn't fetch mysqli in /home/howlate/public_html/master/model/howlate_db.class.php on line 653
+[11-Sep-2014 23:55:02 Australia/Melbourne] PHP Warning:  Invalid argument supplied for foreach() in /home/howlate/etc/scripts/processNotifications.php on line 35
+[09-Oct-2014 21:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[09-Oct-2014 21:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[09-Oct-2014 21:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[09-Oct-2014 22:00:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[09-Oct-2014 22:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[09-Oct-2014 22:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[09-Oct-2014 22:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[09-Oct-2014 23:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[09-Oct-2014 23:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[09-Oct-2014 23:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[09-Oct-2014 23:33:01 Australia/Melbourne] PHP Parse error:  syntax error, unexpected 'public' (T_PUBLIC) in /home/howlate/public_html/master/model/howlate_db.class.php on line 311
+[09-Oct-2014 23:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 00:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 00:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 00:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 00:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 01:00:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 01:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 01:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 01:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 02:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 02:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 02:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 06:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 07:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 07:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 07:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 07:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 08:00:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 08:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 08:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 08:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 09:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 09:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 09:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 09:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 10:00:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 10:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 10:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 10:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 11:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 11:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 11:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 11:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 12:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 12:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 12:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 12:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 15:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 15:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 16:00:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 16:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 16:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 16:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 17:00:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 17:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 17:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 17:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 18:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 18:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 18:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 18:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 19:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 19:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 19:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 19:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 20:00:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 20:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 20:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 20:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 21:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 21:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 21:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 21:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 22:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 22:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 22:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 22:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 23:00:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 23:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 23:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Oct-2014 23:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[11-Oct-2014 00:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[11-Oct-2014 00:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[11-Oct-2014 00:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[11-Oct-2014 00:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[13-Oct-2014 07:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[13-Oct-2014 07:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[13-Oct-2014 07:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[13-Oct-2014 07:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[13-Oct-2014 08:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[13-Oct-2014 08:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[13-Oct-2014 08:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[13-Oct-2014 08:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[13-Oct-2014 09:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[13-Oct-2014 09:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[13-Oct-2014 09:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[13-Oct-2014 09:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[13-Oct-2014 10:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[13-Oct-2014 10:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[13-Oct-2014 10:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[13-Oct-2014 10:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[13-Oct-2014 11:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[13-Oct-2014 11:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[13-Oct-2014 11:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[13-Oct-2014 11:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[13-Oct-2014 12:00:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[13-Oct-2014 12:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[13-Oct-2014 12:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[13-Oct-2014 12:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[13-Oct-2014 15:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[13-Oct-2014 16:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[13-Oct-2014 16:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[13-Oct-2014 16:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[13-Oct-2014 16:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[13-Oct-2014 17:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[13-Oct-2014 17:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[13-Oct-2014 17:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[13-Oct-2014 17:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[13-Oct-2014 18:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[13-Oct-2014 18:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[13-Oct-2014 18:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[13-Oct-2014 18:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[13-Oct-2014 19:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[13-Oct-2014 19:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[14-Oct-2014 07:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[14-Oct-2014 07:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[14-Oct-2014 07:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[14-Oct-2014 08:00:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[14-Oct-2014 08:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[14-Oct-2014 08:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[14-Oct-2014 08:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[14-Oct-2014 09:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[14-Oct-2014 09:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[14-Oct-2014 09:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[14-Oct-2014 09:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[14-Oct-2014 10:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[14-Oct-2014 10:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[14-Oct-2014 10:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[14-Oct-2014 10:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[14-Oct-2014 11:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[14-Oct-2014 11:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[14-Oct-2014 11:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[14-Oct-2014 11:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[14-Oct-2014 12:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[14-Oct-2014 12:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[14-Oct-2014 12:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[14-Oct-2014 12:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[14-Oct-2014 13:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[14-Oct-2014 13:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[14-Oct-2014 13:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[14-Oct-2014 13:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[14-Oct-2014 14:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[14-Oct-2014 14:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[14-Oct-2014 14:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[14-Oct-2014 14:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[14-Oct-2014 15:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[14-Oct-2014 15:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[14-Oct-2014 15:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[14-Oct-2014 15:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[14-Oct-2014 16:00:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[14-Oct-2014 16:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[14-Oct-2014 16:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[14-Oct-2014 16:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[14-Oct-2014 17:00:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[14-Oct-2014 17:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[14-Oct-2014 17:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[14-Oct-2014 17:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[14-Oct-2014 18:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[14-Oct-2014 18:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[14-Oct-2014 18:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[14-Oct-2014 18:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[14-Oct-2014 19:00:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[14-Oct-2014 19:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[15-Oct-2014 06:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[15-Oct-2014 07:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[15-Oct-2014 07:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[15-Oct-2014 07:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[15-Oct-2014 07:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[15-Oct-2014 08:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[15-Oct-2014 08:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[15-Oct-2014 08:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[15-Oct-2014 08:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[15-Oct-2014 09:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[15-Oct-2014 09:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[15-Oct-2014 09:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[15-Oct-2014 09:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[15-Oct-2014 10:00:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[15-Oct-2014 10:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[15-Oct-2014 10:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[15-Oct-2014 10:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[15-Oct-2014 11:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[15-Oct-2014 11:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[15-Oct-2014 11:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[15-Oct-2014 11:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[15-Oct-2014 12:00:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[15-Oct-2014 12:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[15-Oct-2014 12:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[15-Oct-2014 12:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[15-Oct-2014 14:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[15-Oct-2014 16:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[15-Oct-2014 17:00:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[15-Oct-2014 17:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[15-Oct-2014 17:48:01 Australia/Melbourne] PHP Fatal error:  Cannot redeclare howlate_db::deleteSubdomain() in /home/howlate/public_html/master/model/howlate_db.class.php on line 712
+[15-Oct-2014 18:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[15-Oct-2014 19:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[15-Oct-2014 19:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[15-Oct-2014 19:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[15-Oct-2014 19:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[15-Oct-2014 20:00:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[15-Oct-2014 20:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[15-Oct-2014 20:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[16-Oct-2014 06:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[16-Oct-2014 07:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[16-Oct-2014 07:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[16-Oct-2014 07:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[16-Oct-2014 07:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[16-Oct-2014 08:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[16-Oct-2014 08:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[16-Oct-2014 08:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[16-Oct-2014 08:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[16-Oct-2014 09:00:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[16-Oct-2014 09:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[16-Oct-2014 09:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[16-Oct-2014 09:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[16-Oct-2014 10:00:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[16-Oct-2014 10:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[16-Oct-2014 10:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[16-Oct-2014 10:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[16-Oct-2014 11:00:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[16-Oct-2014 11:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[16-Oct-2014 11:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[16-Oct-2014 11:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[16-Oct-2014 12:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[16-Oct-2014 12:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[16-Oct-2014 12:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[16-Oct-2014 12:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[16-Oct-2014 16:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[16-Oct-2014 17:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[16-Oct-2014 17:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[16-Oct-2014 17:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[16-Oct-2014 17:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[16-Oct-2014 19:00:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[17-Oct-2014 06:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[17-Oct-2014 07:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[17-Oct-2014 07:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[17-Oct-2014 07:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[17-Oct-2014 07:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[17-Oct-2014 08:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[17-Oct-2014 08:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[17-Oct-2014 08:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[17-Oct-2014 08:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[17-Oct-2014 09:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[17-Oct-2014 09:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[17-Oct-2014 09:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[17-Oct-2014 09:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[17-Oct-2014 10:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[17-Oct-2014 10:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[17-Oct-2014 10:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[17-Oct-2014 10:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[17-Oct-2014 11:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[17-Oct-2014 11:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[17-Oct-2014 11:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[17-Oct-2014 11:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[17-Oct-2014 12:00:03 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[17-Oct-2014 12:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[17-Oct-2014 12:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[17-Oct-2014 12:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[17-Oct-2014 16:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[17-Oct-2014 18:00:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[17-Oct-2014 18:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[17-Oct-2014 18:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[19-Oct-2014 19:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[19-Oct-2014 21:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[20-Oct-2014 00:00:03 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[20-Oct-2014 00:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[20-Oct-2014 00:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[20-Oct-2014 00:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[20-Oct-2014 01:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[20-Oct-2014 01:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[20-Oct-2014 01:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[20-Oct-2014 01:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[20-Oct-2014 02:00:03 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[20-Oct-2014 06:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[20-Oct-2014 07:00:04 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[20-Oct-2014 07:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[20-Oct-2014 07:30:03 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[20-Oct-2014 07:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[20-Oct-2014 08:00:05 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[20-Oct-2014 08:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[20-Oct-2014 08:30:04 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[20-Oct-2014 08:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[20-Oct-2014 09:00:06 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[20-Oct-2014 09:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[20-Oct-2014 09:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[20-Oct-2014 09:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[20-Oct-2014 10:00:03 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[20-Oct-2014 10:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[20-Oct-2014 10:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[20-Oct-2014 10:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[20-Oct-2014 11:00:04 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[20-Oct-2014 11:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[20-Oct-2014 11:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[20-Oct-2014 11:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[20-Oct-2014 12:00:04 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[20-Oct-2014 12:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[20-Oct-2014 12:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[20-Oct-2014 12:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[20-Oct-2014 15:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[20-Oct-2014 16:00:06 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[20-Oct-2014 16:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[20-Oct-2014 16:30:03 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[20-Oct-2014 16:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[20-Oct-2014 17:00:04 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[20-Oct-2014 17:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[20-Oct-2014 17:30:03 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[20-Oct-2014 17:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[20-Oct-2014 18:00:03 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[20-Oct-2014 18:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[20-Oct-2014 18:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[20-Oct-2014 18:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[20-Oct-2014 19:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[20-Oct-2014 19:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[20-Oct-2014 19:30:03 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[20-Oct-2014 19:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[21-Oct-2014 07:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[21-Oct-2014 07:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[21-Oct-2014 07:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[21-Oct-2014 08:00:05 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[21-Oct-2014 08:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[21-Oct-2014 08:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[21-Oct-2014 08:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[21-Oct-2014 09:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[21-Oct-2014 09:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[21-Oct-2014 09:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[21-Oct-2014 09:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[21-Oct-2014 10:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[21-Oct-2014 10:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[21-Oct-2014 10:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[21-Oct-2014 10:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[21-Oct-2014 11:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[21-Oct-2014 11:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[21-Oct-2014 11:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[21-Oct-2014 11:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[21-Oct-2014 12:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[21-Oct-2014 12:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[21-Oct-2014 12:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[21-Oct-2014 12:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[21-Oct-2014 13:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[21-Oct-2014 13:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[21-Oct-2014 13:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[21-Oct-2014 13:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[21-Oct-2014 14:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[21-Oct-2014 14:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[21-Oct-2014 14:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[21-Oct-2014 14:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[21-Oct-2014 15:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[21-Oct-2014 15:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[21-Oct-2014 15:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[21-Oct-2014 15:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[21-Oct-2014 16:00:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[21-Oct-2014 16:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[21-Oct-2014 16:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[21-Oct-2014 16:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[21-Oct-2014 17:00:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[21-Oct-2014 17:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[21-Oct-2014 17:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[21-Oct-2014 17:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[21-Oct-2014 18:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[21-Oct-2014 18:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[21-Oct-2014 18:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[21-Oct-2014 18:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[21-Oct-2014 19:00:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[21-Oct-2014 19:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[21-Oct-2014 19:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[21-Oct-2014 19:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[21-Oct-2014 20:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[21-Oct-2014 20:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[21-Oct-2014 20:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[22-Oct-2014 06:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[22-Oct-2014 07:00:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[22-Oct-2014 07:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[22-Oct-2014 07:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[22-Oct-2014 07:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[22-Oct-2014 08:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[22-Oct-2014 08:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[22-Oct-2014 08:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[22-Oct-2014 08:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[22-Oct-2014 09:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[22-Oct-2014 09:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[22-Oct-2014 09:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[22-Oct-2014 09:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[22-Oct-2014 10:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[22-Oct-2014 10:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[22-Oct-2014 10:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[22-Oct-2014 10:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[22-Oct-2014 11:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[22-Oct-2014 11:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[22-Oct-2014 11:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[22-Oct-2014 11:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[22-Oct-2014 12:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[22-Oct-2014 12:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[22-Oct-2014 12:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[22-Oct-2014 12:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[22-Oct-2014 14:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[22-Oct-2014 15:00:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[22-Oct-2014 16:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[22-Oct-2014 17:00:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[22-Oct-2014 17:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[22-Oct-2014 17:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[22-Oct-2014 18:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[22-Oct-2014 18:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[22-Oct-2014 18:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[22-Oct-2014 18:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[22-Oct-2014 19:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[22-Oct-2014 19:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[23-Oct-2014 00:00:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[23-Oct-2014 00:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[23-Oct-2014 06:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[23-Oct-2014 07:00:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[23-Oct-2014 07:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[23-Oct-2014 07:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[23-Oct-2014 07:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[23-Oct-2014 08:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[23-Oct-2014 08:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[23-Oct-2014 08:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[23-Oct-2014 08:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[23-Oct-2014 09:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[23-Oct-2014 09:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[23-Oct-2014 09:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[23-Oct-2014 09:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[23-Oct-2014 10:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[23-Oct-2014 10:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[23-Oct-2014 10:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[23-Oct-2014 10:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[23-Oct-2014 11:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[23-Oct-2014 11:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[23-Oct-2014 11:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[23-Oct-2014 11:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[23-Oct-2014 12:00:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[23-Oct-2014 12:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[23-Oct-2014 12:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[23-Oct-2014 12:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[23-Oct-2014 14:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[23-Oct-2014 16:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[23-Oct-2014 17:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[23-Oct-2014 17:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[23-Oct-2014 17:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[23-Oct-2014 17:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[23-Oct-2014 18:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[23-Oct-2014 19:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[24-Oct-2014 06:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[24-Oct-2014 07:00:04 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[24-Oct-2014 07:15:05 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[24-Oct-2014 07:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[24-Oct-2014 07:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[24-Oct-2014 08:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[24-Oct-2014 08:15:05 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[24-Oct-2014 08:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[24-Oct-2014 08:45:03 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[24-Oct-2014 09:00:05 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[24-Oct-2014 09:15:03 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[24-Oct-2014 09:30:03 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[24-Oct-2014 09:45:04 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[24-Oct-2014 10:00:04 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[24-Oct-2014 10:15:05 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[24-Oct-2014 10:17:02 Australia/Melbourne] PHP Fatal error:  # Query Error (  )  in /home/howlate/public_html/master/model/invoicer.class.php on line 17
+[24-Oct-2014 10:18:02 Australia/Melbourne] PHP Fatal error:  # Query Error (  )  in /home/howlate/public_html/master/model/invoicer.class.php on line 17
+[24-Oct-2014 10:19:03 Australia/Melbourne] PHP Fatal error:  # Query Error (  )  in /home/howlate/public_html/master/model/invoicer.class.php on line 17
+[24-Oct-2014 10:20:01 Australia/Melbourne] PHP Fatal error:  # Query Error (  )  in /home/howlate/public_html/master/model/invoicer.class.php on line 17
+[24-Oct-2014 10:21:01 Australia/Melbourne] PHP Fatal error:  # Query Error (  )  in /home/howlate/public_html/master/model/invoicer.class.php on line 17
+[24-Oct-2014 10:22:02 Australia/Melbourne] PHP Fatal error:  # Query Error (  )  in /home/howlate/public_html/master/model/invoicer.class.php on line 17
+[24-Oct-2014 10:23:02 Australia/Melbourne] PHP Fatal error:  # Query Error (  )  in /home/howlate/public_html/master/model/invoicer.class.php on line 17
+[24-Oct-2014 10:24:01 Australia/Melbourne] PHP Fatal error:  # Query Error (  )  in /home/howlate/public_html/master/model/invoicer.class.php on line 17
+[24-Oct-2014 10:25:03 Australia/Melbourne] PHP Fatal error:  # Query Error (  )  in /home/howlate/public_html/master/model/invoicer.class.php on line 17
+[24-Oct-2014 10:26:02 Australia/Melbourne] PHP Fatal error:  # Query Error (  )  in /home/howlate/public_html/master/model/invoicer.class.php on line 17
+[24-Oct-2014 10:27:01 Australia/Melbourne] PHP Fatal error:  # Query Error (  )  in /home/howlate/public_html/master/model/invoicer.class.php on line 17
+[24-Oct-2014 10:28:01 Australia/Melbourne] PHP Fatal error:  # Query Error (  )  in /home/howlate/public_html/master/model/invoicer.class.php on line 17
+[24-Oct-2014 10:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[24-Oct-2014 10:45:03 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[24-Oct-2014 11:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[24-Oct-2014 11:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[24-Oct-2014 11:45:03 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[24-Oct-2014 12:00:11 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[24-Oct-2014 12:15:05 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[24-Oct-2014 16:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[24-Oct-2014 17:00:03 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[24-Oct-2014 17:15:06 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[24-Oct-2014 18:00:05 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[24-Oct-2014 18:45:03 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[25-Oct-2014 12:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[25-Oct-2014 14:45:02 Australia/Melbourne] PHP Warning:  Missing argument 5 for invoicer::createNewInvoice(), called in /home/howlate/etc/scripts/billing.php on line 39 and defined in /home/howlate/public_html/master/model/invoicer.class.php on line 8
+[25-Oct-2014 14:45:02 Australia/Melbourne] PHP Warning:  Missing argument 6 for invoicer::createNewInvoice(), called in /home/howlate/etc/scripts/billing.php on line 39 and defined in /home/howlate/public_html/master/model/invoicer.class.php on line 8
+[25-Oct-2014 14:45:02 Australia/Melbourne] PHP Warning:  Missing argument 7 for invoicer::createNewInvoice(), called in /home/howlate/etc/scripts/billing.php on line 39 and defined in /home/howlate/public_html/master/model/invoicer.class.php on line 8
+[25-Oct-2014 14:45:02 Australia/Melbourne] PHP Warning:  Missing argument 8 for invoicer::createNewInvoice(), called in /home/howlate/etc/scripts/billing.php on line 39 and defined in /home/howlate/public_html/master/model/invoicer.class.php on line 8
+[25-Oct-2014 14:45:02 Australia/Melbourne] PHP Catchable fatal error:  Object of class stdClass could not be converted to string in /home/howlate/public_html/master/model/invoicer.class.php on line 18
+[25-Oct-2014 14:50:01 Australia/Melbourne] PHP Warning:  Missing argument 5 for invoicer::createNewInvoice(), called in /home/howlate/etc/scripts/billing.php on line 39 and defined in /home/howlate/public_html/master/model/invoicer.class.php on line 8
+[25-Oct-2014 14:50:01 Australia/Melbourne] PHP Warning:  Missing argument 6 for invoicer::createNewInvoice(), called in /home/howlate/etc/scripts/billing.php on line 39 and defined in /home/howlate/public_html/master/model/invoicer.class.php on line 8
+[25-Oct-2014 14:50:01 Australia/Melbourne] PHP Warning:  Missing argument 7 for invoicer::createNewInvoice(), called in /home/howlate/etc/scripts/billing.php on line 39 and defined in /home/howlate/public_html/master/model/invoicer.class.php on line 8
+[25-Oct-2014 14:50:01 Australia/Melbourne] PHP Warning:  Missing argument 8 for invoicer::createNewInvoice(), called in /home/howlate/etc/scripts/billing.php on line 39 and defined in /home/howlate/public_html/master/model/invoicer.class.php on line 8
+[25-Oct-2014 14:50:01 Australia/Melbourne] PHP Catchable fatal error:  Object of class stdClass could not be converted to string in /home/howlate/public_html/master/model/invoicer.class.php on line 18
+[25-Oct-2014 14:55:02 Australia/Melbourne] PHP Warning:  Missing argument 5 for invoicer::createNewInvoice(), called in /home/howlate/etc/scripts/billing.php on line 39 and defined in /home/howlate/public_html/master/model/invoicer.class.php on line 8
+[25-Oct-2014 14:55:02 Australia/Melbourne] PHP Warning:  Missing argument 6 for invoicer::createNewInvoice(), called in /home/howlate/etc/scripts/billing.php on line 39 and defined in /home/howlate/public_html/master/model/invoicer.class.php on line 8
+[25-Oct-2014 14:55:02 Australia/Melbourne] PHP Warning:  Missing argument 7 for invoicer::createNewInvoice(), called in /home/howlate/etc/scripts/billing.php on line 39 and defined in /home/howlate/public_html/master/model/invoicer.class.php on line 8
+[25-Oct-2014 14:55:02 Australia/Melbourne] PHP Warning:  Missing argument 8 for invoicer::createNewInvoice(), called in /home/howlate/etc/scripts/billing.php on line 39 and defined in /home/howlate/public_html/master/model/invoicer.class.php on line 8
+[25-Oct-2014 14:55:02 Australia/Melbourne] PHP Catchable fatal error:  Object of class stdClass could not be converted to string in /home/howlate/public_html/master/model/invoicer.class.php on line 18
+[27-Oct-2014 06:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[27-Oct-2014 07:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[27-Oct-2014 07:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[27-Oct-2014 07:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[27-Oct-2014 07:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[27-Oct-2014 08:00:05 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[27-Oct-2014 08:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[27-Oct-2014 08:30:04 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[27-Oct-2014 08:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[27-Oct-2014 09:00:04 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[27-Oct-2014 09:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[27-Oct-2014 09:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[27-Oct-2014 09:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[27-Oct-2014 10:00:03 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[27-Oct-2014 10:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[27-Oct-2014 10:30:05 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[27-Oct-2014 10:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[27-Oct-2014 11:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[27-Oct-2014 11:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[27-Oct-2014 11:30:05 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[27-Oct-2014 11:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[27-Oct-2014 12:00:11 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[27-Oct-2014 12:15:04 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[27-Oct-2014 15:45:03 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[27-Oct-2014 16:00:07 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[27-Oct-2014 16:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[27-Oct-2014 16:30:11 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[27-Oct-2014 16:45:03 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[27-Oct-2014 17:00:03 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[27-Oct-2014 17:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[27-Oct-2014 17:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[27-Oct-2014 17:45:03 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[27-Oct-2014 18:00:08 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[27-Oct-2014 18:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[27-Oct-2014 18:30:07 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[27-Oct-2014 18:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[27-Oct-2014 19:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[27-Oct-2014 19:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[27-Oct-2014 19:30:04 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[28-Oct-2014 07:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[28-Oct-2014 07:30:03 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[28-Oct-2014 07:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[28-Oct-2014 08:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[28-Oct-2014 08:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[28-Oct-2014 08:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[28-Oct-2014 08:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[28-Oct-2014 09:00:09 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[28-Oct-2014 09:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[28-Oct-2014 09:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[28-Oct-2014 09:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[28-Oct-2014 10:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[28-Oct-2014 10:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[28-Oct-2014 10:30:05 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[28-Oct-2014 10:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[28-Oct-2014 11:00:08 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[28-Oct-2014 11:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[28-Oct-2014 11:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[28-Oct-2014 11:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[28-Oct-2014 12:00:03 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[28-Oct-2014 12:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[28-Oct-2014 12:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[28-Oct-2014 12:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[28-Oct-2014 13:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[28-Oct-2014 13:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[28-Oct-2014 13:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[28-Oct-2014 13:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[28-Oct-2014 14:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[28-Oct-2014 14:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[28-Oct-2014 14:30:11 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[28-Oct-2014 14:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[28-Oct-2014 15:00:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[28-Oct-2014 15:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[28-Oct-2014 15:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[28-Oct-2014 15:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[28-Oct-2014 16:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[28-Oct-2014 16:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[28-Oct-2014 16:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[28-Oct-2014 16:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[28-Oct-2014 17:00:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[28-Oct-2014 17:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[28-Oct-2014 17:30:03 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[28-Oct-2014 17:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[28-Oct-2014 18:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[28-Oct-2014 18:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[28-Oct-2014 18:30:07 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[28-Oct-2014 18:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[28-Oct-2014 19:00:09 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[28-Oct-2014 19:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[28-Oct-2014 19:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[29-Oct-2014 06:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[29-Oct-2014 07:00:04 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[29-Oct-2014 07:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[29-Oct-2014 07:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[29-Oct-2014 07:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[29-Oct-2014 08:00:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[29-Oct-2014 08:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[29-Oct-2014 08:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[29-Oct-2014 08:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[29-Oct-2014 09:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[29-Oct-2014 09:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[29-Oct-2014 09:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[29-Oct-2014 09:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[29-Oct-2014 10:00:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[29-Oct-2014 10:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[29-Oct-2014 10:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[29-Oct-2014 10:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[29-Oct-2014 11:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[29-Oct-2014 11:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[29-Oct-2014 11:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[29-Oct-2014 11:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[29-Oct-2014 12:00:06 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[29-Oct-2014 12:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[29-Oct-2014 12:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[29-Oct-2014 12:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[29-Oct-2014 14:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[29-Oct-2014 17:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[29-Oct-2014 18:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[29-Oct-2014 19:00:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[30-Oct-2014 06:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[30-Oct-2014 07:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[30-Oct-2014 07:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[30-Oct-2014 07:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[30-Oct-2014 07:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[30-Oct-2014 08:00:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[30-Oct-2014 08:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[30-Oct-2014 08:30:03 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[30-Oct-2014 08:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[30-Oct-2014 09:00:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[30-Oct-2014 09:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[30-Oct-2014 09:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[30-Oct-2014 09:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[30-Oct-2014 10:00:06 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[30-Oct-2014 10:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[30-Oct-2014 10:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[30-Oct-2014 10:45:04 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[30-Oct-2014 11:00:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[30-Oct-2014 11:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[30-Oct-2014 11:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[30-Oct-2014 11:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[30-Oct-2014 12:00:10 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[30-Oct-2014 12:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[30-Oct-2014 12:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[30-Oct-2014 12:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[30-Oct-2014 14:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[30-Oct-2014 15:00:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[30-Oct-2014 16:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[30-Oct-2014 17:00:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[30-Oct-2014 17:15:05 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[30-Oct-2014 17:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[30-Oct-2014 17:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[30-Oct-2014 19:00:07 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[31-Oct-2014 07:00:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[31-Oct-2014 07:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[31-Oct-2014 07:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[31-Oct-2014 07:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[31-Oct-2014 08:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[31-Oct-2014 08:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[31-Oct-2014 08:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[31-Oct-2014 08:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[31-Oct-2014 09:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[31-Oct-2014 09:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[31-Oct-2014 09:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[31-Oct-2014 09:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[31-Oct-2014 10:00:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[31-Oct-2014 10:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[31-Oct-2014 10:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[31-Oct-2014 10:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[31-Oct-2014 11:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[31-Oct-2014 11:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[31-Oct-2014 11:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[31-Oct-2014 11:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[31-Oct-2014 12:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[31-Oct-2014 12:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[31-Oct-2014 12:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[31-Oct-2014 12:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[31-Oct-2014 16:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[31-Oct-2014 18:00:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[31-Oct-2014 18:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[31-Oct-2014 18:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[03-Nov-2014 06:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[03-Nov-2014 07:00:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[03-Nov-2014 07:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[03-Nov-2014 07:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[03-Nov-2014 07:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[03-Nov-2014 08:00:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[03-Nov-2014 08:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[03-Nov-2014 08:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[03-Nov-2014 08:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[03-Nov-2014 09:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[03-Nov-2014 09:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[03-Nov-2014 09:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[03-Nov-2014 09:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[03-Nov-2014 10:00:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[03-Nov-2014 10:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[03-Nov-2014 10:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[03-Nov-2014 10:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[03-Nov-2014 11:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[03-Nov-2014 11:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[03-Nov-2014 11:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[03-Nov-2014 11:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[03-Nov-2014 12:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[03-Nov-2014 12:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[03-Nov-2014 12:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[03-Nov-2014 12:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[03-Nov-2014 15:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[03-Nov-2014 16:00:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[03-Nov-2014 16:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[03-Nov-2014 16:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[03-Nov-2014 16:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[03-Nov-2014 17:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[03-Nov-2014 17:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[03-Nov-2014 17:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[03-Nov-2014 17:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[03-Nov-2014 18:00:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[03-Nov-2014 18:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[03-Nov-2014 18:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[03-Nov-2014 18:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[03-Nov-2014 19:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[03-Nov-2014 19:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[03-Nov-2014 19:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[04-Nov-2014 07:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[04-Nov-2014 07:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[04-Nov-2014 07:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[04-Nov-2014 08:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[04-Nov-2014 08:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[04-Nov-2014 08:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[04-Nov-2014 08:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[04-Nov-2014 09:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[04-Nov-2014 09:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[04-Nov-2014 09:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[04-Nov-2014 09:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[04-Nov-2014 10:00:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[04-Nov-2014 10:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[04-Nov-2014 10:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[04-Nov-2014 10:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[04-Nov-2014 11:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[04-Nov-2014 11:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[04-Nov-2014 11:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[04-Nov-2014 11:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[04-Nov-2014 12:00:06 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[04-Nov-2014 12:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[04-Nov-2014 12:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[04-Nov-2014 12:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[04-Nov-2014 13:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[04-Nov-2014 13:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[04-Nov-2014 13:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[04-Nov-2014 13:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[04-Nov-2014 14:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[04-Nov-2014 14:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[04-Nov-2014 14:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[04-Nov-2014 14:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[04-Nov-2014 15:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[04-Nov-2014 15:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[04-Nov-2014 15:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[04-Nov-2014 15:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[04-Nov-2014 16:00:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[04-Nov-2014 16:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[04-Nov-2014 16:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[04-Nov-2014 16:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[04-Nov-2014 17:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[04-Nov-2014 17:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[04-Nov-2014 17:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[04-Nov-2014 17:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[04-Nov-2014 18:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[04-Nov-2014 18:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[04-Nov-2014 18:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[04-Nov-2014 18:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[04-Nov-2014 19:00:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[04-Nov-2014 19:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[04-Nov-2014 19:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[05-Nov-2014 06:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[05-Nov-2014 07:00:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[05-Nov-2014 07:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[05-Nov-2014 07:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[05-Nov-2014 07:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[05-Nov-2014 08:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[05-Nov-2014 08:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[05-Nov-2014 08:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[05-Nov-2014 08:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[05-Nov-2014 09:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[05-Nov-2014 09:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[05-Nov-2014 09:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[05-Nov-2014 09:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[05-Nov-2014 10:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[05-Nov-2014 10:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[05-Nov-2014 10:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[05-Nov-2014 10:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[05-Nov-2014 11:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[05-Nov-2014 11:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[05-Nov-2014 11:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[05-Nov-2014 11:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[05-Nov-2014 12:00:07 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[05-Nov-2014 12:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[05-Nov-2014 12:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[05-Nov-2014 12:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[05-Nov-2014 14:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[05-Nov-2014 17:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[05-Nov-2014 17:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[05-Nov-2014 18:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[05-Nov-2014 19:00:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[06-Nov-2014 06:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[06-Nov-2014 07:00:03 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[06-Nov-2014 07:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[06-Nov-2014 07:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[06-Nov-2014 07:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[06-Nov-2014 08:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[06-Nov-2014 08:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[06-Nov-2014 08:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[06-Nov-2014 08:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[06-Nov-2014 09:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[06-Nov-2014 09:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[06-Nov-2014 09:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[06-Nov-2014 09:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[06-Nov-2014 10:00:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[06-Nov-2014 10:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[06-Nov-2014 10:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[06-Nov-2014 10:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[06-Nov-2014 11:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[06-Nov-2014 11:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[06-Nov-2014 11:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[06-Nov-2014 11:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[06-Nov-2014 12:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[06-Nov-2014 12:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[06-Nov-2014 12:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[06-Nov-2014 12:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[06-Nov-2014 13:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[06-Nov-2014 13:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[06-Nov-2014 13:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[06-Nov-2014 14:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[06-Nov-2014 15:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[06-Nov-2014 15:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[06-Nov-2014 15:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[06-Nov-2014 15:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[06-Nov-2014 16:00:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[06-Nov-2014 16:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[06-Nov-2014 16:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[06-Nov-2014 16:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[06-Nov-2014 17:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[06-Nov-2014 17:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[06-Nov-2014 17:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[06-Nov-2014 17:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[06-Nov-2014 18:00:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[06-Nov-2014 19:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[07-Nov-2014 06:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[07-Nov-2014 07:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[07-Nov-2014 07:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[07-Nov-2014 07:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[07-Nov-2014 07:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[07-Nov-2014 08:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[07-Nov-2014 08:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[07-Nov-2014 08:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[07-Nov-2014 08:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[07-Nov-2014 09:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[07-Nov-2014 09:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[07-Nov-2014 09:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[07-Nov-2014 09:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[07-Nov-2014 10:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[07-Nov-2014 10:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[07-Nov-2014 10:30:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[07-Nov-2014 10:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[07-Nov-2014 11:00:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[07-Nov-2014 11:15:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[07-Nov-2014 11:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[07-Nov-2014 11:45:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[07-Nov-2014 12:00:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[07-Nov-2014 12:15:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[07-Nov-2014 12:30:02 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[07-Nov-2014 12:45:01 Australia/Melbourne] PHP Fatal error:  Class 'TranType' not found in /home/howlate/etc/scripts/zeroLateness.php on line 69
+[10-Nov-2014 00:16:04 Australia/Melbourne] PHP Fatal error:  Uncaught exception 'Exception' with message 'Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2)' in /home/howlate/public_html/master/model/maindb.class.php:19
+Stack trace:
+#0 /home/howlate/public_html/master/model/maindb.class.php(25): maindb->__construct()
+#1 /home/howlate/public_html/master/model/howlate_util.class.php(338): maindb::getInstance()
+#2 /home/howlate/etc/scripts/processNotifications.php(34): howlate_util::getQueuedNotifications()
+#3 {main}
+  thrown in /home/howlate/public_html/master/model/maindb.class.php on line 19
+[10-Nov-2014 14:54:13 Australia/Melbourne] send message failed, 1
+[11-Nov-2014 11:18:03 Australia/Melbourne] send message failed, 1
+[13-Nov-2014 02:28:01 Australia/Melbourne] PHP Fatal error:  Uncaught exception 'Exception' with message 'Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2)' in /home/howlate/public_html/master/model/maindb.class.php:19
+Stack trace:
+#0 /home/howlate/public_html/master/model/maindb.class.php(25): maindb->__construct()
+#1 /home/howlate/public_html/master/model/howlate_util.class.php(338): maindb::getInstance()
+#2 /home/howlate/etc/scripts/processNotifications.php(34): howlate_util::getQueuedNotifications()
+#3 {main}
+  thrown in /home/howlate/public_html/master/model/maindb.class.php on line 19
+[14-Nov-2014 12:20:04 Australia/Melbourne] send message failed, 1
+[14-Nov-2014 15:32:10 Australia/Melbourne] send message failed, 1
+[24-Nov-2014 09:39:05 Australia/Melbourne] send message failed, 1
+[24-Nov-2014 15:29:07 Australia/Melbourne] send message failed, 1
+[27-Nov-2014 14:57:06 Australia/Melbourne] send message failed, 1
+[01-Dec-2014 09:45:04 Australia/Melbourne] send message failed, 1
+[02-Dec-2014 15:31:05 Australia/Melbourne] send message failed, 1
+[04-Dec-2014 11:27:10 Australia/Melbourne] send message failed, 1
+[09-Dec-2014 11:23:07 Australia/Melbourne] send message failed, 1
+[09-Dec-2014 15:49:03 Australia/Melbourne] send message failed, 1
+[10-Dec-2014 14:41:15 Australia/Melbourne] send message failed, 1
+[10-Dec-2014 15:20:13 Australia/Melbourne] PHP Warning:  file(http://api.clickatell.com/http/auth?user=fiedag&amp;password=BJ1xmgNO&amp;api_id=195729): failed to open stream: HTTP request failed!  in /home/howlate/public_html/master/model/clickatell.class.php on line 16
+[10-Dec-2014 15:20:13 Australia/Melbourne] Authentication failure: 
+[11-Dec-2014 15:11:06 Australia/Melbourne] send message failed, 1
+[15-Dec-2014 11:54:03 Australia/Melbourne] send message failed, 1
+[16-Dec-2014 07:32:06 Australia/Melbourne] send message failed, 1
+[17-Dec-2014 09:45:04 Australia/Melbourne] PHP Fatal error:  The lates record was not deleted, error=  in /home/howlate/public_html/master/model/howlate_db.class.php on line 491
+[17-Dec-2014 10:46:04 Australia/Melbourne] send message failed, 1
+[17-Dec-2014 11:15:04 Australia/Melbourne] PHP Fatal error:  The lates record was not deleted, error=  in /home/howlate/public_html/master/model/howlate_db.class.php on line 491
+[23-Jan-2015 00:43:02 Australia/Melbourne] PHP Fatal error:  Uncaught exception 'Exception' with message 'Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2)' in /home/howlate/public_html/master/model/maindb.class.php:19
+Stack trace:
+#0 /home/howlate/public_html/master/model/maindb.class.php(25): maindb->__construct()
+#1 /home/howlate/public_html/master/model/howlate_util.class.php(338): maindb::getInstance()
+#2 /home/howlate/etc/scripts/processNotifications.php(34): howlate_util::getQueuedNotifications()
+#3 {main}
+  thrown in /home/howlate/public_html/master/model/maindb.class.php on line 19
+[26-Jan-2015 11:00:06 UTC] PHP Warning:  curl_getinfo(): 9 is not a valid cURL handle resource in /home/howlate/public_html/master/includes/chargeover/ChargeOverAPI.php on line 166
+[26-Jan-2015 11:00:06 UTC] PHP Warning:  curl_getinfo(): 10 is not a valid cURL handle resource in /home/howlate/public_html/master/includes/chargeover/ChargeOverAPI.php on line 166
+[26-Jan-2015 11:00:07 UTC] PHP Warning:  curl_getinfo(): 11 is not a valid cURL handle resource in /home/howlate/public_html/master/includes/chargeover/ChargeOverAPI.php on line 166
+[26-Jan-2015 11:00:07 UTC] PHP Warning:  curl_getinfo(): 12 is not a valid cURL handle resource in /home/howlate/public_html/master/includes/chargeover/ChargeOverAPI.php on line 166
+[26-Jan-2015 11:00:07 UTC] PHP Warning:  curl_getinfo(): 13 is not a valid cURL handle resource in /home/howlate/public_html/master/includes/chargeover/ChargeOverAPI.php on line 166
+[26-Jan-2015 11:00:07 UTC] PHP Warning:  curl_getinfo(): 14 is not a valid cURL handle resource in /home/howlate/public_html/master/includes/chargeover/ChargeOverAPI.php on line 166
+[26-Jan-2015 11:00:07 UTC] PHP Warning:  curl_getinfo(): 15 is not a valid cURL handle resource in /home/howlate/public_html/master/includes/chargeover/ChargeOverAPI.php on line 166
+[29-Jan-2015 12:38:03 Australia/Melbourne] send message failed, 1
+[29-Jan-2015 12:38:08 Australia/Melbourne] send message failed, 1
+[29-Jan-2015 12:38:10 Australia/Melbourne] send message failed, 1
+[29-Jan-2015 14:18:04 Australia/Melbourne] send message failed, 1
+[29-Jan-2015 17:00:04 Australia/Melbourne] send message failed, 1
+[29-Jan-2015 20:28:03 Australia/Melbourne] send message failed, 1
+[24-Feb-2015 03:25:01 Australia/Melbourne] PHP Fatal error:  Uncaught exception 'Exception' with message 'Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2)' in /home/howlate/public_html/master/model/maindb.class.php:19
+Stack trace:
+#0 /home/howlate/public_html/master/model/maindb.class.php(25): maindb->__construct()
+#1 /home/howlate/public_html/master/model/howlate_util.class.php(343): maindb::getInstance()
+#2 /home/howlate/etc/scripts/processNotifications.php(34): howlate_util::getQueuedNotifications()
+#3 {main}
+  thrown in /home/howlate/public_html/master/model/maindb.class.php on line 19
+[03-Mar-2015 12:27:03 Australia/Melbourne] send message failed, 1
+[02-May-2015 12:00:02 UTC] PHP Warning:  mysqli::mysqli(): (42000/1044): Access denied for user 'howlate_super'@'localhost' to database 'howlate_billing' in /home/howlate/public_html/master/model/billing.class.php on line 6
+[02-May-2015 12:00:02 UTC] PHP Warning:  mysqli::query(): Couldn't fetch mysqli in /home/howlate/public_html/master/model/billing.class.php on line 32
+[14-May-2015 11:45:07 UTC] PHP Warning:  array_filter() expects parameter 2 to be a valid callback, class 'chargeover' does not have a method 'usage_line' in /home/howlate/public_html/master/model/chargeover.class.php on line 156
+[14-May-2015 11:45:12 UTC] PHP Warning:  array_filter() expects parameter 2 to be a valid callback, class 'chargeover' does not have a method 'usage_line' in /home/howlate/public_html/master/model/chargeover.class.php on line 156
+[14-May-2015 11:45:20 UTC] PHP Warning:  array_filter() expects parameter 2 to be a valid callback, class 'chargeover' does not have a method 'usage_line' in /home/howlate/public_html/master/model/chargeover.class.php on line 156
+[14-May-2015 11:45:25 UTC] PHP Warning:  array_filter() expects parameter 2 to be a valid callback, class 'chargeover' does not have a method 'usage_line' in /home/howlate/public_html/master/model/chargeover.class.php on line 156
+[14-May-2015 11:45:37 UTC] PHP Warning:  array_filter() expects parameter 2 to be a valid callback, class 'chargeover' does not have a method 'usage_line' in /home/howlate/public_html/master/model/chargeover.class.php on line 156
+[14-May-2015 11:45:43 UTC] PHP Warning:  array_filter() expects parameter 2 to be a valid callback, class 'chargeover' does not have a method 'usage_line' in /home/howlate/public_html/master/model/chargeover.class.php on line 156
+[14-May-2015 11:45:49 UTC] PHP Warning:  array_filter() expects parameter 2 to be a valid callback, class 'chargeover' does not have a method 'usage_line' in /home/howlate/public_html/master/model/chargeover.class.php on line 156
+[14-May-2015 11:45:56 UTC] PHP Warning:  array_filter() expects parameter 2 to be a valid callback, class 'chargeover' does not have a method 'usage_line' in /home/howlate/public_html/master/model/chargeover.class.php on line 156
+[14-May-2015 11:48:01 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'Recording SMS usage for all organisations' in /home/howlate/public_html/master/model/billing.class.php:32
+Stack trace:
+#0 /home/howlate/etc/scripts/processUsage.php(23): billing->recordAllUsage()
+#1 {main}
+  thrown in /home/howlate/public_html/master/model/billing.class.php on line 32
+[14-May-2015 11:56:01 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'Recording SMS usage for all organisations' in /home/howlate/public_html/master/model/billing.class.php:32
+Stack trace:
+#0 /home/howlate/etc/scripts/processUsage.php(23): billing->recordAllUsage()
+#1 {main}
+  thrown in /home/howlate/public_html/master/model/billing.class.php on line 32

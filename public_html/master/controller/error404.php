@@ -1,11 +1,11 @@
 <?php
 
-Class error404Controller Extends baseController {
+Class Error404Controller Extends baseController {
 
     public $org;
     
     public function index() {
-        $this->org = organisation::getInstance(__SUBDOMAIN);
+        $this->org = Organisation::getInstance(__SUBDOMAIN);
         if(isset($this->org)) {
             $this->registry->template->companyname = $this->org->OrgName;
         }

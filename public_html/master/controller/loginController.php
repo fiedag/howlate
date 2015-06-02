@@ -1,8 +1,6 @@
 <?php
 
-Class loginController Extends baseController {
-
-    //public $org;
+Class LoginController Extends baseController {
 
     public function index() { 
         if (isset($_COOKIE["USER"])){ 
@@ -27,13 +25,13 @@ Class loginController Extends baseController {
         }
         define("__DIAG",1);
         
-        $this->org = organisation::getInstance(__SUBDOMAIN);
+        $this->org = Organisation::getInstance(__SUBDOMAIN);
         if(!isset($this->org)) {
              header("location: http://" . __SUBDOMAIN . "." . __DOMAIN . "/error404");
         }
         
         $this->registry->template->companyname = $this->org->OrgName;
-        $this->registry->template->logourl = howlate_util::logoURL(__SUBDOMAIN);
+        $this->registry->template->logourl = HowLate_Util::logoURL(__SUBDOMAIN);
         $this->registry->template->show('login_index');
     }
 
@@ -47,14 +45,14 @@ Class loginController Extends baseController {
         $userid = $_POST["username"];
         $passwd = md5($_POST["password"]);
 
-        $this->org = organisation::getInstance(__SUBDOMAIN);
+        $this->org = Organisation::getInstance(__SUBDOMAIN);
         $this->registry->template->companyname = $this->org->OrgName;
         $this->registry->template->logourl = $this->org->LogoURL;
 
         //echo md5($userid);
         if ($this->org->isValidPassword($this->org->OrgID, $userid, $passwd)) {
-            setcookie("USER", $userid, time() + 7200);
-            setcookie("ORGID", $this->org->OrgID, time() + 7200);
+            setcookie("USER", $userid, time() + 3600 * 8);
+            setcookie("ORGID", $this->org->OrgID, time() + 3600 * 8);
             
             session_start();
             
@@ -70,7 +68,7 @@ Class loginController Extends baseController {
 
     public function forgot() {
         $email = $_POST["email"];
-        $this->org = organisation::getInstance(__SUBDOMAIN);
+        $this->org = Organisation::getInstance(__SUBDOMAIN);
         $this->org->getRelated();
         $this->org->sendResetEmails($email);
         $this->registry->template->email = $email;

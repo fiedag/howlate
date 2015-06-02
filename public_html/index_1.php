@@ -3,7 +3,7 @@
     <!--[if lt IE 9 ]><html lang="en" class="ie8"><![endif]-->
     <!--[if (gt IE 8)|!(IE)]><!--><html lang="en"><!--<![endif]-->
 
-    <?php include("head.php"); ?>
+    <?php include("head_1.php"); ?>
 
     <body>
         <div id="site-container">
@@ -35,13 +35,17 @@
                                                 href="http://www.youtube.com/embed/_hide?rel=0&autoplay=1&enablejsapi=1" class="video-link">
                                                 <div class="video-player"></div>
                                             </a -->
-                                            <a href="#safe" data-gtm-event="navigation" data-gtm-info="Discover"><img src="master/images/discover.png"></a>
 
-
-                                            <form style="margin-top:50px">
-                                                <input class="join" type="text" id="subdomain" name="Subdomain">
-                                                <input class="join" type="submit" id="edit-submit" name="op" value="Start my free trial now">
-                                            </form>
+                                            <div class="row">
+  <div class="col-md-5 col-md-offset-1">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" placeholder="e.g. Sydney Medical Group" aria-describedby="basic-addon1">
+                                                <span class="input-group-addon" id="basic-addon1">Start my free trial now</span>
+                                            </div>
+  
+  </div>
+                                            </div>
+                                            
                                             
                                         </div>
                                     </div>
@@ -321,9 +325,9 @@
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-        <script src="/master/js/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-        <script src="https://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
-        <script src="https://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
+        <script src="/master/js/bootstrap.min.js"></script>
+        <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
+        <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/additional-methods.min.js"></script>
         
         <script src="/master/js/main.js"></script>
 

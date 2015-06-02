@@ -1,6 +1,6 @@
 <?php
 
-class howlate_util {
+class HowLate_Util {
 
 //    public static $cpanelUser = "howlate";
 //    public static $cpanelPassword = "PzaLQiH9av";
@@ -300,7 +300,7 @@ EOD;
         $q = "SELECT DISTINCT Timezone FROM vwLateTZ";
 
         $timezones = array();
-        if ($result = maindb::getInstance()->query($q)) {
+        if ($result = MainDb::getInstance()->query($q)) {
             $tempArray = array();
             while ($row = $result->fetch_object()) {
                 $tempArray = $row;
@@ -321,7 +321,7 @@ EOD;
                 " WHERE v.Timezone = '$timezone'";
 
         $toprocess = array();
-        if ($result = maindb::getInstance()->query($q)) {
+        if ($result = MainDb::getInstance()->query($q)) {
             $tempArray = array();
             while ($row = $result->fetch_object()) {
                 $tempArray = $row;
@@ -333,14 +333,14 @@ EOD;
 
     public static function deleteOldLates() {
         $q = "DELETE FROM lates WHERE Updated < ADDTIME(NOW(),'-08:00:00')";
-        $stmt = maindb::getInstance()->prepare($q);
+        $stmt = MainDb::getInstance()->prepare($q);
         $stmt->execute() or trigger_error('# Query Error (' . $this->conn->errno . ') ' . $this->conn->error, E_USER_ERROR);
     }
 
     public static function getQueuedNotifications() {
         $q = "SELECT * FROM notifqueue WHERE Status = 'Queued'";
         $toprocess = array();
-        if ($result = maindb::getInstance()->query($q)) {
+        if ($result = MainDb::getInstance()->query($q)) {
             $tempArray = array();
             while ($row = $result->fetch_object()) {
                 $tempArray = $row;
@@ -353,7 +353,7 @@ EOD;
     public static function dequeueNotification($uid) {
         $q = "UPDATE notifqueue SET Status = 'Sent' WHERE UID = $uid";
         //echo $q;
-        $stmt = maindb::getInstance()->prepare($q);
+        $stmt = MainDb::getInstance()->prepare($q);
         $stmt->execute();
         if ($stmt->affected_rows == 0) {
             trigger_error("The notification record was not deueued, error= " . $this->conn->error, E_USER_ERROR);
@@ -363,7 +363,7 @@ EOD;
 
     public static function deleteSubdomain($subdomain) {
         $q = "CALL sp_DeleteSubd('" . $subdomain . "')";
-        $stmt = maindb::getInstance()->prepare($q);
+        $stmt = MainDb::getInstance()->prepare($q);
         $stmt->execute() or trigger_error('# Query Error (' . $this->conn->errno . ') ' . $this->conn->error, E_USER_ERROR);
     }
     
@@ -400,6 +400,8 @@ EOD;
        return $res;
     }
     
+
+
 }
 
 ?>

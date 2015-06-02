@@ -6,7 +6,7 @@
  * 
  * 
  */
-class pmsystem {
+class PmSystem {
     
     public $ID;
     public $Name;
@@ -20,7 +20,7 @@ class pmsystem {
     public static function getInstance($SystemID) {
         $q = "SELECT * FROM pmsystems WHERE ID = $SystemID";
 
-        $sql = maindb::getInstance();
+        $sql = MainDb::getInstance();
         
         if ($result = $sql->query($q)->fetch_object()) {
             if (!self::$instance) {
@@ -37,7 +37,7 @@ class pmsystem {
     
     public static function getAllImplemented() {
         $q = "SELECT ID, Name FROM pmsystems WHERE Implemented = 1";
-        $sql = maindb::getInstance();
+        $sql = MainDb::getInstance();
         $myArray = array();
         if ($result = $sql->query($q)) {
             while ($row = $result->fetch_object()) {

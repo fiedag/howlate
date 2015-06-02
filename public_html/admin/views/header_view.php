@@ -25,7 +25,7 @@
                 <div class="logo-exists">
                     <div id="logo-container" class="logo-container">
                         <img alt="" id="sysLogo" class="system-logo" 
-                             title="How Late Admin System" src="<?php echo howlate_util::logoURL(__SUBDOMAIN); ?>" height="100" width="100">
+                             title="How Late Admin System" src="<?php echo HowLate_Util::logoURL(__SUBDOMAIN); ?>" height="100" width="100">
                     </div>
                     <div class="orgname">
                         <?php echo $controller->org->OrgName; ?>
@@ -63,7 +63,12 @@
                             echo 'active';
                         } ?> custom-background-dark-hover">
                                 <span><a id="nav-agent" title="Activity log." class="<?php echo (get_class($controller) == "tranlogController") ? 'custom-font-on-white' : 'font-on-custom-background'; ?>" href="https://<?php echo __FQDN; ?>/tranlog">Activity Log</a></span>
-                            </li>                            
+                            </li>
+                            <li class="<?php if (get_class($controller) == "billingController") {
+                            echo 'active';
+                        } ?> custom-background-dark-hover">
+                                <span><a id="nav-agent" title="Billing details." class="<?php echo (get_class($controller) == "billingController") ? 'custom-font-on-white' : 'font-on-custom-background'; ?>" href="https://<?php echo __FQDN; ?>/billing">Billing</a></span>
+                            </li>
                         </ul>
                     </div>
                     <div class="clearb"></div>

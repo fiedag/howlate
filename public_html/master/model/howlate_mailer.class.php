@@ -1,6 +1,6 @@
 <?php
 
-class howlate_mailer {
+class Howlate_Mailer {
 
     private $Host = "how-late.com";
     private $Username;
@@ -8,8 +8,8 @@ class howlate_mailer {
     private $mail;
 
     function __construct() {
-        $this->Username = howlate_util::noreplySmtpUsername();
-        $this->Password = howlate_util::noreplySmtpPassword();
+        $this->Username = HowLate_Util::noreplySmtpUsername();
+        $this->Password = HowLate_Util::noreplySmtpPassword();
         include('includes/PHPMailer-master/PHPMailerAutoload.php');
     }
 

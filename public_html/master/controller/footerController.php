@@ -1,6 +1,6 @@
 <?php
 
-Class footerController Extends baseController {
+Class FooterController Extends baseController {
 
     public function index() {
         $this->registry->template->copyright = "Copyright " . date('Y', time()) . " How-Late.Com";

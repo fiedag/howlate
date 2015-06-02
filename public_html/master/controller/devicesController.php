@@ -1,12 +1,12 @@
 <?php
 
-Class devicesController Extends baseController {
+Class DevicesController Extends baseController {
 
     public $org;
 
     public function index() {
       
-	$this->org = organisation::getInstance(__SUBDOMAIN);
+	$this->org = Organisation::getInstance(__SUBDOMAIN);
         $this->registry->template->companyname = $this->org->OrgName;
 	$this->registry->template->controller = $this;
         $this->registry->template->show('devices_index');
@@ -16,7 +16,7 @@ Class devicesController Extends baseController {
     public function getXcrudTable() {
         include('includes/xcrud/xcrud.php');
         $xcrud = Xcrud::get_instance();
-        $xcrud->connection(howlate_util::mysqlUser(),howlate_util::mysqlPassword(),howlate_util::mysqlDb());
+        $xcrud->connection(HowLate_Util::mysqlUser(),HowLate_Util::mysqlPassword(),HowLate_Util::mysqlDb());
         
         $xcrud->table('devicereg')->table_name('Registered phone devices','You can add or delete registered mobile phones here')->where('OrgID =', $this->org->OrgID)->limit(30);
 

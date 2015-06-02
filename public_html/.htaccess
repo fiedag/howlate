@@ -1,4 +1,14 @@
 Options -Indexes
+Header add Access-Control-Allow-Origin "*" 
+
+AddType application/vnd.ms-fontobject .eot
+
+AddType font/ttf .ttf
+AddType font/eot .eot
+AddType font/otf .otf
+AddType font/woff .woff
+AddType font/woff .woff2
+
 
 # this rewrites anything how-late.com
 #RewriteEngine on

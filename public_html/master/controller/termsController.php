@@ -1,6 +1,6 @@
 <?php
 
-Class termsController Extends baseController {
+Class TermsController Extends baseController {
 
     public function index() {
         $this->registry->template->controller = $this;

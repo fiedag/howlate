@@ -15,7 +15,7 @@ function mylog($msg) {
 
 mylog("**************** Processing deletions of old transactionlog records !!! ******************");
 
-$logging = new logging();
+$logging = new Logging();
 $logging->deleteOld(100);
 
 ?>

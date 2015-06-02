@@ -10,12 +10,12 @@
 
 // debugging with Kint
 
-Class signupController Extends baseController {
+Class SignupController Extends baseController {
     
     public function index() {
         header("Access-Control-Allow-Origin: http://how-late.com");
         $this->registry->template->controller = $this;
-        $this->registry->template->logourl = howlate_util::logoURL();
+        $this->registry->template->logourl = HowLate_Util::logoURL();
         $this->registry->template->signup_result = "";
         $this->registry->template->show('signup_view');
     }
@@ -39,11 +39,11 @@ Class signupController Extends baseController {
         
         $this->registry->template->CompanyName = $company;
         $this->registry->template->Email = $email;
-        $this->registry->template->logourl = howlate_util::logoURL();
-        $howlate_site = new howlate_site($company,$email);
+        $this->registry->template->logourl = HowLate_Util::logoURL();
+        $howlate_site = new HowLate_Site($company,$email);
 
 
-        $clickatell = new clickatell();        
+        $clickatell = new Clickatell();        
         
         $this->registry->template->signup_error = "";
         $this->registry->template->signup_result = "Your signup was successful.  Please check your email for a link to the login page.";
@@ -64,10 +64,10 @@ Class signupController Extends baseController {
             $this->registry->template->signup_error = $howlate_site->Result;
             $this->registry->template->signup_result = "Your signup was not successful.  We have logged the error and will contact you shortly.  There is no need to repeat the signup process.";
             $ip = $_SERVER["REMOTE_ADDR"];
-            logging::write_error(0, 1, $exception->getMessage(), $exception->getFile(), $exception->getLine(), $ip, $exception->getTraceAsString());
+            Logging::write_error(0, 1, $exception->getMessage(), $exception->getFile(), $exception->getLine(), $ip, $exception->getTraceAsString());
                     
         }
-        logging::trlog(TranType::MISC_MISC, $howlate_site->Result);
+        Logging::trlog(TranType::MISC_MISC, $howlate_site->Result);
         $this->registry->template->show('signup_done');
 
     }
@@ -75,14 +75,14 @@ Class signupController Extends baseController {
 
     public function done() {
         $this->registry->template->controller = $this;
-        $this->registry->template->logourl = howlate_util::logoURL();
+        $this->registry->template->logourl = HowLate_Util::logoURL();
         $this->registry->template->signup_error = "";
         $this->registry->template->signup_result = "Your signup was successful.  Please check your email for a link to the login page.";
         $this->registry->template->show('signup_done');
     }
     public function notdone() {
         $this->registry->template->controller = $this;
-        $this->registry->template->logourl = howlate_util::logoURL();
+        $this->registry->template->logourl = HowLate_Util::logoURL();
         $this->registry->template->signup_error = "signup-error";
         $this->registry->template->signup_result = "Your signup was not successful.  We have logged the error and will contact you shortly.  There is no need to repeat the signup process.";
         $this->registry->template->show('signup_done');
@@ -100,12 +100,12 @@ Class signupController Extends baseController {
         $smstext = "Contact request: $name, $email, $mobile";
         
         $orgid = "CCCTV";
-        $clickatell = new clickatell();
+        $clickatell = new Clickatell();
         //$clickatell->httpSend($administrator, $smstext, $orgid);
         
         $note = "Someone has requested contact.  Name = $name, Mobile = $mobile, Email = $email";
-        $mailer = new howlate_mailer();
-        $mailer->send(howlate_util::admin_email(),'Administrator', 'A contact request has been received', $note, 'admin@how-late.com', 'Administrator');
+        $mailer = new Howlate_Mailer();
+        $mailer->send(HowLate_Util::admin_email(),'Administrator', 'A contact request has been received', $note, 'admin@how-late.com', 'Administrator');
  
         
         if(!$name) {
@@ -115,7 +115,7 @@ Class signupController Extends baseController {
         $mailer->send('1.362238@dropbox.pipedrive.com','Administrator', 'A contact request has been received', $note, 'admin@how-late.com', 'Administrator');
         
         
-        $this->registry->template->logourl = howlate_util::logoURL();
+        $this->registry->template->logourl = HowLate_Util::logoURL();
         $this->registry->template->url = "https://how-late.com/master";
         
         ob_start();
@@ -125,10 +125,6 @@ Class signupController Extends baseController {
         
         $mailer->sendHtml($email, $name, 'Thank you', $body, 'info@how-late.com','How-late.com');
        
-        header("location: http://how-late.com");
-        
+        header("location: http://how-late.com");  
     }        
-    
-    
 }
-?>

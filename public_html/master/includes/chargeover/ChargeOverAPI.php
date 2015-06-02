@@ -28,6 +28,8 @@ class ChargeOverAPI
 	const METHOD_ACTION = 'action';
 	const METHOD_AGGREGATE = 'aggregate';
 	const METHOD_BULK = 'bulk';
+	const METHOD_CONFIG = 'config';
+	const METHOD_CHARGEOVERJS = 'chargeoverjs';
 	
 	const STATUS_OK = 'OK';
 	const STATUS_ERROR = 'Error';
@@ -45,8 +47,13 @@ class ChargeOverAPI
 	protected $_last_request;
 	protected $_last_response;
 	protected $_last_error;
+	protected $_last_info;
 
+	// API flags
 	protected $_flags;
+
+	// HTTP curl options
+	protected $_http;
 	
 	public function __construct($url, $authmode, $username, $password, $flags = array())
 	{
@@ -58,6 +65,7 @@ class ChargeOverAPI
 		$this->_last_request = null;
 		$this->_last_response = null;
 		$this->_last_error = null;
+		$this->_last_info = null;
 		
 		$this->_flags = (array) $flags;
 	}
@@ -140,6 +148,13 @@ class ChargeOverAPI
 		
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, false);
+
+		// Force TLS
+		curl_setopt($ch, CURLOPT_SSL_CIPHER_LIST, 'TLSv1');
+		//curl_setopt($ch, CURLOPT_SSLVERSION, CURL_SSLVERSION_TLSv1_2);
+
+		//curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+		//curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
 		
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array( 'Content-Type: application/json' ));
 		
@@ -154,18 +169,20 @@ class ChargeOverAPI
 		}
 		
 		$out = curl_exec($ch);
-		$info = curl_getinfo($ch);
+		$this->_last_info = curl_getinfo($ch);
 
-		curl_close($ch);
-		
 		// Log last response
 		$this->_last_response = $out;
 		
 		if (!$out)
 		{
-			$err = 'Problem hitting URL [' . $endpoint . ']: ' . print_r(curl_getinfo($ch), true);
+			$err = 'Problem hitting URL [' . $endpoint . ']: ' . curl_error($ch) . ', ' . print_r($this->_last_info, true);
+			curl_close($ch);
+
 			return $this->_error($err, ChargeOverAPI::ERROR_UNKNOWN);
 		}
+
+		curl_close($ch);
 		
 		$data = json_decode($out);
 
@@ -197,6 +214,11 @@ class ChargeOverAPI
 			)));
 	}
 
+	public function http($opt, $value)
+	{
+
+	}
+
 	public function flag($flag, $value)
 	{
 		$this->_flags[$flag] = (int) $value;
@@ -215,6 +237,11 @@ class ChargeOverAPI
 	public function lastError()
 	{
 		return $this->_last_error;
+	}
+
+	public function lastInfo()
+	{
+		return $this->_last_info;
 	}
 	
 	public function isError($Object)
@@ -250,6 +277,10 @@ class ChargeOverAPI
 		else if ($method == ChargeOverAPI::METHOD_BULK)
 		{
 			return '_bulk';
+		}
+		else if ($method == ChargeOverAPI::METHOD_CONFIG)
+		{
+			return '_config';
 		}
 
 		if (is_object($Object_or_obj_type))
@@ -326,6 +357,7 @@ class ChargeOverAPI
 			ChargeOverAPI_Object::TYPE_ITEMCATEGORY => 'ChargeOverAPI_Object_ItemCategory', 
 			ChargeOverAPI_Object::TYPE_NOTE => 'ChargeOverAPI_Object_Note', 
 			ChargeOverAPI_Object::TYPE_COUNTRY => 'ChargeOverAPI_Object_Country', 
+			ChargeOverAPI_Object::TYPE_TOKENIZED => 'ChargeOverAPI_Object_Tokenized', 
 			);
 	}
 	
@@ -346,6 +378,28 @@ class ChargeOverAPI
 		$uri = $this->_map(ChargeOverAPI::METHOD_AGGREGATE, null, null);
 		
 		return $this->_request('POST', $uri, $Aggregate->toArray());
+	}
+
+	public function config($key = null, $value = null)
+	{
+		$uri = $this->_map(ChargeOverAPI::METHOD_CONFIG, null, null);
+
+		return $this->_request('POST', $uri, array( $key => $value ));
+	}
+
+	public function cojs()
+	{
+
+	}
+
+	public function cojsCommit($token)
+	{
+		
+	}
+
+	public function cojsReject($token)
+	{
+
 	}
 
 	/**
@@ -403,6 +457,9 @@ class ChargeOverAPI
 		{
 			foreach ($where as $key => $value)
 			{
+				// Escape commas (they are used to denote multiple query parameters)
+				$value = str_replace(',', '\\,', $value);
+
 				$where[$key] = urlencode($value);
 			}
 		}

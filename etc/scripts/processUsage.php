@@ -19,7 +19,7 @@ mylog("**************** Processing Usage for All organisations!!! **************
 
 
 
-$billing = new billing();
+$billing = new Billing();
 $billing->recordAllUsage();
 
 ?>

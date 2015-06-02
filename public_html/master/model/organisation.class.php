@@ -6,7 +6,7 @@
  * and others
  * 
  */
-class organisation {
+class Organisation {
 
     protected static $instance;
     
@@ -37,7 +37,7 @@ class organisation {
     
     public static function getInstance($FieldValue, $FieldName = 'Subdomain') {
         $q = "SELECT * FROM orgs WHERE $FieldName = '$FieldValue'";
-        $sql = maindb::getInstance();
+        $sql = MainDb::getInstance();
         if ($result = $sql->query($q)->fetch_object()) {
             if (!self::$instance) {
                 self::$instance = new self();
@@ -46,7 +46,7 @@ class organisation {
                 self::$instance->$key = $val;
             }
             
-            self::$instance->LogoURL = howlate_util::logoURL(self::$instance->Subdomain);
+            self::$instance->LogoURL = HowLate_Util::logoURL(self::$instance->Subdomain);
             
             return self::$instance;
         } else
@@ -63,9 +63,9 @@ class organisation {
     
     private function getAllClinics() {
         $q = "SELECT ClinicID, OrgID, Timezone, ClinicName, Phone, Address1, Address2, City, Zip, Country FROM clinics WHERE OrgID = '" . $this->OrgID . "'";
-        if ($result = maindb::getInstance()->query($q)) {
+        if ($result = MainDb::getInstance()->query($q)) {
             while ($row = $result->fetch_object()) {
-                $c = new clinic($row);
+                $c = new Clinic($row);
                 $this->Clinics[] = $c;
             }
         }
@@ -74,9 +74,9 @@ class organisation {
 
     private function getActiveClinics() {
         $q = "SELECT ClinicID, OrgID, Timezone, ClinicName, Phone, Address1, Address2, City, Zip, Country FROM vwActiveClinics WHERE OrgID = '" . $this->OrgID . "'";
-        if ($result = maindb::getInstance()->query($q)) {
+        if ($result = MainDb::getInstance()->query($q)) {
             while ($row = $result->fetch_object()) {
-                $c = new clinic($row);
+                $c = new Clinic($row);
                 $this->ActiveClinics[] = $c;
             }
         }
@@ -85,9 +85,9 @@ class organisation {
 
     private function getAllPractitioners() {
         $q = "SELECT OrgID, ID FROM vwOrgAdmin WHERE OrgID = '" . $this->OrgID . "'";
-        if ($result = maindb::getInstance()->query($q)) {
+        if ($result = MainDb::getInstance()->query($q)) {
             while ($row = $result->fetch_object()) {
-                $p = practitioner::getInstance($row->OrgID, $row->ID);
+                $p = Practitioner::getInstance($row->OrgID, $row->ID);
                 $this->Practitioners[] = $p;
             }
         }
@@ -97,9 +97,9 @@ class organisation {
     private function getAllUsers() {
         $q = "SELECT * FROM vwOrgUsers WHERE OrgID = '" . $this->OrgID . "'";
 
-        if ($result = maindb::getInstance()->query($q)) {
+        if ($result = MainDb::getInstance()->query($q)) {
             while ($row = $result->fetch_object()) {
-                $u = new orguser($row);
+                $u = new OrgUser($row);
                 $this->Users[] = $u;
             }
         }
@@ -109,7 +109,7 @@ class organisation {
         $q = "SELECT * FROM vwOrgUsers WHERE $FieldName = '" . $FieldValue . "'";
 
         $myArray = array();
-        if ($result = maindb::getInstance()->query($q)) {
+        if ($result = MainDb::getInstance()->query($q)) {
             while ($row = $result->fetch_object()) {
                 $myArray[] = $row;
             }
@@ -119,12 +119,12 @@ class organisation {
     
     public static function isValidPassword($orgid, $userid, $passwordhash) {
         $q = "SELECT XPassword FROM orgusers WHERE OrgID = ? AND UserID = ?";
-        $sql = maindb::getInstance();
+        $sql = MainDb::getInstance();
         $stmt = $sql->prepare($q);
         $stmt->bind_param('ss', $orgid, $userid);
         $stmt->execute();
         if ($stmt->affected_rows == 0) {
-            logging::trlog(TranType::USER_DNE, "User login failed.  User $userid for $orgid does not exist.");
+            Logging::trlog(TranType::USER_DNE, "User login failed.  User $userid for $orgid does not exist.");
             return false;   // user does not exist TODO: add logging
         }
         $stmt->bind_result($col1);
@@ -137,7 +137,7 @@ class organisation {
         $q = "SELECT ClinicID, ClinicName, ID, AbbrevName, FullName, MinutesLate, MinutesLateMsg, OrgID, Subdomain, Sticky, NotificationThreshold, LateToNearest, LatenessOffset, LatenessCeiling FROM vwLateness WHERE OrgID = '" . $this->OrgID . "' AND ClinicID = '" . $clinic . "'";
         $practArray = array();
         $clinArray = array();
-        if ($result = maindb::getInstance()->query($q)) {
+        if ($result = MainDb::getInstance()->query($q)) {
             $tempArray = array();
             while ($row = $result->fetch_object()) {
                 $tempArray[] = $row;
@@ -157,7 +157,7 @@ class organisation {
     public function getTimezones() {
         $q = "SELECT CodeDesc FROM timezones WHERE CodeVal like '" . $this->Country . "%'";
         $myArray = array();
-        if ($result = maindb::getInstance()->query($q)) {
+        if ($result = MainDb::getInstance()->query($q)) {
             while ($row = $result->fetch_object()) {
                 $myArray[] = $row->CodeDesc;
             }
@@ -169,7 +169,7 @@ class organisation {
     public function getCountries() {
         $q = "SELECT Name, MobilePrefix FROM country";
         $myArray = array();
-        if ($result = maindb::getInstance()->query($q)) {
+        if ($result = MainDb::getInstance()->query($q)) {
             while ($row = $result->fetch_object()) {
                 $myArray[] = $row->Name;
             }
@@ -191,7 +191,7 @@ class organisation {
         }
         $q .= "UpdIndic = UpdIndic + 1";
         $q .= " WHERE OrgID = ? AND UpdIndic = ?";
-        $sql = maindb::getInstance();
+        $sql = MainDb::getInstance();
         $stmt = $sql->prepare($q);
         $stmt->bind_param('si', $values["OrgID"], $values["UpdIndic"]);
         $stmt->execute();
@@ -203,9 +203,9 @@ class organisation {
 
     // The userid is used to create a default user for this billing system customer portal
     public function update_billing($default_user) {
-        $chargeover = new chargeover();
+        $chargeover = new Chargeover();
         $cust = $chargeover->getCustomer($this->OrgID);
-     
+        
         if (!$cust) {
             $chargeover->createCustomer($this->OrgID, $this->OrgName, $this->Address1, 
                     $this->Address2, '', 
@@ -221,7 +221,7 @@ class organisation {
     
     public static function createOrg($orgid, $orgname, $shortname, $subdomain, $billingcontact, $fqdn) {
         $q = "INSERT INTO orgs (OrgID, OrgName, OrgShortName, Subdomain, BillingContact, FQDN) VALUES (?, ?, ?, ?, ?, ?)";
-        $sql = maindb::getInstance();
+        $sql = MainDb::getInstance();
         $stmt = $sql->prepare($q);
         $stmt->bind_param('ssssss', $orgid, $orgname, $shortname, $subdomain, $billingcontact, $fqdn);
         $stmt->execute();
@@ -235,15 +235,15 @@ class organisation {
 
     public static function getNextOrgID() {
         $q = "SELECT IFNULL(MAX(OrgID),'AAAAA') As last FROM orgs";
-        $sql = maindb::getInstance();
+        $sql = MainDb::getInstance();
         if ($result = $sql->query($q)) {
             $row = $result->fetch_object();
             $orgid = $row->last;
             $canonical = substr($orgid, 0, 4);
-            $as_number = howlate_util::tobase10($canonical);
+            $as_number = HowLate_Util::tobase10($canonical);
             $as_number++;
-            $new_high = howlate_util::tobase26($as_number);
-            $checkdigit = howlate_util::checkdigit($new_high);
+            $new_high = HowLate_Util::tobase26($as_number);
+            $checkdigit = HowLate_Util::checkdigit($new_high);
             return $new_high . $checkdigit;
         }
     }
@@ -272,7 +272,7 @@ class organisation {
 
     public function unregister($orgid, $id, $udid) {
         $q = "DELETE FROM devicereg WHERE ID = ? AND OrgID = ? AND UDID = ?";
-        $stmt = maindb::getInstance()->prepare($q);
+        $stmt = MainDb::getInstance()->prepare($q);
         $stmt->bind_param('sss', $id, $orgID, $udid);
         $stmt->execute();
         if ($stmt->affected_rows == 0) {
@@ -280,10 +280,10 @@ class organisation {
         }
         $db->trlog(TranType::DEV_REG, 'Device ' . $udid . 'unregistered ', $org, null, $id, $udid);
 
-        $prac = practitioner::getInstance($org, $id);
+        $prac = Practitioner::getInstance($org, $id);
 
         $message = 'You have chosen to unregister for lateness updates from ' . $prac->PractitionerName . ' at ' . $prac->ClinicName;
-        howlate_sms::httpSend($org, $udid, $message);
+        HowLate_SMS::httpSend($org, $udid, $message);
     }
     
     public function sendResetEmails($email) {
@@ -320,14 +320,14 @@ class organisation {
         $headers .= 'Content-type: text/plain; charset=iso-8859-1' . "\n";
         $headers .= "From: $from";
 
-        $mail = new howlate_mailer();
+        $mail = new Howlate_Mailer();
         $mail->send($email,$toName, $subject,$body, $from, $fromName);
     }
     
     
     public function checkToken($token) {
         $q = "SELECT UserID, DateCreated FROM resetrequests WHERE Token = '" . $token . "' AND OrgID = '" . $this->OrgID . "'";
-        if ($result = maindb::getInstance()->query($q)) {
+        if ($result = MainDb::getInstance()->query($q)) {
             $row = $result->fetch_object();
         }
         if (count($row) != 1) {
@@ -346,7 +346,7 @@ class organisation {
     public function check_token($token, $org) {
 
         $q = "SELECT UserID, DateCreated FROM resetrequests WHERE Token = '" . $token . "' AND OrgID = '" . $org . "'";
-        if ($result = maindb::getInstance()->query($q)) {
+        if ($result = MainDb::getInstance()->query($q)) {
             $row = $result->fetch_object();
         }
 
@@ -363,7 +363,7 @@ class organisation {
 
     public static function deleteLateByKey($key) {
         $q = "DELETE FROM lates WHERE UKey = ?";
-        $stmt = maindb::getInstance()->prepare($q);
+        $stmt = MainDb::getInstance()->prepare($q);
         $stmt->bind_param('i', $key);
         $stmt->execute();
         if ($stmt->affected_rows == 0) {
@@ -378,7 +378,7 @@ class organisation {
 
         $q = "INSERT INTO resetrequests (Token, EmailAddress, UserID, OrgID, DateCreated) VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP)";
 
-        $stmt = maindb::getInstance()->prepare($q);
+        $stmt = MainDb::getInstance()->prepare($q);
         $stmt->bind_param('ssss', $token, $email, $user, $org);
         $stmt->execute();
         if ($stmt->affected_rows == 0) {

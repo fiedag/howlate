@@ -1,16 +1,19 @@
 <?php
 
-Class lateController Extends baseController {
+Class LateController Extends baseController {
 
     function __construct($registry) {
         $this->registry = $registry;  
     }    
     
     public function index() {
-        
+        header("Access-Control-Allow-Origin: *");
         $this->view();
     }
 
+    /*
+     * lightweight lateness refresh called by jQuery
+     */
     public function ajax() {
         $udid = filter_input(INPUT_GET,"udid");
         if (!$udid) {
@@ -18,12 +21,12 @@ Class lateController Extends baseController {
             if (!$xudid) {
                 throw new Exception("Udid or Xudid parameter must be supplied");
             }
-            $udid = howlate_util::to_udid($xudid);
+            $udid = HowLate_Util::to_udid($xudid);
         }
 
-        $late_arr = device::getLatenessesAjax($udid);
+        $late_arr = Device::getLatenessesByUDID($udid);
         $this->registry->template->lates = $late_arr;
-        $this->registry->template->show('late_json');
+        $this->registry->template->show('late_json');  // which is then parsed by the jquery function and used to update div elements
     }
  
     ///
@@ -42,7 +45,7 @@ Class lateController Extends baseController {
             
             list($OrgID,$PractitionerID) = explode('.',$value);
             
-            $late_arr[$value] = practitioner::getInstance($OrgID,$PractitionerID)->getCurrentLateness();
+            $late_arr[$value] = Practitioner::getInstance($OrgID,$PractitionerID)->getCurrentLateness();
         }
         
         $this->registry->template->lates = $late_arr;
@@ -56,24 +59,24 @@ Class lateController Extends baseController {
         $this->registry->template->when_refreshed = 'Updated ' . date('h:i A');
         $this->registry->template->bookmark_title = "How late";
         $this->registry->template->bookmark_url = $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"];
-        $this->registry->template->icon_url = howlate_util::logoURL(__SUBDOMAIN);
-        $this->registry->template->apple_icon_url = howlate_util::logoWhiteBG();
+        $this->registry->template->icon_url = HowLate_Util::logoURL(__SUBDOMAIN);
+        $this->registry->template->apple_icon_url = HowLate_Util::logoWhiteBG();
 
         
         $udid = filter_input(INPUT_GET, 'udid');
         if (!$udid) {
             $xudid = filter_input(INPUT_GET, 'xudid');
-            $udid = howlate_util::to_udid($xudid);
+            $udid = HowLate_Util::to_udid($xudid);
         }
 
         if ($udid) {
             $this->registry->template->UDID = $udid;
             $this->registry->template->refresh_url = "http://m." . __DOMAIN . "/late/ajax?udid=$udid";
             
-            $lates = device::getLatenesses($udid); // a two-dimensional array ["clinic name"][array]
+            $lates = Device::getLatenesses($udid); // a two-dimensional array ["clinic name"][array]
             
             if (!empty($lates)) {
-                logging::trlog(TranType::LATE_GET, 'Late Get', '', '', '', $udid, 0);
+                Logging::trlog(TranType::LATE_GET, 'Late Get', '', '', '', $udid, 0);
                 $this->registry->template->lates = $lates;
                 $this->registry->template->show('late_view');
             } else {
@@ -83,13 +86,15 @@ Class lateController Extends baseController {
     }
 
     public function view() {
+        
+        //header("Access-Control-Allow-Origin: https://*.how-late.com");
         $this->registry->template->controller = $this;
         $this->registry->template->refresh = 3000;  // milliseconds
         $this->registry->template->when_refreshed = 'Updated ' . date('h:i A');
         $this->registry->template->bookmark_title = "How late";
         $this->registry->template->bookmark_url = $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"];
-        $this->registry->template->icon_url = howlate_util::logoURL(__SUBDOMAIN);
-        $this->registry->template->apple_icon_url = howlate_util::logoWhiteBG();
+        $this->registry->template->icon_url = HowLate_Util::logoURL(__SUBDOMAIN);
+        $this->registry->template->apple_icon_url = HowLate_Util::logoWhiteBG();
 
         
         $udid = filter_input(INPUT_GET, 'udid');
@@ -102,7 +107,7 @@ Class lateController Extends baseController {
                     $udid="notexists";
             }
             else {
-                $udid = howlate_util::to_udid($xudid);
+                $udid = HowLate_Util::to_udid($xudid);
             }
         }
 
@@ -110,10 +115,10 @@ Class lateController Extends baseController {
             $this->registry->template->UDID = $udid;
             $this->registry->template->refresh_url = "http://m." . __DOMAIN . "/late/ajax?udid=$udid";
             
-            $lates = device::getLatenesses($udid); // a two-dimensional array ["clinic name"][array]
+            $lates = Device::getLatenesses($udid); // a two-dimensional array ["clinic name"][array]
             
             if (!empty($lates)) {
-                logging::trlog(TranType::LATE_GET, 'Late Get', '', '', '', $udid, 0);
+                Logging::trlog(TranType::LATE_GET, 'Late Get', '', '', '', $udid, 0);
                 $this->registry->template->lates = $lates;
                 $this->registry->template->show('late_view');
             } else {
@@ -128,7 +133,7 @@ Class lateController Extends baseController {
         $PractitionerName = filter_input(INPUT_POST,"PractitionerName2");
         $ClinicID = filter_input(INPUT_POST,"ClinicID");
         $UDID = filter_input(INPUT_POST,"UDID");
-        clinic::getInstance($OrgID, $ClinicID)->cancelAppointmentMessage($OrgID, $PractitionerID, $PractitionerName, $UDID);
+        Clinic::getInstance($OrgID, $ClinicID)->cancelAppointmentMessage($OrgID, $PractitionerID, $PractitionerName, $UDID);
     }
     
     
@@ -138,8 +143,8 @@ Class lateController Extends baseController {
         $this->registry->template->when_refreshed = 'Updated ' . date('h:i A');
         $this->registry->template->bookmark_title = "How late";
         $this->registry->template->bookmark_url = $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"];
-        $this->registry->template->icon_url = howlate_util::logoURL(__SUBDOMAIN);
-        $this->registry->template->apple_icon_url = howlate_util::logoWhiteBG();
+        $this->registry->template->icon_url = HowLate_Util::logoURL(__SUBDOMAIN);
+        $this->registry->template->apple_icon_url = HowLate_Util::logoWhiteBG();
 
         
         $pin = filter_input(INPUT_GET, 'pin');
@@ -147,11 +152,11 @@ Class lateController Extends baseController {
             throw new Exception("Requires pin parameter");
         }
 
-        howlate_util::validatePin($pin);
-        $org = howlate_util::orgFromPin($pin);
-        $clinic = howlate_util::idFromPin($pin);
+        HowLate_Util::validatePin($pin);
+        $org = HowLate_Util::orgFromPin($pin);
+        $clinic = HowLate_Util::idFromPin($pin);
         
-        $lates = device::getLatenesses($clinic, "ClinicID"); // a two-dimensional array ["clinic name"][array]
+        $lates = Device::getLatenesses($clinic, "ClinicID"); // a two-dimensional array ["clinic name"][array]
             
             if (!empty($lates)) {
                 $this->registry->template->lates = $lates;

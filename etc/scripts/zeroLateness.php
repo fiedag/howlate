@@ -37,8 +37,8 @@ foreach ($result as $key => $TZval) {
 
     $tolerance = 7200;  // two hours
 
-    $day = howlate_util::dayName("now", $TZval->Timezone);
-    $time = howlate_util::secondsSinceMidnight("now", $TZval->Timezone);
+    $day = HowLate_Util::dayName("now", $TZval->Timezone);
+    $time = HowLate_Util::secondsSinceMidnight("now", $TZval->Timezone);
 
     $toprocess = $db->getLatesAndSessions($TZval->Timezone, $day, $time);
     foreach ($toprocess as $key => $val) {

@@ -1,6 +1,6 @@
 <?php
 
-Class billingController Extends baseController {
+Class BillingController Extends baseController {
 
     // used in array_filter call below
     private function usage_line($element) {
@@ -10,7 +10,7 @@ Class billingController Extends baseController {
     
     public function test() {
 
-        $co = new chargeover();
+        $co = new Chargeover();
 
         $customer = $co->getCustomer($this->org->OrgID);
         $package = $co->getCurrentActivePackage($customer->customer_id);
@@ -27,18 +27,18 @@ Class billingController Extends baseController {
         //echo howlate_util::to_udid(howlate_util::to_xudid('0405149704')) . "<br";
         //echo howlate_util::to_xudid('61405149704') . "<br";
         $m = '61405149705';
-        $x = howlate_util::to_xudid($m);
-        $m2 = howlate_util::to_udid($x);
+        $x = HowLate_Util::to_xudid($m);
+        $m2 = HowLate_Util::to_udid($x);
         echo " $m converts to $x  and back to $m2<br>";
     }
 
     
     public function index() {
         
-        $billing = new billing();
+        $billing = new Billing();
         
         $this->registry->template->controller = $this;
-        $chargeover = new chargeover();
+        $chargeover = new Chargeover();
         $customer = $chargeover->getCustomer($this->org->OrgID);
         $package = $chargeover->getCurrentActivePackage($customer->customer_id);
         

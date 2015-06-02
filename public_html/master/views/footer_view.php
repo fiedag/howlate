@@ -7,6 +7,7 @@
                 <div class="span-10 append-1">
                     <h4>Product</h4>
                     <ul>
+                        <li><a href="/brochure">Brochure</a></li>
                         <li><a target="_blank" href="http://<?php echo __DOMAIN; ?>/pricing.php" id="footer-feature">Billing</a></li>
                         <li><a href="http://<?php echo __FQDN; ?>/help" id="footer-feature">Help</a></li>
                     </ul>

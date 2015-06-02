@@ -1,0 +1,40 @@
+[31-Aug-2014 11:53:17 UTC] PHP Fatal error:  Cannot redeclare log() in /home/howlate/etc/scripts/zeroLateness.php on line 9
+[05-Sep-2014 09:37:46 Australia/Melbourne] PHP Fatal error:  Call to a member function query() on a non-object in /home/howlate/public_html/master/model/howlate_db.class.php on line 551
+[05-Sep-2014 09:38:29 Australia/Melbourne] PHP Fatal error:  Call to a member function query() on a non-object in /home/howlate/public_html/master/model/howlate_db.class.php on line 551
+[09-Sep-2014 16:04:03 Australia/Melbourne] PHP Fatal error:  Class 'howlate_sms' not found in /home/howlate/etc/scripts/processNotifications.php on line 27
+[09-Sep-2014 16:05:02 Australia/Melbourne] PHP Fatal error:  Class 'clickatell' not found in /home/howlate/public_html/master/model/howlate_sms.class.php on line 6
+[07-Oct-2014 17:11:22 Australia/Melbourne] PHP Fatal error:  Class 'billing' not found in /home/howlate/etc/scripts/billing.php on line 19
+[07-Oct-2014 17:11:58 Australia/Melbourne] PHP Fatal error:  Call to undefined method billing::getDueOrgs() in /home/howlate/etc/scripts/billing.php on line 23
+[07-Oct-2014 17:13:07 Australia/Melbourne] PHP Fatal error:  Call to undefined method billing::getDueOrgs() in /home/howlate/etc/scripts/billing.php on line 23
+[07-Oct-2014 17:17:24 Australia/Melbourne] PHP Fatal error:  Call to undefined method billing::getDueOrgs() in /home/howlate/etc/scripts/billing.php on line 23
+[07-Oct-2014 18:05:03 Australia/Melbourne] PHP Fatal error:  Cannot use object of type stdClass as array in /home/howlate/etc/scripts/billing.php on line 27
+[07-Oct-2014 18:05:47 Australia/Melbourne] PHP Fatal error:  Cannot use object of type stdClass as array in /home/howlate/etc/scripts/billing.php on line 27
+[07-Oct-2014 18:06:35 Australia/Melbourne] PHP Fatal error:  Cannot use object of type stdClass as array in /home/howlate/etc/scripts/billing.php on line 29
+[23-Oct-2014 14:28:54 Australia/Melbourne] PHP Fatal error:  Class 'invoicer' not found in /home/howlate/etc/scripts/billing.php on line 34
+[23-Oct-2014 14:29:34 Australia/Melbourne] PHP Fatal error:  Call to undefined method invoicer::createNewInvoice() in /home/howlate/etc/scripts/billing.php on line 36
+[23-Oct-2014 14:30:19 Australia/Melbourne] PHP Warning:  Missing argument 4 for invoicer::createHeader(), called in /home/howlate/public_html/master/model/invoicer.class.php on line 9 and defined in /home/howlate/public_html/master/model/invoicer.class.php on line 13
+[23-Oct-2014 14:30:19 Australia/Melbourne] PHP Fatal error:  # Query Error (1048) Column 'EmailAddress' cannot be null in /home/howlate/public_html/master/model/invoicer.class.php on line 17
+[23-Oct-2014 14:42:42 Australia/Melbourne] PHP Fatal error:  Class 'Date' not found in /home/howlate/etc/scripts/billing.php on line 21
+[23-Oct-2014 14:43:20 Australia/Melbourne] PHP Catchable fatal error:  Object of class DateTime could not be converted to string in /home/howlate/etc/scripts/billing.php on line 27
+[23-Oct-2014 14:44:13 Australia/Melbourne] PHP Fatal error:  # Query Error (1048) Column 'EmailAddress' cannot be null in /home/howlate/public_html/master/model/invoicer.class.php on line 17
+[23-Oct-2014 14:44:54 Australia/Melbourne] PHP Fatal error:  # Query Error (1048) Column 'EmailAddress' cannot be null in /home/howlate/public_html/master/model/invoicer.class.php on line 17
+[23-Oct-2014 14:49:54 Australia/Melbourne] PHP Fatal error:  # Query Error (1048) Column 'EmailAddress' cannot be null in /home/howlate/public_html/master/model/invoicer.class.php on line 17
+[23-Oct-2014 14:54:44 Australia/Melbourne] PHP Fatal error:  # Query Error (1048) Column 'EmailAddress' cannot be null in /home/howlate/public_html/master/model/invoicer.class.php on line 17
+[23-Oct-2014 14:56:23 Australia/Melbourne] PHP Fatal error:  # Query Error (1048) Column 'EmailAddress' cannot be null in /home/howlate/public_html/master/model/invoicer.class.php on line 17
+[23-Oct-2014 14:58:56 Australia/Melbourne] PHP Catchable fatal error:  Object of class DateTime could not be converted to string in /home/howlate/public_html/master/model/billing.class.php on line 51
+[23-Oct-2014 14:59:11 Australia/Melbourne] PHP Catchable fatal error:  Object of class DateTime could not be converted to string in /home/howlate/public_html/master/model/billing.class.php on line 51
+[23-Oct-2014 14:59:41 Australia/Melbourne] PHP Catchable fatal error:  Object of class DateTime could not be converted to string in /home/howlate/public_html/master/model/billing.class.php on line 51
+[11-Nov-2014 07:16:30 UTC] PHP Fatal error:  Class 'howlate_util' not found in /home/howlate/public_html/master/model/billing.class.php on line 5
+[11-Nov-2014 07:22:47 UTC] PHP Warning:  require(includes/chargeover/ChargeOverAPI.php): failed to open stream: No such file or directory in /home/howlate/public_html/master/model/chargeover.class.php on line 14
+[11-Nov-2014 07:22:47 UTC] PHP Warning:  require(includes/chargeover/ChargeOverAPI.php): failed to open stream: No such file or directory in /home/howlate/public_html/master/model/chargeover.class.php on line 14
+[11-Nov-2014 07:22:47 UTC] PHP Fatal error:  require(): Failed opening required 'includes/chargeover/ChargeOverAPI.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/howlate/public_html/master/model/chargeover.class.php on line 14
+[11-Nov-2014 07:24:24 UTC] PHP Warning:  require(includes/chargeover/ChargeOverAPI.php): failed to open stream: No such file or directory in /home/howlate/public_html/master/model/chargeover.class.php on line 14
+[11-Nov-2014 07:24:24 UTC] PHP Warning:  require(includes/chargeover/ChargeOverAPI.php): failed to open stream: No such file or directory in /home/howlate/public_html/master/model/chargeover.class.php on line 14
+[11-Nov-2014 07:24:24 UTC] PHP Fatal error:  require(): Failed opening required 'includes/chargeover/ChargeOverAPI.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/howlate/public_html/master/model/chargeover.class.php on line 14
+[11-Nov-2014 07:47:59 UTC] PHP Fatal error:  Cannot redeclare class ChargeOverAPI in /home/howlate/public_html/master/includes/chargeover/ChargeOverAPI.php on line 16
+[11-Nov-2014 07:51:21 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'Chargeover customer does not exist.' in /home/howlate/public_html/master/model/billing.class.php:33
+Stack trace:
+#0 /home/howlate/public_html/master/model/billing.class.php(25): billing->recordUsage(Object(chargeover), 'CCCDF')
+#1 /home/howlate/etc/scripts/processUsage.php(21): billing->recordAllUsage()
+#2 {main}
+  thrown in /home/howlate/public_html/master/model/billing.class.php on line 33

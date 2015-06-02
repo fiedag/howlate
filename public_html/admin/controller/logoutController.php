@@ -10,7 +10,7 @@ Class logoutController Extends baseController {
 
         
         session_unset();
-        $this->registry->template->logourl = howlate_util::logoURL(__SUBDOMAIN);
+        $this->registry->template->logourl = HowLate_Util::logoURL(__SUBDOMAIN);
         $this->registry->template->show('logout_index');
     }
 

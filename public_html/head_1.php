@@ -23,15 +23,20 @@
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
         <link rel="apple-touch-icon-precomposed" href="master/images/apple-touch-icon.png" />
         <link rel="stylesheet" href="/master/styles/modal.css">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/css/bootstrap.min.css" rel="stylesheet" />
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link href="master/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="master/css/bootstrap-responsive.min.css" rel="stylesheet">
+
+        <link href="master/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet">
         <link href="master/styles/howlate-brochure.css" rel="stylesheet" />
+
         <!-- test -->
         <!--[if lt IE 9]>
         <script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/css3pie/1.0.0/PIE.js"></script>
         <script src="/js/html5shiv.js"></script>
         <script src="/js/bean.js"></script>
+        
+        
         <![endif]-->
         
 <![endif]-->

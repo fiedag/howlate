@@ -8,7 +8,7 @@
 
         <link rel="apple-touch-icon" href="<?php echo $apple_icon_url; ?>" >
         <link rel="apple-touch-icon-precomposed" href="<?php echo $apple_icon_url; ?>" />
-        <link href="/lib/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+        <link href="/css/bootstrap.min.css" type="text/css" rel="stylesheet">
         <link href="/styles/smslate.css" type="text/css" rel="stylesheet">
 
         <link rel="stylesheet" href="/styles/modal.css">
@@ -151,7 +151,7 @@
 
                 <div class="panel panel-default clinic" onclick="clinicModal(<?php echo "'" . $latepract[0]->OrgID . "','" . $latepract[0]->ClinicID . "'" ; ?>);">
                     <div class="panel-heading" onclick="clinicModal(<?php echo "'" . $latepract[0]->OrgID . "','" . $latepract[0]->ClinicID . "'" ; ?>);">
-                        <img src="<?php echo howlate_util::logoURL($latepract[0]->Subdomain); ?>" class="pull-right">
+                        <img src="<?php echo HowLate_Util::logoURL($latepract[0]->Subdomain); ?>" class="pull-right">
     <?php echo $clinic; ?>
                     </div>
                     <div class="panel-body">

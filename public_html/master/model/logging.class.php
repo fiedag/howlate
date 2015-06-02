@@ -1,11 +1,11 @@
 <?php
 
-class logging {
+class Logging {
     
     public static function smslog($orgid, $api, $destination, $session, $messageid, $message)
     {
         $q = "INSERT INTO sentsms (OrgID, API, SessionID, MessageID, MessageText, Destination) VALUES (?,?,?,?,?,?)";
-        $stmt = maindb::getInstance()->prepare($q);
+        $stmt = MainDb::getInstance()->prepare($q);
         $stmt->bind_param('ssssss',$orgid, $api,$session,$messageid,$message, $destination);
         $stmt->execute();
         if ($stmt->affected_rows == 0) {
@@ -19,7 +19,7 @@ class logging {
             $IPAddress = "localhost";
         }
         $q = "INSERT INTO transactionlog (TransType, OrgID, ClinicID, PractitionerID, Details, UDID, IPv4, Late) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-        $stmt = maindb::getInstance()->prepare($q);
+        $stmt = MainDb::getInstance()->prepare($q);
         //$tz = date_default_timezone_get();
         $stmt->bind_param('ssissssi', $TranType, $OrgID, $ClinicID, $PractitionerID, $Details, $UDID, $IPAddress, $Late);
         $stmt->execute();  
@@ -30,7 +30,7 @@ class logging {
     
     public static function write_error($errno, $errtype, $errstr, $errfile, $errline, $ipaddress = 'localhost', $traceAsString = null) {
         $q = "INSERT INTO errorlog (ErrLevel, ErrType, File, Line, ErrMessage, IPv4, Trace) VALUES (?,?,?,?,?,?,?)";
-        $stmt = maindb::getInstance()->prepare($q);
+        $stmt = MainDb::getInstance()->prepare($q);
         $stmt->bind_param('sssssss', $errno, $errtype, $errfile, $errline, $errstr, $ipaddress, $traceAsString);
         $stmt->execute();
     }
@@ -42,7 +42,7 @@ class logging {
     
     public static function deleteOld($retain_days = 50) {
         $q = "DELETE FROM transactionlog WHERE TransType IN ('LATE_UPD','MISC_MISC','LATE_GET') AND Timestamp < DATE_SUB(CURRENT_DATE, $retain_days DAY)";
-        $stmt = maindb::getInstance()->prepare($q);
+        $stmt = MainDb::getInstance()->prepare($q);
         $stmt->execute();
     }
     

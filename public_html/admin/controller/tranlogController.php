@@ -84,7 +84,7 @@ Class tranlogController Extends baseController {
     public function getWeeksLog() {
         include('includes/xcrud/xcrud.php');
         $xcrud = Xcrud::get_instance();
-        $xcrud->connection(howlate_util::mysqlUser(),howlate_util::mysqlPassword(),howlate_util::mysqlDb());
+        $xcrud->connection(HowLate_Util::mysqlUser(),HowLate_Util::mysqlPassword(),HowLate_Util::mysqlDb());
         $xcrud->table('vwWeeksLog')->table_name('Transaction Log',"This week's log shown in latest first order.  See CSV export button at end.")->limit(50);
         $xcrud->order_by('Id','desc');        
         return $xcrud->render();
@@ -93,7 +93,7 @@ Class tranlogController Extends baseController {
     public function getWeeksLogSpecial() {
         include('includes/xcrud/xcrud.php');
         $xcrud = Xcrud::get_instance();
-        $xcrud->connection(howlate_util::mysqlUser(),howlate_util::mysqlPassword(),howlate_util::mysqlDb());
+        $xcrud->connection(HowLate_Util::mysqlUser(),HowLate_Util::mysqlPassword(),HowLate_Util::mysqlDb());
         $xcrud->table('transactionlog')->where("TransType !",array('LATE_RESET','LATE_UPD','LATE_GET','MISC_MISC','SESS_UPD'))->table_name('Selected transactions',"This week's log of uncommon transactions.")->limit(50);
         $xcrud->order_by('Id','desc');        
         return $xcrud->render();
@@ -103,16 +103,22 @@ Class tranlogController Extends baseController {
     public function getLateGets() {
         include('includes/xcrud/xcrud.php');
         $xcrud = Xcrud::get_instance();
-        $xcrud->connection(howlate_util::mysqlUser(),howlate_util::mysqlPassword(),howlate_util::mysqlDb());
+        $xcrud->connection(HowLate_Util::mysqlUser(),HowLate_Util::mysqlPassword(),HowLate_Util::mysqlDb());
         $xcrud->table('transactionlog')->where("TransType = 'LATE_GET'")->table_name('Selected late_get transactions',"All late gets")->limit(100);
+        $xcrud->column_pattern('UDID', $this->assignSpan());  // display the assignment button
         $xcrud->order_by('Id','desc');        
         return $xcrud->render();
     }
+    private function assignSpan() {
+        $span = "<span class='xcrud-button' title='Click to view what this device sees...' onClick=\"openView('{UDID}');\">{UDID}</span>";
+        return $span;
+    }    
+    
     
     public function getSMSLog() {
         include('includes/xcrud/xcrud.php');
         $xcrud = Xcrud::get_instance();
-        $xcrud->connection(howlate_util::mysqlUser(),howlate_util::mysqlPassword(),howlate_util::mysqlDb());
+        $xcrud->connection(HowLate_Util::mysqlUser(),HowLate_Util::mysqlPassword(),HowLate_Util::mysqlDb());
         $xcrud->table('sentsms')->table_name('SMS Log',"The SMS messages in latest first order.  See CSV export button at end.")->limit(50);
         $xcrud->order_by('Created','desc');        
         $xcrud->unset_edit()->unset_remove()->unset_add();
@@ -124,7 +130,7 @@ Class tranlogController Extends baseController {
     public function getErrorlog() {
         include('includes/xcrud/xcrud.php');
         $xcrud = Xcrud::get_instance();
-        $xcrud->connection(howlate_util::mysqlUser(),howlate_util::mysqlPassword(),howlate_util::mysqlDb());
+        $xcrud->connection(HowLate_Util::mysqlUser(),HowLate_Util::mysqlPassword(),HowLate_Util::mysqlDb());
         $xcrud->table('errorlog')->table_name('Error Log',"The system exceptions and errors which have been logged.  See CSV export button at end.")->limit(50);
         $xcrud->order_by('Created','desc');        
         return $xcrud->render();
@@ -133,7 +139,7 @@ Class tranlogController Extends baseController {
     public function getNotifQueue() {
         include('includes/xcrud/xcrud.php');
         $xcrud = Xcrud::get_instance();
-        $xcrud->connection(howlate_util::mysqlUser(),howlate_util::mysqlPassword(),howlate_util::mysqlDb());
+        $xcrud->connection(HowLate_Util::mysqlUser(),HowLate_Util::mysqlPassword(),HowLate_Util::mysqlDb());
         $xcrud->table('notifqueue')->table_name('Notification Queue',"SMS notification queue.  See CSV export button at end.")->limit(50);
         $xcrud->order_by('Created','desc');        
         return $xcrud->render();

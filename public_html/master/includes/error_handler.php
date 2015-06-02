@@ -38,7 +38,7 @@ function customErrorHandler($errno, $errstr, $errfile, $errline)
 	
     switch ($errno) {
 		case E_USER_ERROR:
-			logging::write_error($errno, $errtype, $errstr, $errfile, $errline);
+			Logging::write_error($errno, $errtype, $errstr, $errfile, $errline);
 			echo "ERROR: [$errno] $errstr <br>";
 			echo "File $errfile , line $errline " . "<br>";
 			echo "PHP " . PHP_VERSION . " (" . PHP_OS . ")<br>";
@@ -47,7 +47,7 @@ function customErrorHandler($errno, $errstr, $errfile, $errline)
 			break;
 	
 		case E_USER_WARNING:
-			logging::write_error($errno, $errtype, $errstr, $errfile, $errline);
+			Logging::write_error($errno, $errtype, $errstr, $errfile, $errline);
 			echo "WARNING: [$errno] $errstr <br>";
 			echo "File $errfile , line $errline " . "<br>";
 			echo "PHP " . PHP_VERSION . " (" . PHP_OS . ")<br>";

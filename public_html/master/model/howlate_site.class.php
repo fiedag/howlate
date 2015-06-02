@@ -1,6 +1,6 @@
 <?php
 
-class howlate_site {
+class HowLate_Site {
 
     // To delete a subdomain again you must delete the organisation record,
     // the subdirectory and also delete the subdomain using cpanel
@@ -23,8 +23,8 @@ class howlate_site {
     
     function __construct($co,$email)
     {
-        $this->base_path = howlate_util::basePath();
-        $this->template_path = howlate_util::masterPath();
+        $this->base_path = HowLate_Util::basePath();
+        $this->template_path = HowLate_Util::masterPath();
         $this->CompanyName = $co;
         $this->Email = $email;        
         $this->db = new howlate_db();
@@ -51,7 +51,7 @@ class howlate_site {
 
     // check for duplicates and append number to make unique
     public function checkForDupe() {
-        $org = organisation::getInstance($this->Subdomain);
+        $org = Organisation::getInstance($this->Subdomain);
 
         while (!empty($org)) {
             $this->mylog("$org->OrgName already exists with this subdomain<br>");          
@@ -63,7 +63,7 @@ class howlate_site {
             }
 
             $this->mylog("Already exists, changing subdomain to $this->Subdomain <br>");
-            $org = organisation::getInstance($this->Subdomain);
+            $org = Organisation::getInstance($this->Subdomain);
         }
         return $this;
     }
@@ -86,7 +86,7 @@ class howlate_site {
     public function createCPanelSubdomain() 
     {
         $xmlapi = new xmlapi('localhost');
-        $xmlapi->password_auth(howlate_util::cpanelUser(), howlate_util::cpanelPassword());
+        $xmlapi->password_auth(HowLate_Util::cpanelUser(), HowLate_Util::cpanelPassword());
         $xmlapi->set_output("xml");
         $xmlapi->set_protocol("http");
         $xmlapi->set_debug(1);
@@ -99,15 +99,15 @@ class howlate_site {
     }
     
     public function createOrgRecord() {
-        $this->OrgID = organisation::getNextOrgID();
+        $this->OrgID = Organisation::getNextOrgID();
         $this->mylog("Using new OrgId = $this->OrgID <br>");
         
-        $this->org = organisation::createOrg($this->OrgID, $this->CompanyName, $this->CompanyName, $this->Subdomain, $this->Email, $this->Subdomain . "." . __DOMAIN);
+        $this->org = Organisation::createOrg($this->OrgID, $this->CompanyName, $this->CompanyName, $this->Subdomain, $this->Email, $this->Subdomain . "." . __DOMAIN);
         return $this;
     }
     
     public function createDefaultClinic() {
-        clinic::createDefaultClinic($this->OrgID);
+        Clinic::createDefaultClinic($this->OrgID);
         $this->mylog("Created default clinic for $this->OrgID <br>");
         return $this;
     }
@@ -115,20 +115,20 @@ class howlate_site {
     
     public function createDefaultPractitioner() {
         $this->mylog("Creating default practitioner for $this->OrgID, and email $this->Email<br>");
-        practitioner::createDefaultPractitioner($this->OrgID, 0, $this->Email);
+        Practitioner::createDefaultPractitioner($this->OrgID, 0, $this->Email);
         $this->mylog("Created default practitioner <br>");        
         return $this;
     }
     
     public function createDefaultUser() {
         $this->mylog("Creating default user for $this->OrgID, and email $this->Email<br>");
-        $this->DefaultUser = orguser::createUser($this->OrgID, $this->Email, $this->Email);
+        $this->DefaultUser = OrgUser::createUser($this->OrgID, $this->Email, $this->Email);
         $this->mylog("Created default user <b>$this->DefaultUser</b>");
         return $this;
     }
 
     public function sendWelcomeEmail() {
-        $users = organisation::findUsers($this->Email, 'EmailAddress');
+        $users = Organisation::findUsers($this->Email, 'EmailAddress');
         if (count($users) == 0) {
             $this->mylog("Error, no users with email $this->Email so no welcome email sent!");
             return false;
@@ -146,7 +146,7 @@ class howlate_site {
         foreach ($users as $user) {
             $body .= "Username: " . $user->UserID . "\r\n";
             $body .= "Please sign in by following this link:\r\n";
-            $token = organisation::saveResetToken($user->OrgID, $user->UserID, $this->Email);
+            $token = Organisation::saveResetToken($user->OrgID, $user->UserID, $this->Email);
             $link = "http://" . $user->FQDN . "/reset?token=$token" . "\r\n";
             $body .= $link . "\r\n";
             $this->mylog("Password reset link generated: $link");
@@ -164,7 +164,7 @@ class howlate_site {
         $headers .= 'Content-type: text/plain; charset=iso-8859-1' . "\n";
         $headers .= "From: $from";
 
-        $mail = new howlate_mailer();
+        $mail = new Howlate_Mailer();
         $mail->send($this->Email,$this->Email, $subject,$body, $from, $fromName);   
         $this->mylog("Welcome email sent to $this->Email");
         return $this;
@@ -179,21 +179,21 @@ class howlate_site {
     public function installSSL() {
 
         $xmlapi = new xmlapi('localhost');
-        $xmlapi->password_auth(howlate_util::cpanelUser(), howlate_util::cpanelPassword());
+        $xmlapi->password_auth(HowLate_Util::cpanelUser(), HowLate_Util::cpanelPassword());
         $xmlapi->set_output("xml");
         $xmlapi->set_protocol("http");
         $xmlapi->set_debug(1);
         
         $domain = $this->Subdomain . "." . __DOMAIN;
         $this->mylog("Installing certificate for $domain");
-        $crt = howlate_util::getSSLCertificate();
+        $crt = HowLate_Util::getSSLCertificate();
         $result = $xmlapi->api2_query('howlate', "SSL", "installssl", array('domain'=>$domain,'crt'=>$crt));
         $this->mylog($result);
     } 
     
     public function deleteCPanelSubdomain($subd) {
         $xmlapi = new xmlapi('localhost');
-        $xmlapi->password_auth(howlate_util::cpanelUser(), howlate_util::cpanelPassword());
+        $xmlapi->password_auth(HowLate_Util::cpanelUser(), HowLate_Util::cpanelPassword());
         $xmlapi->set_output("xml");
         $xmlapi->set_protocol("http");
         $xmlapi->set_debug(1);

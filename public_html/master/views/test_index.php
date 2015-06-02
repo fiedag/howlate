@@ -1,36 +1,28 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>How Late</title>
-        <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=2.0; user-scalable=1;">
-        <meta http-equiv="Cache-control" content="no-cache">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    </head>
+<?php
 
-    <body>
-       
-        <form id="update" action="/test/check_package" method="POST">
-            <input type="text" id="OrgID" name="OrgID" value="CCENV">
-            <input type="submit" value="Package" name="submit">
-        </form>
+header('Content-Type: text/plain');
 
-        <br>
-        <br>
-        <br>
-        <br>
-        
-        <form id="update" action="/test/create_line" method="POST">
-            <input type="text" id="package_id" name="package_id" value="559">
-            <input type="text" id="line_item_id" name="line_item_id" value="598">
-            <input type="text" id="descrip" name="descrip" value="Description">
-            <input type="text" id="external_key" name="external_key" value="121">
-            
-            <input type="submit" value="Update Package Line" name="submit">
-        </form>
+$ch = curl_init('https://how-late.chargeover.com/api/v3/customer?_dummy=1&where=external_key:EQUALS:AAADD');
 
-        
-        
-    </body>
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_CIPHER_LIST, 'TLSv1');
 
 
-</html>
+$public = 'IfCopeybjKkJOwBsgdqHSRat8lh5X6zv';
+$private  = 'rNjiGRbW6EfA7LC5mgo218MdHSwz4yP3';
+
+curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+curl_setopt($ch, CURLOPT_USERPWD, $public . ':' . $private);
+
+curl_setopt($ch, CURLOPT_VERBOSE, true);
+
+$fp = fopen('php://output', 'w+');
+curl_setopt($ch, CURLOPT_STDERR, $fp);
+
+$out = curl_exec($ch);
+
+print('[[[' . $out . ']]]');
+
+print_r(curl_getinfo($ch));
+
+?>

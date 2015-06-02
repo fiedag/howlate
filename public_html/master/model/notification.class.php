@@ -1,20 +1,17 @@
 <?php
 
-class notification {
+class Notification {
     
     public static function getMessage($practitioner, $lateness, $udid, $domain = 'how-late.com') {
-        $clinic = clinic::getInstance($practitioner->OrgID, $practitioner->ClinicID);
+        $clinic = Clinic::getInstance($practitioner->OrgID, $practitioner->ClinicID);
         
         $url = "http://m." . $domain . "/late/view?udid=$udid";
         if($clinic->AllowMessage) {
             $url .= "&msg=1";
         }
-        $msg = $practitioner->PractitionerName . " is running " . $lateness . ". For updates,click " . $url;
+        $msg = $practitioner->PractitionerName . " is running " . $lateness . ". This may change.  Please continue to check for updates here: " . $url;
         return $msg;
-        
     }
-
-    
     
     // all durations are seconds (and times are seconds since midnight)
     // this implements use-up logic so gaps are used to reduce lateness
@@ -76,8 +73,13 @@ class notification {
             
             $MobilePhone = $notification['MobilePhone'];
             echo "Queuing notification for $patient to $MobilePhone \r\n";
-            $Practitioner->enqueueNotification($MobilePhone);
             
+            //if($Practitioner->OrgID == 'CCECK') {
+                $Details = 'notify_bulk: notification=' . var_export($notification, true);
+                Logging::trlog(Trantype::MISC_MISC, $Details, $Practitioner->OrgID, $Practitioner->ClinicID, $Practitioner->PractitionerID, $MobilePhone);
+            //}
+            
+            $Practitioner->enqueueNotification($MobilePhone);
         }
         
             

@@ -1,8 +1,6 @@
 <?php
 
-Class orgController Extends baseController {
-
-    public $org;
+Class OrgController Extends baseController {
 
     public function index() {
         //$this->org = organisation::getInstance(__SUBDOMAIN);
@@ -21,13 +19,14 @@ Class orgController Extends baseController {
         }
 
         $this->org->update_org($org);
-        $this->org = organisation::getInstance(__SUBDOMAIN);
+        $this->org = Organisation::getInstance(__SUBDOMAIN);
 
         // create or update billing record
-        $default_user = orguser::getInstance($this->org->OrgID, $_SESSION["USER"]);
+        $default_user = OrgUser::getInstance($this->org->OrgID, $_SESSION["USER"]);
         
-        $this->org->update_billing($default_user);
-        
+        //$this->org->update_billing($default_user);
+            
+
         $this->registry->template->controller = $this;       
         $this->registry->template->show('org_index');
     }

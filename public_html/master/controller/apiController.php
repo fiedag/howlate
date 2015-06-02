@@ -8,22 +8,12 @@
  *
  */
 
-Class apiController Extends baseController {
+Class ApiController Extends baseController {
     
     public function __construct($registry) {
         parent::__construct($registry);
     }
-    
-//    public function test2() {
-//        $PractitionerName = 'Dr Anthony Alvano';
-//        $Day = 'Friday';
-//        $StartTime = 4000;
-//        $EndTime = 5000;
-//        $org = organisation::getInstance(__SUBDOMAIN);
-//        $this->registry->template->result = api::updateSessions($org->OrgID, $PractitionerName, $Day, $StartTime, $EndTime);
-//        $this->registry->template->show('api_index');
-//    }
-    
+ 
     public function upd() {
         $this->checkCredentials();
         $this->checkVersion();
@@ -38,7 +28,7 @@ Class apiController Extends baseController {
         $NewLate = $this->lookfor(array('NewLate', 'NEWLATE'));  // in units of minutes
 
         if (!$ConsultationTime) {
-            $clin = clinic::getInstance($this->org->OrgID, $Clinic);
+            $clin = Clinic::getInstance($this->org->OrgID, $Clinic);
             $ConsultationTime = $clin->toLocalTime($ConsultationTimeUTC);
         }
 
@@ -46,7 +36,7 @@ Class apiController Extends baseController {
             $NewLate = round(($ConsultationTime - $AppointmentTime) / 60, 0, PHP_ROUND_HALF_UP);
         }
         
-        $res = api::updateLateness($this->org->OrgID, $Clinic, $NewLate, $PractitionerName, $ConsultationTime);
+        $res = Api::updateLateness($this->org->OrgID, $Clinic, $NewLate, $PractitionerName, $ConsultationTime);
 
         $res .= ",ConsultationTime = $ConsultationTime";
         $this->registry->template->result = $res;
@@ -58,7 +48,7 @@ Class apiController Extends baseController {
         $PractitionerName = $this->lookfor(array('Practitioner', 'Provider','PRACTITIONER','PROVIDER','ProviderName','PROVIDERNAME'));
         $MobilePhone = $this->lookfor(array('MobilePhone','CellPhone','MOBILEPHONE','CELLPHONE'));
         $ClinicID = $this->lookfor(array('ClinicID','Clinic','CLINICID','clinic'));
-        $result = api::notify($this->org->OrgID, $ClinicID, $PractitionerName, $MobilePhone, $ClinicID);
+        $result = Api::notify($this->org->OrgID, $ClinicID, $PractitionerName, $MobilePhone, $ClinicID);
         $this->registry->template->result = $result;
         $this->registry->template->show('api_index');
     }
@@ -72,12 +62,12 @@ Class apiController Extends baseController {
         $ConsultationTime = $this->lookfor(array('ConsultationTime','CONSULTATIONTIME'));
         $ConsultationTimeUTC = $this->lookfor(array('ConsultationTimeUTC','CONSULTATIONTIMEUTC'));
         if(isset($ConsultationTimeUTC) && !isset($ConsultationTime)) {
-            $ConsultationTime = clinic::getInstance($this->org->OrgID,$ClinicID)->toLocalTime($ConsultationTimeUTC);
+            $ConsultationTime = Clinic::getInstance($this->org->OrgID,$ClinicID)->toLocalTime($ConsultationTimeUTC);
         }
         $AppointmentLength = $this->lookfor(array('AppointmentLength','APPOINTMENTLENGTH'));
         $notify_array = $_POST["notify_bulk"];
         
-        api::notifybulk($this->org->OrgID, $ClinicID, $Provider, $AppointmentTime, $ConsultationTime, $AppointmentLength, $notify_array);
+        Api::notifybulk($this->org->OrgID, $ClinicID, $Provider, $AppointmentTime, $ConsultationTime, $AppointmentLength, $notify_array);
     }
 
     public function sess() {
@@ -93,21 +83,57 @@ Class apiController Extends baseController {
         $Day = $this->lookfor(array('Day','DAY'));
         $StartTime = $this->lookfor(array('StartTime','STARTTIME'));
         $EndTime = $this->lookfor(array('EndTime','ENDTIME'));
-        $org = organisation::getInstance(__SUBDOMAIN);
-        $this->registry->template->result = api::updateSessions($org->OrgID, $Clinic, $PractitionerName, $Day, $StartTime, $EndTime);
+        $org = Organisation::getInstance(__SUBDOMAIN);
+        $this->registry->template->result = Api::updateSessions($org->OrgID, $Clinic, $PractitionerName, $Day, $StartTime, $EndTime);
     }
 
-    ///
-    /// General Purpose method for anything an Agent
-    /// wants to report like start/stop/error events
-    /// or exceptions
+    public function appttype() {
+        $this->checkCredentials();
+        $this->checkVersion();
+
+        $org = Organisation::getInstance(__SUBDOMAIN);
+
+        $Clinic = filter_input(INPUT_GET,"clinic");
+        $TypeCode = $this->lookfor(array('TypeCode','TYPECODE'));
+        $TypeDescr = $this->lookfor(array('TypeDescr','TYPEDESCR','TypeDesc','TYPEDESC'));
+
+        $this->registry->template->result = Api::updateApptTypes($org->OrgID, $Clinic, $TypeCode, $TypeDescr);
+        
+    }
+    public function apptstatus() {
+        $this->checkCredentials();
+        $this->checkVersion();
+
+        $org = Organisation::getInstance(__SUBDOMAIN);
+
+        $Clinic = filter_input(INPUT_GET,"clinic");
+        $StatusCode = $this->lookfor(array('StatusCode','STATUSCODE','STATUS','Status'));
+        $StatusDescr = $this->lookfor(array('StatusDescr','STATUSDESC','StatusDesc','StatusDesc'));
+
+        $this->registry->template->result = Api::updateApptStatus($org->OrgID, $Clinic, $StatusCode, $StatusDescr);
+        
+    }
+    
+    
+    /*
+     * General Purpose method for anything an Agent
+     * wants to report like start/stop/error events
+     * or exceptions
+     * 
+     */
     public function agent() {
         $event = filter_input(INPUT_POST, "event");  // [start|stop|error|info]
         $message = filter_input(INPUT_POST,"message");
         $assemblyversion = filter_input(INPUT_POST,"assemblyversion");
-        logging::trlog(TranType::AGT_INFO, $message);
+        Logging::trlog(TranType::AGT_INFO, $message);
     }
-
+    
+    /*
+     * 
+     * Reporting an Agent Start 
+     * 
+     * 
+     */
     public function agent_start() {
         $this->checkCredentials();
         $this->checkVersion();
@@ -117,9 +143,40 @@ Class apiController Extends baseController {
         $event = 'start';
         $assemblyversion = filter_input(INPUT_POST,"assemblyversion");
         $message = 'agent_start:' . $assemblyversion;
-        logging::trlog(TranType::AGT_INFO, $message, $OrgID, $ClinicID);
+        Logging::trlog(TranType::AGT_INFO, $message, $OrgID, $ClinicID);
         echo "Agent Start logged on server.";
     }
+    
+    /*
+     * New predictive method of updating lateness
+     * 
+     * 
+     * 
+     */
+    public function appt() {
+        $ClinicID = $this->lookfor(array('clinic','ClinicID','Clinic'));
+        $TimeNow = $this->lookfor(array('TimeNow','time_now','timenow'));
+        $this->checkCredentials();
+        $this->checkVersion();
+        
+        Logging::trlog(TranType::LATE_UPD, 'Processing Appointments', $this->org->OrgID, $ClinicID);
+
+        $appt = $_POST["appt"];  // entire appointment list
+        
+        //api::writeLog($appt,'before');
+        
+        $result = Api::processAppointments($this->org->OrgID, $ClinicID, $appt, $TimeNow);
+
+//        if($this->org->OrgID == 'CCECK') {
+//            api::writeLog($result,$this->org->OrgID);
+//        }
+        
+        $this->registry->template->result = $result;
+        $this->registry->template->show('api_index');
+        
+    }
+    
+    
     public function agent_stop() {
         $this->checkCredentials();
         $OrgID = $this->lookfor(array('OrgID'));
@@ -127,13 +184,17 @@ Class apiController Extends baseController {
         $event = 'stop';
         $assemblyversion = filter_input(INPUT_POST,"assemblyversion");
         $message = 'agent_stop:' . $assemblyversion;
-        logging::trlog(TranType::AGT_INFO, $message, $OrgID, $ClinicID);
+        Logging::trlog(TranType::AGT_INFO, $message, $OrgID, $ClinicID);
         echo "Agent Stop logged on server.";
     }
     
     // overrides the one in base controller classe
     public function handle_exception($exception) {
+        $this->registry->template->exception = $exception;
         $this->registry->template->result = "Exception: " . $exception->getMessage();
+        
+        Logging::trlog(TranType::AGT_ERROR, $exception->getMessage(), $this->org->OrgID);
+
         $this->registry->template->show('api_index');
     }
 
@@ -153,7 +214,6 @@ Class apiController Extends baseController {
 
     
     public function get_updater() {
-
         $file = "downloads/x64/HowLateAgentUpdater.exe";
 
         if (file_exists($file)) {
@@ -170,38 +230,36 @@ Class apiController Extends baseController {
             trigger_error("File $file does not exist.", E_USER_ERROR);
         }
     }
- 
-    
-    public function get_exe2() {
-        $org = organisation::getInstance(__SUBDOMAIN);
+     
+    public function get_exe_deleteme() {
+        $org = Organisation::getInstance(__SUBDOMAIN);
         $ClinicID = filter_input(INPUT_GET,"clin");
+        $Version = filter_input(INPUT_GET,"version");
+       
         if (!$ClinicID) {
             throw new Exception("clin GET parameter must be supplied");
         }
-
-        api::get_exe2($org->OrgID, $ClinicID);
+        Api::get_exe2($org->OrgID, $ClinicID, $Version );
     }    
     
-    
     public function get_exe() {
-        $org = organisation::getInstance(__SUBDOMAIN);
         $ClinicID = filter_input(INPUT_GET,"clin");
         if (!$ClinicID) {
             throw new Exception("clin GET parameter must be supplied");
         }
 
-        api::get_exe($org->OrgID, $ClinicID);
+        Api::get_exe($this->org->OrgID, $ClinicID);
         
     }
     
     public function get_agent_displayname() {
-        $org = organisation::getInstance(__SUBDOMAIN);
+        $org = Organisation::getInstance(__SUBDOMAIN);
         $ClinicID = filter_input(INPUT_GET,"clin");
         if (!$ClinicID) {
             throw new Exception("clin GET parameter must be supplied");
         }
 
-        $clin = clinic::getInstance($org->OrgID, $ClinicID);
+        $clin = Clinic::getInstance($org->OrgID, $ClinicID);
         // this will initiate a download of HowLateAgent.exe.config
         $result = $clin->getClinicIntegration();
 
@@ -210,19 +268,14 @@ Class apiController Extends baseController {
     }
 
     public function get_exe_config() {
-        $org = organisation::getInstance(__SUBDOMAIN);
+        $org = Organisation::getInstance(__SUBDOMAIN);
         $ClinicID = filter_input(INPUT_GET,"clin");
         if (!$ClinicID) {
             throw new Exception("clin GET parameter must be supplied");
         }
 
-        $clin = clinic::getInstance($org->OrgID, $ClinicID);
-        // this will initiate a download of HowLateAgent.exe.config
-        $result = $clin->getClinicIntegration();
-
-        //require_once("includes/kint/Kint.class.php");
-        //d($result);        
-        
+        $result = agent::getInstance($this->org->OrgID, $ClinicID);
+       
         $this->registry->template->record = $result;
         $this->registry->template->URL = "https://" . __FQDN . "/api";
         $this->registry->template->Credentials = $result->HLUserID . "." . $result->XPassword;
@@ -234,8 +287,21 @@ Class apiController Extends baseController {
         $OrgID = filter_input(INPUT_GET,'org');
         $ClinicID = filter_input(INPUT_GET,'clin');
         
-        $this->registry->template->result = clinic::getInstance($OrgID, $ClinicID);
+        $this->registry->template->result = Clinic::getInstance($OrgID, $ClinicID);
         $this->registry->template->show('api_index');
+    }
+
+    
+    public function providerlist() {
+        $this->checkCredentials();
+        $this->checkVersion();
+        
+        $ClinicID = $this->lookfor(array('ClinicID','Clinic'));
+        
+        $result = Api::providerList($this->org->OrgID, $ClinicID);
+        $this->registry->template->result = $result;
+        $this->registry->template->show('api_index');
+        
     }
     
     
@@ -248,7 +314,7 @@ Class apiController Extends baseController {
     private function lookfor($arr) {
         foreach($arr as $key => $val) {
             if (array_key_exists($val,$_POST))
-                    return $_POST[$val];
+                    return trim($_POST[$val]);
         }
         return null;
     }
@@ -259,25 +325,33 @@ Class apiController Extends baseController {
             throw new Exception("Credentials must be supplied.");
         }
         list($UserID, $PasswordHash) = explode(".", $credentials);
-        if(!api::areCredentialsValid($this->org->OrgID, $UserID, $PasswordHash)) {
+        if(!Api::areCredentialsValid($this->org->OrgID, $UserID, $PasswordHash)) {
             throw new Exception($this->org->OrgID . " Credentials $credentials are not valid.");
         }
     }
     
     private function checkVersion() {
-        $AssemblyVersion = $this->lookfor(array('assemblyversion'));
+        $AssemblyVersion = $this->lookfor(array('assemblyversion','assembly'));
+        $ClinicID = $this->lookfor(array('clinic','ClinicID'));
         if(!$AssemblyVersion) {
-            return;  // not being passed, nothing to check
+            throw new Exception("Must supply an assemblyversion POST parameter");
         }
-        $AgentVersion = api::agent_version($this->org->OrgID);
+        if(!$ClinicID) {
+            throw new Exception("Must supply a Clinic ID POST parameter");
+        }
         
-        /* Just defeat the version checking for the time being */
-        //$AssemblyVersion = $AgentVersion;
+        $AgentVersionTarget = agent::getInstance($this->org->OrgID, $ClinicID)->AgentVersionTarget;
         
-        if ($AssemblyVersion != $AgentVersion) {
-            throw new Exception("Upgrade required (from " . $AssemblyVersion . " to " . $AgentVersion . ")");
+        if ($AssemblyVersion != $AgentVersionTarget) {
+            $msg = "Upgrade required (from " . $AssemblyVersion . " to " . $AgentVersionTarget . ")" ;
+            $arr = array('Message' => $msg,'FromVersion' => $AssemblyVersion, 'ToVersion' => $AgentVersionTarget);
+            // WARNING: Do not remove FromVersion or ToVersion from this $arr without checking HowLateAgent.VersionException.cs
+
+            throw new APIException($arr);
+            
         }
     }    
+    
     
 }
 

@@ -1,12 +1,12 @@
 <?php
 
-Class usersController Extends baseController {
+Class UsersController Extends baseController {
 
     public $org;
 
     public function index() {
       
-	$this->org = organisation::getInstance(__SUBDOMAIN);
+	$this->org = Organisation::getInstance(__SUBDOMAIN);
 	$this->registry->template->controller = $this;
         $this->registry->template->show('users_index');
     }
@@ -14,7 +14,7 @@ Class usersController Extends baseController {
     
     public function passwordreset() {
         $resetemail = filter_input(INPUT_POST, "resetemail");
-	$this->org = organisation::getInstance(__SUBDOMAIN);
+	$this->org = Organisation::getInstance(__SUBDOMAIN);
         $this->org->getRelated();
         $this->org->SendResetEmails($resetemail);
         $this->registry->template->companyname = $this->org->OrgName;
@@ -27,7 +27,7 @@ Class usersController Extends baseController {
     public function getXcrudTable() {
         include('includes/xcrud/xcrud.php');
         $xcrud = Xcrud::get_instance();
-        $xcrud->connection(howlate_util::mysqlUser(),howlate_util::mysqlPassword(),howlate_util::mysqlDb());
+        $xcrud->connection(HowLate_Util::mysqlUser(),HowLate_Util::mysqlPassword(),HowLate_Util::mysqlDb());
         
         $xcrud->table('orgusers')->where('OrgID =', $this->org->OrgID)->limit(10)->table_name('Users Table','You can add or delete as many users as you want');
         $xcrud->columns('OrgID,DateCreated,SecretQuestion1,SecretAnswer1', true);

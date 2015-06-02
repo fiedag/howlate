@@ -19,7 +19,7 @@
                 <div class="logo-exists">
                     <div id="logo-container" class="logo-container">
                         <img alt="" id="sysLogo" class="system-logo" 
-                             title="How Late Admin System" src="<?php echo howlate_util::logoURL(__SUBDOMAIN); ?>" height="100" width="100">
+                             title="How Late Admin System" src="<?php echo HowLate_Util::logoURL(__SUBDOMAIN); ?>" height="100" width="100">
                     </div>
                     <div class="orgname">
                         <?php echo $controller->org->OrgName; ?>

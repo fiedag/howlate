@@ -1,13 +1,12 @@
 <?php
 
-Class agentController Extends baseController {
+Class AgentController Extends baseController {
 
     public $currentClinic;
     public $currentSystem;
     public $currentUserID;
 
-    private $submenu = array ("agent"=>"Agent","sessions"=>"Sessions");
-        
+    private $submenu = array ("agent"=>"Agent","sessions"=>"Sessions","appttype"=>"Appt Type","apptstatus"=>"Appt Status");
     
     public function index() {
         if (isset($_SESSION["CLINIC"]) ) {
@@ -18,6 +17,7 @@ Class agentController Extends baseController {
         $this->registry->template->controller = $this;
         $this->clinicselect($this->currentClinic); 
     }
+
     
 
     public function clinicselect($clinicID = null) {
@@ -33,10 +33,10 @@ Class agentController Extends baseController {
             $this->currentClinic = $clinicID;
         }
 
-        $result = clinic::getInstance($this->org->OrgID,$this->currentClinic)->getClinicIntegration();
+        $result = Clinic::getInstance($this->org->OrgID,$this->currentClinic)->getClinicIntegration();
         if (is_null($result)) {
-            clinic::getInstance($this->org->OrgID,$this->currentClinic)->createClinicIntegration();
-            $result = clinic::getInstance($this->org->OrgID,$this->currentClinic)->getClinicIntegration();
+            Clinic::getInstance($this->org->OrgID,$this->currentClinic)->createClinicIntegration();
+            $result = Clinic::getInstance($this->org->OrgID,$this->currentClinic)->getClinicIntegration();
 
         }
         
@@ -65,7 +65,7 @@ Class agentController Extends baseController {
         $ConnectionType = filter_input(INPUT_POST,"ConnectionType");
         $ConnectionString = filter_input(INPUT_POST,"ConnectionString");
         
-        $clin = clinic::getInstance($OrgID,$ClinicID);
+        $clin = Clinic::getInstance($OrgID,$ClinicID);
         $clin->updateClinicIntegration2($PollInterval, $HLUserID, $ProcessRecalls, $PMSystem, $ConnectionType, $ConnectionString);
         
         $this->download_config($clin);
@@ -74,10 +74,7 @@ Class agentController Extends baseController {
 
     private function download_config($clin) {
         // this will initiate a download of HowLateAgent.exe.config
-        $result = $clin->getClinicIntegration();
-
-        //require_once("includes/kint/Kint.class.php");
-        //d($result);        
+        $result = agent::getInstance($this->org->OrgID, $clin->ClinicID);
         
         $this->registry->template->record = $result;
         $this->registry->template->URL = "https://" . __FQDN . "/api";
@@ -88,49 +85,45 @@ Class agentController Extends baseController {
     }
     
     public function further() {
-        $this->org = organisation::getInstance(__SUBDOMAIN);
+        $this->org = Organisation::getInstance(__SUBDOMAIN);
         $this->registry->template->controller = $this;
         $this->registry->template->show('agent_further');
     }
 
     private function exe_info() {
         // this will initiate a download of HowLateAgent.exe
-        $this->org = organisation::getInstance(__SUBDOMAIN);
+        $this->org = Organisation::getInstance(__SUBDOMAIN);
         if (isset($_SESSION["CLINIC"]) ) {
            $this->currentClinic = $_SESSION['CLINIC'];
         } else {
             $this->currentClinic = $this->org->Clinics[0]->ClinicID;        
         }
-        $result = clinic::getInstance($this->org->OrgID,$this->currentClinic)->getClinicIntegration();
+        $result = Clinic::getInstance($this->org->OrgID,$this->currentClinic)->getClinicIntegration();
 
         
         return $result;
         
     }
     
-    
     public function exe() {
-        $result = $this->exe_info();
-        
-        if ($result->Agent32Bit == true) {
-            $this->registry->template->platform = "x86";
-        } else {
-            $this->registry->template->platform = "x64";
-        }
-        
-        $this->registry->template->controller = $this;
-        $this->registry->template->show('agent_exe');
-    }
-
-    
-    public function install() {
-        $this->org = organisation::getInstance(__SUBDOMAIN);
         if (isset($_SESSION["CLINIC"]) ) {
            $this->currentClinic = $_SESSION['CLINIC'];
         } else {
             $this->currentClinic = $this->org->Clinics[0]->ClinicID;        
         }
-        $result = clinic::getInstance($this->org->OrgID,$this->currentClinic)->getClinicIntegration();
+
+        $agent = agent::getInstance($this->org->OrgID, $this->currentClinic);
+        $agent->get_exe();
+    }
+    
+    public function install() {
+        $this->org = Organisation::getInstance(__SUBDOMAIN);
+        if (isset($_SESSION["CLINIC"]) ) {
+           $this->currentClinic = $_SESSION['CLINIC'];
+        } else {
+            $this->currentClinic = $this->org->Clinics[0]->ClinicID;        
+        }
+        $result = Clinic::getInstance($this->org->OrgID,$this->currentClinic)->getClinicIntegration();
         
         $this->registry->template->interface = $result->Name;
         $this->registry->template->show('agent_install');
@@ -150,7 +143,7 @@ Class agentController Extends baseController {
     
     public function get_system_options($system) {
         $i = 0;
-        $systems = pmsystem::getAllImplemented();
+        $systems = PmSystem::getAllImplemented();
         
         foreach ($systems as $value) {
             echo "<option value='" . $value->ID . "' ";
@@ -163,7 +156,7 @@ Class agentController Extends baseController {
     
     public function get_user_options($userid) {
         $i = 0;
-        $users = organisation::findUsers($this->org->OrgID);
+        $users = Organisation::findUsers($this->org->OrgID);
         
         
         foreach ($users as $value) {
@@ -174,7 +167,6 @@ Class agentController Extends baseController {
             echo ">$value->FullName</option>";
         }
     }
-
     
     public function get_connection_options($connectiontype) {
             
@@ -196,7 +188,7 @@ Class agentController Extends baseController {
             $this->currentSystem = $clinicID;
         }
 
-        $result = pmsystem::getInstance($this->currentSystem);
+        $result = PmSystem::getInstance($this->currentSystem);
         
         $this->registry->template->subdomain = __SUBDOMAIN;
         $this->registry->template->clinic = $this->currentClinic;
@@ -211,8 +203,6 @@ Class agentController Extends baseController {
         
         $this->registry->template->show('agent_index');       
     }
-    
-    
     
     /*
      * Shows the second level of menu options below the integration menu option

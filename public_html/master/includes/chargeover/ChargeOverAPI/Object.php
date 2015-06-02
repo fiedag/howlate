@@ -21,15 +21,20 @@ class ChargeOverAPI_Object
 	const TYPE_USAGE = 'usage';
 	const TYPE_NOTE = 'note';
 	const TYPE_COUNTRY = 'country';
+	const TYPE_TOKENIZED = 'tokenized';
 
 	//protected $_arr;
 	
 	public function __construct($arr = array())
 	{
 		//$this->_arr = $arr;
-		foreach ($arr as $key => $value)
+		
+		if (is_array($arr))
 		{
-			$this->$key = $value;
+			foreach ($arr as $key => $value)
+			{
+				$this->$key = $value;
+			}
 		}
 	}
 	

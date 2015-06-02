@@ -1,5 +1,5 @@
 <?php 
-class howlate_basetable {
+class Howlate_BaseTable {
 
 
 	public function __construct($arr = null) {

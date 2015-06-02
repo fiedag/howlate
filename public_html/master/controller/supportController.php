@@ -1,16 +1,12 @@
 <?php
 
-Class supportController Extends baseController {
-
-    public $org;
-    public $controller;
+Class SupportController Extends baseController {
 
     public function index() {
         $this->getOrg();
         $this->registry->template->controller = $this;
         $this->registry->template->show('support_upgrade');
     }
-
     
     public function pricingbare() {
         $this->getOrg();
@@ -35,14 +31,14 @@ Class supportController Extends baseController {
 
     private function getOrg() {
         if (!isset($this->org)) {
-            $this->org = organisation::getInstance(__SUBDOMAIN);
+            $this->org = Organisation::getInstance(__SUBDOMAIN);
         }
     }
 
     public function getPricing() {
         include('includes/xcrud/xcrud.php');
         $xcrud2 = Xcrud::get_instance("Billing Database");
-        $xcrud2->connection(howlate_util::mysqlUser(),howlate_util::mysqlPassword(),howlate_util::mysqlBillingDb(),'localhost','utf8');
+        $xcrud2->connection(HowLate_Util::mysqlUser(),HowLate_Util::mysqlPassword(),HowLate_Util::mysqlBillingDb(),'localhost','utf8');
         $xcrud2->table('pricing')->where("CountryCode = 'EN'");
 
         $xcrud2->unset_csv(true)->unset_numbers(true)->unset_print(true)->unset_limitlist(true)->hide_button('save_and_edit')->hide_button('save_and_new');
@@ -64,10 +60,10 @@ Class supportController Extends baseController {
         $this->registry->template->controller = $this;
         $administrator = "61403569377";
         $smstext = "User " .  $_SESSION["USER"] . " from " . $this->org->OrgName . " has sent you a note.  Check admin@how-late.com";
-        howlate_sms::httpSend($this->org->OrgID, $administrator, $smstext);
+        HowLate_SMS::httpSend($this->org->OrgID, $administrator, $smstext);
         
-        $mailer = new howlate_mailer();
-        $mailer->send(howlate_util::admin_email(),'Administrator', 'A note has been received', $note, 'admin@how-late.com', 'Administrator');
+        $mailer = new Howlate_Mailer();
+        $mailer->send(HowLate_Util::admin_email(),'Administrator', 'A note has been received', $note, 'admin@how-late.com', 'Administrator');
           
         $this->registry->template->msg = "Thank you.  Your note is being actioned!";
         $this->registry->template->show('support_contact');
@@ -78,5 +74,3 @@ Class supportController Extends baseController {
     
  
 }
-
-?>

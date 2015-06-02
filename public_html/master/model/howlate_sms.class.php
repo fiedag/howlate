@@ -1,12 +1,12 @@
 <?php
 
-class howlate_sms {
+class HowLate_SMS {
     
     public static function httpSend($orgid, $udid, $message, $clinicid = null, $practitionerid = null) {
-       $clickatell = new clickatell();
+       $clickatell = new Clickatell();
 
        $clickatell->httpSend( $udid, $message, $orgid);
-       logging::trlog(TranType::DEV_SMS, $message, $orgid, $clinicid, $practitionerid, $udid);
+       Logging::trlog(TranType::DEV_SMS, $message, $orgid, $clinicid, $practitionerid, $udid);
     }
 }
 ?>

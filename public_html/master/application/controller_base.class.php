@@ -12,7 +12,7 @@ Abstract Class baseController {
     function __construct($registry) {
         $this->registry = $registry;  
         set_exception_handler(array($this, 'handle_exception'));
-        $this->org = organisation::getInstance(__SUBDOMAIN);
+        $this->org = Organisation::getInstance(__SUBDOMAIN);
     }
 
     /**
@@ -30,13 +30,13 @@ Abstract Class baseController {
     
     function get_footer() {
         include 'controller/footerController.php';
-        $footer = new footerController($this->registry);
+        $footer = new FooterController($this->registry);
         $footer->view($this->org);
     }
 
     function get_simplefooter() {
         include 'controller/footerController.php';
-        $footer = new footerController($this->registry);
+        $footer = new FooterController($this->registry);
         $footer->index();
     }
 
@@ -44,7 +44,7 @@ Abstract Class baseController {
     public function handle_exception($exception) {
         try {
             $ip = $_SERVER["REMOTE_ADDR"];
-            logging::write_error(0, 1, $exception->getMessage(), $exception->getFile(), $exception->getLine(), $ip, $exception->getTraceAsString());
+            Logging::write_error(0, 1, $exception->getMessage(), $exception->getFile(), $exception->getLine(), $ip, $exception->getTraceAsString());
         } catch (Exception $ex) {
         }
 
@@ -82,9 +82,17 @@ Abstract Class baseController {
 
 
         $callingURL = "http://" . $_SERVER['HTTP_HOST'] . "/" . $_GET['rt'];
-        setcookie("URL", $callingURL, time() + 7200);
+        setcookie("URL", $callingURL, time() + 3600 * 8);
     }
 
+    
+    public function getsimplename() {
+        $res = get_class($this);
+        $suf = strrpos($res, "Controller");
+        return substr($res,0,$suf);
+  
+    }    
+    
 }
 
 ?>

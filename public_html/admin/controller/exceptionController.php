@@ -10,7 +10,7 @@ Class exceptionController Extends baseController {
     }
   
     public function view($exception) {
-        $this->org = organisation::getInstance(__SUBDOMAIN);
+        $this->org = Organisation::getInstance(__SUBDOMAIN);
         $this->registry->template->companyname = (!$this->org == null)?$this->org->OrgName:"";
         $this->registry->template->sorry = "Something went wrong...";
         $this->registry->template->sorry2 = "We have entered the error into our issues list and will deal with it in due course.";

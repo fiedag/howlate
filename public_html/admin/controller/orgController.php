@@ -16,7 +16,7 @@ Class orgController Extends baseController {
      public function getAll() {
         include('includes/xcrud/xcrud.php');
         $xcrud = Xcrud::get_instance();
-        $xcrud->connection(howlate_util::mysqlUser(),howlate_util::mysqlPassword(),howlate_util::mysqlDb());
+        $xcrud->connection(HowLate_Util::mysqlUser(),HowLate_Util::mysqlPassword(),HowLate_Util::mysqlDb());
         $xcrud->table('orgs')->table_name('Organisations',"See CSV export button at end.")->limit(50);
         $xcrud->order_by('Created','desc');        
         $xcrud->column_pattern('FQDN', $this->assignSpan());  // display the assignment button

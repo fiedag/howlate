@@ -5,7 +5,7 @@ Class resetController Extends baseController {
     
 
     private function getorg() {
-        $this->org = organisation::getInstance(__SUBDOMAIN);
+        $this->org = Organisation::getInstance(__SUBDOMAIN);
         $this->org->getRelated();
         $this->registry->template->org = $this->org;
         $this->registry->template->controller = $this;
@@ -59,7 +59,7 @@ Class resetController Extends baseController {
         
         if ($err == "") {
             $xpassword = md5($password);
-            orguser::getInstance($this->org->OrgID, $userid)->changePassword($xpassword);
+            OrgUser::getInstance($this->org->OrgID, $userid)->changePassword($xpassword);
             $this->registry->template->no_access = 1;
             $this->registry->template->login_info = "Password changed.";
             $this->registry->template->notification_header = "Success!  Password has been changed.  Click to go to the login page.";

@@ -1,5 +1,5 @@
 <?php
-Class bannerController Extends baseController {
+Class BannerController Extends baseController {
     //public $org;
     
     public function index() {

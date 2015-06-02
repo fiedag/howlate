@@ -3,7 +3,7 @@
 ///
 /// This controller is for the main page which is used by Clinic admins to update lateness
 /// and send invitations.
-Class mainController Extends baseController {
+Class MainController Extends baseController {
 
     public $currentClinic;
     public $currentClinicName;
@@ -74,8 +74,9 @@ Class mainController Extends baseController {
             $org = $elems[0];
             $id = $elems[1];
             
+            $manual = 1;
             
-            practitioner::updateLateness($org, $id, $clinic, $newlate, 0, $sticky);
+            Practitioner::getInstance($org,$id)->updateLateness($newlate, $sticky, $manual);
             
         }
         header("location: http://" . __FQDN . "/main?ok=yes");
@@ -169,8 +170,8 @@ EOT;
             throw new Exception("Parameters not supplied.");
         
         list($org,$id) = explode('.',$pin);
-        device::register($org,$id,$udid);
-        device::invite($org, $id, $udid, __DOMAIN);
+        Device::register($org,$id,$udid);
+        Device::invite($org, $id, $udid, __DOMAIN);
  
         $this->index();
     }

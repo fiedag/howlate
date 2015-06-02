@@ -22,6 +22,9 @@ echo '<?xml version="1.0" encoding="utf-8" ?>';
       <setting name="Credentials" serializeAs="String">
         <value><?php echo $Credentials;?></value>
       </setting>
+      <setting name="Platform" serializeAs="String">
+        <value><?php echo $record->Platform;?></value>
+      </setting>
       <setting name="ConnectionType" serializeAs="String">
         <value><?php echo $record->ConnectionType;?></value>
       </setting>
@@ -39,6 +42,18 @@ echo '<?xml version="1.0" encoding="utf-8" ?>';
       </setting>        
       <setting name="SelectToNotify" serializeAs="String">
           <value><?php echo str_replace(">","&gt;",str_replace("<","&lt;", $record->SelectToNotify));?></value>
+      </setting>
+      <setting name="SelectAppointments" serializeAs="String">
+          <value><?php echo str_replace(">","&gt;",str_replace("<","&lt;", $record->SelectAppointments));?></value>
+      </setting>
+      <setting name="SelectTimeNow" serializeAs="String">
+          <value><?php echo str_replace(">","&gt;",str_replace("<","&lt;", $record->SelectTimeNow));?></value>
+      </setting>
+      <setting name="SelectApptTypes" serializeAs="String">
+          <value><?php echo str_replace(">","&gt;",str_replace("<","&lt;", $record->SelectApptTypes));?></value>
+      </setting>
+      <setting name="SelectApptStatus" serializeAs="String">
+          <value><?php echo str_replace(">","&gt;",str_replace("<","&lt;", $record->SelectApptStatus));?></value>
       </setting>
       <setting name="ProcessRecalls" serializeAs="String">
         <value><?php echo $record->ProcessRecalls;?></value>

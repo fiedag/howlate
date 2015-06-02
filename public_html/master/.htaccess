@@ -15,3 +15,4 @@ RewriteRule ^(.*)$ index.php?rt=$1 [L,QSA]
 #ExpiresActive on
 #ExpiresDefault "access plus 1 year"
 
+Header add Access-Control-Allow-Origin "*" 

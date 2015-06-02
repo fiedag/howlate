@@ -31,18 +31,18 @@ function mylog($msg) {
 
 mylog("**************** Processing Queued notifications ******************");
 
-$new_notif = howlate_util::getQueuedNotifications();
+$new_notif = HowLate_Util::getQueuedNotifications();
 
 foreach ($new_notif as $key => $val) {
 
     echo "New queued notification to send: $val->MobilePhone , $val->Message \r\n";
     try {
         if ($val->TestMobile == '') {
-            howlate_sms::httpSend($val->OrgID, $val->MobilePhone, $val->Message, $val->ClinicID);
+            HowLate_SMS::httpSend($val->OrgID, $val->MobilePhone, $val->Message, $val->ClinicID);
         } else {
-            howlate_sms::httpSend($val->OrgID, $val->TestMobile, $val->Message, $val->ClinicID);
+            HowLate_SMS::httpSend($val->OrgID, $val->TestMobile, $val->Message, $val->ClinicID);
         }
-        howlate_util::dequeueNotification($val->UID);
+        HowLate_Util::dequeueNotification($val->UID);
     } catch (Exception $ex) {
         throw $ex;
     }

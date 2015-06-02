@@ -9,17 +9,15 @@ $url = 'http://dev.chargeover.com/api/v3';
 //$url = 'https://YOUR-INSTANCE-NAME.chargeover.com/api/v3';
 
 $authmode = ChargeOverAPI::AUTHMODE_HTTP_BASIC;
-$username = 'f3gMZ2b1JzqkxP8LXt9eGVYdnNKAQc0i';
-$password = 'ivw8Wq0cfd9UFTAzaOjLZYNE6e53bIXK';
+$username = 'sLmVGFljcKhtg7rBkAOoNaE9SwWzRYUq';
+$password = '3TI5VjyNGlwYHeBuxfcq7tbKh9PS8iAW';
 
 $API = new ChargeOverAPI($url, $authmode, $username, $password);
 
-$user_id = 368;
+$user_id = 350;
 
 $User = new ChargeOverAPI_Object_User(array(
-	'username' => 'keithpalmer' . mt_rand(0, 1000), 
-
-	'name' => 'Keith Palmer', 
+	'name' => 'Ryan Bantz', 
 	'email' => 'newemail@newemail.com',
 	));
 

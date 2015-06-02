@@ -30,9 +30,10 @@
                             <input id="fieldName" name="cm-name" type="text" />
                             <label for="fieldEmail">Email</label>
                             <input id="fieldEmail" name="cm-ihlliid-ihlliid" type="email" required />
-                            <button type="submit">Contact me</button>
+                            <button class="btn-primary" type="submit">Contact me</button>
                     </form>
                 </div>
+                <a href="tel:1300469528"><button class="btn-primary">or dial 1300 HOWLATE</button></a>
             </div>            
         </div>
         <div class="row company">

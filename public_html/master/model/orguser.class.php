@@ -1,6 +1,6 @@
 <?php 
 
-class orguser  {
+class OrgUser  {
     protected static $instance;
     
     public $UserID;
@@ -13,7 +13,7 @@ class orguser  {
     public static function getInstance($OrgID, $FieldValue, $FieldName = 'UserID') {
         $q = "SELECT UserID, DateCreated, EmailAddress, FullName, XPassword, OrgID , SecretQuestion1, SecretAnswer1 FROM orgusers WHERE OrgID = '$OrgID' AND $FieldName = '$FieldValue'";
         
-        $sql = maindb::getInstance();
+        $sql = MainDb::getInstance();
         if ($result = $sql->query($q)->fetch_object()) {
             if (!self::$instance) {
                 self::$instance = new self();
@@ -30,7 +30,7 @@ class orguser  {
     
     public function changePassword($Password) {
         $q = "UPDATE orgusers SET XPassword = ? WHERE OrgID = ? AND UserID = ?";
-        $stmt = maindb::getInstance()->prepare($q);
+        $stmt = MainDb::getInstance()->prepare($q);
         $stmt->bind_param('sss', $Password, $this->OrgID, $this->UserID);
         $stmt->execute();
         if ($stmt->affected_rows != 1) {
@@ -54,7 +54,7 @@ class orguser  {
     
     public static function createUser($orgid, $userid, $emailaddress) {
         $q = "INSERT INTO orgusers (OrgID, UserID, EmailAddress) VALUES (?, ?, ?)";
-        $stmt = maindb::getInstance()->prepare($q);
+        $stmt = MainDb::getInstance()->prepare($q);
 
         $stmt->bind_param('sss', $orgid, $userid, $emailaddress);
         $stmt->execute();

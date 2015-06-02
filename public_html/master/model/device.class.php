@@ -5,19 +5,20 @@
  * registered to receive lateness updates
  */
 
-class device {
+class Device {
     protected static $instance;
-
     public $udid; // unique device id
-
     public $canonical_udid;
-    
     public $registrations;  // array of registrations for this
     
+    
+    /*
+     * 
+     * Returns an array of latenesses and must be ordered by Clinic Name
+     */
     public static function getLatenesses($fieldval, $fieldname = 'UDID') {
         $q = "SELECT ClinicID, ClinicName, AbbrevName, MinutesLate, MinutesLateMsg, OrgID, ID, Subdomain, AllowMessage FROM vwMyLates WHERE $fieldname = '" . $fieldval . "' ORDER BY ClinicName";
-        $sql = maindb::getInstance();
-
+        $sql = MainDb::getInstance();
         
         $practArray = array();
         $clinArray = array();
@@ -39,9 +40,12 @@ class device {
         return null;
     }
     
-    public static function getLatenessesAjax($udid) {
+    /*
+     * 
+     */
+    public static function getLatenessesByUDID($udid) {
         $q = "SELECT CONCAT(OrgID ,'.',ID) As Pin, MinutesLateMsg FROM vwMyLates WHERE UDID = '" . $udid . "'";
-        $sql = maindb::getInstance();
+        $sql = MainDb::getInstance();
         $myArray = array();
         if ($result = $sql->query($q)) {
             while ($row = $result->fetch_object()) {
@@ -52,25 +56,27 @@ class device {
     }
     
     public static function invite($org, $id, $udid, $domain) {
-       $prac = practitioner::getInstance($org,$id);
+       $prac = Practitioner::getInstance($org,$id);
        //$url = "http://m.$domain/late/view&xudid=" . howlate_util::to_xudid($udid);
 
        $url = "http://m.$domain/late/view&udid=" . $udid;
 
        $message = "Current delays for $prac->PractitionerName at $prac->ClinicName can be checked at " . $url;
 
-       $clickatell = new clickatell();
+       $clickatell = new Clickatell();
        $clickatell->httpSend( $udid, $message, $org);
        
-       logging::trlog(TranType::DEV_SMS, $message, $prac->OrgID, $prac->ClinicID, $prac->PractitionerID, $udid);
+       Logging::trlog(TranType::DEV_SMS, $message, $prac->OrgID, $prac->ClinicID, $prac->PractitionerID, $udid);
     }
     
-    
-    
-    
+    /*
+     * register a device by UDID for a period of 12 months
+     * 
+     * 
+     */
     public static function register($OrgID, $PractitionerID, $UDID) {
         $q = "REPLACE INTO devicereg (ID, OrgID, UDID, Expires) VALUES (?,?,?, CURDATE() + INTERVAL 12 MONTH )";
-        $stmt = maindb::getInstance()->prepare($q);
+        $stmt = MainDb::getInstance()->prepare($q);
         $stmt->bind_param('sss', $PractitionerID, $OrgID, $UDID);
         $stmt->execute();
         

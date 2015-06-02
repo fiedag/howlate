@@ -1,12 +1,11 @@
 <?php
 
-class chargeover {
+class Chargeover {
     
     private $API;
     function __construct() {
         require_once('/home/howlate/public_html/master/includes/chargeover/ChargeOverAPI.php');
-        $this->API = new ChargeOverAPI(howlate_util::chargeoverApiUrl(), ChargeOverAPI::AUTHMODE_HTTP_BASIC, howlate_util::chargeoverUsername(), howlate_util::chargeoverPassword());
-        
+        $this->API = new ChargeOverAPI(HowLate_Util::chargeoverApiUrl(), ChargeOverAPI::AUTHMODE_HTTP_BASIC, HowLate_Util::chargeoverUsername(), HowLate_Util::chargeoverPassword());
     }
 
     function __destruct() {
@@ -115,7 +114,9 @@ class chargeover {
 
     
     function getCustomer($orgID) {
+
 	$resp = $this->API->find('customer', array('external_key:EQUALS:' . $orgID));
+        
         $Customer = $resp->response;
         if($Customer) {
             return $Customer[0];
@@ -129,7 +130,7 @@ class chargeover {
 	$resp = $this->API->find('package', array('customer_id:EQUALS:' . $customer_id, 
                                             'package_status_state:EQUALS:a'));
         
-        echo "getCurrentActive Package for customer $customer_id, response= <br>";
+        //echo "getCurrentActive Package for customer $customer_id, response= " . count($resp->response);
         if (count($resp->response)==0) {
             return null;
         }
@@ -158,10 +159,11 @@ class chargeover {
         
     }
     
-//    private function usage_line($element) {
-//        return ($element->item_units == 'text message');
-//
-//    }
+    // used in array filter above.  do not delete.
+    private function usage_line($element) {
+        return ($element->item_units == 'text message');
+
+    }
     
     public function action($object, $package_id, $action, $data) {
         return $this->API->action($object, $package_id, $action, $data);

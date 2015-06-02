@@ -1,12 +1,12 @@
 <?php
 
-Class clinicsController Extends baseController {
+Class ClinicsController Extends baseController {
 
     public $org;
 
 
     public function index() {
-        $this->org = organisation::getInstance(__SUBDOMAIN);
+        $this->org = Organisation::getInstance(__SUBDOMAIN);
 	$this->registry->template->controller = $this;
         $this->registry->template->show('clinics_index');
 		
@@ -15,7 +15,7 @@ Class clinicsController Extends baseController {
     public function getXcrudTable() {
         include('includes/xcrud/xcrud.php');
         $xcrud = Xcrud::get_instance('Main');
-        $xcrud->connection(howlate_util::mysqlUser(),howlate_util::mysqlPassword(),howlate_util::mysqlDb());
+        $xcrud->connection(HowLate_Util::mysqlUser(),HowLate_Util::mysqlPassword(),HowLate_Util::mysqlDb());
                
         $xcrud->table('clinics')->where('OrgID =', $this->org->OrgID)->limit(10);
         $xcrud->columns('OrgID, Country, Location, Zip, Timezone, PatientReply, ReplyRecip,SuppressNotifications', true);

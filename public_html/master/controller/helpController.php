@@ -1,6 +1,6 @@
 <?php
 
-Class helpController Extends baseController {
+Class HelpController Extends baseController {
 
 public function index() 
 {

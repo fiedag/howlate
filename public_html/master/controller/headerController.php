@@ -1,5 +1,5 @@
 <?php
-Class headerController Extends baseController {
+Class HeaderController Extends baseController {
     //public $org;
     
     public function index() {

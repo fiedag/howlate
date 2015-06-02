@@ -9,12 +9,8 @@ $url = 'http://dev.chargeover.com/api/v3';
 //$url = 'https://YOUR-INSTANCE-NAME.chargeover.com/api/v3';
 
 $authmode = ChargeOverAPI::AUTHMODE_HTTP_BASIC;
-$username = 'JxI2LYptQkVDMbaFST8RNegzrqji9Wmh';
-$password = 'k5mSN0rb7KFHl4PBVDpLv2JfoG6qEQiW';
-
-$url = 'http://macbookpro.chargeover.com:8888/chargeover/signup/api/v3.php';
-$username = 'PtS50vVGLJrpEs1HmyqCi8MhjzBnc3DU';
-$password = 'u1tfwimpXGg8bdWELMzPrHxVFZe9DKNa';
+$username = 'aPEDf5ehpOtJjix2lnFc7KrkqVmgHouw';
+$password = 'hrUvPdo21QG0tSLXg4u69ZfIkMa5pinY';
 
 $API = new ChargeOverAPI($url, $authmode, $username, $password);
 
@@ -27,20 +23,14 @@ $Package->setCustomerId(1);
 // @todo more cycles docs 
 
 $LineItem = new ChargeOverAPI_Object_LineItem();
-$LineItem->setItemId(2);
-$LineItem->setDescrip('Test of a description goes here.');
+$LineItem->setItemId(1);
+//$LineItem->setDescrip('Test of a description goes here.');
+$LineItem->setTrialDays(20);
+$LineItem->setLineQuantity(15);
 
 $Package->addLineItems($LineItem);
 
 $resp = $API->create($Package);
-
-/*
-print("\n\n\n\n");
-	print($API->lastRequest());
-	print("\n\n\n\n");
-	print($API->lastResponse());
-	print("\n\n\n\n");
-*/
 
 if (!$API->isError($resp))
 {

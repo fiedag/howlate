@@ -16,26 +16,19 @@
                         <div class="span12">
                             <div class="container">
                                 <div class="row">
-                                    <div class="span6">
+                                    <div class="span8">
                                         <div class="intro">
                                             <hgroup>
-                                                <h1>Happier Patients!</h1>
-                                                <h3>The new How-Late app simply links with your practice management software to keep patients informed whether their doctor is running on time or late.</h3>
-                                            </hgroup>
-                                            <br>
-                                            <hgroup>
-                                                <h3><img src="master/images/checkmark-green.png" /> Inexpensive.</h3>
-                                                <h3><img src="master/images/checkmark-green.png" /> Set and Forget.</h3>
-                                                <h3><img src="master/images/checkmark-green.png" /> MedicalDirector, BestPractice + many more.</h3>
-                                                <h3><img src="master/images/checkmark-green.png" /> SMS Alert and/or App Screen</h3>
-                                                <br>
-                                            </hgroup>
-
+                                                <h1><span style="font-size:larger">Happy Doctors</span></h1>
+                                                <h1>Happy Patients</h1>
+                                                <h1><span style="font-size:smaller">Happy Staff</span></h1>
                                             <!-- a 
                                                 href="http://www.youtube.com/embed/_hide?rel=0&autoplay=1&enablejsapi=1" class="video-link">
                                                 <div class="video-player"></div>
                                             </a -->
-                                            <a href="#safe" data-gtm-event="navigation" data-gtm-info="Discover"><img src="master/images/discover.png"></a>
+                                            <div style="margin-top:350px">
+                                                <a href="#safe" data-gtm-event="navigation" data-gtm-info="Discover"><button class="btn-lg btn-info">DISCOVER MORE</button></a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -58,7 +51,6 @@
                             <li class=""><a id="pricing_nav" title="PRICING" href="/pricing.php" title="How Late Pricing Plans" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">PRICING</a></li>
                             <li class=""><a id="press_nav" title="Press" href="/press.php" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">PRESS</a></li>
                             <li class=""><a id="privacy_nav" title="Privacy" href="/privacy.php" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">PRIVACY</a></li>
-                            <li class=""><a id="selfreg_nav" title="Patients" href="http://m.how-late.com/selfreg" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">PATIENTS</a></li>
                         </ul>
                         <ul class="nav nav-dropdown">
                             <li class="dropdown">
@@ -75,7 +67,6 @@
                             <li class=""><a id="pricing_nav" title="PRICING" href="/pricing.php" title="How Late Pricing Plans" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">PRICING</a></li>
                             <li class=""><a id="press_nav" title="Press" href="/press.php" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">PRESS</a></li>
                             <li class=""><a id="privacy_nav" title="Privacy" href="/privacy.php" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">PRIVACY</a></li>
-                            <li class=""><a id="selfreg_nav" title="Patients" href="http://m.how-late.com/selfreg" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">PATIENTS</a></li>
                                     
                                 </ul>
                             </li>
@@ -314,9 +305,9 @@
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-        <script src="/master/js/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-        <script src="https://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
-        <script src="https://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
+        <script src="/master/js/bootstrap.min.js"></script>
+        <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
+        <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/additional-methods.min.js"></script>
         
         <script src="/master/js/main.js"></script>
 

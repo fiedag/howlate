@@ -1,6 +1,6 @@
 <?php
 
-class clinic extends howlate_basetable {
+class Clinic extends Howlate_BaseTable {
 
     protected static $instance;
     public $OrgID;
@@ -19,7 +19,7 @@ class clinic extends howlate_basetable {
     public static function getInstance($OrgID, $ClinicID) {
         $q = "SELECT * FROM clinics WHERE OrgID = '$OrgID' AND ClinicID = $ClinicID";
 
-        $sql = maindb::getInstance();
+        $sql = MainDb::getInstance();
 
         if ($result = $sql->query($q)->fetch_object()) {
             if (!self::$instance) {
@@ -35,21 +35,29 @@ class clinic extends howlate_basetable {
 
     public function getClinicIntegration() {
         $q = "SELECT * FROM vwClinicIntegration WHERE OrgID = '$this->OrgID' AND ClinicID = $this->ClinicID";
-        if ($result = maindb::getInstance()->query($q)) {
+        if ($result = MainDb::getInstance()->query($q)) {
             return $result->fetch_object();
         }
     }
 
+    public function getAgentVersionTarget() {
+        $q = "SELECT AgentVersionTarget FROM clinicintegration WHERE OrgID = '$this->OrgID' AND ClinicID = $this->ClinicID";
+        if ($result = MainDb::getInstance()->query($q)) {
+            return $result->fetch_object();
+        }
+    }
+
+    
     // creates all the clinic integration records.  one for each clinic of the organisation
     public function createClinicIntegration() {
         $q = "CALL sp_CreateClinicIntegration('$this->OrgID', $this->ClinicID)";
-        $stmt = maindb::getInstance()->prepare($q);
+        $stmt = MainDb::getInstance()->prepare($q);
         $stmt->execute();
     }
 
     public function updateClinicIntegration($instance, $database, $uid, $pwd, $interval, $hluserid, $processrecalls) {
         $q = "REPLACE INTO clinicintegration (Instance, DbName, UID, PWD, PollInterval, HLUserID, OrgID, ClinicID, ProcessRecalls ) VALUES (?,?,?,?,?,?,?,?,?)";
-        $stmt = maindb::getInstance()->prepare($q);
+        $stmt = MainDb::getInstance()->prepare($q);
         $stmt->bind_param('ssssissis', $instance, $database, $uid, $pwd, $interval, $hluserid, $this->OrgID, $this->ClinicID, $processrecalls);
         $stmt->execute();
         if ($stmt->affected_rows == 0) {
@@ -59,7 +67,7 @@ class clinic extends howlate_basetable {
 
     public function updateClinicIntegration2($interval, $hluserid, $processrecalls, $pmsystem, $connectiontype, $connectionstring) {
         $q = "REPLACE INTO clinicintegration (OrgID, ClinicID, PollInterval, HLUserID, ProcessRecalls, PMSystem, ConnectionType, ConnectionString ) VALUES (?,?,?,?,?,?,?,?)";
-        $stmt = maindb::getInstance()->prepare($q);
+        $stmt = MainDb::getInstance()->prepare($q);
         $stmt->bind_param('siisisss', $this->OrgID, $this->ClinicID, $interval, $hluserid, $processrecalls, $pmsystem, $connectiontype, $connectionstring);
         $stmt->execute();
         if ($stmt->affected_rows <= 0) {
@@ -69,7 +77,7 @@ class clinic extends howlate_basetable {
 
     public static function createDefaultClinic($orgid) {
         $q = "INSERT INTO clinics (OrgID, ClinicName) SELECT OrgID, OrgName FROM orgs WHERE OrgID = ?";
-        $stmt = maindb::getInstance()->prepare($q);
+        $stmt = MainDb::getInstance()->prepare($q);
         $stmt->bind_param('s', $orgid);
         $stmt->execute();
         if ($stmt->affected_rows != 1) {
@@ -79,7 +87,7 @@ class clinic extends howlate_basetable {
 
     public function getPractitioners() {
         $q = "SELECT * FROM practitioners WHERE OrgID = '$this->OrgID' AND ClinicID = '$this->ClinicID'";
-        $sql = maindb::getInstance();
+        $sql = MainDb::getInstance();
 
         $practArray = array();
         $clinArray = array();
@@ -101,14 +109,32 @@ class clinic extends howlate_basetable {
         return null;
     }
 
+    public function getPlacedPractitioners() {
+        
+        
+        $q = "SELECT FullName FROM vwPlacements WHERE OrgID = '$this->OrgID' AND ClinicID = '$this->ClinicID'";
+        $sql = MainDb::getInstance();
+
+        $practArray = array();
+        if ($result = $sql->query($q)) {
+            while ($row = $result->fetch_object()) {
+                $practArray[] = "'" . $row->FullName . "'";
+            }
+            return $practArray;
+        }
+        return null;
+    }
+    
+    
+    
     public function cancelAppointmentMessage($OrgID, $PractitionerID, $PractitionerName, $UDID) {
-        $mail = new howlate_mailer();
+        $mail = new Howlate_Mailer();
 
         $toEmail = $this->MsgRecip;
         $toName = $this->ClinicName;
         $subject = "HOW-LATE Cancellation Advisory $UDID";
         $body = "$UDID has advised that they will not be able to keep their appointment with $PractitionerName";
-        $from = howlate_util::admin_email();
+        $from = HowLate_Util::admin_email();
         $fromName = "How-Late Admin";
         $mail->send($toEmail, $toName, $subject, $body, $from, $fromName);
     }
@@ -134,4 +160,27 @@ class clinic extends howlate_basetable {
         return $offset;
     }
 
+    
+    function updateApptTypes($TypeCode, $TypeDescr) {
+        $q = "INSERT IGNORE INTO appttype (OrgID, ClinicID, TypeCode, TypeDescr) VALUES (?,?,?,?)";
+        Logging::trlog(TranType::APTYPE_UPD, "Appt Type updated [$this->OrgID, $this->ClinicID,$TypeCode,$TypeDescr]", $this->OrgID, $this->ClinicID, null, null);        
+        
+        $sql = MainDb::getInstance();
+        $stmt = $sql->prepare($q);
+        $stmt->bind_param('ssss', $this->OrgID, $this->ClinicID, $TypeCode, $TypeDescr);
+        $stmt->execute() or trigger_error('# Query Error (' . $sql->errno . ') ' . $sql->error, E_USER_ERROR);
+        Logging::trlog(TranType::APTYPE_UPD, "Appt Type updated [$TypeCode,$TypeDescr]", $this->OrgID, $this->ClinicID, null, null);        
+    }
+    
+    function updateApptStatus($StatusCode, $StatusDescr) {
+        $q = "INSERT IGNORE INTO apptstatus (OrgID, ClinicID, StatusCode, StatusDescr) VALUES (?,?,?,?)";
+        
+        $sql = MainDb::getInstance();
+        $stmt = $sql->prepare($q);
+        $stmt->bind_param('ssss', $this->OrgID, $this->ClinicID, $StatusCode, $StatusDescr);
+        $stmt->execute() or trigger_error('# Query Error (' . $sql->errno . ') ' . $sql->error, E_USER_ERROR);
+        Logging::trlog(TranType::APTYPE_UPD, "Appt Status updated [$StatusCode,$StatusDescr]", $this->OrgID, $this->ClinicID, null, null);
+    }
+    
+    
 }

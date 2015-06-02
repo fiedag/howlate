@@ -340,7 +340,7 @@
 
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-        <script src="/master/js/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+        <script src="/master/js/bootstrap.min.js"></script>
         <script src="/master/js/main.js"></script>
 
 
