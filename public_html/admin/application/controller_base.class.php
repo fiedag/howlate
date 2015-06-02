@@ -1,6 +1,6 @@
 <?php
 
-Abstract Class baseController {
+Abstract Class BaseController {
     /*
      * @registry object
      */

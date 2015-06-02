@@ -1,6 +1,6 @@
 <?php
 
-Class billingController Extends baseController {
+Class BillingController Extends baseController {
 
     private $submenu = array ("clinics"=>"Clinics","unbilledsms" => "Unbilled SMS");
     

@@ -1,6 +1,6 @@
 <?php
 
-Class loginController Extends baseController {
+Class LoginController Extends baseController {
 
     //public $org;
 

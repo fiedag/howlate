@@ -1,6 +1,6 @@
 <?php
 
-class router {
+class Router {
  /*
  * @the registry
  */

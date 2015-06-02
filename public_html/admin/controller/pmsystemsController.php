@@ -1,6 +1,6 @@
 <?php
 
-Class pmsystemsController Extends baseController {
+Class PmSystemsController Extends baseController {
     public $org;
 
     public function index() {

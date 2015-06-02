@@ -1,6 +1,6 @@
 <?php
 
-Class logoutController Extends baseController {
+Class LogoutController Extends baseController {
 
     public function index() {
         $this->registry->template->controller = $this;

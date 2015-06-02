@@ -1,6 +1,6 @@
 <?php
 
-Class tranlogController Extends baseController {
+Class TranLogController Extends baseController {
 
     private $submenu = array ("translog"=>"Trans Log",
         "speciallog"=>"Special Log",

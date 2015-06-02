@@ -1,6 +1,6 @@
 <?php
 
-Class resetController Extends baseController {
+Class ResetController Extends baseController {
     public $org;
     
 

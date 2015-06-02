@@ -1,6 +1,6 @@
 <?php
 
-Class usersController Extends baseController {
+Class UsersController Extends baseController {
 
     public $org;
 

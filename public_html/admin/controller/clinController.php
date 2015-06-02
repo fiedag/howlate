@@ -1,6 +1,6 @@
 <?php
 
-Class clinController Extends baseController {
+Class ClinController Extends baseController {
 
     public $org;
 

@@ -1,6 +1,6 @@
 <?php
 
-Class exceptionController Extends baseController {
+Class ExceptionController Extends baseController {
 
     public $org;
     

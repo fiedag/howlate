@@ -1,6 +1,6 @@
 <?php
 
-Class devicesController Extends baseController {
+Class DevicesController Extends baseController {
 
     public $org;
     private $submenu = array ("index"=>"Devices","recent" => "Recents");
