@@ -21,10 +21,18 @@ Class ApptTypeController Extends baseController {
         $xcrud = Xcrud::get_instance();
         $xcrud->connection(HowLate_Util::mysqlUser(),HowLate_Util::mysqlPassword(),HowLate_Util::mysqlDb());
         
-        $xcrud->table('appttype')->table_name('Appointment types.','Updated by the HL Agent.  Mark those appointment types you wish to ignore for purposes of lateness calculations.  This means they act as if they are gaps.')->where('OrgID =', $this->org->OrgID)->limit(30);
+        $xcrud->table('appttype')->table_name('Appointment types.','Updated by the HL Agent.  Mark those appointment types you wish to treat differently for purposes of lateness calculations.  This means they act as if they are gaps, or they may be auto-completed.')->where('OrgID =', $this->org->OrgID)->limit(30);
         
         $xcrud->relation('ClinicID','clinics','ClinicID','ClinicName')->label(array('ClinicID' => 'Clinic'))->columns('OrgID',true);
-        $xcrud->change_type('IgnoreAppt', 'bool');
+        $xcrud->fields('OrgID,ClinicID',true);
+        $xcrud->label(array('TypeCode' => 'Type Code','TypeDescr'=>'Description','CatchUp'=>'Available for catching up','AutoConsultation'=>'Auto-consultation'));
+        $tt = array('CatchUp'=>'Mark if this type of appointment should be available for catching up.  Examples are: meetings, lunch, drug rep visits.',
+            'AutoConsultation'=>'Mark if the appointment does not typically result in a consultation.  Once the appointment time has passed, the appointment will be deemed to have occurred, whether a consultation has been recorded or not.  Examples are Unavailable, Procedures.');
+        foreach($tt as $key=>$val) {
+            $xcrud->field_tooltip($key,$val)->column_tooltip($key,$val);
+        }
+        
+        
         $xcrud->unset_csv(true)->unset_numbers(true)->unset_print(true)->unset_limitlist(true)->hide_button('save_and_edit')->hide_button('save_and_new');
         echo $xcrud->render();
     }

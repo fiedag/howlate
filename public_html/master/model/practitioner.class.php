@@ -258,16 +258,24 @@ class Practitioner {
     }
     
     
-    public function setAppointmentBook($appt_array) {
-        $this->AppointmentBook = ApptBook::getInstance($this->OrgID, $this->ClinicID, $appt_array);
+    public function setAppointmentBook($appt_array, $time_now) {
+        $this->AppointmentBook = ApptBook::getInstance($this->OrgID, $this->ClinicID, $time_now, $appt_array);
         return $this;
     }
 
     
-    
-    public function predictConsultTimes($TimeNow) {
+    public function predictConsultTimes() {
         if($this->AppointmentBook) {
-            $this->AppointmentBook->filterByApptType()->filterByApptStatus()->traverseAppointments($TimeNow);
+            $this->AppointmentBook->traverseAppointments2();
+        }
+        return $this;
+    }
+
+    
+    public function predictConsultTimes_DeleteMe($TimeNow) {
+        if($this->AppointmentBook) {
+            $this->AppointmentBook->filterByApptType()->filterByApptStatus();
+            $this->AppointmentBook->traverseAppointments($TimeNow);
         }
         return $this;
     }

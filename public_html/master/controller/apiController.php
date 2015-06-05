@@ -163,14 +163,7 @@ Class ApiController Extends baseController {
 
         $appt = $_POST["appt"];  // entire appointment list
         
-        //api::writeLog($appt,'before');
-        
         $result = Api::processAppointments($this->org->OrgID, $ClinicID, $appt, $TimeNow);
-
-//        if($this->org->OrgID == 'CCECK') {
-//            api::writeLog($result,$this->org->OrgID);
-//        }
-        
         $this->registry->template->result = $result;
         $this->registry->template->show('api_index');
         

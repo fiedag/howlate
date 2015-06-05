@@ -88,20 +88,6 @@ class Api {
         Notification::notify_bulk($pract, $AppointmentTime, $ConsultationTime, $AppointmentLength, $notify_array);
     }
 
-    
-    public static function writeLog($array,$kind = "OrgID") {
-        if ($outfile = fopen("/home/howlate/public_html/master/logs/outfile.log", "a")) {
-            
-            $exp = var_export($array,true);
-
-            fwrite($outfile, "\r\n$" . $kind . "[] = \r\n");
-            fwrite($outfile, $exp);
-            fwrite($outfile, ";\r\n");
-            fclose($outfile);
-        } else {
-            throw new Exception("File open exception in writeLog.");
-        }
-    }
 
     /* Version 3.1.1.1 + only
      * Process appointments, updating lateness and notifying SMS recipients
@@ -119,15 +105,19 @@ class Api {
             $appts = array_filter($appt_bulk, function($item) use ($pract) { return $item['Provider'] == $pract; });
             
             $p = Practitioner::getInstance($OrgID, $pract, 'FullName');
+            if(!$p) {
+                $p = Practitioner::createDefaultPractitioner($OrgID, $ClinicID, $pract);
+                continue;
+            }
             if(!$p->ClinicID) {
-                // practitioner is not assigned to a clinic, skip
+                // practitioner is not assigned to a clinic, create but then skip
                 // in practice the SelectAppointments SQL statement should not return any appts
                 // for unassigned practitioners.  though it could happen because of a delay.
                 continue; 
             }
             
             // populate the apptbook class with the appt array
-            $p->setAppointmentBook($appts);
+            $p->setAppointmentBook($appts, $time_now);
             // here the apptbook array elements get their 'LatePredicted' and 'ConsultPredicted' fields calculated
             $p->predictConsultTimes($time_now);
             // this utilises the calculated appt book and returns a predicted time
@@ -137,7 +127,11 @@ class Api {
             $p->LatenessUpdate($actual_lateness);
             
             // $summary is populated for diagnostic and unit test purposes
-            $summary[] = array("Practitioner" => $p->PractitionerName, "Actual Late" => $actual_lateness);
+            $summary[] = array(
+                "Practitioner" => $p->PractitionerName, 
+                "Actual Late" => $actual_lateness, 
+                "Original" => $appts, 
+                "Calculated" => $p->AppointmentBook->Appointments);
             
             // add to return array but now with ConsultPredicted and LatePredicted elements populated
             $appt_ret = array_merge($appt_ret, $p->AppointmentBook->Appointments);
@@ -148,8 +142,20 @@ class Api {
         $notifcandidates->processNotifications();
 
         // $ret is for diagnostics and unit testing
-        $ret = array("Time Now" => $time_now, "ClinicID" => $ClinicID, "Summary"=> $summary, "Notified" => $notifcandidates->notified_candidates, "Final" => $notifcandidates->final_candidates,"All Candidates" => $notifcandidates->candidates);
-        return $ret;
+        $ret = array(
+            "Time Now" => $time_now, 
+            "OrgID" => $OrgID, 
+            "ClinicID" => $ClinicID, 
+            "Summary"=> $summary, 
+//            "Notified" => $notifcandidates->notified_candidates, 
+//            "Final" => $notifcandidates->final_candidates, 
+//            "All Candidates" => $notifcandidates->candidates, 
+            "appt_ret" => $appt_ret
+                );
+        
+        Clinic::getInstance($OrgID, $ClinicID)->apptLogging($ret);
+        
+        return "Appointments processed ok";
     }
    
     /*

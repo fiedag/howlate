@@ -17,11 +17,7 @@ Class ClinController Extends baseController {
         include('includes/xcrud/xcrud.php');
         $xcrud = Xcrud::get_instance();
         $xcrud->connection(HowLate_Util::mysqlUser(),HowLate_Util::mysqlPassword(),HowLate_Util::mysqlDb());
-        $xcrud->table('clinicintegration')->table_name('Clinics and Integration',"See CSV export button at end.")->limit(50);
-        $xcrud->join('ClinicID','clinics','ClinicID');
-        $xcrud->columns('clinics.ClinicName,OrgID,AgentVersion,RunningSince,AgentVersionTarget');
-        //$xcrud->columns('Instance,PMSystem,SelectLates,SelectSessions,SelectToNotify,PollInterval,DbName,UID,PWD,ProcessRecalls', true);
-        $xcrud->fields('AgentVersion,AgentVersionTarget');
+        $xcrud->table('clinics')->table_name('Clinics',"clinics table.")->limit(50);
         
         return $xcrud->render();
     }   

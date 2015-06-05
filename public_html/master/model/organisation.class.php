@@ -24,7 +24,6 @@ class Organisation {
     public $Country;
     public $Timezone;
     
-
     
     // Constructed complex attributes
     public $Clinics;  // array of Clinic objects

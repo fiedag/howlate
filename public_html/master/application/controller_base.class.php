@@ -89,7 +89,7 @@ Abstract Class baseController {
     public function getsimplename() {
         $res = get_class($this);
         $suf = strrpos($res, "Controller");
-        return substr($res,0,$suf);
+        return strtolower(substr($res,0,$suf));
   
     }    
     

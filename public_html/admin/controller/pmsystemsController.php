@@ -15,10 +15,10 @@ Class PmSystemsController Extends baseController {
         $xcrud = Xcrud::get_instance();
         $xcrud->connection(HowLate_Util::mysqlUser(),HowLate_Util::mysqlPassword(),HowLate_Util::mysqlDb());
         $xcrud->table('pmsystems')->table_name('Practice Management Systems',"See CSV export button at end.")->limit(50);
-        $xcrud->order_by('Priority','desc');        
+        $xcrud->order_by('Priority','desc');
         $xcrud->columns('SelectLates,SelectSessions,SelectToNotify,Timestamp,SelectAppointments,SelectTimeNow', true);
-        $xcrud->change_type('SelectLates,SelectToNotify,SelectSessions,SelectAppointments,SelectTimeNow', 'textarea');
-        $xcrud->auto_xss_filtering = false; // disable all xcrud's POST and GET data filtering for this page
+        $xcrud->change_type('SelectLates,SelectToNotify,SelectSessions,SelectAppointments,SelectTimeNow,SelectAppointments,SelectApptTypes,SelectApptStatus', 'textarea');
+        $xcrud->auto_xss_filtering = false; // disable all xcrud's POST and GET data filtering for this page.  Essential!
 
         return $xcrud->render();
     }    

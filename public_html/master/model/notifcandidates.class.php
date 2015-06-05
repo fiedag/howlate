@@ -13,9 +13,9 @@
  */
 class NotifCandidates {
 
-    public $candidates;
-    public $final_candidates;
-    public $notified_candidates;
+    public $candidates;         // all candidates including those with bad mobile numbers
+    public $final_candidates;   // after filtering bad entries e.g. expired or bad mobile number
+    public $notified_candidates;  // after excluding those where dr was not assigned, where there was an earlier appt, or where dr was actually on time
 
     protected static $instance;
     protected $OrgID;
@@ -37,7 +37,9 @@ class NotifCandidates {
             $appt_time[$key]  = $row['ConsultPredicted'];
         }        
         $this->candidates = $appt_array;
-        array_multisort($appt_time, SORT_ASC, $this->candidates ); 
+        if(count($this->candidates) > 0) {
+            array_multisort($appt_time, SORT_ASC, $this->candidates ); 
+        }
     }
     
     public function processNotifications() {
@@ -77,9 +79,11 @@ class NotifCandidates {
             // $late_predicted is in minutes
             
             $late_predicted_adj_str = $practitioner->getLatenessMsg($late_predicted);
-            $practitioner->enqueueAdjustedMessage($this->ClinicID, $val['MobilePhone'], $late_predicted_adj_str);
+            if(strpos($late_predicted_adj_str,'on time') == false) {
+                $practitioner->enqueueAdjustedMessage($this->ClinicID, $val['MobilePhone'], $late_predicted_adj_str);
+                $this->notified_candidates[] = $val;
+            }
             
-            $this->notified_candidates[] = $val;
         } 
                 
         return $this;

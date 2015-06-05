@@ -18,8 +18,8 @@ Class ClinicsController Extends baseController {
         $xcrud->connection(HowLate_Util::mysqlUser(),HowLate_Util::mysqlPassword(),HowLate_Util::mysqlDb());
                
         $xcrud->table('clinics')->where('OrgID =', $this->org->OrgID)->limit(10);
-        $xcrud->columns('OrgID, Country, Location, Zip, Timezone, PatientReply, ReplyRecip,SuppressNotifications', true);
-        $xcrud->fields('PatientReply,ReplyRecip',true);
+        $xcrud->columns('OrgID, Country, Location, Zip, Timezone, PatientReply, ReplyRecip,AllowMessage,MsgRecip,SuppressNotifications,ApptLogging', true);
+        $xcrud->fields('PatientReply,ReplyRecip,MsgRecip,AllowMessage,ApptLogging',true);
         $xcrud->readonly('OrgID');
         
         $xcrud->hide_button('view');

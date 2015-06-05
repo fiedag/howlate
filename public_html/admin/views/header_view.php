@@ -32,42 +32,48 @@
                     </div>
                     <div class="nav-mainlinks-container  font-on-custom-background">
                         <ul class="nav-mainlinks custom-background" id="nav-mainlinks">
-                            <li class="first <?php if (get_class($controller) == "orgController") {
+                            <li class="first <?php if (get_class($controller) == "OrgController") {
                             echo 'active';
                         } ?> custom-background-dark-hover">
-                                <span><a id="nav-main" title="Check on organisations." class="<?php echo (get_class($controller) == "orgController") ? 'custom-font-on-white' : 'font-on-custom-background'; ?>" href="https://<?php echo __FQDN; ?>/org">Orgs</a></span>
+                                <span><a id="nav-main" title="Check on organisations." class="<?php echo (get_class($controller) == "OrgController") ? 'custom-font-on-white' : 'font-on-custom-background'; ?>" href="https://<?php echo __FQDN; ?>/org">Orgs</a></span>
                             </li>
 
-                            <li class="first <?php if (get_class($controller) == "clinController") {
+                            <li class="first <?php if (get_class($controller) == "ClinController") {
                             echo 'active';
                         } ?> custom-background-dark-hover">
-                                <span><a id="nav-clinics" title="Check on clinics." class="<?php echo (get_class($controller) == "clinController") ? 'custom-font-on-white' : 'font-on-custom-background'; ?>" href="https://<?php echo __FQDN; ?>/clin">Clinics</a></span>
+                                <span><a id="nav-clinics" title="Check on clinics." class="<?php echo (get_class($controller) == "ClinController") ? 'custom-font-on-white' : 'font-on-custom-background'; ?>" href="https://<?php echo __FQDN; ?>/clin">Clinics</a></span>
+                            </li>
+                            
+                            <li class="first <?php if (get_class($controller) == "ClinIntController") {
+                            echo 'active';
+                        } ?> custom-background-dark-hover">
+                                <span><a id="nav-clinics" title="Check on clinic integration." class="<?php echo (get_class($controller) == "ClinIntController") ? 'custom-font-on-white' : 'font-on-custom-background'; ?>" href="https://<?php echo __FQDN; ?>/clinint">Clin Int</a></span>
                             </li>
 
-                            <li class="<?php if (get_class($controller) == "devicesController") {
+                            <li class="<?php if (get_class($controller) == "DevicesController") {
                             echo 'active';
                         } ?> custom-background-dark-hover">
-                                <span><a id="nav-devices" title="Check the devices (mobile phones) which have been registered for updates for various practitioners." class="<?php echo (get_class($controller) == "devicesController") ? 'custom-font-on-white' : 'font-on-custom-background'; ?>" href="https://<?php echo __FQDN; ?>/devices">Devices</a></span>
+                                <span><a id="nav-devices" title="Check the devices (mobile phones) which have been registered for updates for various practitioners." class="<?php echo (get_class($controller) == "DevicesController") ? 'custom-font-on-white' : 'font-on-custom-background'; ?>" href="https://<?php echo __FQDN; ?>/devices">Devices</a></span>
                             </li>
-                            <li class="<?php if (get_class($controller) == "pmsystemsController") {
+                            <li class="<?php if (get_class($controller) == "PmSystemsController") {
                             echo 'active';
                         } ?> custom-background-dark-hover">
-                                <span><a id="nav-integrations" title="Create and change integrations (Practice Mgt Systems)." class="<?php echo (get_class($controller) == "pmsystemsController") ? 'custom-font-on-white' : 'font-on-custom-background'; ?>" href="https://<?php echo __FQDN; ?>/pmsystems">PM Systems</a></span>
+                                <span><a id="nav-integrations" title="Create and change integrations (Practice Mgt Systems)." class="<?php echo (get_class($controller) == "PmSystemsController") ? 'custom-font-on-white' : 'font-on-custom-background'; ?>" href="https://<?php echo __FQDN; ?>/pmsystems">PM Systems</a></span>
                             </li>
-                            <li class="<?php if (get_class($controller) == "usersController") {
+                            <li class="<?php if (get_class($controller) == "UsersController") {
                             echo 'active';
                         } ?> custom-background-dark-hover">
-                                <span><a id="nav-users" title="Set up users and reset passwords." class="<?php echo (get_class($controller) == "usersController") ? 'custom-font-on-white' : 'font-on-custom-background'; ?>" href="https://<?php echo __FQDN; ?>/users">Users</a></span>
+                                <span><a id="nav-users" title="Set up users and reset passwords." class="<?php echo (get_class($controller) == "UsersController") ? 'custom-font-on-white' : 'font-on-custom-background'; ?>" href="https://<?php echo __FQDN; ?>/users">Users</a></span>
                             </li>
-                            <li class="<?php if (get_class($controller) == "tranlogController") {
+                            <li class="<?php if (get_class($controller) == "TranLogController") {
                             echo 'active';
                         } ?> custom-background-dark-hover">
-                                <span><a id="nav-agent" title="Activity log." class="<?php echo (get_class($controller) == "tranlogController") ? 'custom-font-on-white' : 'font-on-custom-background'; ?>" href="https://<?php echo __FQDN; ?>/tranlog">Activity Log</a></span>
+                                <span><a id="nav-agent" title="Activity log." class="<?php echo (get_class($controller) == "TranLogController") ? 'custom-font-on-white' : 'font-on-custom-background'; ?>" href="https://<?php echo __FQDN; ?>/tranlog">Activity Log</a></span>
                             </li>
-                            <li class="<?php if (get_class($controller) == "billingController") {
+                            <li class="<?php if (get_class($controller) == "BillingController") {
                             echo 'active';
                         } ?> custom-background-dark-hover">
-                                <span><a id="nav-agent" title="Billing details." class="<?php echo (get_class($controller) == "billingController") ? 'custom-font-on-white' : 'font-on-custom-background'; ?>" href="https://<?php echo __FQDN; ?>/billing">Billing</a></span>
+                                <span><a id="nav-agent" title="Billing details." class="<?php echo (get_class($controller) == "BillingController") ? 'custom-font-on-white' : 'font-on-custom-background'; ?>" href="https://<?php echo __FQDN; ?>/billing">Billing</a></span>
                             </li>
                         </ul>
                     </div>

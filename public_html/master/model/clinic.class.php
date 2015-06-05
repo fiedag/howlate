@@ -16,6 +16,8 @@ class Clinic extends Howlate_BaseTable {
     public $AllowMessage;
     public $MsgRecip;
 
+    public $ApptLogging;
+    
     public static function getInstance($OrgID, $ClinicID) {
         $q = "SELECT * FROM clinics WHERE OrgID = '$OrgID' AND ClinicID = $ClinicID";
 
@@ -181,6 +183,32 @@ class Clinic extends Howlate_BaseTable {
         $stmt->execute() or trigger_error('# Query Error (' . $sql->errno . ') ' . $sql->error, E_USER_ERROR);
         Logging::trlog(TranType::APTYPE_UPD, "Appt Status updated [$StatusCode,$StatusDescr]", $this->OrgID, $this->ClinicID, null, null);
     }
+    
+
+    public function apptLogging($array) {
+        if ($this->ApptLogging) {
+            $this->writeLog($array);
+        }
+        
+    }
+    
+    private function writeLog($array) {
+        
+        if ($outfile = fopen("/home/howlate/public_html/master/logs/" . $this->OrgID . "." . $this->ClinicID . ".log.inc", "a")) {
+            
+            $exp = var_export($array,true);
+            fwrite($outfile,"<?php" . "\r\n");
+            fwrite($outfile, '    $appts[] =' . "\r\n");
+            fwrite($outfile, $exp);
+            fwrite($outfile, ";\r\n");
+            fwrite($outfile,"?>");
+            fclose($outfile);
+        } else {
+            throw new Exception("File open exception in writeLog.");
+        }
+    }
+    
+    
     
     
 }
