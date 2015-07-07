@@ -1,5 +1,5 @@
 ﻿body { padding: 10px; font-family: Verdana; font-size: small }
-h4 { font-size: inherit`; font-variant: small-caps; }
+h4 { font-size: inherit; font-variant: small-caps; }
 .height { width: 100%; margin-bottom:10px; float: left; clear: both; }
 .bottom { height:400px; width: 100%; margin-bottom:10px; float: left; clear: both; }
 body > button { float: left; clear: right; margin: 3px }
