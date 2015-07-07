@@ -15,8 +15,13 @@ class ApptBook {
     protected static $instance;
     public $time_now;
     public $CurrentLate = 0;
-    protected $Appointments;  // array of appointment objects as defined below
-    protected $Predicted;
+    
+    
+    public $Appointments;  // array of appointment objects as defined below
+    public $Predicted;
+
+    
+    protected $Notified;
     protected $OrgID;  // 
     protected $ClinicID;
     protected $IgnoredStatuses;
@@ -39,7 +44,7 @@ class ApptBook {
             $appt_time[$key]  = $row['AppointmentTime'];
         }
         $this->Appointments = $appt_array;
-        array_multisort($appt_time, SORT_ASC, $this->Appointments ); 
+        //array_multisort($appt_time, SORT_ASC, $this->Appointments ); 
         
         $this->AutoConsultationStatuses = $this->getAutoConsultStatus();
         $this->AutoConsultationTypes = $this->getAutoConsultTypes();
@@ -52,6 +57,21 @@ class ApptBook {
         
         throw new Exception("Exception handler apptbook.class.php: " . $exception->getMessage());
     }
+
+    
+    public function traverseAppointments() {
+        // first pass checks for status and type and completed
+        $this->firstPass();
+        $this->sequenceFutureAppointments();
+        $this->predict();
+        
+    }
+
+    
+    public function notifyPatients($Practitioner) {
+        $cand = NotifCandidates::getInstance($OrgID, $ClinicID, $this->Predicted, $this->time_now);
+    }
+    
     
     /*
      *  We are going to completely ignore any appt types where the appointment is available to catch up
@@ -128,14 +148,6 @@ class ApptBook {
         $auto_consult_type = in_array($val['ApptType'],$this->AutoConsultationTypes);
         return ($auto_consult_status || $auto_consult_type);
     }
-    
-    public function traverseAppointments2() {
-        // first pass checks for status and type and completed
-        $this->firstPass();
-        $this->sequenceFutureAppointments();
-        $this->predict();
-        
-    }
 
     
     private function firstPass() {
@@ -166,30 +178,29 @@ class ApptBook {
     }
     
     private function sequenceFutureAppointments() {
-        $sequence = 0;
         foreach ($this->Appointments as $key => $val) {
+            $this->Appointments[$key]['Sequence'] = -1;
             // appointments in the past
             // if they are auto-consult then do not consider them
             if (strpos($this->Appointments[$key]['Processing'], 'AUTOCONSULTED') !== false) {
-                $this->Appointments[$key]['Sequence'] = $sequence;
+                $this->Appointments[$key]['Sequence'] = 0;
             }
             // if they are done then do not consider them
             if (strpos($this->Appointments[$key]['Processing'], 'DONE') !== false) {
-                $this->Appointments[$key]['Sequence'] = $sequence;
+                $this->Appointments[$key]['Sequence'] = 0;
             }
         }
 
-        $sequence = 1;
         
         $this->WithDoctor = array_filter($this->Appointments, function($val) { return ($val['Processing'] == 'WITHDOCTOR'); });
         if (count($this->WithDoctor) > 0) {
             foreach($this->Appointments as $key=>$val) {
                 if(strpos($this->Appointments[$key]['Processing'],'WITHDOCTOR') !== false) {
-                    $this->Appointments[$key]['Sequence'] = $sequence;
+                    $this->Appointments[$key]['Sequence'] = 1;
                 }
             }
         }
-        $sequence++;
+        $sequence=2;
         $this->Waiting = array_filter($this->Appointments, function($val) { return ($val['Processing'] == 'WAITING'); });
         if (count($this->Waiting) > 0) {
             foreach($this->Appointments as $key=>$val) {
@@ -202,14 +213,15 @@ class ApptBook {
         // final pass
         foreach($this->Appointments as $key=>$val) {
                 if($this->Appointments[$key]['Processing'] == '' 
-                        || $this->Appointments[$key]['Processing'] == "AUTOCONSULT") {
+                        || $this->Appointments[$key]['Processing'] == "AUTOCONSULT" 
+                        || $this->Appointments[$key]['Processing'] == "IGNORE" ) {
                     $this->Appointments[$key]['Sequence'] = $sequence++;
                 }  
         }
     }
     
     private function predict() {
-        $this->Predicted = array_filter($this->Appointments, function($val) { return $val['Sequence'] != '0'; });
+        $this->Predicted = array_filter($this->Appointments, function($val) { return $val['Sequence'] > 0; });
  
         if ($this->Predicted) {
             foreach ($this->Predicted as $key => $row) {
@@ -228,7 +240,15 @@ class ApptBook {
                 continue;
             }
             
-            // these are waiting or future appts
+            if($this->Predicted[$key]['Processing'] == "IGNORE") {
+                $duration = 0;
+            }
+            else {
+                $duration =  $this->Predicted[$key]['Duration'];
+            }
+                 
+            
+            // these are IGNORE, WAITING or future appts
             if($consult_end == -1) {
                 // none are/were with doctor
                 if(!$this->Predicted[$key]['ConsultationTime']) {
@@ -238,16 +258,16 @@ class ApptBook {
                     $this->Predicted[$key]['ConsultPredicted'] = $this->Predicted[$key]['ConsultationTime'];
                 }
             
-                $consult_end = $this->Predicted[$key]['ConsultPredicted'] + $this->Predicted[$key]['Duration'];
+                $consult_end = $this->Predicted[$key]['ConsultPredicted'] + $duration;
                 
                 $this->CurrentLate = max(0, $this->Predicted[$key]['ConsultPredicted'] - $this->Predicted[$key]['AppointmentTime']);
                 continue;
             }
             
             $this->Predicted[$key]['ConsultPredicted'] = max($consult_end,$this->Predicted[$key]['AppointmentTime']);
-            $consult_end = $this->Predicted[$key]['ConsultPredicted'] + $this->Predicted[$key]['Duration'];
+            $consult_end = $this->Predicted[$key]['ConsultPredicted'] + $duration;
         }
         
-    }
-    
+    }   
 }
+?>

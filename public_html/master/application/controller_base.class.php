@@ -1,5 +1,6 @@
 <?php
 
+
 Abstract Class baseController {
     /*
      * @registry object
@@ -92,6 +93,23 @@ Abstract Class baseController {
         return strtolower(substr($res,0,$suf));
   
     }    
+    
+
+    /*
+     * 
+     * Function to look in post parameters for alternatives
+     * each given in the array passed
+     * thus lookfor(array('Provider','Practitioner'))
+     */
+    protected function lookfor($arr) {
+        foreach($arr as $key => $val) {
+            if (array_key_exists($val,$_POST))
+                    return trim($_POST[$val]);
+        }
+        return null;
+    }    
+    
+    
     
 }
 

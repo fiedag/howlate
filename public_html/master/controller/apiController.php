@@ -304,7 +304,7 @@ Class ApiController Extends baseController {
      * each given in the array passed
      * thus lookfor(array('Provider','Practitioner'))
      */
-    private function lookfor($arr) {
+    protected function lookfor($arr) {
         foreach($arr as $key => $val) {
             if (array_key_exists($val,$_POST))
                     return trim($_POST[$val]);

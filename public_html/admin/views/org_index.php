@@ -12,6 +12,17 @@
   }
 
 
+  function deleteSubd(subd) {
+      if (confirm("Are you sure you wish to delete the subdomain from cPanel?")) {
+          if (confirm("Are you REALLY sure????")) {
+              $("#button_" + subd).text("Deleting...");
+              var delURL = "https://admin.how-late.com/org/delete?subd=" + subd;
+              $.get(delURL, function(result) {
+                  $("#button_" + subd).text(result);
+                });
+          }
+      }
+  }
 </script>
 
 

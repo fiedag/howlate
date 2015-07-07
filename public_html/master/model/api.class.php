@@ -88,7 +88,6 @@ class Api {
         Notification::notify_bulk($pract, $AppointmentTime, $ConsultationTime, $AppointmentLength, $notify_array);
     }
 
-
     /* Version 3.1.1.1 + only
      * Process appointments, updating lateness and notifying SMS recipients
      * appt_bulk contains a special array with elements as shown:
@@ -98,6 +97,8 @@ class Api {
         // an array of practitioners to iterate through
         $uniquePractitioners = array_unique(array_map(function ($i) { return $i['Provider']; }, $appt_bulk));
 
+        $notifier = new Notifier($OrgID, $ClinicID, $appt_bulk, $time_now);
+        
         // appt_ret will contain the returned array after processing and ready for notifications
         $appt_ret = [];
         foreach($uniquePractitioners as $pract) {
@@ -120,38 +121,29 @@ class Api {
             $p->setAppointmentBook($appts, $time_now);
             // here the apptbook array elements get their 'LatePredicted' and 'ConsultPredicted' fields calculated
             $p->predictConsultTimes($time_now);
-            // this utilises the calculated appt book and returns a predicted time
-            // but does not do any LatenessOffset or LateToNearest adjustment
-            $actual_lateness = $p->getActualLateness($time_now);
+
+            $actual_lateness_seconds = $p->getActualLateness();
             // Updates the lateness in the lates table
-            $p->LatenessUpdate($actual_lateness);
+            $p->LatenessUpdate($actual_lateness_seconds);
+            
+            
+            $notifier->processNotifications($p, $p->AppointmentBook->Predicted);
             
             // $summary is populated for diagnostic and unit test purposes
             $summary[] = array(
                 "Practitioner" => $p->PractitionerName, 
-                "Actual Late" => $actual_lateness, 
+                "Actual Late" => $actual_lateness_seconds, 
                 "Original" => $appts, 
-                "Calculated" => $p->AppointmentBook->Appointments);
-            
-            // add to return array but now with ConsultPredicted and LatePredicted elements populated
-            $appt_ret = array_merge($appt_ret, $p->AppointmentBook->Appointments);
+                "Predicted" => $p->AppointmentBook->Predicted,
+                "Notified" => $notifier->notified_candidates);
         }
-        
-        $notifcandidates = NotifCandidates::getInstance($OrgID, $ClinicID, $appt_ret, $time_now);
-        // Walks forward through all entries and queue SMS messages
-        $notifcandidates->processNotifications();
 
         // $ret is for diagnostics and unit testing
         $ret = array(
             "Time Now" => $time_now, 
             "OrgID" => $OrgID, 
             "ClinicID" => $ClinicID, 
-            "Summary"=> $summary, 
-//            "Notified" => $notifcandidates->notified_candidates, 
-//            "Final" => $notifcandidates->final_candidates, 
-//            "All Candidates" => $notifcandidates->candidates, 
-            "appt_ret" => $appt_ret
-                );
+            "Summary"=> $summary);
         
         Clinic::getInstance($OrgID, $ClinicID)->apptLogging($ret);
         

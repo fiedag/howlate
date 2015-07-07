@@ -40,3 +40,8 @@ function date_example($postdata,$primary,$xcrud){
     $postdata->set('datetime',$created);
 }
 
+
+function deleteSubdomain() {
+    
+    
+}

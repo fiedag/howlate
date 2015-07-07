@@ -70,6 +70,11 @@
                         } ?> custom-background-dark-hover">
                                 <span><a id="nav-agent" title="Activity log." class="<?php echo (get_class($controller) == "TranLogController") ? 'custom-font-on-white' : 'font-on-custom-background'; ?>" href="https://<?php echo __FQDN; ?>/tranlog">Activity Log</a></span>
                             </li>
+                             <li class="<?php if (get_class($controller) == "AnalyticsController") {
+                            echo 'active';
+                        } ?> custom-background-dark-hover">
+                                <span><a id="nav-agent" title="Analytics." class="<?php echo (get_class($controller) == "AnalyticsController") ? 'custom-font-on-white' : 'font-on-custom-background'; ?>" href="https://<?php echo __FQDN; ?>/analytics">Analytics</a></span>
+                            </li>
                             <li class="<?php if (get_class($controller) == "BillingController") {
                             echo 'active';
                         } ?> custom-background-dark-hover">

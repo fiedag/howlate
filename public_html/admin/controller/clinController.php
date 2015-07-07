@@ -18,7 +18,7 @@ Class ClinController Extends baseController {
         $xcrud = Xcrud::get_instance();
         $xcrud->connection(HowLate_Util::mysqlUser(),HowLate_Util::mysqlPassword(),HowLate_Util::mysqlDb());
         $xcrud->table('clinics')->table_name('Clinics',"clinics table.")->limit(50);
-        
+        $xcrud->columns("ClinicID,ClinicName,Timezone,OrgID,SuppressNotifications,ApptLogging",false);
         return $xcrud->render();
     }   
     

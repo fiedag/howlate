@@ -87,46 +87,24 @@ class Clinic extends Howlate_BaseTable {
         }
     }
 
-    public function getPractitioners() {
-        $q = "SELECT * FROM practitioners WHERE OrgID = '$this->OrgID' AND ClinicID = '$this->ClinicID'";
-        $sql = MainDb::getInstance();
-
-        $practArray = array();
-        $clinArray = array();
-        if ($result = $sql->query($q)) {
-            $tempArray = array();
-            while ($row = $result->fetch_object()) {
-                $tempArray[] = $row;
-                if (array_key_exists($row->ClinicName, $clinArray)) {
-                    $clinArray[$row->ClinicName] = $tempArray;
-                } else {
-                    unset($tempArray);
-                    $tempArray = array();
-                    $tempArray[] = $row;
-                    $clinArray[$row->ClinicName] = $tempArray;
-                }
-            }
-            return $clinArray;
-        }
-        return null;
-    }
-
-    public function getPlacedPractitioners() {
-        
-        
+    public function getPlacedPractitioners($quoted = true) {
         $q = "SELECT FullName FROM vwPlacements WHERE OrgID = '$this->OrgID' AND ClinicID = '$this->ClinicID'";
         $sql = MainDb::getInstance();
 
         $practArray = array();
         if ($result = $sql->query($q)) {
             while ($row = $result->fetch_object()) {
-                $practArray[] = "'" . $row->FullName . "'";
+                if($quoted) {
+                    $practArray[] = "'" . $row->FullName . "'";
+                }
+                else {
+                    $practArray[] = $row->FullName;
+                }
             }
             return $practArray;
         }
         return null;
     }
-    
     
     
     public function cancelAppointmentMessage($OrgID, $PractitionerID, $PractitionerName, $UDID) {

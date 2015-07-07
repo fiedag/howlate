@@ -34,7 +34,11 @@ class HowLate_Util {
     public static function mysqlBillingDb() {
         return (__DOMAIN == self::$testdomain) ? "fiedlerc_bill" : "howlate_billing";
     }
+    public static function mysqlAnalyticsDb() {
+        return (__DOMAIN == self::$testdomain) ? "fiedlerc_analytics" : "howlate_analytics";
+    }
 
+    
     public static function mysqlUser() {
         return (__DOMAIN == self::$testdomain) ? "fiedlerc_super" : "howlate_super";
     }

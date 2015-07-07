@@ -15,4 +15,7 @@ RewriteRule ^(.*)$ index.php?rt=$1 [L,QSA]
 #ExpiresActive on
 #ExpiresDefault "access plus 1 year"
 
-Header add Access-Control-Allow-Origin "*" 
+
+Header add Access-Control-Allow-Origin "*"
+Header add Access-Control-Allow-Headers "origin, x-requested-with, content-type"
+Header add Access-Control-Allow-Methods "PUT, GET, POST, DELETE, OPTIONS"

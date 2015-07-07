@@ -6,26 +6,57 @@ Class TestController Extends baseController {
     public $clinic;
     public $appointments;
 
+
+    public function phpinfo() {
+        echo phpinfo();
+    }
+    
+
+    public function log() {
+        
+        $OrgID = filter_input(INPUT_GET,"org");
+        $ClinicID = filter_input(INPUT_GET,"clin");
+
+        $test = new ApptBookTests($OrgID, $ClinicID);
+        
+        $test->displayLog();
+        
+    }
+    
+    public function notify() {
+        $OrgID = filter_input(INPUT_GET,"org");
+        $ClinicID = filter_input(INPUT_GET,"clin");
+
+        $test = new ApptBookTests($OrgID, $ClinicID);
+        $test->testNotify();
+    }
     
     public function index() {
+
+        $graphs = new Graphing();
+        
+        $ClinicID = filter_input(INPUT_GET,"clin");
+
+        $clinic = Clinic::getInstance($this->org->OrgID, $ClinicID);
+        //require_once('includes/kint/Kint.class.php');
+        $practs = $clinic->getPlacedPractitioners(false);
+        $graphs->plotAll($clinic, $practs);
+    }
+
+    public function appts() {
         
         assert_options(ASSERT_CALLBACK, function($file, $line, $code) { echo("$code");});
         $this->registry->template->controller = $this;
         require_once('includes/kint/Kint.class.php');
         
-        
-        $OrgID = filter_input(INPUT_GET,"org");
-        $ClinicID = filter_input(INPUT_GET,"clin");
-        $Method = filter_input(INPUT_GET,"met");
-        
+        $OrgID = filter_input(INPUT_GET,'org');
+        $ClinicID = filter_input(INPUT_GET,'clin');
         
         $test = new ApptBookTests($OrgID, $ClinicID);
         
-        $test->$Method();
+        $test->runAppts();
         
     }
-
-    
     
     
     public function chargeover() {
@@ -157,8 +188,6 @@ Class TestController Extends baseController {
         $billing = new Billing();
         $response = $billing->upgradePackageLine($package_id, $line_item_id, $descrip, $external_key);
     }
-    
-    
     
     
     private function LateMessageTests() {
@@ -295,9 +324,6 @@ Class TestController Extends baseController {
         );
         return $ret;
     }
-    
-    
-
 }
 
 ?>

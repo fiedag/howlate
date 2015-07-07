@@ -55,6 +55,18 @@ class Device {
         }
     }
     
+    public static function getLatenessesByUDID2($fieldval, $fieldname = 'UDID') {
+        $q = "SELECT ClinicID, ClinicName, AbbrevName, MinutesLate, MinutesLateMsg, OrgID, ID, Subdomain, AllowMessage FROM vwMyLates WHERE $fieldname = '" . $fieldval . "' ORDER BY ClinicName";
+        $sql = MainDb::getInstance();
+        $myArray = array();
+        if ($result = $sql->query($q)) {
+            while ($row = $result->fetch_object()) {
+                $myArray[] = $row;
+            }
+            return $myArray;
+        }
+    }
+    
     public static function invite($org, $id, $udid, $domain) {
        $prac = Practitioner::getInstance($org,$id);
        //$url = "http://m.$domain/late/view&xudid=" . howlate_util::to_xudid($udid);

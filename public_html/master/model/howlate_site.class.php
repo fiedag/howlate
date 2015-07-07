@@ -21,7 +21,7 @@ class HowLate_Site {
     protected $db;
     public $Result;
     
-    function __construct($co,$email)
+    function __construct($co = '',$email = '')
     {
         $this->base_path = HowLate_Util::basePath();
         $this->template_path = HowLate_Util::masterPath();

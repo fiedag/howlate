@@ -43,6 +43,31 @@ class Practitioner {
         }
     }
     
+    public static function getInstance2($OrgID, $FieldValue, $FieldName = 'PractitionerID') {
+        $q = "SELECT OrgID, PractitionerID, Pin, PractitionerName, FullName, " .
+                "ClinicName, ClinicID, OrgName, FQDN, NotificationThreshold, LateToNearest, LatenessOffset, LatenessCeiling " .
+                "FROM vwPractitioners WHERE OrgID = '$OrgID' AND $FieldName = ";
+        $q .= ($FieldName == "SurrogKey")?$FieldValue:"'$FieldValue'";
+        $sql = MainDb::getInstance();
+        echo $q;
+        
+        if ($result = $sql->query($q)->fetch_object()) {
+            if (!self::$instance) {
+                self::$instance = new self();
+            }
+            foreach ($result as $key => $val) {
+                self::$instance->$key = $val;
+            }
+            
+            return self::$instance;
+        }
+        else {
+            return null;
+        }
+    }
+    
+
+    
     
     public function logoURL() {
         return HowLate_Util::logoURL($this->Subdomain);
@@ -121,7 +146,6 @@ class Practitioner {
      * adjusted for any gaps
      */
     public function enqueueAdjustedMessage($FromClinicID, $MobilePhone, $PublishedLateness, $Domain = 'how-late.com') {
-        
         if ($FromClinicID != $this->ClinicID) {
             // 
             return "Doctor not enrolled or wrong clinic.  Message not queued";
@@ -207,9 +231,8 @@ class Practitioner {
      * Returns seconds late expressed in seconds
      * Adjusted to account for offset, threshold and offset
      */
-    public function getActualLateness($AsAt) {
-        $actual = $this->AppointmentBook->getLateness($AsAt);
-        return $actual;
+    public function getActualLateness() {
+        return $this->AppointmentBook->CurrentLate;
     }
 
     /*
@@ -266,20 +289,11 @@ class Practitioner {
     
     public function predictConsultTimes() {
         if($this->AppointmentBook) {
-            $this->AppointmentBook->traverseAppointments2();
+            $this->AppointmentBook->traverseAppointments();
         }
         return $this;
     }
-
-    
-    public function predictConsultTimes_DeleteMe($TimeNow) {
-        if($this->AppointmentBook) {
-            $this->AppointmentBook->filterByApptType()->filterByApptStatus();
-            $this->AppointmentBook->traverseAppointments($TimeNow);
-        }
-        return $this;
-    }
-    
+   
     // the new function where $ActualLateSeconds argument is in seconds!
     public function LatenessUpdate($ActualLateSeconds) {
         $InMinutes = round($ActualLateSeconds / 60, 0, PHP_ROUND_HALF_UP);

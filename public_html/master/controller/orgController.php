@@ -23,9 +23,6 @@ Class OrgController Extends baseController {
 
         // create or update billing record
         $default_user = OrgUser::getInstance($this->org->OrgID, $_SESSION["USER"]);
-        
-        //$this->org->update_billing($default_user);
-            
 
         $this->registry->template->controller = $this;       
         $this->registry->template->show('org_index');

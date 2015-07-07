@@ -7,7 +7,6 @@ Class LateController Extends baseController {
     }    
     
     public function index() {
-        header("Access-Control-Allow-Origin: *");
         $this->view();
     }
 
@@ -29,6 +28,23 @@ Class LateController Extends baseController {
         $this->registry->template->show('late_json');  // which is then parsed by the jquery function and used to update div elements
     }
  
+    public function json() {
+        $udid = filter_input(INPUT_GET,"udid");
+        if (!$udid) {
+            $xudid = filter_input(INPUT_GET, "xudid");
+            if (!$xudid) {
+                throw new Exception("Udid or Xudid parameter must be supplied");
+            }
+            $udid = HowLate_Util::to_udid($xudid);
+        }
+
+        $late_arr = Device::getLatenessesByUDID2($udid);
+        $this->registry->template->lates = $late_arr;
+        $this->registry->template->show('late_json');  // which is then parsed by the jquery function and used to update div elements
+        
+    }
+    
+    
     ///
     /// pins is a list of pins delimited by commas
     ///

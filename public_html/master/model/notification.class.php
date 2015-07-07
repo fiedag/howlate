@@ -6,9 +6,6 @@ class Notification {
         $clinic = Clinic::getInstance($practitioner->OrgID, $practitioner->ClinicID);
         
         $url = "http://m." . $domain . "/late/view?udid=$udid";
-        if($clinic->AllowMessage) {
-            $url .= "&msg=1";
-        }
         $msg = $practitioner->PractitionerName . " is running " . $lateness . ". This may change.  Please continue to check for updates here: " . $url;
         return $msg;
     }
@@ -27,6 +24,7 @@ class Notification {
     //[notify_bulk[1][AppointmentLength]] => 900  
     //[notify_bulk[1][ConsultationTime]] => 72950  
     
+    // this is now obsolete function.
     public static function notify_bulk($Practitioner, $AppointmentTime, $ConsultationTime, $AppointmentLength, $notify_bulk) {
         if (count($notify_bulk)==0) 
             return;
@@ -84,13 +82,5 @@ class Notification {
         
             
     }
-    
-    
-    public static function notify() {
-        
-    }
-    
-    
-    
     
 }

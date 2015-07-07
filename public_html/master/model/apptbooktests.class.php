@@ -12,8 +12,6 @@
  * @author Alex
  */
 
-
-
 class ApptBookTests {
     protected $OrgID;
     protected $ClinicID;
@@ -32,11 +30,17 @@ class ApptBookTests {
     
     private function read($file) {
         include_once($file);
-        return $appts;
+        return array_reverse($appts);
     }
     
-    
-    public function test1() {
+
+    public function runNotify() {
+        $this->orgNotify($this->OrgID);
+        
+    }
+
+    private function orgNotify($OrgID) {
+        
         foreach($this->Iterations as $key1=>$iteration) {
             $time_now = $iteration['Time Now'];
             $summary = $iteration['Summary'];
@@ -48,29 +52,115 @@ class ApptBookTests {
                 $original = $pract_summary['Original'];
                 $p->setAppointmentBook($original, $time_now);
                 
-                
                 $p->predictConsultTimes();
-                
-                //$seconds_late = $p->AppointmentBook->getLateness($time_now);
-                //echo $p->PractitionerName  . " after lateness predictions <br>";
-                if($p->AppointmentBook->CurrentLate) {
-                    if(!$this->expectedLateness($PractitionerName, $time_now, $p->AppointmentBook->CurrentLate)) {
-                        d($p->AppointmentBook);
-                    }
-                } 
-                $results[] = array("Practitioner" => $p->PractitionerName, "Time Now" => $p->AppointmentBook->time_now, "Current Late" => $p->AppointmentBook->CurrentLate);
-
-                
+                d($p->AppointmentBook);
             }
+        }
+    }
+    
+    
+    public function displayLog() {
+        require_once('includes/kint/Kint.class.php');
+
+        foreach($this->Iterations as $key1=>$iteration) {
+            $summ = $iteration['Summary'][0];
+            $pred = $summ['Predicted'];
+            d($summ);
+        }
+        
+    }
+
+    
+    public function testNotify() {
+        require_once('includes/kint/Kint.class.php');
+
+        //$notifier = new Notifier();
+        
+        foreach($this->Iterations as $key1=>$iteration) {
+            $summ = $iteration['Summary'][0];
             
-            //d($results);
+            $PractitionerName = $summ["Practitioner"];
+            $OrgID = $iteration['OrgID'];
+            $ClinicID = $iteration['ClinicID'];
+            $time_now = $iteration['Time Now'];
             
+            $orig = $summ['Original'];
+            $notifier = new Notifier($OrgID,$ClinicID, $orig, $time_now);
+                    
+            $pred = $summ['Predicted'];
+            d($iteration);
+            
+            $Practitioner = Practitioner::getInstance($OrgID,$PractitionerName,"FullName");
+            $notifier->processNotifications($Practitioner, $pred);
+            
+            d($notifier->notified_candidates);
         }
         
     }
     
+    
+    
+    /*
+     * 
+     * Called from testController
+     * Permits us to read 
+     */
+    public function runAppts() {
+        $this->orgAppts($this->OrgID);
+    }
+    
+    private function orgAppts($OrgID) {
+        
+        foreach($this->Iterations as $key1=>$iteration) {
+            $time_now = $iteration['Time Now'];
+            $summary = $iteration['Summary'];
+
+            $results = null;
+            foreach($summary as $key2=>$pract_summary) {
+                $PractitionerName = $pract_summary['Practitioner'];
+                $p = Practitioner::getInstance($this->OrgID,$PractitionerName, "PractitionerName");
+                $original = $pract_summary['Original'];
+                $p->setAppointmentBook($original, $time_now);
+                
+                $p->predictConsultTimes();
+                
+                if($p->AppointmentBook->CurrentLate) {
+                    if(!$this->expectedLateness($PractitionerName, $time_now, $p->AppointmentBook->CurrentLate)) {
+                        //$p->notifyPatients();
+                        d($p->AppointmentBook);
+                    }
+                    
+                    
+                } 
+                $results[] = array("Practitioner" => $p->PractitionerName, "Time Now" => $p->AppointmentBook->time_now, "Current Late" => $p->AppointmentBook->CurrentLate);
+            }
+            //d($results);
+        }
+    }
+    
     private function expectedLateness($PractitionerName, $TimeNow, $CurrentLate) {
         $msg = '    $expectations[]' . " = array('PractitionerName'=>'$PractitionerName', 'TimeNow'=>$TimeNow, 'Lateness'=>$CurrentLate); <br>";
+
+        $method = "apptExpectations_" . $this->OrgID;
+        $expectations = $this->$method();
+        foreach($expectations as $key=>$val) {
+            if($val['PractitionerName'] == $PractitionerName && $val['TimeNow'] == $TimeNow) {
+                if($val['Lateness'] != $CurrentLate) {
+                    $msg .= "FAILED, should be " . $val['Lateness'];
+                    echo $msg;
+                }
+                return ($val['Lateness'] == $CurrentLate);
+            }
+        }
+        echo $msg;
+    }
+
+    private function apptExpectations_CCEPX() {
+        $expectations[] = array('PractitionerName'=>'Dr McPhee (Ruby St)', 'TimeNow'=>53229, 'Lateness'=>1629); 
+        return $expectations;
+    }
+    
+    private function apptExpectations_CCECK() {
         $expectations[] = array('PractitionerName' => 'Mrs Tammie Boxhall', 'TimeNow'=>49563, 'Lateness'=>6363);
         $expectations[] = array('PractitionerName'=>'Dr Campbell', 'TimeNow'=>49563, 'Lateness'=>4302);
         $expectations[] = array('PractitionerName'=>'Dr Campbell', 'TimeNow'=>49683, 'Lateness'=>4302);
@@ -140,17 +230,47 @@ class ApptBookTests {
         $expectations[] = array('PractitionerName'=>'Dr Daniel Oliveira', 'TimeNow'=>52563, 'Lateness'=>729); 
         $expectations[] = array('PractitionerName'=>'Dr Campbell', 'TimeNow'=>52563, 'Lateness'=>2163); 
         $expectations[] = array('PractitionerName'=>'Mrs Tammie Boxhall', 'TimeNow'=>52563, 'Lateness'=>1052); 
+
         
-        foreach($expectations as $key=>$val) {
-            if($val['PractitionerName'] == $PractitionerName && $val['TimeNow'] == $TimeNow) {
-                if($val['Lateness'] != $CurrentLate) {
-                    $msg .= "FAILED";
-                    echo $msg;
-                }
-                return ($val['Lateness'] == $CurrentLate);
-            }
-        }
-        echo $msg;
+        // from 9 June
+        $expectations[] = array('PractitionerName'=>'Dr Campbell', 'TimeNow'=>47909, 'Lateness'=>5266); 
+        $expectations[] = array('PractitionerName'=>'Ms Sandra Turvey', 'TimeNow'=>47909, 'Lateness'=>2564); 
+        $expectations[] = array('PractitionerName'=>'Dr Campbell', 'TimeNow'=>47789, 'Lateness'=>5266); 
+        $expectations[] = array('PractitionerName'=>'Ms Sandra Turvey', 'TimeNow'=>47789, 'Lateness'=>2564); 
+        $expectations[] = array('PractitionerName'=>'Ms Sandra Turvey', 'TimeNow'=>47549, 'Lateness'=>2564); 
+        $expectations[] = array('PractitionerName'=>'Ms Sandra Turvey', 'TimeNow'=>47669, 'Lateness'=>2564); 
+        
+        $expectations[] = array('PractitionerName'=>'Dr Daniel Oliveira', 'TimeNow'=>57630, 'Lateness'=>1830);
+        $expectations[] = array('PractitionerName'=>'Dr Campbell', 'TimeNow'=>57630, 'Lateness'=>3576); 
+        
+        
+        
+        return $expectations;
     }
+    
+
+    private function apptExpectations_AAADD() {
+        //$expectations[] = array('PractitionerName'=>'Dr Anthony Alvano', 'TimeNow'=>45776, 'Lateness'=>1676); 
+        $expectations[] = array('PractitionerName'=>'Dr Anthony Alvano', 'TimeNow'=>45896, 'Lateness'=>1796); 
+        $expectations[] = array('PractitionerName'=>'Dr Anthony Alvano', 'TimeNow'=>46016, 'Lateness'=>1916); 
+        $expectations[] = array('PractitionerName'=>'Dr Anthony Alvano', 'TimeNow'=>46136, 'Lateness'=>2036); 
+        $expectations[] = array('PractitionerName'=>'Dr Anthony Alvano', 'TimeNow'=>46256, 'Lateness'=>2156); 
+        $expectations[] = array('PractitionerName'=>'Dr Anthony Alvano', 'TimeNow'=>46376, 'Lateness'=>2276); 
+        $expectations[] = array('PractitionerName'=>'Dr Anthony Alvano', 'TimeNow'=>46496, 'Lateness'=>2396); 
+        $expectations[] = array('PractitionerName'=>'Dr Anthony Alvano', 'TimeNow'=>47228, 'Lateness'=>4028); 
+        $expectations[] = array('PractitionerName'=>'Dr Anthony Alvano', 'TimeNow'=>47348, 'Lateness'=>4148); 
+        
+        $expectations[] = array('PractitionerName'=>'Dr Anthony Alvano', 'TimeNow'=>47468, 'Lateness'=>4268); 
+        $expectations[] = array('PractitionerName'=>'Dr Anthony Alvano', 'TimeNow'=>47588, 'Lateness'=>2588); 
+        $expectations[] = array('PractitionerName'=>'Dr Anthony Alvano', 'TimeNow'=>47708, 'Lateness'=>1808);
+        $expectations[] = array('PractitionerName'=>'Dr Anthony Alvano', 'TimeNow'=>47828, 'Lateness'=>1928); 
+        $expectations[] = array('PractitionerName'=>'Dr Anthony Alvano', 'TimeNow'=>47948, 'Lateness'=>2048); 
+
+        
+        
+        return $expectations;
+    }
+    
+    
     
 }
