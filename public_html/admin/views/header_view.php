@@ -80,6 +80,11 @@
                         } ?> custom-background-dark-hover">
                                 <span><a id="nav-agent" title="Billing details." class="<?php echo (get_class($controller) == "BillingController") ? 'custom-font-on-white' : 'font-on-custom-background'; ?>" href="https://<?php echo __FQDN; ?>/billing">Billing</a></span>
                             </li>
+                            <li class="<?php if (get_class($controller) == "TestingController") {
+                            echo 'active';
+                        } ?> custom-background-dark-hover">
+                                <span><a id="nav-agent" title="Tests." class="<?php echo (get_class($controller) == "TestingController") ? 'custom-font-on-white' : 'font-on-custom-background'; ?>" href="https://<?php echo __FQDN; ?>/testing">Testing</a></span>
+                            </li>
                         </ul>
                     </div>
                     <div class="clearb"></div>

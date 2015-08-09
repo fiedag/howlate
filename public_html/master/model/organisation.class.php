@@ -72,7 +72,7 @@ class Organisation {
     }
 
     private function getActiveClinics() {
-        $q = "SELECT ClinicID, OrgID, Timezone, ClinicName, Phone, Address1, Address2, City, Zip, Country FROM vwActiveClinics WHERE OrgID = '" . $this->OrgID . "'";
+        $q = "SELECT ClinicID, OrgID, Timezone, ClinicName, Phone, Address1, Address2, City, Zip, Country, HasAgent FROM vwActiveClinics WHERE OrgID = '" . $this->OrgID . "'";
         if ($result = MainDb::getInstance()->query($q)) {
             while ($row = $result->fetch_object()) {
                 $c = new Clinic($row);

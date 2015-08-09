@@ -4,13 +4,15 @@ class Practitioner {
 
     protected static $instance;
     public $OrgID;
-    public $ClinicName;
-    public $ClinicID;
+
+
     public $Subdomain;
-    public $Pin;
     public $PractitionerID;
+    public $Pin;
     public $PractitionerName;
     public $FullName;
+    public $ClinicName;
+    public $ClinicID;
     public $OrgName;
     public $FQDN;
     public $NotificationThreshold;
@@ -42,19 +44,18 @@ class Practitioner {
             return null;
         }
     }
-    
+
     public static function getInstance2($OrgID, $FieldValue, $FieldName = 'PractitionerID') {
         $q = "SELECT OrgID, PractitionerID, Pin, PractitionerName, FullName, " .
                 "ClinicName, ClinicID, OrgName, FQDN, NotificationThreshold, LateToNearest, LatenessOffset, LatenessCeiling " .
                 "FROM vwPractitioners WHERE OrgID = '$OrgID' AND $FieldName = ";
         $q .= ($FieldName == "SurrogKey")?$FieldValue:"'$FieldValue'";
         $sql = MainDb::getInstance();
-        echo $q;
         
         if ($result = $sql->query($q)->fetch_object()) {
-            if (!self::$instance) {
+            //if (!self::$instance) {
                 self::$instance = new self();
-            }
+            //}
             foreach ($result as $key => $val) {
                 self::$instance->$key = $val;
             }
@@ -65,9 +66,6 @@ class Practitioner {
             return null;
         }
     }
-    
-
-    
     
     public function logoURL() {
         return HowLate_Util::logoURL($this->Subdomain);

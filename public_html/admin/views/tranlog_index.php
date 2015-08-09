@@ -4,12 +4,8 @@
   function openView(UDID) {
       debugger;
       
-      var url = "https://m.<?php echo __DOMAIN; ?>/late/view?udid=" + UDID;
-      $('#label-show').html(url);
-      $('#iframe').load(url,function(){
-      $('#label-show').text('Content loaded!');
-   });
-      window.location.href = "#modal-show";
+      var url = "http://m.<?php echo __DOMAIN; ?>/late?udid=" + UDID;
+      window.open(url,'_blank');
   }
 
 

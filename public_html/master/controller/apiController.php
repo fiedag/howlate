@@ -166,8 +166,9 @@ Class ApiController Extends baseController {
         $result = Api::processAppointments($this->org->OrgID, $ClinicID, $appt, $TimeNow);
         $this->registry->template->result = $result;
         $this->registry->template->show('api_index');
-        
     }
+
+    
     
     
     public function agent_stop() {

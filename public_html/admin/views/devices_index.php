@@ -9,7 +9,7 @@
 <script>
   function openView(UDID) {
       
-      var url = "https://admin.<?php echo __DOMAIN; ?>/late?udid=" + UDID;
+      var url = "http://m.<?php echo __DOMAIN; ?>/late?udid=" + UDID;
       $('#label-show').html(url);
       $('#late-view').load(url,function(){
       $('#label-show').text(UDID);

@@ -1,5 +1,10 @@
 <?php
-
+/*
+ * Do not use this class directly.  Use the Billing class instead.
+ * This permits the Billing class to abstract the details of the billing 
+ * provider.
+ * 
+ */
 class Chargeover {
     
     private $API;
@@ -71,7 +76,18 @@ class Chargeover {
         }
     }
     
-    
+    function deleteCustomer($the_customer_id) {
+        // Delete them
+        $resp = $this->API->delete(ChargeOverAPI_Object::TYPE_CUSTOMER, $the_customer_id);
+
+        // Check for errors 
+        if (!$this->API->isError($resp)) {
+            return 'Customer was deleted!';
+        }
+        else {
+            throw new Exception("The customer COULD NOT BE DELETED!" . $this->API->lastRequest() . "," . $this->API->lastResponse());
+        }
+    }
     
     function createPackage($customer_id, $Subscription, $SMS) {
         $Package = new ChargeOverAPI_Object_Package();

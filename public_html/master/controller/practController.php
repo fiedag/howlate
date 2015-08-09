@@ -15,7 +15,7 @@ Class PractController Extends baseController {
         $xcrud = Xcrud::get_instance('Main');
         $xcrud->connection(HowLate_Util::mysqlUser(),HowLate_Util::mysqlPassword(),HowLate_Util::mysqlDb());
         
-        $xcrud->table('practitioners')->where('OrgID =', $this->org->OrgID)->limit(10);
+        $xcrud->table('practitioners')->where('OrgID =', $this->org->OrgID)->limit(25);
         $xcrud->join("SurrogKey","vwAssigned","SurrogKey");
 
         $xcrud->columns('ID,FullName,AbbrevName,DateCreated,vwAssigned.Assigned,SurrogKey', false);
@@ -33,7 +33,7 @@ Class PractController Extends baseController {
         $xcrud->pass_default('DateCreated', date('Y-m-d'));      
         $xcrud->column_pattern('SurrogKey', $this->assignSpan());  // display the assignment button
 
-        
+        $xcrud->order_by('vwAssigned.Assigned');
         $xcrud->field_tooltip('NotificationThreshold','Lateness less than this (minutes) is shown as On Time');
         $xcrud->field_tooltip('LateToNearest','Round to nearest number of minutes');
         $xcrud->field_tooltip('LatenessOffset','Finally, subtract this number of minutes');

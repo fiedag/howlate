@@ -8,6 +8,8 @@
  * and predictions.
  * @author Alex
  */
+
+
 class Notifier {
 
     protected $entire_appt_book;   // entire appt book for a day

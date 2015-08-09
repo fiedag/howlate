@@ -20,16 +20,11 @@
 
             //Transforms
 
-        var transforms = {
-	        
+             var transforms = {
 			'Clinic': [
-		        
 					{"tag":"li","html":"${ClinicName} <b>${AbbrevName} </b> ${MinutesLateMsg}"}
-
-	        
-                        ]};
-    	
-
+                        ]
+             };
 
             //Callback Function
             function formatContent(json) {

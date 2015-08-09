@@ -136,7 +136,7 @@ class Billing {
         $chargeover->createPackage($co_cust->customer_id, $Subscription, $SMS);
     }
 
-    /*
+    /* 
      * 
      * 
      * NOT FINISHED.  Needs to update the quantity for the given Clinic
@@ -144,16 +144,44 @@ class Billing {
      * of assigned practitioners in every clinic
      */
     public function adjustPackage($organisation) {
-        $clin = $this->getHowLateDetails($organisation->OrgID);
+        // $organisation is an object
+        require_once('includes/kint/Kint.class.php');
+        
+        echo $organisation->OrgName . "<br>";
+        d($organisation->ActiveClinics);
         $package = $this->getChargeoverPackage($organisation->OrgID);
-        foreach ($clin as $key => $val) {
-            $line_item_id = array_search($val->ClinicID, array_column($package, 'external_key'));
-            if (!$line_item_id) {
-                
+        $line_items = $package->line_items;
+        d($line_items);
+        foreach($organisation->ActiveClinics as $key=>$val) {
+            $clinicID = $val->ClinicID;
+            d($clinicID);
+            $item = $this->member_search($line_items, 'external_key' , $clinicID);
+            if(!$item) {
+                echo "Item $clinicID not found";
+            }
+            else {
+                d($item);
             }
         }
     }
 
+    
+    private function member_search($array, $member, $value) {
+        if (empty($array)) {
+            return false;
+        }
+
+        foreach ($array as $k=>$v) {
+            if($v->$member === $value)
+                return $v;
+        }
+        return false;
+    }
+
+    public function deleteCustomer($customerID) {
+        $chargeover = new Chargeover();
+        $chargeover->deleteCustomer($customerID);
+    }
     
     private function recordUsage($chargeover, $OrgID, $OrgName = 'Org Name not given') {
         $last_billed = $this->getLastBilledSMS($OrgID);
@@ -257,7 +285,11 @@ class Billing {
         }
     }
 
+    
+    
 }
+
+
 
 /*
  * 

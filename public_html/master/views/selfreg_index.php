@@ -25,7 +25,7 @@
                     <form class="navbar-form navbar-left" name="selfreg" id="selfreg" action="/selfreg/register" method="post">
                         <div class="form-group">
 
-                            <input type="text" class="form-control" id="invitepin" name="invitepin" style="text-transform:uppercase" pattern="[A-Z]{5}\.[A-Z]{1,2}" required>
+                            <input type="text" class="form-control" id="invitepin" name="invitepin" style="text-transform:uppercase" pattern="[A-Z,a-z]{5}\.[A-Z,a-z]{1,2}" required>
                             <button class="btn btn-lg btn-primary navbar-btn" type="submit"><span class="glyphicon glyphicon-ok"></span></button>
                         </div>
                     </form>

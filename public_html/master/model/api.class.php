@@ -105,7 +105,7 @@ class Api {
             // $appts is the array of appointments for this practitioner $pract
             $appts = array_filter($appt_bulk, function($item) use ($pract) { return $item['Provider'] == $pract; });
             
-            $p = Practitioner::getInstance($OrgID, $pract, 'FullName');
+            $p = Practitioner::getInstance2($OrgID, $pract, 'FullName');
             if(!$p) {
                 $p = Practitioner::createDefaultPractitioner($OrgID, $ClinicID, $pract);
                 continue;
@@ -131,6 +131,7 @@ class Api {
             
             // $summary is populated for diagnostic and unit test purposes
             $summary[] = array(
+                "Time Now" => $time_now,
                 "Practitioner" => $p->PractitionerName, 
                 "Actual Late" => $actual_lateness_seconds, 
                 "Original" => $appts, 
@@ -140,9 +141,9 @@ class Api {
 
         // $ret is for diagnostics and unit testing
         $ret = array(
-            "Time Now" => $time_now, 
             "OrgID" => $OrgID, 
             "ClinicID" => $ClinicID, 
+            "appt_bulk" => $appt_bulk,
             "Summary"=> $summary);
         
         Clinic::getInstance($OrgID, $ClinicID)->apptLogging($ret);

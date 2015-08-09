@@ -15,7 +15,7 @@ class Clinic extends Howlate_BaseTable {
     public $State;
     public $AllowMessage;
     public $MsgRecip;
-
+    public $HasAgent;
     public $ApptLogging;
     
     public static function getInstance($OrgID, $ClinicID) {
@@ -172,7 +172,7 @@ class Clinic extends Howlate_BaseTable {
     
     private function writeLog($array) {
         
-        if ($outfile = fopen("/home/howlate/public_html/master/logs/" . $this->OrgID . "." . $this->ClinicID . ".log.inc", "a")) {
+        if ($outfile = fopen("/home/howlate/public_html/master/logs/" . $this->OrgID . "/" . $this->ClinicID . ".log.inc", "a")) {
             
             $exp = var_export($array,true);
             fwrite($outfile,"<?php" . "\r\n");

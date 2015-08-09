@@ -17,7 +17,7 @@ class ApptBookTests {
     protected $ClinicID;
     protected $File;
     
-    protected $Iterations;
+    public $Iterations;
     
     function __construct($OrgID, $ClinicID) {
         $this->OrgID = $OrgID;
@@ -30,7 +30,8 @@ class ApptBookTests {
     
     private function read($file) {
         include_once($file);
-        return array_reverse($appts);
+        return $appts;
+        //return array_reverse($appts);
     }
     
 
@@ -63,8 +64,7 @@ class ApptBookTests {
         require_once('includes/kint/Kint.class.php');
 
         foreach($this->Iterations as $key1=>$iteration) {
-            $summ = $iteration['Summary'][0];
-            $pred = $summ['Predicted'];
+            $summ = $iteration['Summary'];
             d($summ);
         }
         
@@ -112,11 +112,13 @@ class ApptBookTests {
     private function orgAppts($OrgID) {
         
         foreach($this->Iterations as $key1=>$iteration) {
-            $time_now = $iteration['Time Now'];
+            
             $summary = $iteration['Summary'];
 
             $results = null;
             foreach($summary as $key2=>$pract_summary) {
+                $time_now = $pract_summary['Time Now'];
+                
                 $PractitionerName = $pract_summary['Practitioner'];
                 $p = Practitioner::getInstance($this->OrgID,$PractitionerName, "PractitionerName");
                 $original = $pract_summary['Original'];

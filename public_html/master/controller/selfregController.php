@@ -34,7 +34,7 @@ Class SelfRegController Extends baseController {
         
         $this->invitepin = strtoupper(filter_input(INPUT_POST,"invitepin"));
         if(!$this->invitepin || $this->invitepin == 'AAAAA.A') {
-            throw new Exception("You must enter a valid PIN.");
+            throw new Exception("No pin entered.  You must enter a valid PIN.");
         }
         HowLate_Util::validatePin($this->invitepin);
         
