@@ -141,6 +141,7 @@ class Api {
 
         // $ret is for diagnostics and unit testing
         $ret = array(
+            "Date" => date('Y-m-d'),
             "OrgID" => $OrgID, 
             "ClinicID" => $ClinicID, 
             "appt_bulk" => $appt_bulk,
