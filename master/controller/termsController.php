@@ -13,7 +13,7 @@ Class TermsController Extends baseController {
     function get_banner() {
         include 'controller/bannerController.php';
         $header = new bannerController($this->registry);
-        $header->view($this->org);
+        $header->view($this->Organisation);
     }
 
         

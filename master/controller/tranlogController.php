@@ -41,10 +41,10 @@ Class TranLogController Extends baseController {
         include('includes/xcrud/xcrud.php');
         $xcrud = Xcrud::get_instance();
         $xcrud->connection(HowLate_Util::mysqlUser(),HowLate_Util::mysqlPassword(),HowLate_Util::mysqlDb());
-        $xcrud->table('vwWeeksLog')->table_name('Transaction Log',"This week's log shown in latest first order.  See CSV export button at end.")->where('OrgID =', $this->org->OrgID)->limit(50);
+        $xcrud->table('vwWeeksLog')->table_name('Transaction Log',"This week's log shown in latest first order.  See CSV export button at end.")->where('OrgID =', $this->Organisation->OrgID)->limit(50);
         $xcrud->order_by('Id','desc');        
         $xcrud->columns('OrgID', true);
-        $xcrud->pass_default('OrgID', $this->org->OrgID);
+        $xcrud->pass_default('OrgID', $this->Organisation->OrgID);
         $xcrud->unset_edit()->unset_remove()->unset_add();
         $xcrud->unset_numbers(true)->unset_print(true)->unset_limitlist(true)->hide_button('save_and_edit')->hide_button('save_and_new');     
         return $xcrud->render();
@@ -53,7 +53,7 @@ Class TranLogController Extends baseController {
         include('includes/xcrud/xcrud.php');
         $xcrud = Xcrud::get_instance();
         $xcrud->connection(HowLate_Util::mysqlUser(),HowLate_Util::mysqlPassword(),HowLate_Util::mysqlDb());
-        $xcrud->table('sentsms')->table_name('SMS Log',"The SMS messages in latest first order.  See CSV export button at end.")->where('OrgID =', $this->org->OrgID)->limit(50);
+        $xcrud->table('sentsms')->table_name('SMS Log',"The SMS messages in latest first order.  See CSV export button at end.")->where('OrgID =', $this->Organisation->OrgID)->limit(50);
         $xcrud->order_by('Created','desc');        
         $xcrud->unset_edit()->unset_remove()->unset_add();
         $xcrud->columns(array('API','OrgID','MessageID','SessionID'),true);
@@ -67,7 +67,7 @@ Class TranLogController Extends baseController {
         $xcrud = Xcrud::get_instance();
         $xcrud->connection(HowLate_Util::mysqlUser(),HowLate_Util::mysqlPassword(),HowLate_Util::mysqlDb());
         $xcrud->table('vwDaysLog')->table_name("Today's log","All logs for the current day in forward time order.");
-        $xcrud->where('OrgID =', $this->org->OrgID)->limit(50)->where("not(TransType = 'LATE_UPD' and Late = 0)");
+        $xcrud->where('OrgID =', $this->Organisation->OrgID)->limit(50)->where("not(TransType = 'LATE_UPD' and Late = 0)");
         $xcrud->order_by('ClinicName,FullName,Timestamp','asc');        
         $xcrud->unset_edit()->unset_remove()->unset_add();
 

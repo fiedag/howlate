@@ -14,8 +14,8 @@ Class BannerController Extends baseController {
             $this->registry->template->orgidcookie = $_COOKIE["ORGID"];
         }
 
-        $this->org = $org;
-        $this->registry->template->org = $org;
+        $this->Organisation = $org;
+        $this->registry->template->Organisation = $org;
         $this->registry->template->show('banner_view');
     }
     

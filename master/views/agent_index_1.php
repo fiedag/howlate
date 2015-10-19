@@ -51,9 +51,9 @@
         <div>
             <button type="submit" class="xcrud-button xcrud-cyan ">(SAVE) Download HowLateAgent.exe.config</button>
         </div>
-        <input type="hidden" readonly="readonly" class="controls" id="OrgID" name="OrgID" value="<?php echo $controller->org->OrgID;?>"><br>
+        <input type="hidden" readonly="readonly" class="controls" id="OrgID" name="OrgID" value="<?php echo $controller->Organisation->OrgID;?>"><br>
         <input type="hidden" readonly="readonly" class="controls" id="ClinicID" name="ClinicID" value="<?php echo $controller->currentClinic;?>"><br>
-        <input type="hidden" readonly="readonly" class="controls" id="Subdomain" name="Subdomain" value="<?php echo $controller->org->Subdomain;?>"><br>
+        <input type="hidden" readonly="readonly" class="controls" id="Subdomain" name="Subdomain" value="<?php echo $controller->Organisation->Subdomain;?>"><br>
     </form>
 
 

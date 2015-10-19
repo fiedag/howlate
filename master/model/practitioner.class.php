@@ -36,7 +36,7 @@ class Practitioner {
             return self::$instance;
         }
         else {
-            return null;
+            throw new Exception("PRactityioner not found!");
         }
     }
     
@@ -55,7 +55,8 @@ class Practitioner {
             return self::$instance;
         }
         else {
-            return self::createDefaultPractitioner($OrgID, $ClinicID, $FieldValue);
+            self::$instance = new self();
+            return self::$instance->createDefaultPractitioner($OrgID, $ClinicID, $FieldValue);
         }
     }
     
@@ -68,6 +69,7 @@ class Practitioner {
     public function updateLateness($NewLate, $Sticky = 0, $Manual = 1) {
 
         $q = "CALL sp_LateUpd(?, ?, ?, ?, ?)"; // last parameter denotes manual update
+        
         $sql = MainDb::getInstance();
         $stmt = $sql->prepare($q);
         $stmt->bind_param('ssiii', $this->OrgID, $this->PractitionerID, $NewLate, $Sticky, $Manual);
@@ -75,18 +77,19 @@ class Practitioner {
             throw new Exception("# Query Error $this->OrgID, $this->PractitionerID, $NewLate, $Sticky ( $sql->errno ) "  . $sql->error);
         }
         Logging::trlog(TranType::LATE_UPD, "Lateness now $NewLate , Sticky = $Sticky.", $this->OrgID, $this->ClinicID, $this->PractitionerID, null, $NewLate);
-        return "lateness updated ok";
+        return array('PractitionerName'=>$this->PractitionerName,'New Late'=>$NewLate);
     }
 
-    public function updatesessions($org, $clinicid, $id, $day, $start, $end) {
+    public function updateSessions($day, $start, $end) {
         $q = "REPLACE INTO sessions (OrgID, ID, Day, StartTime, EndTime, ClinicID) VALUES (?,?,?,?,?,?)";
         $sql = MainDb::getInstance();
         $stmt = $sql->prepare($q);
-        $stmt->bind_param('sssiii', $org, $id, $day, $start, $end, $clinicid);
-        $stmt->execute() or trigger_error('# Query Error (' . $sql->errno . ') ' . $sql->error, E_USER_ERROR);
-        Logging::trlog(TranType::SESS_UPD, "$day Session updated to [$start,$end]", $org, $clinicid, $id, null);
+        $stmt->bind_param('sssiii', $this->OrgID, $this->PractitionerID, $day, $start, $end, $this->ClinicID);
+        $ret = $stmt->execute() or trigger_error('# Query Error (' . $sql->errno . ') ' . $sql->error, E_USER_ERROR);
+        
+        Logging::trlog(TranType::SESS_UPD, "$day Session updated to [$start,$end]", $this->OrgID, $this->ClinicID, $this->PractitionerID, null);
+        return $ret;
     }
-
     
     /*
      * Returns true if the session is ended today
@@ -110,6 +113,7 @@ class Practitioner {
         $stmt = MainDb::getInstance()->prepare($q);
         $stmt->bind_param('ss', $org, $id);
         $stmt->execute();
+        
     }
     
     public function assign($clinic) {
@@ -140,38 +144,7 @@ class Practitioner {
         Logging::trlog(TranType::MISC_MISC,"Default Practitioner $name created",$orgid);
         return self::getInstance($orgid, $name, 'FullName');
     }
-    
 
-    /* enqueue a message with the lateness 
-     * adjusted for any gaps
-     */
-    public function enqueueAdjustedMessage($FromClinicID, $MobilePhone, $PublishedLateness, $Domain = 'how-late.com') {
-        if ($FromClinicID != $this->ClinicID) {
-            // 
-            return "Doctor not enrolled or wrong clinic.  Message not queued";
-        }
-        $MobilePhone = trim($MobilePhone);
-        $MobilePhone = preg_replace("/[^0-9]/", "", $MobilePhone);
-        Device::register($this->OrgID, $this->PractitionerID, $MobilePhone);
-        
-        $q = "SELECT COUNT(0) As AlreadyDone FROM notifqueue WHERE OrgID = '$this->OrgID' AND PractitionerID = '$this->PractitionerID' AND ClinicID = $this->ClinicID AND MobilePhone = '$MobilePhone' AND Created >= CURDATE()";
-        $row = MainDb::getInstance()->query($q)->fetch_object();
-        if ($row->AlreadyDone != "0") {
-            return "Patient $MobilePhone already notified today.  Not queued.";
-        }
-        
-        $url = "http://m." . $Domain . "/late/view&udid=$MobilePhone";
-        
-        $msg = Notification::getMessage($this, $PublishedLateness, $MobilePhone, $Domain);
-        
-        // this takes care of duplicates and suppression based on clinic.SuppressNotifications etc
-        $q = "CALL sp_EnqueueNotification(?,?,?,?,?,?)";
-        $stmt = MainDb::getInstance()->prepare($q);
-        $stmt->bind_param('sisssi', $this->OrgID, $this->ClinicID, $this->PractitionerID, $MobilePhone, $msg,$PublishedLateness);
-        $stmt->execute() or trigger_error('# Query Error (' . $stmt->errno . ') ' . $stmt->error, E_USER_ERROR);
-        
-        return "SMS message to $MobilePhone queued.";
-    }
     
     public function enqueueNotification($MobilePhone, $domain = 'how-late.com') {
         
@@ -251,7 +224,7 @@ class Practitioner {
                 $tonearest = 1;
             }
             $rounded = $tonearest * round($ActualLateness / $tonearest,0,PHP_ROUND_HALF_UP);
-        
+
             $adjusted = $rounded - $this->LatenessOffset;
             $result = $this->durationStr($adjusted);
         }
@@ -294,7 +267,7 @@ class Practitioner {
         }
         return $this;
     }
-   
+    
     // the new function where $ActualLateSeconds argument is in seconds!
     public function LatenessUpdate($ActualLateSeconds) {
         $InMinutes = round($ActualLateSeconds / 60, 0, PHP_ROUND_HALF_UP);
@@ -308,6 +281,5 @@ class Practitioner {
         Logging::trlog(TranType::LATE_UPD, "Agent update, now $InMinutes late", $this->OrgID, $this->ClinicID, $this->PractitionerID, null, $InMinutes);
         return "lateness updated ok";
     }
-    
 }
 ?>

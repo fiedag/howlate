@@ -1,3 +1,13 @@
+function fade_welcome() {
+    var scrollTop = $(window).scrollTop();
+    var height = $(window).height();
+
+    $('#welcome').css({
+        'opacity': ((height - scrollTop * 1.5) / height)
+    });
+};
+
+
 function signupFunction()
 {
 
@@ -86,7 +96,12 @@ var adroll_pix_id = "IZR7HAJIINEJHETKC43M2Z";
         if (oldonload) {
             oldonload()
         }
+        
+        fade_welcome();
+        
     };
+
+    $(window).scroll(function() { fade_welcome(); });
 
 
     $(document).ready(function() {

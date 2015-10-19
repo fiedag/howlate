@@ -1,12 +1,29 @@
-            <nav class="navbar navbar-fixed-top">
+            <!-- Begin Header / Reserve Flow -->
+
+            <header class="navbar navbar-fixed-top">
                 <div class="navbar-inner">
-                    <ul class="nav nav-normal">
-                        <li><a id="home_nav" href="/" title="Home">HOME</a></li>
-                        <li><a id="features_nav" href="#featurelink" title="Features">FEATURES</a></li>
-                        <li class=""><a id="faq_nav" title="FAQ" href="/faq.php" title="Frequently Asked Questions">FAQ</a></li>
-                        <li class=""><a id="pricing_nav" title="PRICING" href="/pricing.php" title="How Late Pricing Plans">PRICING</a></li>
-                        <li class=""><a id="press_nav" title="Press" href="/press.php">PRESS</a></li>
-                        <li class=""><a id="privacy_nav" title="Privacy" href="/privacy.php">PRIVACY</a></li>
-                    </ul>
+                    <div class="container-fluid reserve-window-hide-on-open">
+                        <div class="row-fluid">
+                            <div class="span12">
+                                <div id="outercontainer" class="container">
+                                    <div class="row">
+                                        <div class="span4 brand-wrapper">
+                                            <a class="brand" title="how late" href="/"><div id="logo-howlate" class="logo"></div></a>
+                                            
+                                        </div>
+                                        
+                                        <div class="span4 offset4">
+                                            <div class="header-circle">
+                                                <div class="header-circle-inner">
+                                                    <a href="https://secure.how-late.com/selfreg">PATIENTS</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </nav>
+            </header>
+            <!-- End Header / Reserve Flow -->

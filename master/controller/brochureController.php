@@ -15,7 +15,7 @@ Class BrochureController Extends baseController {
             $this->currentClinicName = $_SESSION["CLINICNAME"];
         }
         
-        $lates = $this->org->getLatenesses($this->currentClinic);
+        $lates = $this->Organisation->getLatenesses($this->currentClinic);
         
         $this->pract = reset($lates);
         if(count($this->pract) == 1) {

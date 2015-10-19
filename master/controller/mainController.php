@@ -12,9 +12,10 @@ Class MainController Extends baseController {
     public $UTC;
     
     public function index() {
-        $this->org->getRelated();
+        $this->Organisation->getRelated();
         $ClinicID = $this->getCurrentClinicID();
-        $clin = Clinic::getInstance($this->org->OrgID,$ClinicID);
+        
+        $clin = Clinic::getInstance($this->Organisation->OrgID,$ClinicID);
         
         date_default_timezone_set($clin->Timezone);
 
@@ -35,13 +36,15 @@ Class MainController Extends baseController {
         if(isset($_SESSION["CLINIC"])) {
             return $_SESSION["CLINIC"];
         }
-        if(isset($this->org->ActiveClinics)) {
-            return $this->org->ActiveClinics[0]->ClinicID;
+        if(isset($this->Organisation->ActiveClinics)) {
+            return $this->Organisation->ActiveClinics[0]->ClinicID;
         }
-        if(isset($this->org->Clinics)) {
-            return $this->org->Clinics[0]->ClinicID;
+        if(isset($this->Organisation->Clinics)) {
+            return $this->Organisation->Clinics[0]->ClinicID;
         }
+        return '-1';
     }
+    
     private function setCurrentClinicID($ClinicID) {
         $_SESSION["CLINIC"] = $ClinicID;
     }
@@ -79,7 +82,7 @@ Class MainController Extends baseController {
         include('includes/xcrud/xcrud.php');
         $xcrud = Xcrud::get_instance('Main');
         $xcrud->connection(HowLate_Util::mysqlUser(),HowLate_Util::mysqlPassword(),HowLate_Util::mysqlDb());
-        $clause = "OrgID ='" . $this->org->OrgID . "' AND ClinicID = $this->currentClinic";
+        $clause = "OrgID ='" . $this->Organisation->OrgID . "' AND ClinicID = $this->currentClinic";
         $xcrud->table('vwLateness')->where($clause);
         $xcrud->columns('OrgID,ID,FullName,DateCreated,OrgName,ClinicID,ClinicName,MinutesLateMsg,AllowMessage,Subdomain,Updated,LatenessCeiling,LateToNearest',true);
         $xcrud->unset_add( true )->unset_csv()->unset_pagination()->unset_limitlist()->unset_search()->unset_print()->unset_numbers()->unset_title();
@@ -107,20 +110,7 @@ Class MainController Extends baseController {
  
         $this->index();
     }
-    
-    ///
-    /// Put together the clinics dropdown
-    ///
-    public function get_clinic_options_DeleteMe() {
-        $i = 0;
-        foreach ($this->org->ActiveClinics as $value) {
-            echo "<option value='" . $value->ClinicID . "' ";
-            if ($value->ClinicID == $this->currentClinic) {
-                echo "selected";
-            }
-            echo ">$value->ClinicName</option>";
-        }
-    }
+
     
     public function setclinic() {
         $selectedclinic = filter_input(INPUT_GET,'clinic');

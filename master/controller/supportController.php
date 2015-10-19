@@ -3,7 +3,6 @@
 Class SupportController Extends baseController {
 
     public function index() {
-        $this->getOrg();
         $this->registry->template->controller = $this;
      
         $this->registry->template->user = $_SESSION["USER"];
@@ -26,8 +25,8 @@ Class SupportController Extends baseController {
     }
 
     private function getOrg() {
-        if (!isset($this->org)) {
-            $this->org = Organisation::getInstance(__SUBDOMAIN);
+        if (!isset($this->Organisation)) {
+            $this->Organisation = Organisation::getInstance(__SUBDOMAIN);
         }
     }
 
@@ -55,8 +54,8 @@ Class SupportController Extends baseController {
         $this->getOrg();
         $this->registry->template->controller = $this;
         $administrator = "61403569377";
-        $smstext = "User " .  $_SESSION["USER"] . " from " . $this->org->OrgName . " has sent you a note.  Check admin@how-late.com";
-        HowLate_SMS::httpSend($this->org->OrgID, $administrator, $smstext);
+        $smstext = "User " .  $_SESSION["USER"] . " from " . $this->Organisation->OrgName . " has sent you a note.  Check admin@how-late.com";
+        HowLate_SMS::httpSend($this->Organisation->OrgID, $administrator, $smstext);
         
         $mailer = new Howlate_Mailer();
         $mailer->send(HowLate_Util::admin_email(),'Administrator', 'A note has been received', $note, 'admin@how-late.com', 'Administrator');

@@ -1,6 +1,5 @@
 <?php
 Class HeaderController Extends baseController {
-    //public $org;
     
     public function index() {
         $this->view();
@@ -14,8 +13,8 @@ Class HeaderController Extends baseController {
             $this->registry->template->orgidcookie = $_COOKIE["ORGID"];
         }
 
-        $this->org = $org;
-        $this->registry->template->org = $org;
+        $this->Organisation = $org;
+        $this->registry->template->Organisation = $org;
         
         
         $this->registry->template->show('header_view');

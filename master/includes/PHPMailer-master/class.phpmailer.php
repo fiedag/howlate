@@ -547,7 +547,8 @@ class PHPMailer
      * @type boolean
      * @access protected
      */
-    protected $exceptions = false;
+    //protected $exceptions = false;
+    protected $exceptions = true;
 
     /**
      * Error severity: message only, continue processing.
@@ -959,6 +960,7 @@ class PHPMailer
      */
     public function send()
     {
+        
         try {
             if (!$this->preSend()) {
                 return false;

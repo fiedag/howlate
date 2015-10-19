@@ -12,7 +12,7 @@
         <div class="panel-body">
             1. Download the executable and place in e.g. <code>C:\Program Files\HowLate\HowLateAgent.exe</code> of your <i>Database</i> Server.
             <br><br>
-            <a href="/agent/exe"><button class="btn btn-primary center-block"><span class="glyphicon glyphicon-save" aria-hidden="true"></span> Download</button></a>
+            <a href="/agent/exe"><button class="btn btn-primary center-block"><span class="glyphicon glyphicon-download" aria-hidden="true"></span> Download</button></a>
         </div>
 
     </div>
@@ -58,13 +58,15 @@
                     <label for="HLUserID">How Late UserID</label>
                     <select class="form-control" name="HLUserID" id="HLUserID" ><?php $controller->get_user_options($HLUserID); ?></select>
                 </div>  
+                <br><br>
 
-                <div>
-                    <button type="submit" class="btn btn-primary center-block"><span class="glyphicon glyphicon-save" aria-hidden="true"></span> Download</button>
+                <div class="text-center">
+                    <button type="submit" name="action" value="save" class="btn btn-primary"><span class="glyphicon glyphicon-save" aria-hidden="true"></span> Save</button>
+                    <button type="submit" name="action" value="download" class="btn btn-primary"><span class="glyphicon glyphicon-download" aria-hidden="true"></span> Download</button>
                 </div>
-                <input type="hidden" readonly="readonly" class="controls" id="OrgID" name="OrgID" value="<?php echo $controller->org->OrgID; ?>"><br>
-                <input type="hidden" readonly="readonly" class="controls" id="ClinicID" name="ClinicID" value="<?php echo $controller->currentClinic; ?>"><br>
-                <input type="hidden" readonly="readonly" class="controls" id="Subdomain" name="Subdomain" value="<?php echo $controller->org->Subdomain; ?>"><br>
+                <input type="hidden" readonly="readonly" class="controls" id="OrgID" name="OrgID" value="<?php echo $controller->Organisation->OrgID; ?>">
+                <input type="hidden" readonly="readonly" class="controls" id="ClinicID" name="ClinicID" value="<?php echo $controller->currentClinic; ?>">
+                <input type="hidden" readonly="readonly" class="controls" id="Subdomain" name="Subdomain" value="<?php echo $controller->Organisation->Subdomain; ?>">
             </form>
         </div>
     </div>
@@ -75,8 +77,10 @@
         </div>
         <div class="panel-body">
             Download the script to make this exe a Windows Service.  Place in the same folder as the other files.
-            <div class="xcrud-nav">
-                <a href="/agent/install"><button class="btn btn-primary center-block"><span class="glyphicon glyphicon-save" aria-hidden="true"></span> Download</button></a>
+            <br>
+            <br>
+            <div class="text-center">
+                <a href="/agent/install"><button class="btn btn-primary"><span class="glyphicon glyphicon-save" aria-hidden="true"></span> Download</button></a>
             </div>
         </div>
     </div>

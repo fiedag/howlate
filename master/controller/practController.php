@@ -3,8 +3,7 @@
 Class PractController Extends baseController {
 
     public function index() {
-        $this->org = Organisation::getInstance(__SUBDOMAIN);
-        $this->org->getRelated();
+        $this->Organisation->getRelated();
         $this->registry->template->controller = $this;
         $this->registry->template->clinic_json = $this->get_clinic_json();
         $this->registry->template->show('pract_index');
@@ -14,7 +13,7 @@ Class PractController Extends baseController {
         include('includes/xcrud/xcrud.php');
         $xcrud = Xcrud::get_instance('Main');
         $xcrud->connection(HowLate_Util::mysqlUser(),HowLate_Util::mysqlPassword(),HowLate_Util::mysqlDb());
-        $xcrud->table('practitioners')->where('OrgID =', $this->org->OrgID)->limit(250);
+        $xcrud->table('practitioners')->where('OrgID =', $this->Organisation->OrgID)->limit(250);
         $xcrud->join("SurrogKey","vwAssigned","SurrogKey");
         $xcrud->columns('ID,FullName,AbbrevName,DateCreated,vwAssigned.Assigned', false);
         
@@ -24,7 +23,7 @@ Class PractController Extends baseController {
         $xcrud->label(array('vwAssigned.Assigned' => 'Clinic Assigned', 'FullName' => 'Full Name', 'AbbrevName' => 'Abbrev Name', 'DateCreated' => 'Created', 'SurrogKey' => 'Reassign', 'LateToNearest' => 'Late To Nearest', 'LatenessOffset' => "Lateness Offset", 'NotificationThreshold' => 'Notification Threshold', 'LatenessCeiling' => 'Lateness Ceiling'));
         $xcrud->unset_csv(true)->unset_numbers(true)->unset_print(true)->unset_limitlist(true)->hide_button('save_and_edit')->hide_button('save_and_new');
         $xcrud->unset_sortable(true);  // because it breaks inline editing
-        $xcrud->pass_default('OrgID', $this->org->OrgID);
+        $xcrud->pass_default('OrgID', $this->Organisation->OrgID);
 
         $xcrud->pass_default('DateCreated', date('Y-m-d'));      
 
@@ -41,7 +40,7 @@ Class PractController Extends baseController {
     
     private function get_clinic_json() {
         $r = "{";
-        foreach ($this->org->Clinics as $value) {
+        foreach ($this->Organisation->Clinics as $value) {
             $r .= "'$value->ClinicID' : '$value->ClinicName',";
         }
         $r .= "'0': 'Not assigned'}";

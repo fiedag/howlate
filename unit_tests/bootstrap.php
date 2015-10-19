@@ -8,8 +8,8 @@
 
 $site_path = 'D:/xampp/htdocs/public_html/master';
 define('__SITE_PATH', $site_path); 
-    
+
 date_default_timezone_set("Australia/Adelaide");
-
-include_once($site_path . '/includes/init.php');
-
+$_SERVER["SERVER_NAME"] = 'm.howlate.com';
+include_once(__SITE_PATH . '/includes/init.php');
+ob_start();

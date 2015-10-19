@@ -7,7 +7,7 @@ Abstract Class BaseController {
 
     protected $registry;
 
-    public $org;
+    public $Organisation;
     
     function __construct($registry) {
         $this->registry = $registry;  

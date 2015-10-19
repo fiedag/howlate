@@ -57,14 +57,13 @@ class Organisation {
         $this->getActiveClinics();
         $this->getAllPractitioners();
         $this->getAllUsers();
-        
     }
     
     private function getAllClinics() {
-        $q = "SELECT ClinicID, OrgID, Timezone, ClinicName, Phone, Address1, Address2, City, Zip, Country FROM clinics WHERE OrgID = '" . $this->OrgID . "'";
+        $q = "SELECT ClinicID FROM clinics WHERE OrgID = '" . $this->OrgID . "'";
         if ($result = MainDb::getInstance()->query($q)) {
             while ($row = $result->fetch_object()) {
-                $c = new Clinic($row);
+                $c = Clinic::getInstance($this->OrgID, $row->ClinicID);
                 $this->Clinics[] = $c;
             }
         }
@@ -72,10 +71,10 @@ class Organisation {
     }
 
     private function getActiveClinics() {
-        $q = "SELECT ClinicID, OrgID, Timezone, ClinicName, Phone, Address1, Address2, City, Zip, Country, HasAgent FROM vwActiveClinics WHERE OrgID = '" . $this->OrgID . "'";
+        $q = "SELECT ClinicID FROM vwActiveClinics WHERE OrgID = '" . $this->OrgID . "'";
         if ($result = MainDb::getInstance()->query($q)) {
             while ($row = $result->fetch_object()) {
-                $c = new Clinic($row);
+                $c = Clinic::getInstance($this->OrgID,$row->ClinicID);
                 $this->ActiveClinics[] = $c;
             }
         }
@@ -116,11 +115,11 @@ class Organisation {
         }
     }
     
-    public static function isValidPassword($orgid, $userid, $passwordhash) {
+    public function isValidPassword($userid, $passwordhash) {
         $q = "SELECT XPassword FROM orgusers WHERE OrgID = ? AND UserID = ?";
         $sql = MainDb::getInstance();
         $stmt = $sql->prepare($q);
-        $stmt->bind_param('ss', $orgid, $userid);
+        $stmt->bind_param('ss', $this->OrgID, $userid);
         $stmt->execute();
         if ($stmt->affected_rows == 0) {
             Logging::trlog(TranType::USER_DNE, "User login failed.  User $userid for $orgid does not exist.");

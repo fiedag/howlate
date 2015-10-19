@@ -1,4 +1,6 @@
 <?php
+
+
 abstract class MyErrorTypes
 {
 	const E_APP_ERROR = 1;

@@ -71,12 +71,12 @@ class ApptBook {
      * 
      * 
      */
-    public function traverseAppointments() {
-        // first pass checks for status and type and completed
-        $this->classifyAppointments();
-        $this->sequenceAppointments();
-        $this->predict();
-    }
+//    public function traverseAppointments() {
+//        // first pass checks for status and type and completed
+//        $this->classifyAppointments();
+//        $this->sequenceAppointments();
+//        $this->predict();
+//    }
 
     
 

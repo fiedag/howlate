@@ -1,10 +1,6 @@
 <?php
 
 Class LateController Extends baseController {
-
-//    function __construct($registry) {
-//        $this->registry = $registry;  
-//    }    
     
     public function index() {
         $udid = filter_input(INPUT_GET, 'udid');
@@ -17,11 +13,12 @@ Class LateController Extends baseController {
                     $udid = "notexists";
             }
             else {
-                $udid = HowLate_Util::to_udid($xudid);
+                $phone = new HowLate_Phone($xudid,null,true);
+                $udid = $phone->CanonicalMobile;
             }
         }
         if (!$udid) {
-            return;
+           $this->registry->template->show('late_none');
         }
         
         $this->registry->template->controller = $this;
@@ -44,6 +41,7 @@ Class LateController Extends baseController {
         } else {
             $this->registry->template->show('late_none');
         }
+        
     }
 
     /*

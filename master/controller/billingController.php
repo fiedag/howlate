@@ -12,7 +12,7 @@ Class BillingController Extends baseController {
 
         $co = new Chargeover();
 
-        $customer = $co->getCustomer($this->org->OrgID);
+        $customer = $co->getCustomer($this->Organisation->OrgID);
         $package = $co->getCurrentActivePackage($customer->customer_id);
         $lines = $co->getPackageLineItems($package);
         $this->registry->template->lines = $lines;
@@ -39,7 +39,7 @@ Class BillingController Extends baseController {
         
         $this->registry->template->controller = $this;
         $chargeover = new Chargeover();
-        $customer = $chargeover->getCustomer($this->org->OrgID);
+        $customer = $chargeover->getCustomer($this->Organisation->OrgID);
         $package = $chargeover->getCurrentActivePackage($customer->customer_id);
         
         $dt = $package->next_invoice_datetime;
@@ -63,7 +63,7 @@ Class BillingController Extends baseController {
         $this->registry->template->item_descrip = $item_descrip;
         $this->registry->template->item_id = $item_id;
         
-        $unbilled_sms = $billing->getUnbilledSMS($this->org->OrgID);
+        $unbilled_sms = $billing->getUnbilledSMS($this->Organisation->OrgID);
         $this->registry->template->unbilled_sms = $unbilled_sms;
         $this->registry->template->show('billing_index');
     }

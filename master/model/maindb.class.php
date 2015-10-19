@@ -33,7 +33,7 @@ class MainDb extends mysqli
 
     public function query($query) {
         if( !$this->real_query($query) ) {
-            throw new exception( $this->error, $this->errno );
+            throw new exception( $this->error . $query, $this->errno );
         }
 
         $result = new mysqli_result($this);

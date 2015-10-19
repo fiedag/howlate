@@ -8,8 +8,8 @@ Class ApptStatusController Extends baseController {
         
     public function index() {
       
-	$this->org = Organisation::getInstance(__SUBDOMAIN);
-        $this->registry->template->companyname = $this->org->OrgName;
+	$this->Organisation = Organisation::getInstance(__SUBDOMAIN);
+        $this->registry->template->companyname = $this->Organisation->OrgName;
 	$this->registry->template->controller = $this;
         $this->registry->template->show('apptstatus_index');
 		
@@ -20,10 +20,9 @@ Class ApptStatusController Extends baseController {
         $xcrud = Xcrud::get_instance();
         $xcrud->connection(HowLate_Util::mysqlUser(),HowLate_Util::mysqlPassword(),HowLate_Util::mysqlDb());
         
-        $xcrud->table('apptstatus')->table_name('Appointment Status codes.','Updated by the HL Agent.  Mark those appointment status codes you wish to treat differently for purposes of lateness calculations.  This means they may act as if they are gaps, or may be auto-completed.')->where('OrgID =', $this->org->OrgID)->limit(30);
-        
-        $xcrud->relation('ClinicID','clinics','ClinicID','ClinicName'); // display clinic name column
-        $xcrud->fields('OrgID,ClinicID',true)->columns('OrgID',true); // hide
+        $xcrud->table('apptstatus')->table_name('Appointment Status codes.','Updated by the HL Agent.  Mark those appointment status codes you wish to treat differently for purposes of lateness calculations.  This means they may act as if they are gaps, or may be auto-completed.')->where('OrgID =', $this->Organisation->OrgID)->limit(30);
+        $xcrud->pass_default('OrgID', $this->Organisation->OrgID);        
+        $xcrud->relation('ClinicID','clinics','ClinicID','ClinicName',"OrgID = '" . $this->Organisation->OrgID . "'");
 
         $xcrud->label(array('ClinicID' => 'Clinic', 'StatusCode' => 'Status Code', 'StatusDescr' => 'Description', 'CatchUp'=>'Available for catching up','AutoConsultation'=>'Auto-consultation'))->columns('OrgID',true);
         $tt = array(
@@ -39,13 +38,9 @@ Class ApptStatusController Extends baseController {
     }
     
     public function get_submenu() {
-        
         $this->registry->template->submenu = $this->submenu;
         $this->registry->template->view_name = "apptstatus";
         $this->registry->template->show('submenu_view');
     }
-
-    
-    
 }
 ?>

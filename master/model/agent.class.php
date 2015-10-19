@@ -34,7 +34,7 @@ class agent {
             }
             return self::$instance;
         } else
-            return null;
+            throw new Exception("Cannot be found");
     }
     /*
      * return the contents of the HowLateAgent.exe file
@@ -43,15 +43,17 @@ class agent {
      */
     public function get_exe() {
         
-        $file = "downloads/$this->Platform/$this->AgentVersionTarget/HowLateAgent.exe";
+        $file = __SITE_PATH . "/downloads/$this->Platform/$this->AgentVersionTarget/HowLateAgent.exe";
         if (file_exists($file)) {
-            header('Content-Description: File Transfer');
-            header('Content-Type: application/octet-stream');
-            header('Content-Disposition: attachment; filename=' . basename($file));
-            header('Expires: 0');
-            header('Cache-Control: must-revalidate');
-            header('Pragma: public');
-            header('Content-Length: ' . filesize($file));
+            if(!headers_sent()) {
+                header('Content-Description: File Transfer');
+                header('Content-Type: application/octet-stream');
+                header('Content-Disposition: attachment; filename=' . basename($file));
+                header('Expires: 0');
+                header('Cache-Control: must-revalidate');
+                header('Pragma: public');
+                header('Content-Length: ' . filesize($file));
+            }
             readfile($file);
             exit;
         } else {

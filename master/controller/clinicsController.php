@@ -2,11 +2,8 @@
 
 Class ClinicsController Extends baseController {
 
-    public $org;
-
-
     public function index() {
-        $this->org = Organisation::getInstance(__SUBDOMAIN);
+        $this->Organisation = Organisation::getInstance(__SUBDOMAIN);
 	$this->registry->template->controller = $this;
         $this->registry->template->show('clinics_index');
 		
@@ -17,7 +14,7 @@ Class ClinicsController Extends baseController {
         $xcrud = Xcrud::get_instance('Main');
         $xcrud->connection(HowLate_Util::mysqlUser(),HowLate_Util::mysqlPassword(),HowLate_Util::mysqlDb());
                
-        $xcrud->table('clinics')->where('OrgID =', $this->org->OrgID)->limit(10);
+        $xcrud->table('clinics')->where('OrgID =', $this->Organisation->OrgID)->limit(10);
         $xcrud->columns('OrgID, Country, Location, Zip, Timezone, PatientReply, ReplyRecip,AllowMessage,MsgRecip,SuppressNotifications,ApptLogging', true);
         $xcrud->fields('PatientReply,ReplyRecip,MsgRecip,AllowMessage,ApptLogging',true);
         $xcrud->readonly('OrgID');
@@ -25,13 +22,13 @@ Class ClinicsController Extends baseController {
         $xcrud->hide_button('view');
         $xcrud->label(array('ClinicName' => 'Clinic', 'Address1' => 'Address', 'Address2' => 'Address', 'Timezone' => 'Time Zone', 'PatientReply' => 'Allow Patient to reply', 'ReplyRecip' => 'Reply Recipient Email', 'SuppressNotifications' =>'Suppress Notifications'));
 
-        $xcrud->pass_default('OrgID',$this->org->OrgID);
-        $tz = $this->org->getTimezones();
+        $xcrud->pass_default('OrgID',$this->Organisation->OrgID);
+        $tz = $this->Organisation->getTimezones();
         $tz_csv="";
         foreach($tz as $val) {
             $tz_csv .= ($tz_csv=="")?$val:",$val";
         } 
-        $tz = trim($this->org->Timezone);
+        $tz = trim($this->Organisation->Timezone);
         //echo "[Organisation Timezone is $tz]";
         $xcrud->change_type('Timezone', 'select', $tz, $tz_csv); 
         $xcrud->pass_default('Timezone',$tz);

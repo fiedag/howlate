@@ -12,19 +12,18 @@ Class AgentController Extends baseController {
         if (isset($_SESSION["CLINIC"]) ) {
            $this->currentClinic = $_SESSION['CLINIC'];
         } else {
-            $this->currentClinic = $this->org->Clinics[0]->ClinicID;        
+            $this->Organisation->getRelated();
+            $this->currentClinic = $this->Organisation->Clinics[0]->ClinicID;        
         }
         $this->registry->template->controller = $this;
         $this->clinicselect($this->currentClinic); 
     }
 
-    
-
     public function clinicselect($clinicID = null) {
         // one of the post parameters was the selected clinic
         // so retrieve that.
 
-        $this->org->getRelated();
+        $this->Organisation->getRelated();
         $this->registry->template->controller = $this;
     
         if (is_null($clinicID)) {
@@ -33,11 +32,11 @@ Class AgentController Extends baseController {
             $this->currentClinic = $clinicID;
         }
 
-        $result = Clinic::getInstance($this->org->OrgID,$this->currentClinic)->getClinicIntegration();
+        $result = Clinic::getInstance($this->Organisation->OrgID,$this->currentClinic)->getClinicIntegration();
         if (is_null($result)) {
-            Clinic::getInstance($this->org->OrgID,$this->currentClinic)->createClinicIntegration();
-            $result = Clinic::getInstance($this->org->OrgID,$this->currentClinic)->getClinicIntegration();
-
+            echo "creating clinic integration record!!!" . $this->Organisation->OrgID . ", $this->currentClinic";
+            Clinic::getInstance($this->Organisation->OrgID,$this->currentClinic)->createClinicIntegration();
+            $result = Clinic::getInstance($this->Organisation->OrgID,$this->currentClinic)->getClinicIntegration();
         }
         
         $this->registry->template->ClinicID = $result->ClinicID;
@@ -68,13 +67,19 @@ Class AgentController Extends baseController {
         $clin = Clinic::getInstance($OrgID,$ClinicID);
         $clin->updateClinicIntegration2($PollInterval, $HLUserID, $ProcessRecalls, $PMSystem, $ConnectionType, $ConnectionString);
         
-        $this->download_config($clin);
+        $action = filter_input(INPUT_POST,"action");
+        if ($action == 'download') {
+            $this->download_config($clin);
+        }
+        else {
+            $this->index();
+        }
         
     }
 
     private function download_config($clin) {
         // this will initiate a download of HowLateAgent.exe.config
-        $result = agent::getInstance($this->org->OrgID, $clin->ClinicID);
+        $result = agent::getInstance($this->Organisation->OrgID, $clin->ClinicID);
         
         $this->registry->template->record = $result;
         $this->registry->template->URL = "https://" . __FQDN . "/api";
@@ -85,20 +90,20 @@ Class AgentController Extends baseController {
     }
     
     public function further() {
-        $this->org = Organisation::getInstance(__SUBDOMAIN);
+        $this->Organisation = Organisation::getInstance(__SUBDOMAIN);
         $this->registry->template->controller = $this;
         $this->registry->template->show('agent_further');
     }
 
     private function exe_info() {
         // this will initiate a download of HowLateAgent.exe
-        $this->org = Organisation::getInstance(__SUBDOMAIN);
+        $this->Organisation = Organisation::getInstance(__SUBDOMAIN);
         if (isset($_SESSION["CLINIC"]) ) {
            $this->currentClinic = $_SESSION['CLINIC'];
         } else {
-            $this->currentClinic = $this->org->Clinics[0]->ClinicID;        
+            $this->currentClinic = $this->Organisation->Clinics[0]->ClinicID;        
         }
-        $result = Clinic::getInstance($this->org->OrgID,$this->currentClinic)->getClinicIntegration();
+        $result = Clinic::getInstance($this->Organisation->OrgID,$this->currentClinic)->getClinicIntegration();
 
         
         return $result;
@@ -109,21 +114,21 @@ Class AgentController Extends baseController {
         if (isset($_SESSION["CLINIC"]) ) {
            $this->currentClinic = $_SESSION['CLINIC'];
         } else {
-            $this->currentClinic = $this->org->Clinics[0]->ClinicID;        
+            $this->currentClinic = $this->Organisation->Clinics[0]->ClinicID;        
         }
 
-        $agent = agent::getInstance($this->org->OrgID, $this->currentClinic);
+        $agent = agent::getInstance($this->Organisation->OrgID, $this->currentClinic);
         $agent->get_exe();
     }
     
     public function install() {
-        $this->org = Organisation::getInstance(__SUBDOMAIN);
+        $this->Organisation = Organisation::getInstance(__SUBDOMAIN);
         if (isset($_SESSION["CLINIC"]) ) {
            $this->currentClinic = $_SESSION['CLINIC'];
         } else {
-            $this->currentClinic = $this->org->Clinics[0]->ClinicID;        
+            $this->currentClinic = $this->Organisation->Clinics[0]->ClinicID;        
         }
-        $result = Clinic::getInstance($this->org->OrgID,$this->currentClinic)->getClinicIntegration();
+        $result = Clinic::getInstance($this->Organisation->OrgID,$this->currentClinic)->getClinicIntegration();
         
         $this->registry->template->interface = $result->Name;
         $this->registry->template->show('agent_install');
@@ -131,7 +136,7 @@ Class AgentController Extends baseController {
 
     public function get_clinic_options($clinicid) {
         $i = 0;
-        foreach ($this->org->Clinics as $value) {
+        foreach ($this->Organisation->Clinics as $value) {
             echo "<option value='" . $value->ClinicID . "' ";
             if ($value->ClinicID == $clinicid) {
                 echo "selected";
@@ -156,7 +161,7 @@ Class AgentController Extends baseController {
     
     public function get_user_options($userid) {
         $i = 0;
-        $users = Organisation::findUsers($this->org->OrgID);
+        $users = Organisation::findUsers($this->Organisation->OrgID);
         
         
         foreach ($users as $value) {
@@ -179,7 +184,7 @@ Class AgentController Extends baseController {
         // one of the post parameters was the selected clinic
         // so retrieve that.
 
-        $this->org->getRelated();
+        $this->Organisation->getRelated();
         $this->registry->template->controller = $this;
     
         if (is_null($systemID)) {

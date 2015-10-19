@@ -1,8 +1,9 @@
 <?php
 
-class Clinic extends Howlate_BaseTable {
+class Clinic {
 
     protected static $instance;
+    
     public $OrgID;
     public $ClinicID;
     public $ClinicName;
@@ -18,14 +19,14 @@ class Clinic extends Howlate_BaseTable {
     public $HasAgent;
     public $ApptLogging;
     
+    public $Horizon;
+    
     public static function getInstance($OrgID, $ClinicID) {
         $q = "SELECT * FROM clinics WHERE OrgID = '$OrgID' AND ClinicID = $ClinicID";
         $sql = MainDb::getInstance();
 
         if ($result = $sql->query($q)->fetch_object()) {
-            if (!self::$instance) {
-                self::$instance = new self();
-            }
+            self::$instance = new self();
             foreach ($result as $key => $val) {
                 self::$instance->$key = $val;
             }
@@ -49,7 +50,7 @@ class Clinic extends Howlate_BaseTable {
     }
 
     
-    // creates all the clinic integration records.  one for each clinic of the organisation
+    // creates the clinic integration record.
     public function createClinicIntegration() {
         $q = "CALL sp_CreateClinicIntegration('$this->OrgID', $this->ClinicID)";
         $stmt = MainDb::getInstance()->prepare($q);
@@ -147,8 +148,10 @@ class Clinic extends Howlate_BaseTable {
         $sql = MainDb::getInstance();
         $stmt = $sql->prepare($q);
         $stmt->bind_param('ssss', $this->OrgID, $this->ClinicID, $TypeCode, $TypeDescr);
-        $stmt->execute() or trigger_error('# Query Error (' . $sql->errno . ') ' . $sql->error, E_USER_ERROR);
+        $ret = $stmt->execute() or trigger_error('# Query Error (' . $sql->errno . ') ' . $sql->error, E_USER_ERROR);
         Logging::trlog(TranType::APTYPE_UPD, "Appt Type updated [$TypeCode,$TypeDescr]", $this->OrgID, $this->ClinicID, null, null);        
+        return $ret;
+        
     }
     
     function updateApptStatus($StatusCode, $StatusDescr) {

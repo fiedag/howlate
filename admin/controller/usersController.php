@@ -6,7 +6,7 @@ Class UsersController Extends baseController {
 
     public function index() {
       
-	$this->org = Organisation::getInstance(__SUBDOMAIN);
+	$this->Organisation = Organisation::getInstance(__SUBDOMAIN);
 	$this->registry->template->controller = $this;
         $this->registry->template->show('users_index');
     }
@@ -14,10 +14,10 @@ Class UsersController Extends baseController {
     
     public function passwordreset() {
         $resetemail = filter_input(INPUT_POST, "resetemail");
-	$this->org = Organisation::getInstance(__SUBDOMAIN);
-        $this->org->getRelated();
-        $this->org->SendResetEmails($resetemail);
-        $this->registry->template->companyname = $this->org->OrgName;
+	$this->Organisation = Organisation::getInstance(__SUBDOMAIN);
+        $this->Organisation->getRelated();
+        $this->Organisation->SendResetEmails($resetemail);
+        $this->registry->template->companyname = $this->Organisation->OrgName;
         $this->registry->template->controller = $this;
         $this->registry->template->show('users_index');
         

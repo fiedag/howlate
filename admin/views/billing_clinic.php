@@ -26,7 +26,7 @@
     </table>
     
     <form id="update" action="/billing/packageline" method="POST">
-        <input type="hidden" id="OrgID" name="OrgID" value="<?php echo $controller->org->OrgID;?>">
+        <input type="hidden" id="OrgID" name="OrgID" value="<?php echo $controller->Organisation->OrgID;?>">
         
         <div class="control-group">
             <label class="control-label" for="package_id">Package ID:</label>

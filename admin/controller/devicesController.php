@@ -7,8 +7,8 @@ Class DevicesController Extends baseController {
     
     public function index2() {
       
-	$this->org = Organisation::getInstance(__SUBDOMAIN);
-        $this->registry->template->companyname = $this->org->OrgName;
+	$this->Organisation = Organisation::getInstance(__SUBDOMAIN);
+        $this->registry->template->companyname = $this->Organisation->OrgName;
 	$this->registry->template->controller = $this;
 		
     }
@@ -46,7 +46,7 @@ Class DevicesController Extends baseController {
         
         $xcrud->column_pattern('UDID', $this->assignSpan());  // display the assignment button
         
-        $xcrud->pass_default('OrgID', $this->org->OrgID);
+        $xcrud->pass_default('OrgID', $this->Organisation->OrgID);
         $xcrud->hide_button('view');
         $xcrud->order_by('Created','desc');   
         $xcrud->unset_csv(true)->unset_numbers(true)->unset_print(true)->unset_limitlist(true)->hide_button('save_and_edit')->hide_button('save_and_new');     
@@ -63,7 +63,7 @@ Class DevicesController Extends baseController {
         
         $xcrud->column_pattern('OrgID', $this->assignSpan());  // display the assignment button
         
-        $xcrud->pass_default('OrgID', $this->org->OrgID);
+        $xcrud->pass_default('OrgID', $this->Organisation->OrgID);
         $xcrud->hide_button('view');
         $xcrud->order_by('Created','desc');   
         $xcrud->unset_csv(true)->unset_numbers(true)->unset_print(true)->unset_limitlist(true)->hide_button('save_and_edit')->hide_button('save_and_new');     

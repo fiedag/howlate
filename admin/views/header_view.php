@@ -28,7 +28,7 @@
                              title="How Late Admin System" src="<?php echo HowLate_Util::logoURL(__SUBDOMAIN); ?>" height="100" width="100">
                     </div>
                     <div class="orgname">
-                        <?php echo $controller->org->OrgName; ?>
+                        <?php echo $controller->Organisation->OrgName; ?>
                     </div>
                     <div class="nav-mainlinks-container  font-on-custom-background">
                         <ul class="nav-mainlinks custom-background" id="nav-mainlinks">

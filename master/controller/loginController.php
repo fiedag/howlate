@@ -25,12 +25,12 @@ Class LoginController Extends baseController {
         }
         define("__DIAG",1);
         
-        $this->org = Organisation::getInstance(__SUBDOMAIN);
-        if(!isset($this->org)) {
+        $this->Organisation = Organisation::getInstance(__SUBDOMAIN);
+        if(!isset($this->Organisation)) {
              header("location: http://" . __SUBDOMAIN . "." . __DOMAIN . "/error404");
         }
         
-        $this->registry->template->companyname = $this->org->OrgName;
+        $this->registry->template->companyname = $this->Organisation->OrgName;
         $this->registry->template->logourl = HowLate_Util::logoURL(__SUBDOMAIN);
         $this->registry->template->show('login_index');
     }
@@ -45,18 +45,18 @@ Class LoginController Extends baseController {
         $userid = $_POST["username"];
         $passwd = md5($_POST["password"]);
 
-        $this->org = Organisation::getInstance(__SUBDOMAIN);
-        $this->registry->template->companyname = $this->org->OrgName;
-        $this->registry->template->logourl = $this->org->LogoURL;
+        $this->Organisation = Organisation::getInstance(__SUBDOMAIN);
+        $this->registry->template->companyname = $this->Organisation->OrgName;
+        $this->registry->template->logourl = $this->Organisation->LogoURL;
 
         //echo md5($userid);
-        if ($this->org->isValidPassword($this->org->OrgID, $userid, $passwd)) {
+        if ($this->Organisation->isValidPassword($userid, $passwd)) {
             setcookie("USER", $userid, time() + 3600 * 8);
-            setcookie("ORGID", $this->org->OrgID, time() + 3600 * 8);
+            setcookie("ORGID", $this->Organisation->OrgID, time() + 3600 * 8);
             
             session_start();
             
-            $_SESSION["ORGID"] = $this->org->OrgID;
+            $_SESSION["ORGID"] = $this->Organisation->OrgID;
             $_SESSION["USER"] = $userid;
             $_SESSION['LAST_ACTIVITY'] = time();
 
@@ -68,9 +68,9 @@ Class LoginController Extends baseController {
 
     public function forgot() {
         $email = $_POST["email"];
-        $this->org = Organisation::getInstance(__SUBDOMAIN);
-        $this->org->getRelated();
-        $this->org->sendResetEmails($email);
+        $this->Organisation = Organisation::getInstance(__SUBDOMAIN);
+        $this->Organisation->getRelated();
+        $this->Organisation->sendResetEmails($email);
         $this->registry->template->email = $email;
         
         $this->registry->template->sentok = 1;

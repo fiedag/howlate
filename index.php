@@ -1,45 +1,88 @@
 <!doctype html>
-<html lang="en">
+    <html lang="en">
     <!--[if lt IE 9 ]><html lang="en" class="ie8"><![endif]-->
     <!--[if (gt IE 8)|!(IE)]><!--><html lang="en"><!--<![endif]-->
 
-        <!-- The <head> block is in a file for reuse -->
-        <?php include("head.php"); ?>
+    <?php include("head.php"); ?>
 
-
-
-        <body class="container">
+    <body>
+        <div id="site-container">
 
             <?php include("header.php"); ?>
 
-            <section class="container" id="welcome">
-                <div class="span12">
-                    <div class="container">
-                        <div class="row">
-                            <div class="span8">
-                                <div class="intro">
-
-                                    <h1>Happy Patients, arriving late but in good time!</h1>
-                                    <h3>Lowering blood pressure in the clinical setting :-)</h3>
-                                    <!-- a 
-                                        href="http://www.youtube.com/embed/_hide?rel=0&autoplay=1&enablejsapi=1" class="video-link">
-                                        <div class="video-player"></div>
-                                    </a -->
+            <section id="welcome">
+                <div class="container-fluid">
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="span8">
+                                        <div class="intro">
+                                                <h1>Happy Patients</h1>
+                                                <h1><span style="font-size:smaller">arriving late but in good time!</span></h1>
+                                            <!-- a 
+                                                href="http://www.youtube.com/embed/_hide?rel=0&autoplay=1&enablejsapi=1" class="video-link">
+                                                <div class="video-player"></div>
+                                            </a -->
+                                            <div style="margin-top:350px">
+                                                <a href="#safe" data-gtm-event="navigation" data-gtm-info="Discover"><button class="btn-lg btn-info">DISCOVER MORE</button></a>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
+            <!-- Begin Nav -->
 
-            <section class="container" id="safe"><a id="simplelink"></a>
+            <nav class="navbar" id="nav">
+                <div class="navbar-inner">
+                    <div class="container">
+                        <a class="mobile-enable" id="home_nav" href="/" title="Home">
+                            <div class="mobile-logo"></div>
+                        </a>
+                        <ul class="nav nav-normal" style="margin-left:-65px;">
+                            <li class="active mobile-disable"><a id="features_nav" href="#featurelink" title="Features" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">FEATURES</a></li>
+                            <li class=""><a id="faq_nav" title="FAQ" href="/faq.php" title="Frequently Asked Questions" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">FAQ</a></li>
+                            <li class=""><a id="pricing_nav" title="PRICING" href="/pricing.php" title="How Late Pricing Plans" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">PRICING</a></li>
+                            <li class=""><a id="press_nav" title="Press" href="/press.php" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">PRESS</a></li>
+                            <li class=""><a id="privacy_nav" title="Privacy" href="/privacy.php" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">PRIVACY</a></li>
+                        </ul>
+                        <ul class="nav nav-dropdown">
+                            <li class="dropdown">
+                                <a class="dropdown-toggle"
+                                   data-toggle="dropdown"
+                                   href="#">
+                                    SITE
+                                    <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <!-- links -->
+                            <li class="active mobile-disable"><a id="features_nav" href="#featurelink" title="Features" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">FEATURES</a></li>
+                            <li class=""><a id="faq_nav" title="FAQ" href="/faq.php" title="Frequently Asked Questions" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">FAQ</a></li>
+                            <li class=""><a id="pricing_nav" title="PRICING" href="/pricing.php" title="How Late Pricing Plans" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">PRICING</a></li>
+                            <li class=""><a id="press_nav" title="Press" href="/press.php" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">PRESS</a></li>
+                            <li class=""><a id="privacy_nav" title="Privacy" href="/privacy.php" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">PRIVACY</a></li>
+                                    
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <span id="nav-mobile-checker" ></span>
+            </nav>
+            <!-- End Nav -->
+            <section class="container-fluid" id="safe"><a id="simplelink"></a>
+                <aside class="orange-circle circle"></aside>
                 <div class="row-fluid">
                     <div class="span12">
                         <div class="container">
                             <div class="row">
                                 <div class="span4 offset1">
                                     <div class="mobile-phone"><img src="master/images/logonphone.png" itemprop="393x800 white bg"/></div>
-                                    <h1>Arriving informed and happy...</h1>
+                                    <h1>Informed and happy</h1>
                                     <h3>Informed patients are happier patients and that means there is less stress all round.</h3>
                                     <ul class="safer-features">
                                         <li class="newlevel-item active">
@@ -85,16 +128,20 @@
                     </div>
                 </div>
             </section>
-            <section class="container" id="simple">
+            <section class="container-fluid" id="simple">
+                <aside class="light-orange-circle"><div class="light-orange-circle-inner circle"></div></aside>
                 <div class="row-fluid">
                     <div class="span12">
                         <div class="container">
-                            <div class="row simple-image">
+                            <div class="row">
+                                <div class="span6 door-wrapper">
+                                    <div class="simple-image"></div>
+                                </div>
                                 <div class="span5 offset1">
                                     <div class="simple-column">
                                         <div class="row">
                                             <div class="span12">
-                                                <h1>Simple to Run</h1>
+                                                <h1>Simple to Install</h1>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -122,7 +169,7 @@
                     </div>
                 </div>
             </section>
-            <section class="container" id="social">
+            <section class="container-fluid" id="social">
                 <div class="row-fluid">
                     <div class="span12">
                         <div class="container">
@@ -151,6 +198,7 @@
                                                 <p>No sensitive patient information needs to be stored on our servers.  Check out our full privacy guarantee below.</p>
                                             </li>
                                         </ul>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
@@ -158,7 +206,7 @@
                     </div>
                 </div>
             </section>
-            <section class="container" id="features">
+            <section class="container-fluid" id="features">
                 <div class="row-fluid">
                     <div class="span12">
                         <div class="container">
@@ -197,73 +245,69 @@
 
 
             <!-- End Footer -->
-            <div id="fb-root"></div>
-            <div id="video_modal" class="modal hide fade">
-                <div class="modal-cancel" data-dismiss="modal"></div>
-                <div class="modal-body"></div>
-            </div>
+        </div> <!-- here -->
+        <div id="fb-root"></div>
+        <div id="video_modal" class="modal hide fade">
+            <div class="modal-cancel" data-dismiss="modal"></div>
+            <div class="modal-body"></div>
+        </div>
+        
+        <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-            <script>
-                (function(i, s, o, g, r, a, m) {
-                    i['GoogleAnalyticsObject'] = r;
-                    i[r] = i[r] || function() {
-                        (i[r].q = i[r].q || []).push(arguments)
-                    }, i[r].l = 1 * new Date();
-                    a = s.createElement(o),
-                            m = s.getElementsByTagName(o)[0];
-                    a.async = 1;
-                    a.src = g;
-                    m.parentNode.insertBefore(a, m)
-                })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+  ga('create', 'UA-55071264-1', 'auto');
+  ga('require', 'displayfeatures');
+  ga('send', 'pageview');
 
-                ga('create', 'UA-55071264-1', 'auto');
-                ga('require', 'displayfeatures');
-                ga('send', 'pageview');
+</script>
+        <!-- Google Tag Manager -->
+        <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-WLZ9QD"
+                          height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <script>(function(w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({'gtm.start':
+                            new Date().getTime(), event: 'gtm.js'});
+                var f = d.getElementsByTagName(s)[0],
+                        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+                j.async = true;
+                j.src =
+                        '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, 'script', 'dataLayer', 'GTM-WLZ9QD');</script>
+        <!-- End Google Tag Manager -->
 
-            </script>
-            <!-- Google Tag Manager -->
-            <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-WLZ9QD"
-                              height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-            <script>(function(w, d, s, l, i) {
-                    w[l] = w[l] || [];
-                    w[l].push({'gtm.start':
-                                new Date().getTime(), event: 'gtm.js'});
-                    var f = d.getElementsByTagName(s)[0],
-                            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
-                    j.async = true;
-                    j.src =
-                            '//www.googletagmanager.com/gtm.js?id=' + i + dl;
-                    f.parentNode.insertBefore(j, f);
-                })(window, document, 'script', 'dataLayer', 'GTM-WLZ9QD');</script>
-            <!-- End Google Tag Manager -->
+        <script>
+            window.fbAsyncInit = function() {
+                FB.init({
+                    appId: '737738429614686',
+                    xfbml: true,
+                    version: 'v2.1'
+                });
+            };
 
-            <script>
-                window.fbAsyncInit = function() {
-                    FB.init({
-                        appId: '737738429614686',
-                        xfbml: true,
-                        version: 'v2.1'
-                    });
-                };
+            (function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) {
+                    return;
+                }
+                js = d.createElement(s);
+                js.id = id;
+                js.src = "//connect.facebook.net/en_US/sdk.js";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+        </script>
 
-                (function(d, s, id) {
-                    var js, fjs = d.getElementsByTagName(s)[0];
-                    if (d.getElementById(id)) {
-                        return;
-                    }
-                    js = d.createElement(s);
-                    js.id = id;
-                    js.src = "//connect.facebook.net/en_US/sdk.js";
-                    fjs.parentNode.insertBefore(js, fjs);
-                }(document, 'script', 'facebook-jssdk'));
-            </script>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-            <script src="/prod/js/bootstrap.min.js"></script>
-            <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
-            <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/additional-methods.min.js"></script>
 
-            <script src="/prod/js/main.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+        <script src="/master/js/bootstrap.min.js"></script>
+        <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
+        <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/additional-methods.min.js"></script>
+        
+        <script src="/master/js/main.js"></script>
 
-        </body>
-    </html>
+    </body>
+</html>

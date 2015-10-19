@@ -40,51 +40,51 @@
     <form id="org" name="org" method="post" action="/org/update">
         <div class="input-group">
             <label for="OrgName">Organisation Name</label>
-            <input type="text" class="form-control" id="OrgName" name="OrgName" size="50" placeholder="Enter Organisation Name" value="<?php echo $controller->org->OrgName; ?>">
+            <input type="text" class="form-control" id="OrgName" name="OrgName" size="50" placeholder="Enter Organisation Name" value="<?php echo $controller->Organisation->OrgName; ?>">
         </div>
         <div class="input-group">
             <label for="OrgShortName"">Short Name</label>
-            <input type="text" class="form-control" id="OrgShortName" name="OrgShortName" placeholder="Enter Short Name < 24 characters" size="24" value="<?php echo $controller->org->OrgShortName; ?>">
+            <input type="text" class="form-control" id="OrgShortName" name="OrgShortName" placeholder="Enter Short Name < 24 characters" size="24" value="<?php echo $controller->Organisation->OrgShortName; ?>">
         </div>
         <div class="input-group">
             <label for="Address1"">Address</label>
-            <input type="text" class="form-control" id="Address1" name="Address1" size="50" placeholder="Enter Address Line 1" value="<?php echo $controller->org->Address1; ?>">
+            <input type="text" class="form-control" id="Address1" name="Address1" size="50" placeholder="Enter Address Line 1" value="<?php echo $controller->Organisation->Address1; ?>">
         </div>   
         <div class="input-group">
-            <input type="text" class="form-control" id="Address2" name="Address2" size="50" placeholder="Enter Address Line 2" value="<?php echo $controller->org->Address2; ?>">
+            <input type="text" class="form-control" id="Address2" name="Address2" size="50" placeholder="Enter Address Line 2" value="<?php echo $controller->Organisation->Address2; ?>">
         </div>   
         <div class="input-group">
             <label for="City"">City</label>
-            <input type="text" class="form-control" id="City" name="City" placeholder="Enter City" size="25" value="<?php echo $controller->org->City; ?>">
+            <input type="text" class="form-control" id="City" name="City" placeholder="Enter City" size="25" value="<?php echo $controller->Organisation->City; ?>">
         </div>
         <div class="input-group">
             <label for="State"">State</label>
-            <input type="text" class="form-control" id="State" name="State" placeholder="Enter State or Territory" size="25" value="<?php echo $controller->org->State; ?>">
+            <input type="text" class="form-control" id="State" name="State" placeholder="Enter State or Territory" size="25" value="<?php echo $controller->Organisation->State; ?>">
         </div>
         <div class="input-group">
             <label for="Zip"">Zip</label>
-            <input type="text" class="form-control" id="Zip" name="Zip" placeholder="Enter Zip or Postcode" size="7" value="<?php echo $controller->org->Zip; ?>">
+            <input type="text" class="form-control" id="Zip" name="Zip" placeholder="Enter Zip or Postcode" size="7" value="<?php echo $controller->Organisation->Zip; ?>">
         </div>
         <div class="input-group">
             <label for="Country"">Country</label>
-            <select name="Country" id="Country" class="form-control" value="<?php echo $controller->org->Country; ?>" >
+            <select name="Country" id="Country" class="form-control" value="<?php echo $controller->Organisation->Country; ?>" >
                 <?php $controller->get_country_options(); ?>
             </select>
 
         </div>
         <div class="input-group">
             <label for="Timezone"">Time Zone</label>
-            <select name="Timezone" id="Timezone" class="form-control" value="<?php echo $controller->org->Timezone; ?>" >
+            <select name="Timezone" id="Timezone" class="form-control" value="<?php echo $controller->Organisation->Timezone; ?>" >
                 <?php $controller->get_tz_options(); ?>
             </select>
 
         </div>
         <button class="btn btn-primary" type="submit" name="Submit" value="Submit">Save Changes</button>
 
-        <input type="hidden" readonly="readonly" id="OrgID" name="OrgID" value="<?php echo $controller->org->OrgID; ?>"><br>
-        <input type="hidden" readonly="readonly" id="Subdomain" name="Subdomain" value="<?php echo $controller->org->Subdomain; ?>"><br>
-        <input type="hidden" readonly="readonly" id="FQDN" name="FQDN" value="<?php echo $controller->org->FQDN; ?>"><br>
-        <input type="hidden" readonly="readonly" id="UpdIndic" name="UpdIndic" value="<?php echo $controller->org->UpdIndic; ?>"><br>
+        <input type="hidden" readonly="readonly" id="OrgID" name="OrgID" value="<?php echo $controller->Organisation->OrgID; ?>"><br>
+        <input type="hidden" readonly="readonly" id="Subdomain" name="Subdomain" value="<?php echo $controller->Organisation->Subdomain; ?>"><br>
+        <input type="hidden" readonly="readonly" id="FQDN" name="FQDN" value="<?php echo $controller->Organisation->FQDN; ?>"><br>
+        <input type="hidden" readonly="readonly" id="UpdIndic" name="UpdIndic" value="<?php echo $controller->Organisation->UpdIndic; ?>"><br>
 
     </form>
 

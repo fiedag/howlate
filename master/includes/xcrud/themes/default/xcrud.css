@@ -47,7 +47,7 @@
     color: #fff;
 }
 .xcrud-button.xcrud-blue:hover,.xcrud-list .xcrud-row:hover .xcrud-button.xcrud-blue{
-    background: #3F49A3;
+    background: #00406C;
     color: #fff;
 }
 .xcrud-button.xcrud-cyan:hover,.xcrud-list .xcrud-row:hover .xcrud-button.xcrud-cyan{
@@ -217,7 +217,7 @@ td.xcrud-actions{
     background: #eee;
 }
 .xcrud-pagination li.active span{
-    background: #3F49A3;
+    background: #00406C;
     color: #fff;
 }
 .xcrud-limit-buttons{
@@ -225,7 +225,7 @@ td.xcrud-actions{
     vertical-align: top;
 }
 .xcrud-button.active{
-    background: #3F49A3;
+    background: #00406C;
     color: #fff;
 }
 .xcrud-benchmark{

@@ -42,8 +42,8 @@ Class SelfRegController Extends baseController {
         $OrgID = HowLate_Util::orgFromPin($this->invitepin);
         $PractitionerID = HowLate_Util::idFromPin($this->invitepin);
 
-        $this->org = Organisation::getInstance($OrgID,"OrgID");
-        if(!isset($this->org)) {
+        $this->Organisation = Organisation::getInstance($OrgID,"OrgID");
+        if(!isset($this->Organisation)) {
             throw new Exception("This is a bad org code.  Please re-enter.");
         }
         $pract = Practitioner::getInstance($OrgID, $PractitionerID);

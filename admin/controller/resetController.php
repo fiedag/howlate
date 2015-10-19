@@ -5,11 +5,11 @@ Class ResetController Extends baseController {
     
 
     private function getorg() {
-        $this->org = Organisation::getInstance(__SUBDOMAIN);
-        $this->org->getRelated();
-        $this->registry->template->org = $this->org;
+        $this->Organisation = Organisation::getInstance(__SUBDOMAIN);
+        $this->Organisation->getRelated();
+        $this->registry->template->Organisation = $this->Organisation;
         $this->registry->template->controller = $this;
-        $this->registry->template->logourl = $this->org->LogoURL;
+        $this->registry->template->logourl = $this->Organisation->LogoURL;
     }
     public function index() {
         
@@ -21,7 +21,7 @@ Class ResetController Extends baseController {
         } else {
             $token = $_GET["token"];
             
-            $result = $this->org->check_token($token, $this->org->OrgID);
+            $result = $this->Organisation->check_token($token, $this->Organisation->OrgID);
             if ($result[0] == "OK") { 
                 $this->registry->template->token = $token;
                 $this->registry->template->userid = $result[1];
@@ -59,7 +59,7 @@ Class ResetController Extends baseController {
         
         if ($err == "") {
             $xpassword = md5($password);
-            OrgUser::getInstance($this->org->OrgID, $userid)->changePassword($xpassword);
+            OrgUser::getInstance($this->Organisation->OrgID, $userid)->changePassword($xpassword);
             $this->registry->template->no_access = 1;
             $this->registry->template->login_info = "Password changed.";
             $this->registry->template->notification_header = "Success!  Password has been changed.  Click to go to the login page.";

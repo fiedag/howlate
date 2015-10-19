@@ -3,37 +3,35 @@
 Class OrgController Extends baseController {
 
     public function index() {
-        //$this->org = organisation::getInstance(__SUBDOMAIN);
 
         $this->registry->template->controller = $this;
         $this->registry->template->show('org_index');
     }
     
     public function update() {
-        //$this->org = organisation::getInstance(__SUBDOMAIN);
 
         foreach ($_POST as $key => $value) {
-            if (isset($this->org->$key)) {
+            if (isset($this->Organisation->$key)) {
                 $org[$key] = $value;
             }
         }
 
-        $this->org->update_org($org);
-        $this->org = Organisation::getInstance(__SUBDOMAIN);
+        $this->Organisation->update_org($org);
+        $this->Organisation = Organisation::getInstance(__SUBDOMAIN);
 
         // create or update billing record
-        $default_user = OrgUser::getInstance($this->org->OrgID, $_SESSION["USER"]);
+        $default_user = OrgUser::getInstance($this->Organisation->OrgID, $_SESSION["USER"]);
 
         $this->registry->template->controller = $this;       
         $this->registry->template->show('org_index');
     }
     
     public function get_tz_options() {
-        $tz = $this->org->getTimezones();
+        $tz = $this->Organisation->getTimezones();
         foreach ($tz as $val) {
             echo "<option value='" . $val . "'";
             
-            if ($val == $this->org->Timezone) {
+            if ($val == $this->Organisation->Timezone) {
                 echo "selected";
             }
             echo ">$val</option>";
@@ -41,11 +39,11 @@ Class OrgController Extends baseController {
     }
     
     public function get_country_options() {
-        $c = $this->org->getCountries();
+        $c = $this->Organisation->getCountries();
         foreach ($c as $val) {
             echo "<option value='" . $val . "'";
             
-            if ($val == $this->org->Country) {
+            if ($val == $this->Organisation->Country) {
                 echo "selected";
             }
             echo ">$val</option>";

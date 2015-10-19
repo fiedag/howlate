@@ -39,7 +39,7 @@
 
                 <img title="How Late Admin System" src="<?php echo HowLate_Util::logoURL(__SUBDOMAIN); ?>">
 
-                <span class="center" style="font-size:48px"><?php echo $controller->org->OrgName; ?></span>
+                <span class="center" style="font-size:48px"><?php echo $controller->Organisation->OrgName; ?></span>
 
             </div>
 

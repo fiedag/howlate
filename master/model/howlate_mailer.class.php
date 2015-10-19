@@ -6,27 +6,11 @@ class Howlate_Mailer {
     private $Password;
     private $mail;
 
-    function __construct($Host = null,$Username = null, $Password = null) {
-        if(empty($Host)) {
-            $this->Host = 'how-late.com';
-        }
-        else {
-            $this->Host = $Host;
-        }
-        
-        if(empty($Username)) {
-            $this->Username = HowLate_Util::noreplySmtpUsername();
-        }
-        else {
-            $this->Username = $Username;
-        }
-        if(empty($Password)) {
-            $this->Password = HowLate_Util::noreplySmtpPassword();
-        }
-        else {
-            $this->Password = $Password;
-        }
-        include('includes/PHPMailer-master/PHPMailerAutoload.php');
+    function __construct($Host = 'how-late.com',$Username = 'alex@how-late.com', $Password = 'd5yJHg7EPd') {
+        $this->Host = $Host;
+        $this->Username = $Username;
+        $this->Password = $Password;
+        include(__SITE_PATH . '/includes/PHPMailer-master/PHPMailerAutoload.php');
     }
 
     public function send($toEmail, $toName, $subject, $body, $from, $fromName) {
@@ -38,11 +22,11 @@ class Howlate_Mailer {
         }
         $this->mail->isSMTP();
         $this->mail->isHTML(false);
-        $this->mail->SMTPDebug = true;
+        $this->mail->SMTPDebug = false;  // change to true and expect a lot of output
 
         $this->mail->Host = $this->Host;
         $this->mail->Port = "25";
-        $this->mail->SMTPSecure = "tls";
+        //$this->mail->SMTPSecure = "tls";  neither tls nor SSL will work
         $this->mail->SMTPAuth = true;
         $this->mail->Username = $this->Username;
         $this->mail->Password = $this->Password;
@@ -55,17 +39,6 @@ class Howlate_Mailer {
 
         $this->mail->WordWrap = 80;
         $this->mail->Body = $body;
-        
-        
-        $this->mail->SMTPOptions = array(
-            'ssl' => array(
-                'verify_peer' => false,
-                'verify_peer_name' => false,
-                'allow_self_signed' => true
-            )
-        );        
-        
-        
         
         $this->mail->send();
     }
@@ -82,7 +55,7 @@ class Howlate_Mailer {
 
         $this->mail->Host = $this->Host;
         $this->mail->Port = "25";
-        $this->mail->SMTPSecure = "tls";
+        //$this->mail->SMTPSecure = "tls";
         $this->mail->SMTPAuth = true;
         $this->mail->Username = $this->Username;
         $this->mail->Password = $this->Password;

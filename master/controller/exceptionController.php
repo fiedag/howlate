@@ -1,17 +1,13 @@
 <?php
 
 Class ExceptionController Extends baseController {
-
-    public $org;
-    
     
     public function index() {
         $this->view();
     }
   
     public function view($exception) {
-        $this->org = Organisation::getInstance(__SUBDOMAIN);
-        $this->registry->template->companyname = (!$this->org == null)?$this->org->OrgName:"";
+        $this->registry->template->companyname = (!$this->Organisation == null)?$this->Organisation->OrgName:"";
         $this->registry->template->sorry = "Something went wrong...";
         $this->registry->template->sorry2 = "We have entered the error into our issues list and will deal with it in due course.";
         $this->registry->template->message = $exception->getMessage();

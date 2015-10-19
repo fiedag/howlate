@@ -1,4 +1,5 @@
 <?php
+
 /* * * include the controller class ** */
 include __SITE_PATH . '/application/' . 'controller_base.class.php';
 /* * * include the registry class ** */
@@ -7,6 +8,9 @@ include __SITE_PATH . '/application/' . 'registry.class.php';
 include __SITE_PATH . '/application/' . 'router.class.php';
 /* * * include the template class ** */
 include __SITE_PATH . '/application/' . 'template.class.php';
+
+include __SITE_PATH . '/api/' . 'agent.api.php';
+
 
 
 /* * * auto load model classes ** */

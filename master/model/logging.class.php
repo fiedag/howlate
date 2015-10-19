@@ -1,7 +1,7 @@
 <?php
 
 class Logging {
-    
+
     public static function smslog($orgid, $api, $destination, $session, $messageid, $message)
     {
         $q = "INSERT INTO sentsms (OrgID, API, SessionID, MessageID, MessageText, Destination) VALUES (?,?,?,?,?,?)";
@@ -12,12 +12,15 @@ class Logging {
            trigger_error("The row was not inserted into the sentsms table, error= " . $this->conn->error , E_USER_ERROR);
         }
     }
-    
+
     public static function trlog($TranType, $Details, $OrgID = null, $ClinicID = null, $PractitionerID = null, $UDID = null, $Late = 0) {
-        $IPAddress = $_SERVER["REMOTE_ADDR"];
-        if (is_null($IPAddress) or $IPAddress == "") {
+        if (!isset($_SERVER["REMOTE_ADDR"])) {
             $IPAddress = "localhost";
         }
+        else {
+            $IPAddress = $_SERVER["REMOTE_ADDR"];
+        }
+        
         $q = "INSERT INTO transactionlog (TransType, OrgID, ClinicID, PractitionerID, Details, UDID, IPv4, Late) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = MainDb::getInstance()->prepare($q);
         //$tz = date_default_timezone_get();
@@ -46,4 +49,15 @@ class Logging {
         $stmt->execute();
     }
     
+    public static function getlog($FieldValue, $FieldName = 'Details') {
+        $rows = array();
+        $q = "SELECT * FROM transactionlog WHERE $FieldName = '$FieldValue'";
+        if ($result = MainDb::getInstance()->query($q)) {
+            while ($row = $result->fetch_object()) {
+                $rows[] = $row;
+            }
+        }
+        return $rows;
+        $result->close();
+    } 
 }

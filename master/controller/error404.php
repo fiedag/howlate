@@ -5,9 +5,9 @@ Class Error404Controller Extends baseController {
     public $org;
     
     public function index() {
-        $this->org = Organisation::getInstance(__SUBDOMAIN);
-        if(isset($this->org)) {
-            $this->registry->template->companyname = $this->org->OrgName;
+        $this->Organisation = Organisation::getInstance(__SUBDOMAIN);
+        if(isset($this->Organisation)) {
+            $this->registry->template->companyname = $this->Organisation->OrgName;
         }
         else {
             $this->registry->template->companyname = "HOW-LATE.COM";

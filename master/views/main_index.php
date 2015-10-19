@@ -18,7 +18,7 @@
         <div class="navbar">
             <ul class="nav nav-tabs">
                 <?php
-                foreach ($controller->org->ActiveClinics as $key => $value) {
+                foreach ($controller->Organisation->ActiveClinics as $key => $value) {
                     ?>
                     <li class="<?php
                     if ($controller->currentClinicName == $value->ClinicName) {

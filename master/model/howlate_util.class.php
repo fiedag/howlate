@@ -19,11 +19,11 @@ class HowLate_Util {
 
     private static $testdomain = "howlate.com";
 
-    public static function clickatell() {
-        return (__DOMAIN == self::$testdomain) ? new MockClickatell() : new Clickatell();
-    }
+//    public static function clickatell() {
+//        return (__DOMAIN == self::$testdomain) ? new MockClickatell() : new Clickatell();
+//    }
 
-    
+
     public static function cpanelUser() {
         return (__DOMAIN == self::$testdomain) ? "howlate" : "howlate";
     }
@@ -39,11 +39,11 @@ class HowLate_Util {
     public static function mysqlBillingDb() {
         return (__DOMAIN == self::$testdomain) ? "howlate_billing" : "howlate_billing";
     }
+
     public static function mysqlAnalyticsDb() {
         return (__DOMAIN == self::$testdomain) ? "howlate_analytics" : "howlate_analytics";
     }
 
-    
     public static function mysqlUser() {
         return (__DOMAIN == self::$testdomain) ? "howlate_super" : "howlate_super";
     }
@@ -69,9 +69,9 @@ class HowLate_Util {
     }
 
     public static function chargeoverUsername() {
-        return 'IfCopeybjKkJOwBsgdqHSRat8lh5X6zv'; 
+        return 'IfCopeybjKkJOwBsgdqHSRat8lh5X6zv';
     }
-    
+
     public static function chargeoverPassword() {
         return 'rNjiGRbW6EfA7LC5mgo218MdHSwz4yP3';
     }
@@ -79,8 +79,7 @@ class HowLate_Util {
     public static function chargeoverApiUrl() {
         return 'https://how-late.chargeover.com/api/v3';
     }
-    
-    
+
     ///
     /// base 26 numbering system, whereby A = 0, B = 1, up to Z = 25, BA = 26 etc. 
     ///
@@ -156,10 +155,10 @@ class HowLate_Util {
         $hh = floor($seconds_since_midnight / 3600);
         $mm = floor(($seconds_since_midnight - $hh * 3600) / 60);
         $ss = $seconds_since_midnight - $hh * 3600 - $mm * 60;
-        
+
         return $hh . ":" . $mm . ":" . $ss;
     }
-    
+
     public static function orgFromPin($pin) {
         self::validatePin($pin);
         $elem = explode(".", $pin);
@@ -186,7 +185,7 @@ class HowLate_Util {
     }
 
     public static function logoURL($subd = '') {
-        if ($subd == '' or !file_exists("pri/logos/$subd.png")) {
+        if ($subd == '' or ! file_exists("pri/logos/$subd.png")) {
             return "/images/logos/logo.png";
         }
         return "/pri/logos/$subd.png";
@@ -377,44 +376,75 @@ EOD;
         }
     }
 
-
     public static function deleteSubdomain($subdomain) {
         $q = "CALL sp_DeleteSubd('" . $subdomain . "')";
         $stmt = MainDb::getInstance()->prepare($q);
         $stmt->execute() or trigger_error('# Query Error (' . $this->conn->errno . ') ' . $this->conn->error, E_USER_ERROR);
     }
-    
 
     public static function to_xudid($udid) {
-       $len = strlen($udid);
-       $even="";
-       $odd="";
-       for($i=0;$i<$len;$i++) {
-           if ($i % 2 == 0) 
-               $even .= $udid[$i];
-           else
-               $odd .= $udid[$i]; 
-       }
-       return $even . $odd;
+        $len = strlen($udid);
+        $even = "";
+        $odd = "";
+        for ($i = 0; $i < $len; $i++) {
+            if ($i % 2 == 0)
+                $even .= $udid[$i];
+            else
+                $odd .= $udid[$i];
+        }
+        return $even . $odd;
     }
 
-    
     public static function to_udid($xudid) {
-       echo "xudid=$xudid";
-       
-       $len = strlen($xudid);
-       $half = round($len / 2, 0, PHP_ROUND_HALF_UP) ;
-       
-       
-       $even = substr($xudid, 0, $half);
-       $odd = substr($xudid, $half);
+        echo "xudid=$xudid";
 
-       $res = "";
-       
-       for($i=0;$i<$half;$i++) {
-           $res .= ($i < strlen($even) - 1)?$even[$i]:"" . ($i < strlen($odd) - 1)?$odd[$i]:"";
-       }
-       return $res;
+        $len = strlen($xudid);
+        $half = round($len / 2, 0, PHP_ROUND_HALF_UP);
+
+
+        $even = substr($xudid, 0, $half);
+        $odd = substr($xudid, $half);
+
+        $res = "";
+
+        for ($i = 0; $i < $half; $i++) {
+            $res .= ($i < strlen($even) - 1) ? $even[$i] : "" . ($i < strlen($odd) - 1) ? $odd[$i] : "";
+        }
+        return $res;
+    }
+
+    public static function array_sort($array, $on, $order = SORT_ASC) {
+        $new_array = array();
+        $sortable_array = array();
+
+        if (count($array) > 0) {
+            foreach ($array as $k => $v) {
+                if (is_array($v)) {
+                    foreach ($v as $k2 => $v2) {
+                        if ($k2 == $on) {
+                            $sortable_array[$k] = $v2;
+                        }
+                    }
+                } else {
+                    $sortable_array[$k] = $v;
+                }
+            }
+
+            switch ($order) {
+                case SORT_ASC:
+                    asort($sortable_array);
+                    break;
+                case SORT_DESC:
+                    arsort($sortable_array);
+                    break;
+            }
+
+            foreach ($sortable_array as $k => $v) {
+                $new_array[$k] = $array[$k];
+            }
+        }
+
+        return $new_array;
     }
 
 }
