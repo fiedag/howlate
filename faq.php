@@ -5,6 +5,49 @@
 
     <body>
         <div class="body">
+            <!-- Remove id='nav' -->
+            <div id="fixedNav" class="fixed">
+
+                <!-- Begin Nav -->
+
+                <nav class="navbar" id="nav_pricing">
+                    <div class="navbar-inner">
+                        <div class="container">
+                            <a class="mobile-enable" id="home_nav" href="/" title="Home">
+                                <div class="mobile-logo"></div>
+                            </a>
+                            <ul class="nav nav-normal" style="margin-left:-65px;">
+                                <li class=""><a id="features_nav" href="/index.php#features" title="Features" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">FEATURES</a></li>
+                                <li class=""><a id="faq_nav" title="FAQ" href="/faq.php" title="Frequently Asked Questions" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">FAQ</a></li>
+                                <li class="active mobile-disable"><a id="pricing_nav" title="PRICING" href="/pricing.php" title="How Late Pricing Plans" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">PRICING</a></li>
+                                <li class=""><a id="press_nav" title="Press" href="/press.php" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">PRESS</a></li>
+                                <li class=""><a id="privacy_nav" title="Privacy" href="/privacy.php" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">PRIVACY</a></li>
+                            </ul>
+                            <ul class="nav nav-dropdown">
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle"
+                                       data-toggle="dropdown"
+                                       href="#">
+                                        SITE
+                                        <b class="caret"></b>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <!-- links -->
+                                        <li class=""><a id="features_nav" href="/index.php#features" title="Features" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">FEATURES</a></li>
+                                        <li class=""><a id="faq_nav" title="FAQ" href="/faq.php" title="Frequently Asked Questions" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">FAQ</a></li>
+                                        <li class="active mobile-disable"><a id="pricing_nav" title="PRICING" href="/pricing.php" title="How Late Pricing Plans" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">PRICING</a></li>
+                                        <li class=""><a id="press_nav" title="Press" href="/press.php" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">PRESS</a></li>
+                                        <li class=""><a id="privacy_nav" title="Privacy" href="/privacy.php" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">PRIVACY</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <span id="nav-mobile-checker" ></span>
+                </nav>
+                <!-- End Nav -->
+
+            </div>
 
             <?php include("header.php"); ?>
 
@@ -48,15 +91,15 @@
                                 <div class="span5" style="position: relative;">
                                     <div class="faq-wrapper">
                                         <a class="twitter-timeline" href="https://twitter.com/HowLateIsMyAppt" data-widget-id="538223723388489728">Tweets by @HowLateIsMyAppt</a>
-                                        <script>!function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
-        if (!d.getElementById(id)) {
-            js = d.createElement(s);
-            js.id = id;
-            js.src = p + "://platform.twitter.com/widgets.js";
-            fjs.parentNode.insertBefore(js, fjs);
-        }
-    }(document, "script", "twitter-wjs");</script>
+                                        <script>!function (d, s, id) {
+                                                var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+                                                if (!d.getElementById(id)) {
+                                                    js = d.createElement(s);
+                                                    js.id = id;
+                                                    js.src = p + "://platform.twitter.com/widgets.js";
+                                                    fjs.parentNode.insertBefore(js, fjs);
+                                                }
+                                            }(document, "script", "twitter-wjs");</script>
 
                                     </div>
                                 </div>
@@ -184,46 +227,16 @@
                 </div>
             </section>
 
-            <!-- Begin Footer -->
-            <footer class="footer">
-                <div class="container">
 
-
-                    <div class="row social-links">
-                        <div class="span1 offset4">
-                            <a href="mailto:info@how-late.com" title="Mail"><img src="/master/images/mail-white.png"/></a>
-                        </div>
-                        <div class="span1">
-                            <a href="https://www.facebook.com/HowLateIsMyAppointment" title="Facebook" data-gtm-event="socialFacebook" data-gtm-info="Like"><img src="/master/images/facebook-white.png"/></a>
-                        </div>
-                        <div class="span1">
-                            <a href="https://twitter.com/HowLateIsMyAppt" title="Twitter" data-gtm-event="socialTwitter" data-gtm-info="Tweet"><img src="/master/images/twitter-white.png"/></a>
-                        </div>
-                        <div class="span1">
-                            <a href="mailto:info@how-late.com" title="Mail"><img src="/master/images/mail-white.png"/></a>
-                        </div>
-                    </div>
-                    <div class="row company">
-                        <div class="span12">
-                            <div>
-                                <p>&copy;2014 How Late. All rights reserved.</p>
-                                <p><a href="privacy.php" title="Privacy Policy">Privacy Policy</a></p>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </footer>
-            <!-- End Footer -->
-
+            <?php include 'footer.php'; ?>
         </div>
 
         <div id="fb-root"></div>
 
         <script>
-            (function(i, s, o, g, r, a, m) {
+            (function (i, s, o, g, r, a, m) {
                 i['GoogleAnalyticsObject'] = r;
-                i[r] = i[r] || function() {
+                i[r] = i[r] || function () {
                     (i[r].q = i[r].q || []).push(arguments)
                 }, i[r].l = 1 * new Date();
                 a = s.createElement(o),
@@ -243,7 +256,7 @@
         <!-- Google Tag Manager -->
         <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-WLZ9QD"
                           height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-        <script>(function(w, d, s, l, i) {
+        <script>(function (w, d, s, l, i) {
                 w[l] = w[l] || [];
                 w[l].push({'gtm.start':
                             new Date().getTime(), event: 'gtm.js'});
@@ -257,7 +270,7 @@
         <!-- End Google Tag Manager -->
 
         <script>
-            window.fbAsyncInit = function() {
+            window.fbAsyncInit = function () {
                 FB.init({
                     appId: '737738429614686',
                     xfbml: true,
@@ -265,7 +278,7 @@
                 });
             };
 
-            (function(d, s, id) {
+            (function (d, s, id) {
                 var js, fjs = d.getElementsByTagName(s)[0];
                 if (d.getElementById(id)) {
                     return;

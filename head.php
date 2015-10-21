@@ -1,3 +1,6 @@
+<!--[if lt IE 9 ]><html lang="en" class="ie8"><![endif]-->
+<!--[if (gt IE 8)|!(IE)]><!--><html lang="en"><!--<![endif]-->
+
     <head>
         <title>Doctor Running Late</title>
         <meta charset="utf-8" />
@@ -24,6 +27,7 @@
         <link rel="apple-touch-icon-precomposed" href="master/images/apple-touch-icon.png" />
         <link rel="stylesheet" href="/master/styles/modal.css">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/css/bootstrap-responsive.min.css" rel="stylesheet">
         <link href="master/styles/howlate-brochure.css" rel="stylesheet" />
         <!-- test -->
@@ -33,7 +37,5 @@
         <script src="/js/html5shiv.js"></script>
         <script src="/js/bean.js"></script>
         <![endif]-->
-        
-<![endif]-->
-   
+
     </head>

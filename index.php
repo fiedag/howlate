@@ -1,7 +1,5 @@
 <!doctype html>
-    <html lang="en">
-    <!--[if lt IE 9 ]><html lang="en" class="ie8"><![endif]-->
-    <!--[if (gt IE 8)|!(IE)]><!--><html lang="en"><!--<![endif]-->
+<html lang="en">
 
     <?php include("head.php"); ?>
 
@@ -18,15 +16,25 @@
                                 <div class="row">
                                     <div class="span8">
                                         <div class="intro">
-                                                <h1>Happy Patients</h1>
-                                                <h1><span style="font-size:smaller">arriving late but in good time!</span></h1>
-                                            <!-- a 
-                                                href="http://www.youtube.com/embed/_hide?rel=0&autoplay=1&enablejsapi=1" class="video-link">
+                                            <h1>Happy Patients</h1>
+                                            <h1><span style="font-size:smaller">arriving late but in good time!</span></h1>
+                                            <br><br>
+                                            <a href="http://www.youtube.com/embed/_hide?rel=0&autoplay=1&enablejsapi=1" class="video-link">
                                                 <div class="video-player"></div>
-                                            </a -->
-                                            <div style="margin-top:350px">
-                                                <a href="#safe" data-gtm-event="navigation" data-gtm-info="Discover"><button class="btn-lg btn-info">DISCOVER MORE</button></a>
-                                            </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="span6">
+                                        <div class="intro pull-right">
+                                            <a href="#safe" data-gtm-event="navigation" data-gtm-info="Discover"><button class="btn-lg btn-info">DISCOVER MORE</button></a>
                                         </div>
                                     </div>
                                 </div>
@@ -44,7 +52,7 @@
                             <div class="mobile-logo"></div>
                         </a>
                         <ul class="nav nav-normal" style="margin-left:-65px;">
-                            <li class="active mobile-disable"><a id="features_nav" href="#featurelink" title="Features" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">FEATURES</a></li>
+                            <li class="active mobile-disable"><a id="features_nav" href="#features" title="Features" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">FEATURES</a></li>
                             <li class=""><a id="faq_nav" title="FAQ" href="/faq.php" title="Frequently Asked Questions" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">FAQ</a></li>
                             <li class=""><a id="pricing_nav" title="PRICING" href="/pricing.php" title="How Late Pricing Plans" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">PRICING</a></li>
                             <li class=""><a id="press_nav" title="Press" href="/press.php" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">PRESS</a></li>
@@ -60,12 +68,12 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- links -->
-                            <li class="active mobile-disable"><a id="features_nav" href="#featurelink" title="Features" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">FEATURES</a></li>
-                            <li class=""><a id="faq_nav" title="FAQ" href="/faq.php" title="Frequently Asked Questions" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">FAQ</a></li>
-                            <li class=""><a id="pricing_nav" title="PRICING" href="/pricing.php" title="How Late Pricing Plans" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">PRICING</a></li>
-                            <li class=""><a id="press_nav" title="Press" href="/press.php" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">PRESS</a></li>
-                            <li class=""><a id="privacy_nav" title="Privacy" href="/privacy.php" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">PRIVACY</a></li>
-                                    
+                                    <li class="active mobile-disable"><a id="features_nav" href="#features" title="Features" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">FEATURES</a></li>
+                                    <li class=""><a id="faq_nav" title="FAQ" href="/faq.php" title="Frequently Asked Questions" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">FAQ</a></li>
+                                    <li class=""><a id="pricing_nav" title="PRICING" href="/pricing.php" title="How Late Pricing Plans" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">PRICING</a></li>
+                                    <li class=""><a id="press_nav" title="Press" href="/press.php" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">PRESS</a></li>
+                                    <li class=""><a id="privacy_nav" title="Privacy" href="/privacy.php" style="padding-left:0px; padding-right:20px;" data-gtm-event="navigation" data-gtm-info="Header">PRIVACY</a></li>
+
                                 </ul>
                             </li>
                         </ul>
@@ -74,8 +82,9 @@
                 <span id="nav-mobile-checker" ></span>
             </nav>
             <!-- End Nav -->
+
             <section class="container-fluid" id="safe"><a id="simplelink"></a>
-                <aside class="orange-circle circle"></aside>
+
                 <div class="row-fluid">
                     <div class="span12">
                         <div class="container">
@@ -100,7 +109,11 @@
                                                 <h3>Multi-platform</h3><p>As many doctors or practitioners as you like can appear on the same screen.  We support all the major systems and others are being added all the time.</p>
                                             </a>
                                         </li>
+                                        <li class="newlevel-item active">
+                                            <a href="#simple" data-gtm-event="navigation" data-gtm-info="Discover"><button class="btn-lg btn-info">DISCOVER MORE</button></a>                                            
+                                        </li>
                                     </ul>
+                                            
                                 </div>
                                 <div class="span6">
                                     <div class="app-features-wrapper">
@@ -121,15 +134,22 @@
                                             </div>
                                         </div>
                                         <div class="hand"></div>
+
+
                                     </div>
                                 </div>
+                                
+                                    
+                                
                             </div>
+
                         </div>
                     </div>
                 </div>
+
             </section>
             <section class="container-fluid" id="simple">
-                <aside class="light-orange-circle"><div class="light-orange-circle-inner circle"></div></aside>
+
                 <div class="row-fluid">
                     <div class="span12">
                         <div class="container">
@@ -158,6 +178,10 @@
                                                     <li>
                                                         <h3>Advanced Features</h3>
                                                         <p>You can configure the system so the lateness is underreported by however many minutes, giving you a safety margin.  This is useful so you can use short visits or cancellations to catch up.</p>
+                                                    </li>
+                                                    
+                                                    <li>
+                                                        <a  href="#social" data-gtm-event="navigation" data-gtm-info="Discover"><button class="btn-lg btn-info">DISCOVER MORE</button></a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -246,27 +270,33 @@
 
             <!-- End Footer -->
         </div> <!-- here -->
-        <div id="fb-root"></div>
-        <div id="video_modal" class="modal hide fade">
-            <div class="modal-cancel" data-dismiss="modal"></div>
-            <div class="modal-body"></div>
-        </div>
-        
+
         <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+            (function (i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r;
+                i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+                a = s.createElement(o),
+                        m = s.getElementsByTagName(o)[0];
+                a.async = 1;
+                a.src = g;
+                m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-  ga('create', 'UA-55071264-1', 'auto');
-  ga('require', 'displayfeatures');
-  ga('send', 'pageview');
+            ga('create', 'UA-55071264-1', 'auto');
+            ga('require', 'displayfeatures');
+            ga('send', 'pageview');
 
-</script>
+        </script>
+
         <!-- Google Tag Manager -->
-        <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-WLZ9QD"
-                          height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-        <script>(function(w, d, s, l, i) {
+        <noscript>
+        <iframe src="//www.googletagmanager.com/ns.html?id=GTM-WLZ9QD"
+                height="0" width="0" style="display:none;visibility:hidden">
+        </iframe>
+        </noscript>
+        <script>(function (w, d, s, l, i) {
                 w[l] = w[l] || [];
                 w[l].push({'gtm.start':
                             new Date().getTime(), event: 'gtm.js'});
@@ -280,7 +310,7 @@
         <!-- End Google Tag Manager -->
 
         <script>
-            window.fbAsyncInit = function() {
+            window.fbAsyncInit = function () {
                 FB.init({
                     appId: '737738429614686',
                     xfbml: true,
@@ -288,7 +318,7 @@
                 });
             };
 
-            (function(d, s, id) {
+            (function (d, s, id) {
                 var js, fjs = d.getElementsByTagName(s)[0];
                 if (d.getElementById(id)) {
                     return;
@@ -304,9 +334,9 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
         <script src="/master/js/bootstrap.min.js"></script>
-        <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
-        <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/additional-methods.min.js"></script>
-        
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/additional-methods.min.js"></script>
+
         <script src="/master/js/main.js"></script>
 
     </body>

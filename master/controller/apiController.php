@@ -32,6 +32,7 @@ Class ApiController Extends baseController {
 
         include_once(__SITE_PATH . '/api/' . 'agent.api.php');
         $this->api = new AgentApi($Organisation, $Clinic);
+        
         APIReturn::ok($this->api->$verb());
     }
 

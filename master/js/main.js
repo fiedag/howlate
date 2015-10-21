@@ -2,6 +2,12 @@ function fade_welcome() {
     var scrollTop = $(window).scrollTop();
     var height = $(window).height();
 
+    if(scrollTop < 200) {
+        $('#nav').hide();
+    }
+    else {
+        $('#nav').show();
+    }
     $('#welcome').css({
         'opacity': ((height - scrollTop * 1.5) / height)
     });
@@ -11,16 +17,6 @@ function fade_welcome() {
 function signupFunction()
 {
 
-    company = $("#domain_input").val();
-    email = $("#email_input").val();
-    if (company == "" || email == "") {
-        alert("Please supply a domain name and email address");
-        return;
-    }
-    if (!isValidEmailAddress(email)) {
-        alert("The email address is not valid.");
-        return;
-    }
 
     $("#signup_link").hide();
     $("#start_trial").html("Please wait.  This may take about 1 minute");
@@ -101,7 +97,10 @@ var adroll_pix_id = "IZR7HAJIINEJHETKC43M2Z";
         
     };
 
-    $(window).scroll(function() { fade_welcome(); });
+    $(window).scroll(function() { 
+        
+        fade_welcome(); 
+    });
 
 
     $(document).ready(function() {

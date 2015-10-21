@@ -118,4 +118,16 @@ Class MainController Extends baseController {
         $this->index();
     }
     
+    public function agentindicator() {
+        $clinicid = filter_input(INPUT_GET,'clinicid');
+        if(!isset($clinicid)) {
+            return 0;
+        }
+        $clin = Clinic::getInstance($this->Organisation->OrgID, $clinicid);
+        $ret = $clin->lastAgentUpdate();
+        
+        echo $ret;
+    }
+    
+    
 }

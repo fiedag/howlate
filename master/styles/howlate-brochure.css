@@ -302,7 +302,7 @@ footer a[data-pin-log=button_follow] i {
 }
 
 div.logo, div.mobile-logo {
-    background: url(http://how-late.com/master/images/logos/logo150x47.png) no-repeat;
+    background: url(/master/images/logos/logo150x47.png) no-repeat;
     width: 150px;
     height: 50px;
 }
@@ -501,7 +501,7 @@ section#welcome {
 }
 
 section#welcome .container-fluid {
-    background: url(/master/images/youngdoc.jpg) #ffffff;
+    background: url(/master/images/youngdoc.png) #ffffff;
     background-position: top right;
     background-repeat: no-repeat;
     width: 100%;

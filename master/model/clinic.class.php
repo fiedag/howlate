@@ -188,6 +188,14 @@ class Clinic {
         }
     }
     
+    public function lastAgentUpdate() {
+        $q = "select IFNULL(TIMESTAMPDIFF(MINUTE, MAX(timestamp), NOW()), -1) 
+            As ElapsedMin from transactionlog where OrgID = '" . $this->OrgID ."' AND ClinicID = " . $this->ClinicID .
+            " AND TransType = 'AGT_APPT'";
+        if ($result = MainDb::getInstance()->query($q)) {
+            return $result->fetch_row()[0];
+        }
+    }
     
     
     

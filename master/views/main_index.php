@@ -9,7 +9,7 @@
 
 <style>
     .notwide { width:60px;}
-    
+
 </style>
 
 <div class='container'>
@@ -24,7 +24,7 @@
                     if ($controller->currentClinicName == $value->ClinicName) {
                         echo 'active';
                     }
-                    ?>"><a href="/main/setclinic?clinic=<?php echo $value->ClinicID; ?>"><?php echo $value->ClinicName; ?></a></li>
+                    ?>"><a href="/main/setclinic?clinic=<?php echo $value->ClinicID; ?>"><?php echo $value->ClinicName; ?>&nbsp;&nbsp;<span id="agent-indicator" data-clinicid="<?php echo $value->ClinicID;?>"></span></a></li>
                         <?php
                     }
                     ?>
@@ -73,27 +73,40 @@
 <script src="/js/jquery.jeditable.min.js"></script>
 
 <script>
-    function myPad(i) {
-        if (i < 10) {
-            i = "0" + i;
-        }
-        return i;
-    }
+
     function updateClinicTime() {
         var today = new Date();
         var h = today.getHours();
         var m = today.getMinutes();
         var s = today.getSeconds();
         // add a zero in front of numbers<10
-        m = myPad(m);
-        s = myPad(s);
-        $('#clinictime').text(h + ":" + m + ":" + s);
+        if (m<10) {m = "0"+m;};
+        if (s<10) {s = "0"+s;};
+        $('#clinictime').text(h + ":" + m);
         t = setTimeout(function() {
             updateClinicTime();
-        }, 1000);
+        }, 60000);  // 1 minute
     }
-
-    updateClinicTime();
+    function updateAgentIndicator() {
+        clinicid=$('#agent-indicator').data('clinicid');
+        $.get("/main/agentindicator?clinicid=" + clinicid, function(data, status){
+            $('#agent-indicator').attr('title', 'Agent update occurred ' + data + " minutes ago.");
+            if(data >= 5) {
+                $('#agent-indicator').removeClass().addClass("glyphicon glyphicon-warning-sign");
+            }
+            else if (data => 0) {
+                $('#agent-indicator').removeClass().addClass("glyphicon glyphicon-ok-sign");
+            }
+            else {
+                $('#agent-indicator').hide();
+            }
+            
+        });
+        t = setTimeout(function() {
+            updateAgentIndicator();
+        }, 60000);  // 1 minute
+        
+    }
 
     $(document).ready(function() {
         $('.edit').editable('https://<?php echo __FQDN; ?>/main/save', {
@@ -123,6 +136,9 @@
             $('#modal-name').html(fullname);
             window.location.href = "#modal-show";
         });
+
+        updateClinicTime();
+        updateAgentIndicator();
     });
 </script>
 

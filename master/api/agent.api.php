@@ -90,9 +90,9 @@ class AgentApi {
         $this->checkCredentials();
         $time_now = $this->needsOneOf(array('TimeNow','time_now','timenow'));
         $appt_list = $_POST["appt"];  // entire appointment list, huge array
-        
+        Logging::trlog(TranType::AGT_APPT, "API call from agent " . __METHOD__, $this->Organisation->OrgID, $this->Clinic->ClinicID);
+
         $AppointmentBookExaminer = new AppointmentBookExaminer($this->Clinic, $time_now, $appt_list);
-        
         $AppointmentBookExaminer->examineAll();
 
         $notifier = new Notifier($this->Clinic, $time_now, $AppointmentBookExaminer->Appointments);
