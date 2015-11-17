@@ -7,6 +7,7 @@
         <meta name='description' content='How Late is my appointment.'>
         <link media="screen" href="/includes/xcrud/themes/default/xcrud.css" type="text/css" rel="stylesheet">
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+        <link rel="stylesheet" href="/css/helpbubbles.css" type="text/css">
         
         <style>
 
@@ -34,12 +35,13 @@
     <body>
         <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
         <script src="/js/jquery.jeditable.min.js"></script>
- 
+
         <div class="container">
             <!-- top links -->
 
             <div class="container">
                     <ul class="list-inline pull-right">
+                        <li><a id="main-help-link" href="">Help</a></li>
                         <li><?php echo (isset($_SESSION["USER"])) ? "User: " . $_SESSION["USER"] : ""; ?></li>
                         <li><a href="/logout">Log out</a></li>
                     </ul>
@@ -60,9 +62,6 @@
                 <ul class="nav nav-tabs">
                     <li class="first <?php if (get_class($controller) == "MainController") {echo 'active';} ?> ">
                         <a id="nav-main" title="Look up and change lateness manually, and invite mobile devices." href="/main">Main</a>
-                    </li>
-                    <li class="first <?php if (get_class($controller) == "SupportController") {echo 'active';} ?> ">
-                        <a id="nav-main" title="Contact us to get help." href="/support">Support</a>
                     </li>
                     <li class="<?php if (get_class($controller) == "DevicesController") {echo 'active';} ?> ">
                         <a id="nav-devices" title="Check the devices (mobile phones) which have been registered for updates for various practitioners." href="/devices">Devices</a>
@@ -108,6 +107,9 @@
                     }
                     ?> ">
                         <a id="nav-activity" title="Review, search or download one week's activity log." class="<?php echo (get_class($controller) == "TranLogController") ? 'custom-font-on-white' : 'font-on-custom-background'; ?>" href="/tranlog">Activity Log</a>
+                    </li>
+                    <li class="first <?php if (get_class($controller) == "SupportController") {echo 'active';} ?> ">
+                        <a id="nav-support" title="Contact us to get help." href="/support">Support</a>
                     </li>
                 </ul>
             </div>

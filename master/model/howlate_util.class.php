@@ -8,6 +8,10 @@ class HowLate_Util {
 //    public static $mysqlUser = "howlate_super";
 //    public static $mysqlPassword = "NuNbHG4NQn";
 
+    
+    public static function admin_orgid() {
+        return 'CCCTV';
+    }
 
     public static function admin_sms() {
         return "61403569377";
@@ -216,15 +220,15 @@ class HowLate_Util {
     //
     // method probably belongs elsewhere
     //
-    public static function register($pin, $udid) {
-
-        $org = self::orgFromPin($pin);
-        $id = self::idFromPin($pin);
-
-        $db = new howlate_db();
-        $db->register($udid, $org, $id);
-        //$db->trlog(TranType::DEV_REG, 'Device ' . $udid . ' registered pin ' . $pin, $org, null, $id, $udid);
-    }
+//    public static function register($pin, $udid) {
+//
+//        $org = self::orgFromPin($pin);
+//        $id = self::idFromPin($pin);
+//
+//        $db = new howlate_db();
+//        $db->register($udid, $org, $id);
+//        //$db->trlog(TranType::DEV_REG, 'Device ' . $udid . ' registered pin ' . $pin, $org, null, $id, $udid);
+//    }
 
     // SSL Certificate for *.how-late.com
     public static function getSSLCertificate() {
@@ -256,39 +260,39 @@ fFmyWdmdZLpfJKDS+xww0t+GgAa+mr92NtvQI//km5LAsQ73LiPS5xe5GlyZIjOr
 2ByNXGmeylCtYGmcCeY6cuCROiM/TtR37NzZsEV1rdg+OkTqCa+X7ohiYtUF4q0=
 -----END CERTIFICATE-----
 EOD;
-        } else {  // how-late real certificate
+        } else {  // how-late real certificate exp Jul 2016
             $crt = <<<EOD
 -----BEGIN CERTIFICATE-----
-MIIFUjCCBDqgAwIBAgIQOi70mLLxfvw50BzryWb//zANBgkqhkiG9w0BAQsFADCB
-kDELMAkGA1UEBhMCR0IxGzAZBgNVBAgTEkdyZWF0ZXIgTWFuY2hlc3RlcjEQMA4G
-A1UEBxMHU2FsZm9yZDEaMBgGA1UEChMRQ09NT0RPIENBIExpbWl0ZWQxNjA0BgNV
-BAMTLUNPTU9ETyBSU0EgRG9tYWluIFZhbGlkYXRpb24gU2VjdXJlIFNlcnZlciBD
-QTAeFw0xNDA3MTIwMDAwMDBaFw0xNTA3MTIyMzU5NTlaMFsxITAfBgNVBAsTGERv
-bWFpbiBDb250cm9sIFZhbGlkYXRlZDEdMBsGA1UECxMUUG9zaXRpdmVTU0wgV2ls
-ZGNhcmQxFzAVBgNVBAMUDiouaG93LWxhdGUuY29tMIIBIjANBgkqhkiG9w0BAQEF
-AAOCAQ8AMIIBCgKCAQEA0buK3REaVs/G+894spJs8n2NPF4Y5h+NjnNkmu8Xp7DY
-eswr123W9T+ZuAuwQ3Z2mS+da5g/ds2Rhx34revs2OAk8hGwBMd0GGYZv9fEfgx9
-4kR8/njkQlXZQwzc0IeSpFkYD8SRmN56NrF60F7Y4QQianFx6gYeScxT/qWquAct
-ZlYw/+YBS6N4PtUpC4ZpcNg2zQDc65kaeibzDJco4sOhjFU6D6V6HWhNJ7uCDIUh
-HDhgsnEsQeSJvrKqv6IgdJAy2RRJO1IifBMSfPg/8REQyNTw9fpWiborX4Hmuolh
-rH/1b76M/mXIV6sxeCGXoUvcu1WF9FMRtBR8z511dwIDAQABo4IB2jCCAdYwHwYD
-VR0jBBgwFoAUkK9qOpRaC9iQ6hJWc99DtDoo2ucwHQYDVR0OBBYEFKuWb/2Xyx50
-tRZBz4+MsuKq2NSaMA4GA1UdDwEB/wQEAwIFoDAMBgNVHRMBAf8EAjAAMB0GA1Ud
-JQQWMBQGCCsGAQUFBwMBBggrBgEFBQcDAjBQBgNVHSAESTBHMDsGDCsGAQQBsjEB
-AgEDBDArMCkGCCsGAQUFBwIBFh1odHRwczovL3NlY3VyZS5jb21vZG8ubmV0L0NQ
+MIIFUjCCBDqgAwIBAgIRANQ1oUNKCJsaQlftNyFn7s8wDQYJKoZIhvcNAQELBQAw
+gZAxCzAJBgNVBAYTAkdCMRswGQYDVQQIExJHcmVhdGVyIE1hbmNoZXN0ZXIxEDAO
+BgNVBAcTB1NhbGZvcmQxGjAYBgNVBAoTEUNPTU9ETyBDQSBMaW1pdGVkMTYwNAYD
+VQQDEy1DT01PRE8gUlNBIERvbWFpbiBWYWxpZGF0aW9uIFNlY3VyZSBTZXJ2ZXIg
+Q0EwHhcNMTUwNzEyMDAwMDAwWhcNMTYwNzExMjM1OTU5WjBbMSEwHwYDVQQLExhE
+b21haW4gQ29udHJvbCBWYWxpZGF0ZWQxHTAbBgNVBAsTFFBvc2l0aXZlU1NMIFdp
+bGRjYXJkMRcwFQYDVQQDDA4qLmhvdy1sYXRlLmNvbTCCASIwDQYJKoZIhvcNAQEB
+BQADggEPADCCAQoCggEBAMP1aQ5rhSTlmfZmwAs3EMYp8mY1y4LUuyXWL63KVzP/
+80P4FFMVkXZT8WRzeiiDAedtm+n7w3N3fZPooj2Ty6lz3/SXyj0pphSA7o4W2+kN
+f+Sld+qg1n1crz2mmdw3+BU/OSi1qD/3rGd/7yObA4cgkL2xzo6jsapBUM2plMSh
+HhGq0z6pOOjhNnaUuRUg9pC8vP1VyWiF+8V2wCjy/SzIkOLke74qGyjo7wUEQWNp
+IoRZfKdmNUGWtHyIP9aQVZGG6O+99eqY9nW4CVTeHfgMi7Qvl4eL0cQAt6o9jeho
+Pq3CbCkaal/OVUcIEMlegZqBrdG0bWHFuw1u+T1qwO8CAwEAAaOCAdkwggHVMB8G
+A1UdIwQYMBaAFJCvajqUWgvYkOoSVnPfQ7Q6KNrnMB0GA1UdDgQWBBSjEG0EwZmL
+oUw6I+d9GODQf60Y+TAOBgNVHQ8BAf8EBAMCBaAwDAYDVR0TAQH/BAIwADAdBgNV
+HSUEFjAUBggrBgEFBQcDAQYIKwYBBQUHAwIwTwYDVR0gBEgwRjA6BgsrBgEEAbIx
+AQICBzArMCkGCCsGAQUFBwIBFh1odHRwczovL3NlY3VyZS5jb21vZG8uY29tL0NQ
 UzAIBgZngQwBAgEwVAYDVR0fBE0wSzBJoEegRYZDaHR0cDovL2NybC5jb21vZG9j
 YS5jb20vQ09NT0RPUlNBRG9tYWluVmFsaWRhdGlvblNlY3VyZVNlcnZlckNBLmNy
 bDCBhQYIKwYBBQUHAQEEeTB3ME8GCCsGAQUFBzAChkNodHRwOi8vY3J0LmNvbW9k
 b2NhLmNvbS9DT01PRE9SU0FEb21haW5WYWxpZGF0aW9uU2VjdXJlU2VydmVyQ0Eu
 Y3J0MCQGCCsGAQUFBzABhhhodHRwOi8vb2NzcC5jb21vZG9jYS5jb20wJwYDVR0R
 BCAwHoIOKi5ob3ctbGF0ZS5jb22CDGhvdy1sYXRlLmNvbTANBgkqhkiG9w0BAQsF
-AAOCAQEAeEOvMpPm7vCC3UI/9ekwZWrTUyCuRFlHVbFA609AHyS5lY7SxL2lGgv6
-1fWyo3HjuGnI8i2J9hdL2UunIHynGGhviYMv/32/UqmpvT/QNRkEyEoI8Xd91xwv
-XqenwGF4LSO0bXBfnCHdSMbd5INC0773Tlu4yor+eRVeLdob5WqaZKFRZR+69ywm
-rCG64cbjMR8Z95wbEOvgxeAkewjbAk2taB7D3bBqQB+LfDJHlwdCDe814Sau8nEr
-f2CVGj8R4rYgHbWf7mkn4u3oX76Q6bu4vKtQlxjALTbwP2vp5GIOI1jES3JMbD9R
-Ec2JP4hnT/LFh0+kOuemIlOI+QnfHw==
------END CERTIFICATE-----
+AAOCAQEAZhUcZsPYDH+pmOaSGJnSyrbPcBOH/yfWV747qGniogXPHUeDEdc4nJrz
+sz1UOnignno3GQ6SSP4Pv/8Ib3vc3y62dKwYanhvP0Dte4mmLQmF7fdzlpQ+ohM7
+pUiaJeaEqm6r5McyFHYA8d7fO0kNURsO9YqDG0CsC18LqoITFuhK2Z6iseoykL5a
+HkBWD9Jk/ObCrHsSr/InKILCu042djv+pa5Ub8XY3PUBFC20Fn4JySt1drMEPzBr
+OD3NCsAoGMMi95R1U5hi/cmE3PT9DfIdo4EZ2jlxodL/Vo4Qnr0Py0VL9xVWRwRF
+Yvi1r8pb+x36zTeKwOqcnkWzaPKikw==
+-----END CERTIFICATE-----                    
 EOD;
         }
         return $crt;
@@ -353,28 +357,28 @@ EOD;
         $stmt->execute() or trigger_error('# Query Error (' . $this->conn->errno . ') ' . $this->conn->error, E_USER_ERROR);
     }
 
-    public static function getQueuedNotifications() {
-        $q = "SELECT * FROM notifqueue WHERE Status = 'Queued'";
-        $toprocess = array();
-        if ($result = MainDb::getInstance()->query($q)) {
-            $tempArray = array();
-            while ($row = $result->fetch_object()) {
-                $tempArray = $row;
-                array_push($toprocess, $tempArray);
-            }
-            return $toprocess;
-        }
-    }
-
-    public static function dequeueNotification($uid) {
-        $q = "UPDATE notifqueue SET Status = 'Sent' WHERE UID = $uid";
-        //echo $q;
-        $stmt = MainDb::getInstance()->prepare($q);
-        $stmt->execute();
-        if ($stmt->affected_rows == 0) {
-            trigger_error("The notification record was not deueued, error= " . $this->conn->error, E_USER_ERROR);
-        }
-    }
+//    public static function getQueuedNotifications() {
+//        $q = "SELECT * FROM notifqueue WHERE Status = 'Queued'";
+//        $toprocess = array();
+//        if ($result = MainDb::getInstance()->query($q)) {
+//            $tempArray = array();
+//            while ($row = $result->fetch_object()) {
+//                $tempArray = $row;
+//                array_push($toprocess, $tempArray);
+//            }
+//            return $toprocess;
+//        }
+//    }
+//
+//    public static function dequeueNotification($uid) {
+//        $q = "UPDATE notifqueue SET Status = 'Sent' WHERE UID = $uid";
+//        //echo $q;
+//        $stmt = MainDb::getInstance()->prepare($q);
+//        $stmt->execute();
+//        if ($stmt->affected_rows == 0) {
+//            trigger_error("The notification record was not deueued, error= " . $this->conn->error, E_USER_ERROR);
+//        }
+//    }
 
     public static function deleteSubdomain($subdomain) {
         $q = "CALL sp_DeleteSubd('" . $subdomain . "')";

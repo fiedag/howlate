@@ -35,15 +35,9 @@ echo '<?xml version="1.0" encoding="utf-8" ?>' . "\r";
       <setting name="PollIntervalSeconds" serializeAs="String">
         <value><?php echo $record->PollInterval;?></value>
       </setting>
-      <setting name="SelectLates" serializeAs="String">
-          <value><?php echo str_replace(">","&gt;",str_replace("<","&lt;", $record->SelectLates));?></value>
-      </setting>
       <setting name="SelectSessions" serializeAs="String">
           <value><?php echo str_replace(">","&gt;",str_replace("<","&lt;", $record->SelectSessions));?></value>
       </setting>        
-      <setting name="SelectToNotify" serializeAs="String">
-          <value><?php echo str_replace(">","&gt;",str_replace("<","&lt;", $record->SelectToNotify));?></value>
-      </setting>
       <setting name="SelectAppointments" serializeAs="String">
           <value><?php echo str_replace(">","&gt;",str_replace("<","&lt;", $record->SelectAppointments));?></value>
       </setting>
@@ -56,10 +50,6 @@ echo '<?xml version="1.0" encoding="utf-8" ?>' . "\r";
       <setting name="SelectApptStatus" serializeAs="String">
           <value><?php echo str_replace(">","&gt;",str_replace("<","&lt;", $record->SelectApptStatus));?></value>
       </setting>
-      <setting name="ProcessRecalls" serializeAs="String">
-        <value><?php echo $record->ProcessRecalls;?></value>
-      </setting>
-        
     </com.howlate.Properties.Settings>
 
   </applicationSettings>

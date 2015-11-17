@@ -3,94 +3,94 @@
     <head>
         <meta charset="UTF-8">
         <!-- Mobile Specific Meta -->
-        <title>How Late Admin Panel</title>
+        <title>How Late</title>
         <meta name='description' content='How Late is my appointment.'>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=1">
-        <link media="screen" href="/styles/howlate_admin.css" type="text/css" rel="stylesheet">
-        <link rel="stylesheet" href="/styles/modal.css">
         <link media="screen" href="/includes/xcrud/themes/default/xcrud.css" type="text/css" rel="stylesheet">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+
+        <style>
+
+
+            .footer{clear:both;height:130px;padding-top:30px;color:#999}
+            .footer {clear:both;width:760px;position:relative}
+
+            .footer h4,.footer li,.footer a:link,.footer a:visited{color:#999;text-decoration:none}
+            .footer ul,.footer li{list-style:none;margin:0;padding:0}
+            .footer-content .title{margin-bottom:10px}
+            .footer-content .title,.footer-content a{color:#999;font-weight:normal;text-decoration:none;display:block}
+            .footer-content .title,.footer h4{font-size:12px;margin-bottom:6px;font-weight:bold}
+            .footer a:hover{background:0;color:#fff;background:#999}
+            .footer-content a:hover{text-decoration:none}
+            .footer-content:hover .title,.footer-content:hover a{color:#000;background:0}
+            .footer-content p:last-child{margin:0}
+            .footer-content:hover .linkish{color:#00f}
+            .footer-content:hover .linkish:hover{background:#00f;color:#fff;text-decoration:none}
+            #footer-magic{position:absolute;left:0;top:-48px}
+            .footer-border{border-top:1px solid #ccc;padding-top:15px}
+
+        </style>
+
     </head>
     <body>
-        <div id="navmain" class="fresh-header">
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script src="/js/jquery.jeditable.min.js"></script>
 
-            <div class="container  relative-box">
-                <!-- top links -->
-                <ul class="nav-toplinks">
-                    <li><a><?php echo (isset($_SESSION["USER"])) ? "User: " . $_SESSION["USER"] : ""; ?></a></li>
-                    <li><a id="nav-log-out" href="https://<?php echo __FQDN; ?>/logout">Log out</a></li>
+        <div class="container">
+            <!-- top links -->
+
+            <div class="container">
+                <ul class="list-inline pull-right">
+                    <li><?php echo (isset($_SESSION["USER"])) ? "User: " . $_SESSION["USER"] : ""; ?></li>
+                    <li><a href="/logout">Log out</a></li>
                 </ul>
-                <!-- end top links -->
-
-                <div class="logo-exists">
-                    <div id="logo-container" class="logo-container">
-                        <img alt="" id="sysLogo" class="system-logo" 
-                             title="How Late Admin System" src="<?php echo HowLate_Util::logoURL(__SUBDOMAIN); ?>" height="100" width="100">
-                    </div>
-                    <div class="orgname">
-                        <?php echo $controller->Organisation->OrgName; ?>
-                    </div>
-                    <div class="nav-mainlinks-container  font-on-custom-background">
-                        <ul class="nav-mainlinks custom-background" id="nav-mainlinks">
-                            <li class="first <?php if (get_class($controller) == "OrgController") {
-                            echo 'active';
-                        } ?> custom-background-dark-hover">
-                                <span><a id="nav-main" title="Check on organisations." class="<?php echo (get_class($controller) == "OrgController") ? 'custom-font-on-white' : 'font-on-custom-background'; ?>" href="https://<?php echo __FQDN; ?>/org">Orgs</a></span>
-                            </li>
-
-                            <li class="first <?php if (get_class($controller) == "ClinController") {
-                            echo 'active';
-                        } ?> custom-background-dark-hover">
-                                <span><a id="nav-clinics" title="Check on clinics." class="<?php echo (get_class($controller) == "ClinController") ? 'custom-font-on-white' : 'font-on-custom-background'; ?>" href="https://<?php echo __FQDN; ?>/clin">Clinics</a></span>
-                            </li>
-                            
-                            <li class="first <?php if (get_class($controller) == "ClinIntController") {
-                            echo 'active';
-                        } ?> custom-background-dark-hover">
-                                <span><a id="nav-clinics" title="Check on clinic integration." class="<?php echo (get_class($controller) == "ClinIntController") ? 'custom-font-on-white' : 'font-on-custom-background'; ?>" href="https://<?php echo __FQDN; ?>/clinint">Clin Int</a></span>
-                            </li>
-
-                            <li class="<?php if (get_class($controller) == "DevicesController") {
-                            echo 'active';
-                        } ?> custom-background-dark-hover">
-                                <span><a id="nav-devices" title="Check the devices (mobile phones) which have been registered for updates for various practitioners." class="<?php echo (get_class($controller) == "DevicesController") ? 'custom-font-on-white' : 'font-on-custom-background'; ?>" href="https://<?php echo __FQDN; ?>/devices">Devices</a></span>
-                            </li>
-                            <li class="<?php if (get_class($controller) == "PmSystemsController") {
-                            echo 'active';
-                        } ?> custom-background-dark-hover">
-                                <span><a id="nav-integrations" title="Create and change integrations (Practice Mgt Systems)." class="<?php echo (get_class($controller) == "PmSystemsController") ? 'custom-font-on-white' : 'font-on-custom-background'; ?>" href="https://<?php echo __FQDN; ?>/pmsystems">PM Systems</a></span>
-                            </li>
-                            <li class="<?php if (get_class($controller) == "UsersController") {
-                            echo 'active';
-                        } ?> custom-background-dark-hover">
-                                <span><a id="nav-users" title="Set up users and reset passwords." class="<?php echo (get_class($controller) == "UsersController") ? 'custom-font-on-white' : 'font-on-custom-background'; ?>" href="https://<?php echo __FQDN; ?>/users">Users</a></span>
-                            </li>
-                            <li class="<?php if (get_class($controller) == "TranLogController") {
-                            echo 'active';
-                        } ?> custom-background-dark-hover">
-                                <span><a id="nav-agent" title="Activity log." class="<?php echo (get_class($controller) == "TranLogController") ? 'custom-font-on-white' : 'font-on-custom-background'; ?>" href="https://<?php echo __FQDN; ?>/tranlog">Activity Log</a></span>
-                            </li>
-                             <li class="<?php if (get_class($controller) == "AnalyticsController") {
-                            echo 'active';
-                        } ?> custom-background-dark-hover">
-                                <span><a id="nav-agent" title="Analytics." class="<?php echo (get_class($controller) == "AnalyticsController") ? 'custom-font-on-white' : 'font-on-custom-background'; ?>" href="https://<?php echo __FQDN; ?>/analytics">Analytics</a></span>
-                            </li>
-                            <li class="<?php if (get_class($controller) == "BillingController") {
-                            echo 'active';
-                        } ?> custom-background-dark-hover">
-                                <span><a id="nav-agent" title="Billing details." class="<?php echo (get_class($controller) == "BillingController") ? 'custom-font-on-white' : 'font-on-custom-background'; ?>" href="https://<?php echo __FQDN; ?>/billing">Billing</a></span>
-                            </li>
-                            <li class="<?php if (get_class($controller) == "TestingController") {
-                            echo 'active';
-                        } ?> custom-background-dark-hover">
-                                <span><a id="nav-agent" title="Tests." class="<?php echo (get_class($controller) == "TestingController") ? 'custom-font-on-white' : 'font-on-custom-background'; ?>" href="https://<?php echo __FQDN; ?>/testing">Testing</a></span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="clearb"></div>
-                </div>
             </div>
-        </div>
+            <!-- end top links -->
 
+
+            <div class="container">
+
+                <img title="How Late Admin System" src="<?php echo HowLate_Util::logoURL(__SUBDOMAIN); ?>">
+
+
+                <span class="center" style="font-size:48px"><?php echo $controller->Organisation->OrgName; ?></span>
+
+            </div>
+
+            <div class="navbar">
+                <ul class="nav nav-tabs">
+                    <li class="first <?php if (get_class($controller) == "OrgController") {echo 'active';} ?> ">
+                        <a id="nav-main" title="org table in howlate_main db." href="/org">Orgs</a>
+                    </li>
+                    <li class="first <?php if (get_class($controller) == "ClinController") {echo 'active';} ?> ">
+                        <a id="nav-main" title="clinics table in howlate_main db." href="/clin">Clinics</a>
+                    </li>
+                    <li class="first <?php if (get_class($controller) == "DevicesController") {echo 'active';} ?> ">
+                        <a id="nav-main" title="devices table in howlate_main db." href="/devices">Devices</a>
+                    </li>
+                    <li class="first <?php if (get_class($controller) == "PmSystemsController") {echo 'active';} ?> ">
+                        <a id="nav-main" title="pmsystems table in howlate_main db." href="/pmsystems">PM Systems</a>
+                    </li>
+                    <li class="first <?php if (get_class($controller) == "UsersController") {echo 'active';} ?> ">
+                        <a id="nav-main" title="users table in howlate_main db." href="/users">Users</a>
+                    </li>
+                    <li class="first <?php if (get_class($controller) == "TranLogController") {echo 'active';} ?> ">
+                        <a id="nav-main" title="tranlog table in howlate_main db." href="/tranlog">TranLog</a>
+                    </li>
+                    <li class="first <?php if (get_class($controller) == "AnalyticsController") {echo 'active';} ?> ">
+                        <a id="nav-main" title="Analytics submenu." href="/analytics">Analytics</a>
+                    </li>
+                    <li class="first <?php if (get_class($controller) == "BillingController") {echo 'active';} ?> ">
+                        <a id="nav-main" title="Billing submenu." href="/billing">Billing</a>
+                    </li>
+                    <li class="first <?php if (get_class($controller) == "TestingController") {echo 'active';} ?> ">
+                        <a id="nav-main" title="Testing submenu." href="/testing">Testing</a>
+                    </li>
+
+                </ul>
+
+            </div>
+            <div class="clearb"></div>
+
+        </div>
 
 

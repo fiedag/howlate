@@ -14,12 +14,9 @@ class Clinic {
     public $Country;
     public $Phone;
     public $State;
-    public $AllowMessage;
-    public $MsgRecip;
-    public $HasAgent;
-    public $ApptLogging;
-    
-    public $Horizon;
+
+    public $NotifDestination;
+    public $DisplayPolicy;
     
     public static function getInstance($OrgID, $ClinicID) {
         $q = "SELECT * FROM clinics WHERE OrgID = '$OrgID' AND ClinicID = $ClinicID";
@@ -57,20 +54,20 @@ class Clinic {
         $stmt->execute();
     }
 
-    public function updateClinicIntegration($instance, $database, $uid, $pwd, $interval, $hluserid, $processrecalls) {
-        $q = "REPLACE INTO clinicintegration (Instance, DbName, UID, PWD, PollInterval, HLUserID, OrgID, ClinicID, ProcessRecalls ) VALUES (?,?,?,?,?,?,?,?,?)";
+    public function updateClinicIntegration($instance, $database, $uid, $pwd, $interval, $hluserid) {
+        $q = "REPLACE INTO clinicintegration (Instance, DbName, UID, PWD, PollInterval, HLUserID, OrgID, ClinicID ) VALUES (?,?,?,?,?,?,?,?)";
         $stmt = MainDb::getInstance()->prepare($q);
-        $stmt->bind_param('ssssissis', $instance, $database, $uid, $pwd, $interval, $hluserid, $this->OrgID, $this->ClinicID, $processrecalls);
+        $stmt->bind_param('ssssissi', $instance, $database, $uid, $pwd, $interval, $hluserid, $this->OrgID, $this->ClinicID);
         $stmt->execute();
         if ($stmt->affected_rows == 0) {
             throw new Exception("Clinic Integration was not updated.");
         }
     }
 
-    public function updateClinicIntegration2($interval, $hluserid, $processrecalls, $pmsystem, $connectiontype, $connectionstring) {
-        $q = "REPLACE INTO clinicintegration (OrgID, ClinicID, PollInterval, HLUserID, ProcessRecalls, PMSystem, ConnectionType, ConnectionString ) VALUES (?,?,?,?,?,?,?,?)";
+    public function updateClinicIntegration2($interval, $hluserid, $pmsystem, $connectiontype, $connectionstring) {
+        $q = "REPLACE INTO clinicintegration (OrgID, ClinicID, PollInterval, HLUserID, PMSystem, ConnectionType, ConnectionString ) VALUES (?,?,?,?,?,?,?)";
         $stmt = MainDb::getInstance()->prepare($q);
-        $stmt->bind_param('siisisss', $this->OrgID, $this->ClinicID, $interval, $hluserid, $processrecalls, $pmsystem, $connectiontype, $connectionstring);
+        $stmt->bind_param('siissss', $this->OrgID, $this->ClinicID, $interval, $hluserid, $pmsystem, $connectiontype, $connectionstring);
         $stmt->execute();
         if ($stmt->affected_rows <= 0) {
             throw new Exception(__FUNCTION__ . " Clinic Integration was not updated. Error=" . $stmt->error);
@@ -104,6 +101,22 @@ class Clinic {
             return $practArray;
         }
         return null;
+    }
+    
+    // for a clinic, get all latenesses for a UDID
+    public function getLatenesses($UDID) {
+        $q = "SELECT * FROM vwClinicDeviceLates" .
+             " WHERE OrgID = :orgid AND ClinicID = :clinicid AND UDID = :udid";
+        $stmt = db::getInstance()->prepare($q);
+        $stmt->bindParam(':orgid', $this->OrgID);
+        $stmt->bindParam(':clinicid', $this->ClinicID);
+        $stmt->bindParam(':udid',$UDID);
+        $stmt->execute();
+        $tempArray=array();
+        while ($o = $stmt->fetchObject()) {
+            $tempArray[] = $o;
+        }
+        return $tempArray;
     }
     
     
@@ -143,7 +156,6 @@ class Clinic {
     
     function updateApptTypes($TypeCode, $TypeDescr) {
         $q = "INSERT IGNORE INTO appttype (OrgID, ClinicID, TypeCode, TypeDescr) VALUES (?,?,?,?)";
-        Logging::trlog(TranType::APTYPE_UPD, "Appt Type updated [$this->OrgID, $this->ClinicID,$TypeCode,$TypeDescr]", $this->OrgID, $this->ClinicID, null, null);        
         
         $sql = MainDb::getInstance();
         $stmt = $sql->prepare($q);
@@ -191,12 +203,18 @@ class Clinic {
     public function lastAgentUpdate() {
         $q = "select IFNULL(TIMESTAMPDIFF(MINUTE, MAX(timestamp), NOW()), -1) 
             As ElapsedMin from transactionlog where OrgID = '" . $this->OrgID ."' AND ClinicID = " . $this->ClinicID .
-            " AND TransType = 'AGT_APPT'";
+            " AND TransType like 'AGT_%'";
         if ($result = MainDb::getInstance()->query($q)) {
             return $result->fetch_row()[0];
         }
     }
+
     
-    
-    
+    public static function providerList($OrgID, $ClinicID) {
+        $clinic = Clinic::getInstance($OrgID, $ClinicID);
+        
+        $pract = $clinic->getPlacedPractitioners();
+        $list = implode(",",$pract);
+        return "(" . $list . ")";
+    }    
 }

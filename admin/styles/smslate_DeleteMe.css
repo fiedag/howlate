@@ -1,0 +1,189 @@
+
+
+html {
+    font-size: 10vw;
+}
+
+
+@media (min-width: 600px) {
+    html {
+        font-size: 60px
+    }
+}
+
+
+.ontime .stopwatch {
+    background-color: #00CC00;
+}
+
+.ontime .stopwatch > .hand {
+    -ms-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+.bitlate .stopwatch {
+    background-color: yellow;
+}
+
+.bitlate .stopwatch > .hand {
+    -ms-transform: rotate(225deg);
+    -webkit-transform: rotate(225deg);
+    transform: rotate(225deg);
+}
+
+.late .stopwatch {
+    background-color: orange;
+}
+
+.late .stopwatch > .hand {
+    -ms-transform: rotate(260deg);
+    -webkit-transform: rotate(260deg);   
+    transform: rotate(260deg);
+}
+
+.verylate .stopwatch {
+    background-color: #ff4747;
+}
+
+.verylate .stopwatch > .hand {
+    -ms-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);   
+    transform: rotate(45deg);
+}
+
+.offduty .stopwatch {
+    background-color: silver;
+}
+
+.offduty .stopwatch > .hand {
+}
+
+
+.stopwatch {
+    color: #fff;
+    border-radius: 50%;
+    border: 0.08rem solid #000;
+    display: inline-block;
+    height: 0.6rem;
+    margin-top: 0;
+    margin-right: 0.1rem;
+    position: relative;
+    vertical-align: middle;
+    width: 0.6rem;
+}
+
+.stopwatch > .inner {
+    -ms-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);   
+    height:100%;
+    position:absolute;
+    transform: rotate(45deg);
+    width: 100%;
+}
+
+.stopwatch .button {
+    background-color: #000;
+    height: 0.1rem;
+    position: absolute;
+    top: -0.15rem;
+    width: 0.15rem;
+    left: 0.15rem;
+    border-top-left-radius: 0.08rem;
+    border-top-right-radius: 0.08rem;
+}
+
+.stopwatch .hand {
+    -ms-transform: rotate(180deg);
+    -ms-transform-origin: top center; 
+    -webkit-transform: rotate(180deg);   
+    -webkit-transform-origin: top center;    
+    background-color: #000;
+    border-radius: 50%;
+    height: 0.20rem;
+    left: 0.20rem;
+    margin-top: 0.02rem;
+    position: absolute;
+    transform-origin: top center;
+    transform: rotate(180deg);
+    top: 0.2rem;
+    width: 0.05rem;
+}
+
+
+.stylish{
+    display:block;
+    width:100px;
+    height:100px;
+    border-radius:66px;
+    border:4px double #ccc;
+    font-size:20px;
+    color:#666;
+    line-height:100px;
+    text-align:center;
+    text-decoration:none;
+    text-shadow:0 1px 0 #fff;
+    background:#ddd
+    }
+
+.stylish:hover{
+    border:4px double #bbb;
+    color:#aaa;
+    text-decoration:none;
+    background:#e6e6e6
+}
+
+.clinic ul {
+    list-style-type: none;
+    padding: 0px;
+}
+
+.clinic ul > li {
+    margin-top: 0.4rem;
+    font-size: 0.4rem;
+}
+
+.clinic ul > li > span {
+    font-weight: bold;
+}
+
+.container {
+    max-width: 600px;
+
+}
+
+.navbar-default {
+    border: none;
+    background: none;
+}
+
+.panel-default > .panel-heading {
+    position: relative;
+    font-size: 0.5rem;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: #ffd15c;    
+    border-color: #FFB700;
+}
+
+.panel-default > .panel-heading > img {
+    -ms-transform: rotate(-10deg);
+    -webkit-transform: rotate(-10deg);   
+    background-color: #FFF;
+    border-radius: 0.07rem;
+    box-shadow: 0.05rem 0.05rem 0.2rem #888888;
+    max-width: 1rem;
+    max-height: 1rem;
+    margin-left: -0.15rem;
+    margin-top: -0.3rem;
+    transform: rotate(-10deg);    
+}
+
+.panel-default {
+    border-color: #FFB700;
+}
+
+.panel-body {
+    padding: 0.3rem;
+}
+

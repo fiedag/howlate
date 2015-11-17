@@ -2,9 +2,7 @@
 
 Class TestingController Extends baseController {
 
-    public $org;
-    private $submenu = array ("CCEPX"=>"Emerald Medical Group"
-   );
+    private $submenu = array ("CCEPX"=>"Emerald Medical Group");
 
     public function index() {
         $this->registry->template->controller = $this;

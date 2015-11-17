@@ -19,13 +19,13 @@ $site_path = realpath(dirname(__FILE__));
 define('__SITE_PATH', $site_path);  // e.g. /home/howlate/public_html/admin in this case
 
 /* * * include the controller class ** */
-include __SITE_PATH . '/application/' . 'controller_base.class.php';
+include_once __SITE_PATH . '/application/' . 'controller_base.class.php';
 /* * * include the registry class ** */
-include __SITE_PATH . '/application/' . 'registry.class.php';
+include_once __SITE_PATH . '/application/' . 'registry.class.php';
 /* * * include the router class ** */
-include __SITE_PATH . '/application/' . 'router.class.php';
+include_once __SITE_PATH . '/application/' . 'router.class.php';
 /* * * include the template class ** */
-include __SITE_PATH . '/application/' . 'template.class.php';
+include_once __SITE_PATH . '/application/' . 'template.class.php';
 
 
 /* * * auto load model classes ** */
@@ -33,9 +33,15 @@ spl_autoload_register(function ($class_name) {
     $filename = strtolower($class_name) . '.class.php';
     $file = __SITE_PATH . '/model/' . $filename;
     if (file_exists($file) == false) {
-        return false;
+        $file = __SITE_PATH . '/../master/model/' . $filename;
+        if(file_exists($file)) {
+            include_once $file;
+        }
+        else {
+            return false;
+        }
     }
-    include ($file);
+    include_once ($file);
 });
 
 include_once("includes/error_handler.php");

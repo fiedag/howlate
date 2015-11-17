@@ -12,13 +12,14 @@
  */
 class APIException extends Exception {
     
-    public $arr;
+    public $Content;
     
-    public function __construct($message, $code = 400, $status = 'Bad Request', $response=false) {
+    public function __construct($message, $code = 400, $status = 'Error', $response=false) {
         $this->arr = array("code"=>$code,"status"=>$status,"message"=>$message,"response"=>$response);
-        header('Content-type: application/json');
+        
         echo json_encode($this->arr);
         exit;
     }
+    
     
 }

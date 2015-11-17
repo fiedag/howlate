@@ -1,0 +1,31 @@
+.help-bubble, .help-bubble--reversed {
+  position: absolute;
+  z-index: 999;
+  cursor: pointer;
+  text-align: center;
+  padding: 10px;
+  background-color: #d9edf7;
+  -webkit-box-shadow: 10px 10px 25px rgba(0, 0, 0, 0.6);
+  -moz-box-shadow: 10px 10px 25px rgba(0, 0, 0, 0.6);
+  box-shadow: 10px 10px 25px rgba(0, 0, 0, 0.6); }
+
+.help-bubble:before, .help-bubble--reversed:before {
+  content: ' ';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border: 10px solid; }
+
+.help-bubble:before {
+  left: 0;
+  top: -20px;
+  border-color: transparent transparent #d9edf7 #d9edf7; }
+
+.help-bubble--reversed:before {
+  right: 0;
+  top: -20px;
+  border-color: transparent #d9edf7 #d9edf7 transparent; }
+
+.help-bubble__content {
+  cursor: pointer;
+  margin: 0; }

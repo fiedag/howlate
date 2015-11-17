@@ -1,0 +1,125 @@
+.lateness-admin  {
+    border: 1px solid rgba(0,0,0,0.12);
+    width: 100%;
+    background-color: rgba(0,0,0,0.02);
+    line-height:initial;
+    column-width: initial;
+    border-radius: 4px ;
+}
+
+.lateness-admin td  {
+    padding-left:8px;
+    font-size: 1.4em;
+}
+
+.lateness-admin th {
+    background-color: rgba(0,0,0,0.16);
+    font-size: 18px;
+    border-radius: 4px ;
+    padding-left:8px;
+}
+
+.lateness-value  {
+    width:10px;
+}
+
+.lateness-admin-save-button {
+    text-align:center;
+    width: 100px;
+    height:30px;
+    border-radius:4px;
+}
+
+.lateness-admin-entry {
+    
+    font-size:18px;
+    width:100px;
+	height:20px;
+}
+
+.col-80pct {
+    width:80%;
+}
+
+.clinic-header {
+    margin-top: 35px;
+    margin-bottom: 25px;
+	padding-left: 10px;
+	font-size: 18px;
+    
+}
+
+.form-pad-top {
+    height: 18px;
+}
+
+.float-right {
+    float:right;
+}
+
+.invite {
+	-webkit-box-shadow:0 1px 0 #9dd04b inset;
+	-moz-box-shadow:0 1px 0 #9dd04b inset;
+	box-shadow:0 1px 0 #9dd04b inset;
+	text-shadow:0 0 1px rgba(0,0,0,0.4);
+	background-color:#85c51f;
+	border:1px solid #659c17;
+	border-radius:3px;
+	color:rgba(255,255,255,1);
+	font-size:14px;
+	padding-left:9px;
+	padding-right:9px;
+	float:right;
+	margin-right:20px;
+}
+
+.orgname {
+	font-size:24px;
+	background: linear-gradient(to right, white, rgba(0, 0, 0, 0.12));
+	padding-top:50px;
+	padding-bottom:50px;
+	padding-left:150px;
+	border-radius:4px;
+
+}
+
+.timefield {
+	width: 200px;
+	font-size: 16px;
+	float:right;
+	text-align:right;
+	padding-right:10px;
+}
+
+#saved_indicator {
+	color: green;
+	float:right;
+	margin:10px;
+	font-size:16px;
+
+}
+
+.controls{
+    margin-left:20px;
+    position:relative;
+    width:50%;
+}
+
+.control-label{float:left;font-weight:bold;line-height:18px;padding-right:20px;text-align:right;width:160px}
+
+.control-group{margin-bottom:18px;padding-top:4px}
+.control-group.nomargin{margin-bottom:0}
+.control-group{margin-bottom:12px}
+.control-group:before,.form-horizontal .control-group:after{display:table;content:""}
+.control-group:after{clear:both}
+
+.clinic-tabs td {
+    border: 1px solid black;
+    
+}
+
+.dropdown {
+    width:200px;
+}
+
+.draggable { background-color: grey}

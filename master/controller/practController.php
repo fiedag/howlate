@@ -68,6 +68,10 @@ Class PractController Extends baseController {
         }
     }
     
-
+    public function get_help() {
+        $this->registry->template->show('main_help');
+        
+    }
+    
 }
 ?>

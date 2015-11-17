@@ -35,6 +35,9 @@
 
 
 
-<?php $controller->get_footer(); ?>
+<?php 
+$controller->get_help();
+$controller->get_footer(); 
+?>
 
 

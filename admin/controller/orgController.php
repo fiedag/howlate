@@ -2,12 +2,9 @@
 
 Class OrgController Extends baseController {
 
-    public $org;
-
     public function index() {
-        //$this->org = organisation::getInstance(__SUBDOMAIN);
-
         $this->registry->template->controller = $this;
+        $this->get_header();
         $this->registry->template->xcrud_content = $this->getAll();
         $this->registry->template->show('org_index');
     }

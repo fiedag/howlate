@@ -46,7 +46,7 @@ Class LoginController Extends baseController {
         $this->registry->template->logourl = $this->Organisation->LogoURL;
 
         //echo md5($userid);
-        if ($this->Organisation->isValidPassword($this->Organisation->OrgID, $userid, $passwd)) {
+        if ($this->Organisation->isValidPassword($userid, $passwd)) {
             setcookie("USER", $userid, time() + 7200);
             setcookie("ORGID", $this->Organisation->OrgID, time() + 3600 * 8);
             

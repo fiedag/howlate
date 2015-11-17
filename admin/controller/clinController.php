@@ -24,9 +24,12 @@ Class ClinController Extends baseController {
         $xcrud = Xcrud::get_instance();
         $xcrud->connection(HowLate_Util::mysqlUser(),HowLate_Util::mysqlPassword(),HowLate_Util::mysqlDb());
         $xcrud->table('clinics')->table_name('Clinics',"clinics table.")->limit(50);
-        $xcrud->columns("ClinicID,ClinicName,Timezone,OrgID,SuppressNotifications,ApptLogging",false);
+        $xcrud->columns("ClinicID,ClinicName,Timezone,OrgID",false);
         $xcrud->column_pattern('ClinicID', $this->assignSpan());
         $xcrud->fields('OrgID',true);
+        $xcrud->relation('NotifDestination','vwNotifDestinations','UserID','FullName',"vwNotifDestinations.UserID = 'SMS' or vwNotifDestinations.OrgID = '" . $this->Organisation->OrgID . "'");
+        $xcrud->change_type('DisplayPolicy','select',DisplayPolicy::UDID_GEN_ONTIME,array(DisplayPolicy::UDID_GEN_ONTIME=>"Device-specific else Generic else On-time",DisplayPolicy::UDID_GEN_NONE=>"Device-specific else Generic else no display"));
+
         return $xcrud->render();
     }   
 

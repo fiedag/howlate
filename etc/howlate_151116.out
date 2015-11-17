@@ -1,0 +1,44 @@
+Mon Nov 16 14:08:02 AEDT 2015 Inside howlate_cron
+2015-11-16 14:08:03 Australia/Melbourne:**************** Processing Usage for All organisations!!! ******************
+<br>2015-11-16 14:08:03 :Processing any Usage for Margate Clinic
+2015-11-16 14:08:03 :Margate Clinic Last billed sentsms.ID = 3976, Last unbilled = 3989, recording usage = 12
+2015-11-16 14:08:04 :Chargeover->getCustomer returned customer ID = 2
+2015-11-16 14:08:06 :Margate Clinic has usage line item 
+2015-11-16 14:08:07 :Updated chargeover usage for Margate Clinic
+2015-11-16 14:08:07 :Processing any Usage for Hastings Medical Centre
+2015-11-16 14:08:07 :Hastings Medical Centre no new SMS messages, Last Billed = 3975, Last unbilled = 
+2015-11-16 14:08:07 :Processing any Usage for DO NOT DELETE
+2015-11-16 14:08:07 :DO NOT DELETE no new SMS messages, Last Billed = 0, Last unbilled = 
+2015-11-16 14:08:07 :Processing any Usage for HOW-LATE Admin Panel CAREFUL!
+2015-11-16 14:08:07 :HOW-LATE Admin Panel CAREFUL! Last billed sentsms.ID = 1202, Last unbilled = 3998, recording usage = 9
+2015-11-16 14:08:08 :Chargeover customer CCCTV does not exist.
+2015-11-16 14:08:08 :Processing any Usage for Dr Chris Hughes
+2015-11-16 14:08:08 :Dr Chris Hughes no new SMS messages, Last Billed = 1566, Last unbilled = 
+2015-11-16 14:08:08 :Processing any Usage for Peter Saville Demo System
+2015-11-16 14:08:08 :Peter Saville Demo System no new SMS messages, Last Billed = 1376, Last unbilled = 
+2015-11-16 14:08:08 :Processing any Usage for Dr Tamlin
+2015-11-16 14:08:08 :Dr Tamlin no new SMS messages, Last Billed = 1404, Last unbilled = 
+2015-11-16 14:08:08 :Processing any Usage for GP Surgery
+2015-11-16 14:08:08 :GP Surgery no new SMS messages, Last Billed = 1848, Last unbilled = 
+2015-11-16 14:08:08 :Processing any Usage for Development Clinic
+2015-11-16 14:08:08 :Development Clinic no new SMS messages, Last Billed = 1876, Last unbilled = 
+2015-11-16 14:08:08 :Processing any Usage for Adelaide Gastro
+2015-11-16 14:08:08 :Adelaide Gastro no new SMS messages, Last Billed = 2082, Last unbilled = 
+2015-11-16 14:08:08 :Processing any Usage for Demo System
+2015-11-16 14:08:08 :Demo System no new SMS messages, Last Billed = 2227, Last unbilled = 
+2015-11-16 14:08:08 :Processing any Usage for Emerald Medical Group
+2015-11-16 14:08:08 :Emerald Medical Group no new SMS messages, Last Billed = 3820, Last unbilled = 
+2015-11-16 14:08:08 :Processing any Usage for shmc
+2015-11-16 14:08:08 :shmc no new SMS messages, Last Billed = 2232, Last unbilled = 
+2015-11-16 14:08:08 :Processing any Usage for Wellness on Wellington
+2015-11-16 14:08:08 :Wellness on Wellington Last billed sentsms.ID = 0, Last unbilled = 2673, recording usage = 1
+2015-11-16 14:08:09 :Chargeover customer CCERZ does not exist.
+2015-11-16 14:08:09 :Processing any Usage for ABCDE
+2015-11-16 14:08:09 :ABCDE no new SMS messages, Last Billed = 0, Last unbilled = 
+2015-11-16 14:08:09 :Processing any Usage for Inala Primary Care
+2015-11-16 14:08:09 :Inala Primary Care Last billed sentsms.ID = 0, Last unbilled = 4001, recording usage = 3
+2015-11-16 14:08:10 :Chargeover->getCustomer returned customer ID = 19
+2015-11-16 14:08:12 :Inala Primary Care has usage line item 
+2015-11-16 14:08:14 :Updated chargeover usage for Inala Primary Care
+2015-11-16 14:08:14 :Processing any Usage for ABCDEF
+2015-11-16 14:08:14 :ABCDEF no new SMS messages, Last Billed = 0, Last unbilled = 

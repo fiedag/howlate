@@ -8,7 +8,7 @@
  */
 class agent {
      protected static $instance;
-     protected static $BestDefaultVersion = "2.5.6.5";
+     protected static $BestDefaultVersion = "4.0.0.3";
      public $Platform;
 
      public static function getInstance($OrgID, $ClinicID) {

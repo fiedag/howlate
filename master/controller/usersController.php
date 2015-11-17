@@ -26,7 +26,7 @@ Class UsersController Extends baseController {
         $xcrud = Xcrud::get_instance();
         $xcrud->connection(HowLate_Util::mysqlUser(),HowLate_Util::mysqlPassword(),HowLate_Util::mysqlDb());
         
-        $xcrud->table('orgusers')->where('OrgID =', $this->Organisation->OrgID)->limit(10)->table_name('Users Table','You can add or delete as many users as you want');
+        $xcrud->table('orgusers')->where('OrgID =', $this->Organisation->OrgID)->limit(10)->table_name('Users','You can add or delete as many users as you want');
         $xcrud->columns('OrgID,DateCreated,SecretQuestion1,SecretAnswer1,XPassword', true);
         $xcrud->readonly('OrgID');
         $xcrud->fields('SecretAnswer1,DateCreated', true);

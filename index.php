@@ -3,6 +3,10 @@
 
     <?php include("head.php"); ?>
 
+    <style>
+        .mycenter { float: none; margin-left: auto; margin-right: auto; }
+        
+    </style>
     <body>
         <div id="site-container">
 
@@ -11,7 +15,7 @@
             <section id="welcome">
                 <div class="container-fluid">
                     <div class="row-fluid">
-                        <div class="span12">
+                        <div class="span12" id="happy-patients">
                             <div class="container">
                                 <div class="row">
                                     <div class="span8">
@@ -262,7 +266,21 @@
                     </div>
                 </div>
             </section>
-
+            <section class="container-fluid" id="signup">
+                <div class="row-fluid">
+                    <div class="col-md-4 col-md-offset-4">
+                        <form action="http://ezmail.honeyweb.com.au/t/r/s/ihlliid/" method="post" id="subForm">
+                            <div class="input-group input-group-lg">
+                                <input class="form-control" id="fieldName" name="cm-name" type="text" placeholder="Enter your name" />
+                                <input class="form-control" id="fieldEmail" name="cm-ihlliid-ihlliid" type="email" placeholder="Enter your Email" required />
+                                <input class="btn-primary btn-lg center-block" type="submit" value="Contact me">
+                                
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+            
             <!-- Begin Footer -->
 
             <?php include("footer.php"); ?>

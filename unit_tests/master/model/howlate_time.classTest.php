@@ -30,14 +30,14 @@ class HowLate_TimeTest extends PHPUnit_Framework_TestCase
 
     public function test1MintoHrsMinutes()
     {
-        $this->object = HowLate_Time::inMinutes(1);
+        $this->object = HowLate_Time::fromMinutes(1);
         
         $i = $this->object->toHrsMinutesAdjusted();
         $this->assertEquals($i,'1 minute late');
     }
     public function test0MintoHrsMinutes()
     {
-        $this->object = HowLate_Time::inMinutes(0);
+        $this->object = HowLate_Time::fromMinutes(0);
         
         $i = $this->object->toHrsMinutesAdjusted();
         $this->assertEquals($i,'on time');
@@ -45,7 +45,7 @@ class HowLate_TimeTest extends PHPUnit_Framework_TestCase
     
     public function test105MintoHrsMinutes()
     {
-        $this->object = HowLate_Time::inMinutes(105);
+        $this->object = HowLate_Time::fromMinutes(105);
         
         $i = $this->object->toHrsMinutesAdjusted();
         $this->assertEquals($i,'an hour 45 minutes late');
@@ -55,7 +55,7 @@ class HowLate_TimeTest extends PHPUnit_Framework_TestCase
     {
         $p = Practitioner::getInstance('CCEOW','Dr Joseph Lister','FullName');
         
-        $this->object = HowLate_Time::inMinutes(10, $p);
+        $this->object = HowLate_Time::fromMinutes(10, $p);
         $i = $this->object->toHrsMinutesAdjusted();
         $this->assertEquals($i,'on time');
     }
@@ -63,7 +63,7 @@ class HowLate_TimeTest extends PHPUnit_Framework_TestCase
     {
         $p = Practitioner::getInstance('CCEOW','Dr Joseph Lister','FullName');
         
-        $this->object = HowLate_Time::inMinutes(25, $p);
+        $this->object = HowLate_Time::fromMinutes(25, $p);
         $i = $this->object->toHrsMinutesAdjusted();
         $this->assertEquals($i,'15 minutes late');
     }
@@ -74,7 +74,7 @@ class HowLate_TimeTest extends PHPUnit_Framework_TestCase
     {
         $p = Practitioner::getInstance('CCEOW','Dr Joseph Lister','FullName');
         
-        $this->object = HowLate_Time::inMinutes(325, $p);
+        $this->object = HowLate_Time::fromMinutes(325, $p);
         $i = $this->object->toHrsMinutesAdjusted();
         $this->assertEquals($i,'5 hours 15 minutes late');
     }

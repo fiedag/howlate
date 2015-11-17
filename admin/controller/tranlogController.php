@@ -2,11 +2,12 @@
 
 Class TranLogController Extends baseController {
 
-    private $submenu = array ("translog"=>"Trans Log",
+    private $submenu = array ("index"=>"Trans Log",
         "speciallog"=>"Special Log",
         "smslog"=>"SMS Log",
         "errorlog"=>"Errors",
         "notifqueue"=>"Notif Queue",
+        "notifqueue2"=>"Notif Queue Today",
         "late_gets"=>"Late Gets"
      );
     
@@ -54,6 +55,7 @@ Class TranLogController Extends baseController {
         $this->registry->template->view_name = __FUNCTION__;
         $this->registry->template->show('submenu_view');
         $this->registry->template->xcrud_content = $this->getErrorlog();
+        
         $this->registry->template->show('tranlog_index');
     }
         
@@ -65,6 +67,16 @@ Class TranLogController Extends baseController {
         $this->registry->template->view_name = __FUNCTION__;
         $this->registry->template->show('submenu_view');
         $this->registry->template->xcrud_content = $this->getNotifQueue();
+        $this->registry->template->show('tranlog_index');
+    }
+    public function notifqueue2() {
+	$this->registry->template->controller = $this;
+        
+        $this->get_header();
+        $this->registry->template->submenu = $this->submenu;
+        $this->registry->template->view_name = __FUNCTION__;
+        $this->registry->template->show('submenu_view');
+        $this->registry->template->xcrud_content = $this->getNotifQueue('Created >= CURDATE()');
         $this->registry->template->show('tranlog_index');
     }
 
@@ -80,13 +92,14 @@ Class TranLogController Extends baseController {
     }
 
     
-    
     public function getWeeksLog() {
         include('includes/xcrud/xcrud.php');
         $xcrud = Xcrud::get_instance();
         $xcrud->connection(HowLate_Util::mysqlUser(),HowLate_Util::mysqlPassword(),HowLate_Util::mysqlDb());
         $xcrud->table('vwWeeksLog')->table_name('Transaction Log',"This week's log shown in latest first order.  See CSV export button at end.")->limit(50);
+        $xcrud->columns('Id,OrgID,ClinicID,PractitionerID,Late',true);
         $xcrud->order_by('Id','desc');        
+        $xcrud->column_cut(200,'Details');
         return $xcrud->render();
     }
     
@@ -132,15 +145,18 @@ Class TranLogController Extends baseController {
         $xcrud = Xcrud::get_instance();
         $xcrud->connection(HowLate_Util::mysqlUser(),HowLate_Util::mysqlPassword(),HowLate_Util::mysqlDb());
         $xcrud->table('errorlog')->table_name('Error Log',"The system exceptions and errors which have been logged.  See CSV export button at end.")->limit(50);
+        $xcrud->change_type('Trace', 'textarea');
         $xcrud->order_by('Created','desc');        
         return $xcrud->render();
     }
     
-    public function getNotifQueue() {
+    public function getNotifQueue($where = '') {
         include('includes/xcrud/xcrud.php');
         $xcrud = Xcrud::get_instance();
         $xcrud->connection(HowLate_Util::mysqlUser(),HowLate_Util::mysqlPassword(),HowLate_Util::mysqlDb());
         $xcrud->table('notifqueue')->table_name('Notification Queue',"SMS notification queue.  See CSV export button at end.")->limit(50);
+        $xcrud->columns('TestMobile',true)->column_width('Message','70%')->column_cut(200,'Message');
+        $xcrud->where($where);
         $xcrud->order_by('Created','desc');        
         return $xcrud->render();
     }

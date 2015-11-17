@@ -2,7 +2,7 @@
 <!--[if (gt IE 8)|!(IE)]><!--><html lang="en"><!--<![endif]-->
 
     <head>
-        <title>Doctor Running Late</title>
+        <title>Doctor Running Late SMS</title>
         <meta charset="utf-8" />
         <meta name="google-site-verification" content="84C-kFLmCZgIPgtYPCa-wbW5Mcb2XIZaqlvtK6fkBq0" />
         <meta name="twitter:card" content="photo">
@@ -21,8 +21,8 @@
         <meta property="og:url" content="https://www.how-late.com">
         <meta property="og:description" content="This is cool.  Share it with your friends.">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="How-Late Software allows doctors to tell their patients if their appointment is running late.  Allows patients to see if their doctors appointment is running late.">
-        <meta name="keywords" content="EHR,EMR,EMIS,BestPractice,Medical Director, MedTech, ZedMed,Genie,AllScripts,Cerner,AthenaHealth,Neomed,Practice Fusion,Healthware,Alerce,EpicCare,NextGen Ambulatory,Greenway Primesuite,CPSI,PlatinumEMR,Athena Clinicals, eClinical Works, Metacare, Caregiver Desktop, Raintree, eHealth Files, Keychart EHR, Centrihealth, eMedRec, Phymedica,Agility EHR,OfficeEMR, doctor running late app, how late is my appointment, doctor,medical practitioners,clinic,surgery,patient,appointment">
+        <meta name="description" content="How-Late Software allows doctors to tell their patients if their appointment is running late by SMS then continuous updates by smartphone app">
+        <meta name="keywords" content="Australia,EHR,EMR,EMIS,BestPractice,Medical Director, MedTech, ZedMed,Genie,AllScripts,Cerner,AthenaHealth,Neomed,Practice Fusion,Healthware,Alerce,EpicCare,NextGen Ambulatory,Greenway Primesuite,CPSI,PlatinumEMR,Athena Clinicals, eClinical Works, Metacare, Caregiver Desktop, Raintree, eHealth Files, Keychart EHR, Centrihealth, eMedRec, Phymedica,Agility EHR,OfficeEMR, doctor running late app, how late is my appointment, doctor,medical practitioners,clinic,surgery,patient,appointment">
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
         <link rel="apple-touch-icon-precomposed" href="master/images/apple-touch-icon.png" />
         <link rel="stylesheet" href="/master/styles/modal.css">
