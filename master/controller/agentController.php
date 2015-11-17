@@ -45,8 +45,6 @@ Class AgentController Extends baseController {
         $this->registry->template->ConnectionString = $result->ConnectionString;       
         $this->registry->template->PollInterval = $result->PollInterval;        
         $this->registry->template->HLUserID = $result->HLUserID;
-        $this->registry->template->ProcessRecalls = $result->ProcessRecalls;
-
         
         $this->registry->template->show('agent_index');       
     }
@@ -59,13 +57,13 @@ Class AgentController Extends baseController {
         $URL = "https://" . __FQDN . "/api?ver=post";
         $PollInterval = filter_input(INPUT_POST, "PollInterval");  
         $HLUserID = filter_input(INPUT_POST, "HLUserID");  
-        $ProcessRecalls = (filter_input(INPUT_POST, "ProcessRecalls") == "True");  
+        
         $PMSystem = filter_input(INPUT_POST, "PMSystem");
         $ConnectionType = filter_input(INPUT_POST,"ConnectionType");
         $ConnectionString = filter_input(INPUT_POST,"ConnectionString");
         
         $clin = Clinic::getInstance($OrgID,$ClinicID);
-        $clin->updateClinicIntegration2($PollInterval, $HLUserID, $ProcessRecalls, $PMSystem, $ConnectionType, $ConnectionString);
+        $clin->updateClinicIntegration2($PollInterval, $HLUserID, $PMSystem, $ConnectionType, $ConnectionString);
         
         $action = filter_input(INPUT_POST,"action");
         if ($action == 'download') {
@@ -83,7 +81,7 @@ Class AgentController Extends baseController {
         
         $this->registry->template->record = $result;
         $this->registry->template->URL = "https://" . __FQDN . "/api";
-        $this->registry->template->Credentials = $result->HLUserID . "." . $result->XPassword;
+        $this->registry->template->Credentials = $result->HLUserID . "," . $result->XPassword;
         
         $this->registry->template->show('agent_config'); 
         
@@ -203,9 +201,7 @@ Class AgentController Extends baseController {
         $this->registry->template->pwd = $result->PWD;
         $this->registry->template->interval = $result->PollInterval;        
         $this->registry->template->hluserid = $result->HLUserID;
-        $this->registry->template->processrecalls = $result->ProcessRecalls;
-
-        
+     
         $this->registry->template->show('agent_index');       
     }
     

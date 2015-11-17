@@ -5,17 +5,19 @@ class HowLate_SMS {
     protected $interface;
     
     function __construct($interface = null) {
-        if(empty($interface)) {
+        if($interface == null) {
             $this->interface = new Clickatell();
-        }
-        else {
+        } else {
             $this->interface = $interface;
         }
     }
     
     public function httpSend($orgid, $udid, $message, $clinicid = null, $practitionerid = null) {
-       $this->interface->httpSend( $udid, $message, $orgid);
-       Logging::trlog(TranType::DEV_SMS, $message, $orgid, $clinicid, $practitionerid, $udid);
+        $this->interface->httpSend( $udid, $message, $orgid);
+        Logging::trlog(TranType::DEV_SMS, $message, $orgid, $clinicid, $practitionerid, $udid);
     }
+    
+    
+    
 }
 ?>

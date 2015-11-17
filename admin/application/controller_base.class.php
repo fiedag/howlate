@@ -12,7 +12,7 @@ Abstract Class BaseController {
     function __construct($registry) {
         $this->registry = $registry;  
         set_exception_handler(array($this, 'handle_exception'));
-        $this->org = Organisation::getInstance(__SUBDOMAIN);
+        $this->Organisation = Organisation::getInstance(__SUBDOMAIN);
         
         
     }
@@ -25,13 +25,13 @@ Abstract Class BaseController {
     function get_header() {
         include 'controller/headerController.php';
         $header = new headerController($this->registry);
-        $header->view($this->org);
+        $header->view($this->Organisation);
     }
     
     function get_footer() {
         include 'controller/footerController.php';
         $footer = new FooterController($this->registry);
-        $footer->view($this->org);
+        $footer->view($this->Organisation);
     }
 
     function get_simplefooter() {

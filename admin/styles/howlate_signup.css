@@ -1,5 +1,5 @@
-
 .loader {
+  margin-left:90px;
   display: none;
   font-size: 10px;
   //margin: 5em auto;
@@ -68,6 +68,10 @@
   width:154px;
   height: 152px;
   background-image: url('/images/logos/logo.png');
+  background-repeat: no-repeat;
+  background-position: right;
 }
 
 
+#signupForm {
+}

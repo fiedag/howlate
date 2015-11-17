@@ -81,33 +81,32 @@ class howlate_db {
 
     // returns an array with a key of clinic names, and the value is an array of practitioners the $udid
     // is registered for.
-    function getlatenessesByUDID($udid) {
-
-        $q = "SELECT ClinicID, ClinicName, AbbrevName, MinutesLate, MinutesLateMsg, OrgID, Subdomain FROM vwMyLates WHERE UDID = '" . $udid . "'";
-        $practArray = array();
-        $clinArray = array();
-        if ($result = $this->conn->query($q)) {
-            $tempArray = array();
-            while ($row = $result->fetch_object()) {
-                $tempArray[] = $row;
-                if (array_key_exists($row->ClinicName, $clinArray)) {
-                    $clinArray[$row->ClinicName] = $tempArray;
-                } else {
-                    unset($tempArray);
-                    $tempArray = array();
-                    $tempArray[] = $row;
-                    $clinArray[$row->ClinicName] = $tempArray;
-                }
-            }
-            return $clinArray;
-        }
-        $result->close();
-    }
+//    function getlatenessesByUDID($udid) {
+//
+//        $q = "SELECT ClinicID, ClinicName, AbbrevName, MinutesLate, MinutesLateMsg, OrgID, Subdomain FROM vwMyLates WHERE UDID = '" . $udid . "'";
+//        $practArray = array();
+//        $clinArray = array();
+//        if ($result = $this->conn->query($q)) {
+//            $tempArray = array();
+//            while ($row = $result->fetch_object()) {
+//                $tempArray[] = $row;
+//                if (array_key_exists($row->ClinicName, $clinArray)) {
+//                    $clinArray[$row->ClinicName] = $tempArray;
+//                } else {
+//                    unset($tempArray);
+//                    $tempArray = array();
+//                    $tempArray[] = $row;
+//                    $clinArray[$row->ClinicName] = $tempArray;
+//                }
+//            }
+//            return $clinArray;
+//        }
+//        $result->close();
+//    }
 
     function getlatenessesByClinic($orgID, $clinicID) {
 
-        $q = "SELECT ClinicID, ClinicName, ID, AbbrevName, FullName, MinutesLate, MinutesLateMsg, OrgID, Subdomain, Sticky, NotificationThreshold, LateToNearest, LatenessOffset FROM vwLateness WHERE OrgID = '" . $orgID . "' AND ClinicID = '" . $clinicID . "'";
-        $practArray = array();
+        $q = "SELECT ClinicID, ClinicName, ID, AbbrevName, FullName, MinutesLate, MinutesLateMsg, OrgID, Subdomain, Override, NotificationThreshold, LateToNearest, LatenessOffset FROM vwLateness WHERE OrgID = '" . $orgID . "' AND ClinicID = '" . $clinicID . "'";
         $clinArray = array();
         if ($result = $this->conn->query($q)) {
             $tempArray = array();
@@ -137,71 +136,6 @@ class howlate_db {
         return array();
     }
 
-    // returns an array with a key of clinic names, and the value is an array of practitioners
-    function getallpractitioners($value, $field = 'OrgID') {
-        $q = "SELECT * FROM vwOrgAdmin WHERE $field = '" . $value . "'";
-
-        $myArray = array();
-        if ($result = $this->conn->query($q)) {
-            $tempArray = array();
-            while ($row = $result->fetch_object()) {
-                $tempArray = $row;
-                array_push($myArray, $tempArray);
-            }
-            return $myArray;
-        }
-        $result->close();
-    }
-
-    function agent_updatelateness($org, $id, $real_late) {
-        $q = "CALL sp_AgentLateUpd(?,?,?)";
-        $stmt = $this->conn->query($q);
-        $stmt = $this->conn->prepare($q);
-        $stmt->bind_param('ssi', $org, $id, $real_late);
-        $stmt->execute() or trigger_error('# Query Error (' . $this->conn->errno . ') ' . $this->conn->error, E_USER_ERROR);
-        $this->trlog(TranType::LATE_UPD, "Lateness updated via API to $real_late", $org, null, $id);
-    }
-
-    
-    function updatelateness($org, $id, $newlate, $sticky = 0) {
-        $q = "REPLACE INTO lates (OrgID, ID, Minutes, Sticky) VALUES (?, ?, ?, ?)";
-        $stmt = $this->conn->query($q);
-        $stmt = $this->conn->prepare($q);
-        $stmt->bind_param('sssi', $org, $id, $newlate, $sticky);
-        $stmt->execute() or trigger_error('# Query Error (' . $this->conn->errno . ') ' . $this->conn->error, E_USER_ERROR);
-        $this->trlog(TranType::LATE_UPD, "Lateness updated to $newlate, sticky = $sticky", $org, null, $id);
-    }
-
-    function validatePin($org, $id) {
-        $q = "SELECT OrgName FROM orgs WHERE OrgID = '" . $org . "'";
-        if ($result = $this->conn->query($q)) {
-            $row = $result->fetch_object();
-            if ($row == "") {
-                trigger_error('Data Error: Organisation with ID' . $org . ' does not exist.', E_USER_ERROR);
-            }
-        }
-        $result->close();
-
-        $q = "SELECT ID FROM practitioners WHERE OrgID = '" . $org . "' AND ID = '" . $id . "'";
-        if ($result = $this->conn->query($q)) {
-            $row = $result->fetch_object();
-            if ($row == "") {
-                trigger_error('Data Error: Practitioner with ID ' . $id . ' does not exist for organisation' . $org, E_USER_ERROR);
-            }
-        }
-        $result->close();
-    }
-
-    function validateClinic($org, $clinic) {
-        $q = "SELECT ClinicName FROM clinics WHERE OrgID = '" . $org . "' AND ClinicID = " . $clinic;
-        if ($result = $this->conn->query($q)) {
-            $row = $result->fetch_object();
-            if ($row == "") {
-                trigger_error('Data Error: Clinic $clinic is not valid for Org' . $org, E_USER_ERROR);
-            }
-        }
-        $result->close();
-    }
 
     function register($udid, $orgID, $id) {
         $q = "REPLACE INTO devicereg (ID, OrgID, UDID, Expires) VALUES (?,?,?, CURDATE() + INTERVAL 6 MONTH )";
@@ -252,8 +186,7 @@ class howlate_db {
 
     function write_error($errno, $errtype, $errstr, $errfile, $errline) {
         $ipaddress = $_SERVER["REMOTE_ADDR"];
-        if(is_null($ipaddress) or $ipaddress == "")
-        {
+        if (is_null($ipaddress) or $ipaddress == "") {
             $ipaddress = "localhost";
         }
         $q = "INSERT INTO errorlog (ErrLevel, ErrType, File, Line, ErrMessage, IPv4) VALUES (?,?,?,?,?,?)";
@@ -526,116 +459,15 @@ class howlate_db {
         $result->close();
     }
 
-    //
-    // Timezones which have lateness perhaps needing to be cleaned up
-    //
-    public function getLateTimezones() {
-        $q = "SELECT DISTINCT Timezone FROM vwLateTZ";
-
-        $timezones = array();
-        if ($result = $this->conn->query($q)) {
-            $tempArray = array();
-            while ($row = $result->fetch_object()) {
-                $tempArray = $row;
-                array_push($timezones, $tempArray);
-            }
-            return $timezones;
-        }
-        $result->close();
-    }
-
-    /// for a given timezone, get all those latenesses joined to any session times which exist
-    public function getLatesAndSessions($timezone, $day, $time) {
-        // $day is Monday, Tuesday etc.
-        // $time is in seconds since midnight
-        $q = " SELECT v.*, s.Day, IFNULL(s.StartTime, -1) As StartTime, IFNULL(s.EndTime,-1) As EndTime " .
-                " FROM vwLateTZ v " .
-                " LEFT OUTER JOIN sessions s on s.OrgID = v.OrgID and s.ID = v.ID and Day = '$day' " .
-                " WHERE v.Timezone = '$timezone'";
-
-        $toprocess = array();
-        if ($result = $this->conn->query($q)) {
-            $tempArray = array();
-            while ($row = $result->fetch_object()) {
-                $tempArray = $row;
-                array_push($toprocess, $tempArray);
-            }
-            return $toprocess;
-        }
-    }
-
     public function updatesessions($org, $id, $day, $start, $end) {
         $q = "REPLACE INTO sessions (OrgID, ID, Day, StartTime, EndTime) VALUES (?,?,?,?,?)";
-        
+
         $stmt = $this->conn->query($q);
         $stmt = $this->conn->prepare($q);
         $stmt->bind_param('sssii', $org, $id, $day, $start, $end);
         $stmt->execute() or trigger_error('# Query Error (' . $this->conn->errno . ') ' . $this->conn->error, E_USER_ERROR);
     }
 
-    
-    public function enqueueNotificationNew($OrgID, $Clinic, $Provider, $MobilePhone) {
-        $practitioner = $this->getPractitioner($OrgID, $Provider, 'FullName');
-        if ($practitioner->OrgID == null) {
-            $this->create_default_practitioner($OrgID, $Provider);
-            $practitioner = $this->getPractitioner($OrgID, $Provider, 'FullName');
-        }
-        
-        $MobilePhone = trim($MobilePhone);
-
-        $pin = $practitioner->OrgID . "." . $practitioner->PractitionerID;
-        
-        howlate_util::register($pin, $MobilePhone);
-        
-        $lateness = $this->getSingleLateness($pin);
-
-        if ($lateness == "On time") 
-            return;
-        
-        $url = "http://secure." . __DOMAIN . "/late/view&udid=$MobilePhone";
-        $msg = $practitioner->PractitionerName . " is running " . $lateness . ".  For updates, click " . $url;
-
-        // this takes care of duplicates
-        $q = "CALL sp_EnqueueNotification(?,?,?,?,?,?)";
-        $stmt = $this->conn->query($q);
-        $stmt = $this->conn->prepare($q);
-        $stmt->bind_param('sisssi', $OrgID, $Clinic, $practitioner->PractitionerID, $MobilePhone, $msg,$lateness);
-        $stmt->execute() or trigger_error('# Query Error (' . $this->conn->errno . ') ' . $this->conn->error, E_USER_ERROR);
-        
-        
-    }
-    
-    
-    
-    
-    
-    public function enqueueNotification($practitioner, $Patient, $MobilePhone, $Lateness, $testmobile = "") {
-        $q = "INSERT INTO notifqueue (OrgID, ClinicID, PractitionerID, MobilePhone, Message,Status, TestMobile) VALUES (?,?,?,?,?,?,?)";
-        $stmt = $this->conn->query($q);
-        $stmt = $this->conn->prepare($q);
-
-        $MobilePhone = trim($MobilePhone);
-        $url = "http://secure." . __DOMAIN . "/late/view&udid=$MobilePhone";
-        $msg = $practitioner->PractitionerName . " is running " . $Lateness . ".  For updates, click " . $url;
-        $status = 'Queued';
-        $stmt->bind_param('sssssss', $practitioner->OrgID, $practitioner->ClinicID, $practitioner->PractitionerID, $MobilePhone, $msg, $status, $testmobile);
-        $stmt->execute() or trigger_error('# Query Error (' . $this->conn->errno . ') ' . $this->conn->error, E_USER_ERROR);
-    }
-
-    
-    public function getSingleLateness($pin) {
-        $org = howlate_util::orgFromPin($pin);
-        $id = howlate_util::idFromPin($pin);
-
-        $q = "SELECT MinutesLateMsg FROM vwLateness WHERE OrgID = '$org' AND ID = '$id'";
-        // always guaranteed to get one row
-        if ($result = $this->conn->query($q)) {
-            $row = $result->fetch_object();
-            return $row->MinutesLateMsg;
-        }
-        $result->close();
-        return null;
-    }
 
     public function deleteOldLates() {
         $q = "DELETE FROM lates WHERE Updated < ADDTIME(NOW(),'-08:00:00')";
@@ -643,81 +475,5 @@ class howlate_db {
         $stmt->execute() or trigger_error('# Query Error (' . $this->conn->errno . ') ' . $this->conn->error, E_USER_ERROR);
     }
 
-    public function getClinicIntegration($orgid, $clinicid) {
-        $q = "SELECT * FROM clinicintegration WHERE OrgID = '$orgid' AND ClinicID = $clinicid";
-        if ($result = $this->conn->query($q)) {
-            $row = $result->fetch_object();
-            return $row;
-        }
-    }
 
-    // creates all the clinic integration records.  one for each clinic of the organisation
-    public function createClinicIntegration($orgid, $clinicid) {
-        $q = "CALL sp_CreateClinicIntegration('$orgid', '$clinicid')";
-        $stmt = $this->conn->prepare($q);
-        $stmt->execute() or trigger_error('# Query Error (' . $this->conn->errno . ') ' . $this->conn->error, E_USER_ERROR);
-    }
-
-    public function updateClinicIntegration($orgid, $clinicid, $instance, $database, $uid, $pwd, $interval, $hluserid) {
-
-        $q = "UPDATE clinicintegration SET Instance = ?, DbName = ?, UID = ?, PWD = ?, PollInterval = ?, HLUserID = ? WHERE OrgID = ? AND ClinicID = ?";
-        $stmt = $this->conn->query($q);
-        $stmt = $this->conn->prepare($q);
-        $stmt->bind_param('ssssissi', $instance, $database, $uid, $pwd, $interval, $hluserid, $orgid, $clinicid);
-        $stmt->execute() or trigger_error('# Query Error (' . $this->conn->errno . ') ' . $this->conn->error, E_USER_ERROR);
-
-    }
-
-    public function getQueuedNotifications() {
-        $q = "SELECT * FROM notifqueue WHERE Status = 'Queued'";
-        $toprocess = array();
-        if ($result = $this->conn->query($q)) {
-            $tempArray = array();
-            while ($row = $result->fetch_object()) {
-                $tempArray = $row;
-                array_push($toprocess, $tempArray);
-            }
-            return $toprocess;
-        }
-    }
-
-    public function dequeueNotification($uid) {
-        $q = "UPDATE notifqueue SET Status = 'Sent' WHERE UID = $uid";
-        //echo $q;
-        $stmt = $this->conn->prepare($q);
-        $stmt->execute() or trigger_error('# Query Error (' . $this->conn->errno . ') ' . $this->conn->error, E_USER_ERROR);
-        if ($stmt->affected_rows == 0) {
-           trigger_error("The notification record was not deueued, error= " . $this->conn->error , E_USER_ERROR);
-        }
-    }
-
-    public function smslog($orgid, $api, $session, $messageid, $message)
-    {
-        $q = "INSERT INTO sentsms (OrgID, API, SessionID, MessageID, MessageText) VALUES (?,?,?,?,?)";
-        $stmt = $this->conn->prepare($q);
-        $stmt->bind_param('sssss',$orgid, $api,$session,$messageid,$message);
-        $stmt->execute() or trigger_error('# Query Error (' . $this->conn->errno . ') ' . $this->conn->error, E_USER_ERROR);
-        if ($stmt->affected_rows == 0) {
-           trigger_error("The row was not inserted into the sentsms table, error= " . $this->conn->error , E_USER_ERROR);
-        }
-    }
-    
-    public function deleteSubdomain($subdomain) {
-        $q = "CALL sp_DeleteSubd(?)";
-        $stmt = $this->conn->prepare($q);
-        $stmt->bind_param('s', $subdomain);
-        $stmt->execute() or trigger_error('# Query Error (' . $this->conn->errno . ') ' . $this->conn->error, E_USER_ERROR);
-        return $stmt->affected_rows;
-    }
-    public function getBySubdomain($subdomain) {
-        $q = "SELECT OrgID from orgs WHERE Subdomain = ?";
-        $stmt = $this->conn->prepare($q);
-        $stmt->bind_param('s', $subdomain);
-        $stmt->execute() or trigger_error('# Query Error (' . $this->conn->errno . ') ' . $this->conn->error, E_USER_ERROR);
-        $stmt->bind_result($orgID);
-        $stmt->fetch();
-        return ($orgID);
-    }
-        
-    
 }

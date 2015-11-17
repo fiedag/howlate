@@ -7,14 +7,14 @@ class HowLate_Time {
     private $minutes;
     private $Practitioner;
     
-    public static function inMinutes($Minutes, $Practitioner = null) {
+    public static function fromMinutes($Minutes, $Practitioner = null) {
         self::$instance = new self();
         self::$instance->minutes = $Minutes;
         self::$instance->Practitioner = $Practitioner;
         
         return self::$instance;
     }
-    public static function inSeconds($Seconds, $Practitioner = null) {
+    public static function fromSeconds($Seconds, $Practitioner = null) {
         self::$instance = new self();
         self::$instance->minutes = round($Seconds / 60, 0);
         self::$instance->Practitioner = $Practitioner;
@@ -35,9 +35,21 @@ class HowLate_Time {
             return $this->toHrsMinutes($adj_minutes);
         }
     }
-    
 
-    private function toHrsMinutes($minutes = -1) {
+    public function toMinutesAdjusted() {
+        if (self::$instance->Practitioner == null) {
+            $adj_minutes = self::$instance->minutes;
+        } else {
+            $adj_minutes = self::adjust(self::$instance->Practitioner, self::$instance->minutes);
+        }
+        
+        return $adj_minutes;
+    }
+    public function toMinutes() {
+        return $this->minutes;
+    }
+
+    public function toHrsMinutes($minutes = -1) {
         if ($minutes == -1) {
             $minutes = self::$instance->minutes;
         }

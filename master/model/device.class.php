@@ -9,74 +9,18 @@ class Device {
     protected static $instance;
     public $udid; // unique device id
     public $canonical_udid;
-    public $registrations;  // array of registrations for this
+    public $registrations=array();  // array of registrations for this
     
-    
-    /*
-     * 
-     * Returns an array of latenesses and must be ordered by Clinic Name
-     */
-    public static function getLatenesses($fieldval, $fieldname = 'UDID') {
-        $q = "SELECT ClinicID, ClinicName, AbbrevName, MinutesLate, MinutesLateMsg, OrgID, ID, Subdomain, AllowMessage FROM vwMyLates WHERE $fieldname = '" . $fieldval . "' ORDER BY ClinicName";
+
+    public static function getInstance($UDID) {
+        $q = "SELECT * FROM devicereg WHERE UDID = '$UDID'";
         $sql = MainDb::getInstance();
         
-        $practArray = array();
-        $clinArray = array();
-        if ($result = $sql->query($q)) {
-            $tempArray = array();
-            while ($row = $result->fetch_object()) {
-                $tempArray[] = $row;
-                if (array_key_exists($row->ClinicName, $clinArray)) {
-                    $clinArray[$row->ClinicName] = $tempArray;
-                } else {
-                    unset($tempArray);
-                    $tempArray = array();
-                    $tempArray[] = $row;
-                    $clinArray[$row->ClinicName] = $tempArray;
-                }
+        if ($result = $sql->query($q)) {        
+            while($row = $result->fetch_object()) {
+                $this->registrations[] = $row;
             }
-            return $clinArray;
         }
-        return null;
-    }
-    
-    /*
-     * 
-     */
-    public static function getLatenessesByUDID($udid) {
-        $q = "SELECT CONCAT(OrgID ,'.',ID) As Pin, MinutesLateMsg FROM vwMyLates WHERE UDID = '" . $udid . "'";
-        $sql = MainDb::getInstance();
-        $myArray = array();
-        if ($result = $sql->query($q)) {
-            while ($row = $result->fetch_object()) {
-                $myArray[$row->Pin] = $row->MinutesLateMsg;
-            }
-            return $myArray;
-        }
-    }
-    
-    public static function getLatenessesByUDID2($fieldval, $fieldname = 'UDID') {
-        $q = "SELECT ClinicID, ClinicName, AbbrevName, MinutesLate, MinutesLateMsg, OrgID, ID, Subdomain, AllowMessage FROM vwMyLates WHERE $fieldname = '" . $fieldval . "' ORDER BY ClinicName";
-        $sql = MainDb::getInstance();
-        $myArray = array();
-        if ($result = $sql->query($q)) {
-            while ($row = $result->fetch_object()) {
-                $myArray[] = $row;
-            }
-            return $myArray;
-        }
-    }
-    
-    public static function invite($org, $id, $udid, $domain) {
-       $prac = Practitioner::getInstance($org,$id);
-       //$url = "http://m.$domain/late/view&xudid=" . howlate_util::to_xudid($udid);
-
-       $url = "http://m.$domain/late/view&udid=" . $udid;
-
-       $message = "Current delays for $prac->PractitionerName at $prac->ClinicName can be checked at " . $url;
-
-       HowLate_SMS::httpSend($org, $udid, $message);
-       Logging::trlog(TranType::DEV_SMS, $message, $prac->OrgID, $prac->ClinicID, $prac->PractitionerID, $udid);
     }
     
     /*
@@ -89,8 +33,92 @@ class Device {
         $stmt = MainDb::getInstance()->prepare($q);
         $stmt->bind_param('sss', $PractitionerID, $OrgID, $UDID);
         $stmt->execute();
-        
     }
+    
+    public static function updatePerspective(Practitioner $Practitioner, HowLate_Time $time, $UDID) {
+        $realminutes = $time->toMinutes();
+        $minutes = $time->toMinutesAdjusted();  // threshold, tonearest etc.
+        $q = "REPLACE INTO lates (OrgID, ID, UDID, Updated, Minutes, RealMinutes, Override, AgentUpdate)" .
+                " VALUES (:orgid,:id,:udid, NOW(), :minutes, :realminutes, 0, 1)";
+        $stmt = db::getInstance()->prepare($q);
+        $stmt->bindParam(":orgid", $Practitioner->OrgID);
+        $stmt->bindParam(":id", $Practitioner->PractitionerID);
+        $stmt->bindParam(":udid", $UDID);
+        $stmt->bindParam(":minutes", $minutes);
+        $stmt->bindParam(":realminutes", $realminutes);
+        
+        $stmt->execute();
+//        if ($stmt->rowCount() != 1) {
+//            throw new PDOException("Expected to replace exactly one perspective record, replaced " . $stmt->rowCount());
+//        }
+    }
+    
+    /*
+     * 
+     * Returns an array of latenesses and must be ordered by Clinic Name
+     */
+    public static function getLatenesses($fieldval, $fieldname = 'UDID') {
+        $q = "SELECT ClinicID, ClinicName, AbbrevName, MinutesLate, OrgID, OrgName, ID, Pin, Subdomain FROM vwClinicDeviceLates" . 
+                " WHERE $fieldname = :fieldval" . 
+                " ORDER BY ClinicName";
+
+        $clinArray = array();
+        
+        $stmt = db::getInstance()->prepare($q);
+        $stmt->bindParam(':fieldval', $fieldval);
+        $stmt->execute();
+        $practArray = array();
+        $clinArray = array();
+        while ($row = $stmt->fetchObject()) {
+            $row->MinutesLateMsg = "";
+            $time = howlate_time::fromMinutes($row->MinutesLate);
+            $row->MinutesLateMsg = $time->toHrsMinutesAdjusted();
+            $tempArray[] = $row;
+            if (array_key_exists($row->ClinicName, $clinArray)) {
+                $clinArray[$row->ClinicName] = $tempArray;
+            } else {
+                unset($tempArray);
+                $tempArray = array();
+                $tempArray[] = $row;
+                $clinArray[$row->ClinicName] = $tempArray;
+            }
+        }
+        return $clinArray;
+    }
+    
+    /*
+     * 
+     */
+    public static function getLatenessesLite($udid) {
+        $q = "SELECT Pin, OrgID, ID, MinutesLate FROM vwClinicDeviceLates WHERE UDID = '" . $udid . "'";
+        $sql = MainDb::getInstance();
+        $myArray = array();
+        if ($result = $sql->query($q)) {
+            while ($row = $result->fetch_object()) {
+                $time = howlate_time::fromMinutes($row->MinutesLate);
+                $myArray[$row->Pin] = $time->toHrsMinutesAdjusted();
+            }
+            return $myArray;
+        }
+    }
+
+    
+    public static function invite($org, $id, $udid, $domain) {
+        $Practitioner = Practitioner::getInstance($org,$id);
+
+        $Clinic = Clinic::getInstance($org, $Practitioner->ClinicID);
+        $phone = new HowLate_Phone($udid, $Clinic);
+
+        Device::register($org, $Practitioner->PractitionerID, $phone->CanonicalMobile);
+        
+        $url = "http://m." . __DOMAIN . "/late?xudid=" . $phone->XUDID;
+        $message = "Current delays for $Practitioner->PractitionerName at $Practitioner->ClinicName can be checked at " . $url;
+
+       $sms = new HowLate_SMS();
+       $sms->httpSend($org, $udid, $message);
+       Logging::trlog(TranType::DEV_SMS, $message, $Practitioner->OrgID, $Practitioner->ClinicID, $Practitioner->PractitionerID, $phone->CanonicalMobile);
+    }
+    
 }
 
 ?>

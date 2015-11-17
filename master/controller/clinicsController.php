@@ -15,12 +15,15 @@ Class ClinicsController Extends baseController {
         $xcrud->connection(HowLate_Util::mysqlUser(),HowLate_Util::mysqlPassword(),HowLate_Util::mysqlDb());
                
         $xcrud->table('clinics')->where('OrgID =', $this->Organisation->OrgID)->limit(10);
-        $xcrud->columns('OrgID, Country, Location, Zip, Timezone, PatientReply, ReplyRecip,AllowMessage,MsgRecip,SuppressNotifications,ApptLogging', true);
-        $xcrud->fields('PatientReply,ReplyRecip,MsgRecip,AllowMessage,ApptLogging',true);
+        $xcrud->columns('OrgID, Country, Location, Zip, Timezone,LateMessage', true);
+        $xcrud->fields('OrgID,LateMessage',true);
         $xcrud->readonly('OrgID');
         
         $xcrud->hide_button('view');
-        $xcrud->label(array('ClinicName' => 'Clinic', 'Address1' => 'Address', 'Address2' => 'Address', 'Timezone' => 'Time Zone', 'PatientReply' => 'Allow Patient to reply', 'ReplyRecip' => 'Reply Recipient Email', 'SuppressNotifications' =>'Suppress Notifications'));
+        $xcrud->label(array('ClinicName' => 'Clinic', 'Address1' => 'Address', 
+            'Address2' => 'Address', 'Timezone' => 'Time Zone',
+                'LatLong'=>'Latitude/Longitude','NotifDestination'=>'Notifications To',
+            'DisplayPolicy'=>'Display Policy'));
 
         $xcrud->pass_default('OrgID',$this->Organisation->OrgID);
         $tz = $this->Organisation->getTimezones();
@@ -35,12 +38,18 @@ Class ClinicsController Extends baseController {
         $xcrud->unset_csv(true)->unset_numbers(true)->unset_print(true)->unset_limitlist(true)->hide_button('save_and_edit')->hide_button('save_and_new');     
         $xcrud->after_remove("clinic_deleted");
         
-
-        $xcrud->field_tooltip('PatientReply','Whether Lateness view permits patients to reply to the clinic');
-        $xcrud->field_tooltip('ReplyRecip','Recipient email address if replies are permitted.');
+        $xcrud->relation('NotifDestination','vwNotifDestinations','UserID',array('FullName','EmailAddress'),"vwNotifDestinations.UserID = 'SMS' or vwNotifDestinations.OrgID = '" . $this->Organisation->OrgID . "'");
+        $xcrud->field_tooltip('NotifDestination', 'Send Mock SMS emails to any defined user.  Once tested, set to SMS Gateway to send real SMS messages to patients.');
         
+        $xcrud->change_type('DisplayPolicy','select',DisplayPolicy::UDID_GEN_ONTIME,array(DisplayPolicy::UDID_GEN_ONTIME=>"Device-specific else Generic else On-time",DisplayPolicy::UDID_GEN_NONE=>"Device-specific else Generic else no display"));
+
         echo $xcrud->render();
     }
     
+    
+    public function get_help() {
+        $this->registry->template->show('main_help');
+        
+    }
 }
 ?>

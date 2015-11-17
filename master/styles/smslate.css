@@ -1,4 +1,9 @@
-
+/*
+HowLate identity scheme
+Green = #7FFF00
+Turquoise = 	#11bee3
+Teal = #175f82
+*/ 
 
 html {
     font-size: 10vw;
@@ -13,7 +18,7 @@ html {
 
 
 .ontime .stopwatch {
-    background-color: #00CC00;
+    background-color: #7FFF10;
 }
 
 .ontime .stopwatch > .hand {
@@ -23,7 +28,7 @@ html {
 }
 
 .bitlate .stopwatch {
-    background-color: yellow;
+    background-color: #f7ff00;
 }
 
 .bitlate .stopwatch > .hand {
@@ -158,12 +163,13 @@ html {
 }
 
 .panel-default > .panel-heading {
+    color: #105D7D;
     position: relative;
     font-size: 0.5rem;
     background-repeat: no-repeat;
     background-size: contain;
-    background-color: #ffd15c;    
-    border-color: #FFB700;
+    background-color: #05C8E7;    
+    border-color: #175f82;
 }
 
 .panel-default > .panel-heading > img {
@@ -180,7 +186,7 @@ html {
 }
 
 .panel-default {
-    border-color: #FFB700;
+    border-color: #175f82;
 }
 
 .panel-body {

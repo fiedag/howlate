@@ -13,7 +13,6 @@ Class DevicesController Extends baseController {
 		
     }
     
-    
     public function index() {
 	$this->registry->template->controller = $this;
         $this->get_header();
@@ -50,7 +49,7 @@ Class DevicesController Extends baseController {
         $xcrud->hide_button('view');
         $xcrud->order_by('Created','desc');   
         $xcrud->unset_csv(true)->unset_numbers(true)->unset_print(true)->unset_limitlist(true)->hide_button('save_and_edit')->hide_button('save_and_new');     
-        echo $xcrud->render();
+        return $xcrud->render();
     }
 
     
@@ -67,7 +66,7 @@ Class DevicesController Extends baseController {
         $xcrud->hide_button('view');
         $xcrud->order_by('Created','desc');   
         $xcrud->unset_csv(true)->unset_numbers(true)->unset_print(true)->unset_limitlist(true)->hide_button('save_and_edit')->hide_button('save_and_new');     
-        echo $xcrud->render();
+        return $xcrud->render();
     }
     
     

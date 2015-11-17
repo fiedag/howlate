@@ -55,7 +55,7 @@
                 <h2>Invite a smart-phone user to updates for <p id="modal-name">Drs name goes here</p></h2>
                 <p>Please enter a mobile phone number to send an invitation to</p>
                 <form name="invite" action="/main/invite" method='POST'>
-                    <input type="text" id="modal-invitepin" name="invitepin" readonly='readonly'>
+                    <input type="text" id="modal-invitepin" name="modal-invitepin" readonly='readonly'>
                     Mobile:<input type="text" id="udid" name="udid">
                     <input type="submit" id="submit" name="submit" value="Invite">
                 </form>
@@ -68,7 +68,6 @@
     </footer>
     <a href="#!" class="modal-close" title="Close this modal" data-dismiss="modal" data-close="Close">&times;</a>
 </section>
-
 
 <script src="/js/jquery.jeditable.min.js"></script>
 
@@ -94,11 +93,11 @@
             if(data >= 5) {
                 $('#agent-indicator').removeClass().addClass("glyphicon glyphicon-warning-sign");
             }
-            else if (data => 0) {
+            else if (data >= 0) {
                 $('#agent-indicator').removeClass().addClass("glyphicon glyphicon-ok-sign");
             }
             else {
-                $('#agent-indicator').hide();
+                $('#agent-indicator').removeClass();
             }
             
         });
@@ -115,13 +114,14 @@
         });
 
         $('.chekbox').change(function() {
+            //debugger;
             id = $(this).attr("id");
             late = $('.form-control, #' + id).html();
-            sticky = ($('input[name="' + id + '"]:checked').val() == 'on') ? 1 : 0;
+            override = ($('input[name="' + id + '"]:checked').val() == 'on') ? 1 : 0;
             $.post("/main/savechk", {
                 id: $(this).attr("id"),
                 late: late,
-                sticky: sticky
+                override: override
             })
                     .done(function(data) {
                         //alert("Data Loaded: " + data);
@@ -141,6 +141,10 @@
         updateAgentIndicator();
     });
 </script>
+<?php 
 
+$controller->get_help();
 
-<?php $controller->get_footer(); ?>
+$controller->get_footer(); 
+
+?>

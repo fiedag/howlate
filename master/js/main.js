@@ -1,3 +1,4 @@
+
 function fade_welcome() {
     var scrollTop = $(window).scrollTop();
     var height = $(window).height();
@@ -13,11 +14,8 @@ function fade_welcome() {
     });
 };
 
-
 function signupFunction()
 {
-
-
     $("#signup_link").hide();
     $("#start_trial").html("Please wait.  This may take about 1 minute");
     $("#loader_container").css("display", "block");
@@ -75,6 +73,7 @@ function redirectToOrderSystem(reservationCode) {
 
 var adroll_adv_id = "Q5ODOSHZJVEBBG7FW2CY3P";
 var adroll_pix_id = "IZR7HAJIINEJHETKC43M2Z";
+var signupDisplayed = false;
 
 (function($) {
 
@@ -100,6 +99,7 @@ var adroll_pix_id = "IZR7HAJIINEJHETKC43M2Z";
     $(window).scroll(function() { 
         
         fade_welcome(); 
+        
     });
 
 
@@ -464,7 +464,5 @@ var adroll_pix_id = "IZR7HAJIINEJHETKC43M2Z";
                 $(".reserve-cancel").css('display', 'block');
         }, delay);
     }
-
-
 
 })(jQuery);

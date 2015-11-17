@@ -55,13 +55,14 @@ Class SupportController Extends baseController {
         $this->registry->template->controller = $this;
         $administrator = "61403569377";
         $smstext = "User " .  $_SESSION["USER"] . " from " . $this->Organisation->OrgName . " has sent you a note.  Check admin@how-late.com";
-        HowLate_SMS::httpSend($this->Organisation->OrgID, $administrator, $smstext);
+        $sms = new HowLate_SMS();
+        $sms->httpSend(howlate_util::admin_orgid(), $administrator, $smstext);
         
         $mailer = new Howlate_Mailer();
         $mailer->send(HowLate_Util::admin_email(),'Administrator', 'A note has been received', $note, 'admin@how-late.com', 'Administrator');
           
         $this->registry->template->msg = "Thank you.  Your note is being actioned!";
-        $this->registry->template->show('support_contact');
+        $this->registry->template->show('support_index');
 
         
         

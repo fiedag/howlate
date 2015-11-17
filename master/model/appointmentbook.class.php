@@ -60,7 +60,6 @@ Class AppointmentBook {
      * 
      */
     private function classifyAppointments() {
-        
         foreach($this->Appointments as $key => $val) {
             $this->Appointments[$key]['Processing'] = "";
             $this->Appointments[$key]['ConsultPredicted'] = "";
@@ -81,7 +80,7 @@ Class AppointmentBook {
             }
             
             if($this->Appointments[$key]['ConsultationTime']) {  // consultation has begun
-                if($this->Appointments[$key]['ConsultationTime'] + $this->Appointments[$key]['Duration'] < $this->time_now) {
+                if($this->Appointments[$key]['ConsultationTime'] + $this->Appointments[$key]['Duration'] < $this->time_now ) {
                     $this->Appointments[$key]['Processing'] = "DONE";
                 }
                 else {
@@ -94,7 +93,6 @@ Class AppointmentBook {
             else {
                 $this->Appointments[$key]['Processing'] = "NOTARRIVED";
             }
-            
         }
         return $this;
     }
@@ -139,17 +137,19 @@ Class AppointmentBook {
     /*
      * having just determined the likely order
      * of appointments, it remains to 
-     * predict an appointment start time
+     * predict an appointment start time for each
      * 
-     * 
+     * If there are >1 WITHDOCTOR, then only treat them as 
+     * concurrent if they have the same AppointmentTime
+     * else assume that only the last one is WITHDOCTOR
+     * and the others merely happened very quickly
      */
     private function predictConsultTimes() {
         $i=0;
         $this->Relevant = array_filter($this->Appointments, function($val) { return ($val['Sequence'] >= 0); });
         $this->Relevant = HowLate_Util::array_sort($this->Relevant, 'Sequence', SORT_ASC);
 
-        $prev_consult_end = -1;
-        
+        $prev_consult_end = 0;
         // has to be either WITHDOCTOR, WAITING, AUTOCONSULT or NOTARRIVED
         foreach($this->Relevant as $key=>$val) {
 
@@ -157,7 +157,7 @@ Class AppointmentBook {
             
             switch($processing) {
                 case "WITHDOCTOR":
-                    $this->Appointments[$key]['ConsultPredicted'] = max($prev_consult_end, $this->Appointments[$key]['ConsultationTime']);
+                    $this->Appointments[$key]['ConsultPredicted'] = $this->Appointments[$key]['ConsultationTime'];
                     break;
                 case "WAITING":
                     $this->Appointments[$key]['ConsultPredicted'] = max($prev_consult_end, $this->Appointments[$key]['ArrivalTime']);

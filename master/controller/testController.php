@@ -22,7 +22,7 @@ Class TestController Extends baseController {
     }
     
     public function testtime() {
-        $i = HowLate_Time::inMinutes(60);
+        $i = HowLate_Time::fromMinutes(60);
         
         
         

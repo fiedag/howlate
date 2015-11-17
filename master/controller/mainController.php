@@ -8,14 +8,13 @@ Class MainController Extends baseController {
     public $currentClinic;
     public $currentClinicName;
     public $currentClinicTimezone;
-
     public $UTC;
     
     public function index() {
         $this->Organisation->getRelated();
         $ClinicID = $this->getCurrentClinicID();
         
-        $clin = Clinic::getInstance($this->Organisation->OrgID,$ClinicID);
+        $clin = Clinic::getInstance($this->Organisation->OrgID, $ClinicID);
         
         date_default_timezone_set($clin->Timezone);
 
@@ -23,7 +22,6 @@ Class MainController Extends baseController {
         $check = $time - date("Z", $time);
         $this->UTC = strftime("%H:%M:%S UTC", $check);
 
-        
         $this->currentClinic = $ClinicID;
         $this->currentClinicName = $clin->ClinicName;
         $this->currentClinicTimezone = $clin->Timezone;
@@ -36,7 +34,7 @@ Class MainController Extends baseController {
         if(isset($_SESSION["CLINIC"])) {
             return $_SESSION["CLINIC"];
         }
-        if(isset($this->Organisation->ActiveClinics)) {
+        if(isset($this->Organisation->ActiveClinics) && count($this->Organisation->ActiveClinics)>0) {
             return $this->Organisation->ActiveClinics[0]->ClinicID;
         }
         if(isset($this->Organisation->Clinics)) {
@@ -49,10 +47,8 @@ Class MainController Extends baseController {
         $_SESSION["CLINIC"] = $ClinicID;
     }
     
-    
     public function save() {
         $pin = filter_input(INPUT_POST,'id');
-        
         $elems = explode('.', $pin);
         $org = $elems[0];
         $id = $elems[1];
@@ -69,12 +65,11 @@ Class MainController Extends baseController {
         $elems = explode('.', $pin);
         $org = $elems[0];
         $id = $elems[1];
-        $sticky = filter_input(INPUT_POST,'sticky');
+        $override = filter_input(INPUT_POST,'override');
         $newlate = filter_input(INPUT_POST,'late');
         
         $manual = 1;
-        Practitioner::getInstance($org,$id)->updateLateness($newlate, $sticky, $manual);
-        echo $sticky;
+        $ret = Practitioner::getInstance($org,$id)->updateLateness($newlate, $override, $manual);
     }
     
    
@@ -84,33 +79,32 @@ Class MainController Extends baseController {
         $xcrud->connection(HowLate_Util::mysqlUser(),HowLate_Util::mysqlPassword(),HowLate_Util::mysqlDb());
         $clause = "OrgID ='" . $this->Organisation->OrgID . "' AND ClinicID = $this->currentClinic";
         $xcrud->table('vwLateness')->where($clause);
-        $xcrud->columns('OrgID,ID,FullName,DateCreated,OrgName,ClinicID,ClinicName,MinutesLateMsg,AllowMessage,Subdomain,Updated,LatenessCeiling,LateToNearest',true);
+        $xcrud->columns('OrgID,ID,FullName,DateCreated,OrgName,ClinicID,ClinicName,MinutesLateMsg,Subdomain,Updated,LatenessCeiling,LateToNearest',true);
         $xcrud->unset_add( true )->unset_csv()->unset_pagination()->unset_limitlist()->unset_search()->unset_print()->unset_numbers()->unset_title();
-        $xcrud->column_pattern('MinutesLate',"<span type='text' class='form-control edit notwide' id='{OrgID}.{ID}.{Sticky}'>{value}</span>");
+        $xcrud->column_pattern('MinutesLate',"<span type='text' class='form-control edit notwide' id='{OrgID}.{ID}.{Override}'>{value}</span>");
 
         $xcrud->column_pattern('LatenessOffset',"<div class='btn btn-primary btn-invite' data-invitepin='{OrgID}.{ID}' data-fullname='{FullName}'>Send SMS Invitation</span>");
 
-        $xcrud->change_type('Sticky', 'select', '', array('0'=>'', '1'=>'checked'));
-        $xcrud->column_pattern('Sticky',"<input type='checkbox' class='chekbox' name='{OrgID}.{ID}.{Sticky}' id='{OrgID}.{ID}.{Sticky}' {value}></input>");
+        $xcrud->change_type('Override', 'select', '', array('0'=>'', '1'=>'checked'));
+        $xcrud->column_pattern('Override',"<input type='checkbox' class='chekbox' name='{OrgID}.{ID}.{Override}' id='{OrgID}.{ID}.{Override}' {value}></input>");
         echo $xcrud->render();
         
     }
     
     public function invite() {
 
-        $pin = filter_input(INPUT_POST,'invitepin');
+        $pin = filter_input(INPUT_POST,'modal-invitepin');
         $udid = filter_input(INPUT_POST,'udid');
 
-        if (!$pin or !$udid)
+        if (!$pin or !$udid) {
             throw new Exception("Parameters not supplied.");
-        
+        }
         list($org,$id) = explode('.',$pin);
         Device::register($org,$id,$udid);
         Device::invite($org, $id, $udid, __DOMAIN);
  
         $this->index();
     }
-
     
     public function setclinic() {
         $selectedclinic = filter_input(INPUT_GET,'clinic');
@@ -129,5 +123,8 @@ Class MainController Extends baseController {
         echo $ret;
     }
     
-    
+    public function get_help() {
+        $this->registry->template->show('main_help');
+        
+    }
 }

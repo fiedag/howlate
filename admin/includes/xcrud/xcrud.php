@@ -706,10 +706,23 @@ class Xcrud
         $fdata = $this->_parse_field_names($fields, 'label');
         foreach ($fdata as $fitem)
         {
+            //echo "fitem['table'] = " . $fitem['table'] . ",fitem['field'] = " . $fitem['field'];
+            
             $this->labels[$fitem['table'] . '.' . $fitem['field']] = isset($fitem['value']) ? $fitem['value'] : $label;
         }
         return $this;
     }
+    
+    public function autolabel()
+    {
+        $this->labels['users.UserID'] = $this->spaceCamelCase('UserID');
+        return $this;
+    }
+    private function spaceCamelCase($str) {
+        $rex = '/([A-Z])([A-Z])([a-z])|([a-z])([A-Z])/';
+        return preg_replace($rex, '$1$4 $2$3$5', $str );
+    }
+    
     public function columns($columns = '', $reverse = false)
     {
         $fdata = $this->_parse_field_names($columns, 'columns');

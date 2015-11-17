@@ -71,7 +71,9 @@ class Organisation {
     }
 
     private function getActiveClinics() {
+        $this->ActiveClinics=array();
         $q = "SELECT ClinicID FROM vwActiveClinics WHERE OrgID = '" . $this->OrgID . "'";
+        
         if ($result = MainDb::getInstance()->query($q)) {
             while ($row = $result->fetch_object()) {
                 $c = Clinic::getInstance($this->OrgID,$row->ClinicID);
@@ -132,7 +134,7 @@ class Organisation {
 
     
     public function getLatenesses($clinic) {
-        $q = "SELECT ClinicID, ClinicName, ID, AbbrevName, FullName, MinutesLate, MinutesLateMsg, OrgID, Subdomain, Sticky, NotificationThreshold, LateToNearest, LatenessOffset, LatenessCeiling FROM vwLateness WHERE OrgID = '" . $this->OrgID . "' AND ClinicID = '" . $clinic . "'";
+        $q = "SELECT ClinicID, ClinicName, ID, AbbrevName, FullName, MinutesLate, MinutesLateMsg, OrgID, Subdomain, Override, NotificationThreshold, LateToNearest, LatenessOffset, LatenessCeiling FROM vwLateness WHERE OrgID = '" . $this->OrgID . "' AND ClinicID = '" . $clinic . "'";
         $practArray = array();
         $clinArray = array();
         if ($result = MainDb::getInstance()->query($q)) {
@@ -175,27 +177,34 @@ class Organisation {
         }
         $result->close();
     }
-
     
     
     public function update_org($values) {
         // $org is the organisation object
         // $values is the array of new values
+        
+        
         $q = "UPDATE orgs SET ";
-        foreach ($values as $key => $val) {
-            if ($key != "UpdIndic" and $key != "OrgID") {
-                $q .= "$key = '" . $val . "',";
+        $i=0;
+        foreach ($values as $key => &$val) {
+            if ($key != "OrgID") {
+                if($i>0) {
+                    $q .= ", ";
+                }
+                $q .= "$key = :$key";
+                
+                $i++;
             }
         }
-        $q .= "UpdIndic = UpdIndic + 1";
-        $q .= " WHERE OrgID = ? AND UpdIndic = ?";
-        $sql = MainDb::getInstance();
-        $stmt = $sql->prepare($q);
-        $stmt->bind_param('si', $values["OrgID"], $values["UpdIndic"]);
-        $stmt->execute();
-        if ($stmt->affected_rows == 0) {
-            trigger_error("The orgs record was not updated, error= " . $stmt->error, E_USER_ERROR);
+        $q .= " WHERE OrgID = :OrgID";
+        
+        $stmt = db::getInstance()->prepare($q);
+        foreach ($values as $key => &$val) {  // $val must be by reference.  who knew???
+            $stmt->bindParam(":" . $key, $val);
         }
+        
+        $stmt->execute();
+           
     }
 
 

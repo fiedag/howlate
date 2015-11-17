@@ -42,35 +42,32 @@ Class SignupController Extends baseController {
         $this->registry->template->logourl = HowLate_Util::logoURL();
         $howlate_site = new HowLate_Site($company,$email);
 
-
-        
-        $this->registry->template->signup_error = "";
-        $this->registry->template->signup_result = "Your signup was successful.  Please check your email for a link to the login page.";
+        $status = "ok";
+        $message = "";
         
         try {
+            
             $howlate_site->reduceName()->checkForDupe()->createCPanelSubdomain()->installSSL();
             $howlate_site->createOrgRecord()->createDefaultClinic()->createDefaultUser();
             $howlate_site->sendWelcomeEmail();
-            
-
-            $administrator = "61403569377";
-            $smstext = "New Signup : " . $company . ", email = " . $email;
-            
-            howlate_sms::httpSend('CCCTV', $administrator, $smstext);
+            Logging::trlog(TranType::MISC_MISC, $howlate_site->Result);
             
         } catch (Exception $exception) {
-            require_once("includes/kint/Kint.class.php");
 
-            d($exception);
-            $this->registry->template->signup_error = $howlate_site->Result;
-            $this->registry->template->signup_result = "Your signup was not successful.  We have logged the error and will contact you shortly.  There is no need to repeat the signup process.";
             $ip = $_SERVER["REMOTE_ADDR"];
             Logging::write_error(0, 1, $exception->getMessage(), $exception->getFile(), $exception->getLine(), $ip, $exception->getTraceAsString());
-                    
+            $status = "error";
+            $message = "There was an error with your signup. (" . $exception->getMessage() . ")";
         }
-        Logging::trlog(TranType::MISC_MISC, $howlate_site->Result);
-        $this->registry->template->show('signup_done');
 
+        
+        $administrator = "61403569377";
+        $smstext = "signup:$company,$email,($status)";
+        $sms = new HowLate_SMS();
+        $sms->httpSend('CCCTV', $administrator, $smstext);
+
+        echo json_encode(array('status'=>$status,'message'=>$message));
+        
     }
 
 

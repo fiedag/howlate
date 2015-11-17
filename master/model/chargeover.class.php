@@ -43,7 +43,7 @@ class Chargeover {
         
         if ($this->API->isError($resp))
         {
-            throw new Exception('Error creating Chargeover customer via API' . $this->API->lastResponse());
+            throw new Exception('Error creating Chargeover customer via API: ' . $resp->message);
         }
     }
 
@@ -72,7 +72,7 @@ class Chargeover {
         
         if ($this->API->isError($resp))
         {
-            throw new Exception('Error modifying Chargeover customer via API' . $this->API->lastResponse());
+            throw new Exception('Error modifying Chargeover customer via API: ' . $resp->message);
         }
     }
     
@@ -114,6 +114,19 @@ class Chargeover {
         
     }
     
+    function deletePackage($PackageID) {
+        $resp = $this->API->delete(ChargeOverAPI_Object::TYPE_PACKAGE, $PackageID);
+
+        // Check for errors 
+        if (!$this->API->isError($resp)) {
+            return 'Package was deleted!';
+        }
+        else {
+            throw new Exception("The package COULD NOT BE DELETED!" . $this->API->lastRequest() . "," . $this->API->lastResponse());
+        }
+        
+        
+    }
     
     function createUsage($package_line_item_id, $units ) {
         $Usage = new ChargeOverAPI_Object_Usage();

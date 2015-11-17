@@ -74,6 +74,8 @@ Class BillingController Extends baseController {
         
         $this->tools();
     }
+
+    
     
     private function getClinics() {
         include('includes/xcrud/xcrud.php');

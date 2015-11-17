@@ -10,7 +10,7 @@ class Howlate_Mailer {
         $this->Host = $Host;
         $this->Username = $Username;
         $this->Password = $Password;
-        include(__SITE_PATH . '/includes/PHPMailer-master/PHPMailerAutoload.php');
+        include_once(__SITE_PATH . '/includes/PHPMailer-master/PHPMailerAutoload.php');
     }
 
     public function send($toEmail, $toName, $subject, $body, $from, $fromName) {

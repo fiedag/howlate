@@ -20,8 +20,10 @@ Class OrgController Extends baseController {
         $this->Organisation = Organisation::getInstance(__SUBDOMAIN);
 
         // create or update billing record
+        
         $default_user = OrgUser::getInstance($this->Organisation->OrgID, $_SESSION["USER"]);
-
+        $this->Organisation->update_billing($default_user);
+        
         $this->registry->template->controller = $this;       
         $this->registry->template->show('org_index');
     }

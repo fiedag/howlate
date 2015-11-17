@@ -17,7 +17,7 @@
             <div id="middle">
                 <div id="inner">
                     <div class="name-container font-on-custom-background">
-                        <div class="company-name"><?php echo $org->OrgName; ?></div>
+                        <div class="company-name"><?php echo $controller->Organisation->OrgName; ?></div>
                         <div class="login-info"><?php echo $login_info; ?></div>
                     </div>
                     <div class="secure-info font-on-custom-background ">

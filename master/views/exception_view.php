@@ -3,14 +3,16 @@
         <div class='container primary-content'>
 
             <h3>
-                <?php echo $sorry; ?>
+                <span class="glyphicon glyphicon-exclamation-sign">  &nbsp;</span><?php echo $sorry; ?>
             </h3>
             <div>
                 <?php echo $sorry2; ?>
             </div>
+            <br>
             <div>
-                <?php echo $class; ?>   <b> <?php echo $message; ?> </b>
+                <b> <?php echo $class; ?> </b>  <i> <?php echo $message; ?> </i>
             </div>
+            <br>
             <div>
                 <?php echo "$file ($line)"; ?>
 

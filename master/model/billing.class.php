@@ -182,6 +182,8 @@ class Billing {
         $chargeover = new Chargeover();
         $chargeover->deleteCustomer($customerID);
     }
+
+    
     
     private function recordUsage($chargeover, $OrgID, $OrgName = 'Org Name not given') {
         $last_billed = $this->getLastBilledSMS($OrgID);

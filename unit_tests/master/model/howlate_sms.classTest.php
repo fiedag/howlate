@@ -39,21 +39,5 @@ class HowLate_SMSTest extends PHPUnit_Framework_TestCase {
         $this->object->httpSend($orgid, $udid, $message);
         
     }
-    /**
-     * @covers HowLate_SMS::httpSend
-     * @todo   Implement testHttpSend().
-     */
-    public function testHttpSendMock() {
-        // Remove the following lines when you implement this test.
-        
-        $orgid = 'CCEOW';
-        $udid = '61403569377';
-        $message = 'This is from ' .  __METHOD__;
-        
-        $mock = new HowLate_SMS(new MockClickatell());
-        
-        $mock->httpSend($orgid, $udid, $message);
-        
-    }
 
 }

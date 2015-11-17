@@ -117,6 +117,50 @@
 </script>
 
 
+<div id="helpbubble_holder"></div>
+
+
+<script src="/js/libs/Ractive.min.js"></script>
+<script src="/js/libs/lodash.js"></script>
+<script src="/js/helpbubbles.min.js"></script>
+<script src="/js/helpbubbles.fix.js"></script>
+
+<script>
+    var bubblecious;
+    bubblecious = new window.HelpBubbles({
+        el: 'helpbubble_holder',
+        data: {
+            y_adjustment: 20,
+            bubbles: [
+                {
+                    target: 'nav-sub-agent',
+                    content: 'The Agent runs on your practice management database server to update the how-late system.  Configure the connection information then download and install it.',
+                },
+                {
+                    target: 'nav-sub-sessions',
+                    content: 'Session start and end times from your clinical system are uploaded here so lateness can be timed out at the end of a session.',
+                },
+                {
+                    target: 'nav-sub-appttype',
+                    content: 'Appointment types from your clinical system are uploaded here by the agent.  Configure which ones can be used to catch up lost time or require no consultation (auto-complete).',
+                },
+                 {
+                    target: 'nav-sub-apptstatus',
+                    content: 'Appointment status codes from your clinical system are uploaded here by the agent.  Configure which ones can be used to catch up lost time or require no consultation (auto-complete).',
+                    onTap: function () {
+                        console.log('Alt Bubble-tapped');
+                    }
+                }
+            ]
+        }
+    });
+
+
+
+</script>
+
+
+
 <?php $controller->get_footer(); ?>
 
 

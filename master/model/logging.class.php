@@ -13,7 +13,7 @@ class Logging {
         }
     }
 
-    public static function trlog($TranType, $Details, $OrgID = null, $ClinicID = null, $PractitionerID = null, $UDID = null, $Late = 0) {
+    public static function trlog($TranType, $Details, $OrgID = null, $ClinicID = null, $PractitionerID = null, $UDID = null, $Late = 0, $AgentVersion = 0) {
         if (!isset($_SERVER["REMOTE_ADDR"])) {
             $IPAddress = "localhost";
         }
@@ -21,10 +21,10 @@ class Logging {
             $IPAddress = $_SERVER["REMOTE_ADDR"];
         }
         
-        $q = "INSERT INTO transactionlog (TransType, OrgID, ClinicID, PractitionerID, Details, UDID, IPv4, Late) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        $q = "INSERT INTO transactionlog (TransType, OrgID, ClinicID, PractitionerID, Details, UDID, IPv4, Late, AgentVersion) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = MainDb::getInstance()->prepare($q);
         //$tz = date_default_timezone_get();
-        $stmt->bind_param('ssissssi', $TranType, $OrgID, $ClinicID, $PractitionerID, $Details, $UDID, $IPAddress, $Late);
+        $stmt->bind_param('ssissssis', $TranType, $OrgID, $ClinicID, $PractitionerID, $Details, $UDID, $IPAddress, $Late, $AgentVersion);
         $stmt->execute();  
         if ($stmt->affected_rows == 0) {
            trigger_error("The row was not inserted into the transactionlog table, error= " . $this->conn->error , E_USER_ERROR);
@@ -58,6 +58,7 @@ class Logging {
             }
         }
         return $rows;
-        $result->close();
     } 
+
+
 }
